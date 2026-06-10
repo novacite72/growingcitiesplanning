@@ -18,8 +18,8 @@ $('#loginForm').addEventListener('submit',async e=>{
     await boot();
   }catch(err){$('#li-err').textContent=err.message;}
 });
-$('#toReg').addEventListener('click',e=>{e.preventDefault();$('#loginForm').classList.add('hidden');$('#regForm').classList.remove('hidden');});
-$('#toLogin').addEventListener('click',e=>{e.preventDefault();$('#regForm').classList.add('hidden');$('#loginForm').classList.remove('hidden');});
+if($('#toReg'))$('#toReg').addEventListener('click',e=>{e.preventDefault();$('#loginForm').classList.add('hidden');$('#regForm').classList.remove('hidden');});
+if($('#toLogin'))$('#toLogin').addEventListener('click',e=>{e.preventDefault();$('#regForm').classList.add('hidden');$('#loginForm').classList.remove('hidden');});
 $('#regForm').addEventListener('submit',async e=>{
   e.preventDefault(); $('#rg-err').textContent='';
   try{
