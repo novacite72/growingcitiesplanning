@@ -1,0 +1,6 @@
+book.db
+secret.key
+*.pem
+bin/
+__pycache__/
+.DS_Store

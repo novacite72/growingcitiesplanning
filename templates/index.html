@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>성장하는 도시를 위한 도시계획 · 원고 검수</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<!-- Login -->
+<div class="login-bg" id="login">
+  <form class="login-card" id="loginForm">
+    <div class="lk">발간 · 서울연구원 글로벌 연구협력센터</div>
+    <h1>성장하는 도시를 위한 도시계획</h1>
+    <div class="en">Urban Planning for Growing Cities — 원고 검수 시스템</div>
+    <label>이름 또는 이메일</label>
+    <input type="text" id="li-email" autocomplete="username" placeholder="집필·감수자는 이름, 관리자는 이메일" required>
+    <label>비밀번호</label>
+    <input type="password" id="li-pw" autocomplete="current-password" placeholder="비밀번호" required>
+    <button class="btn btn-primary" type="submit">로그인</button>
+    <div class="login-err" id="li-err"></div>
+    <div class="login-hint">집필자·감수자: <b>본인 이름</b>으로 로그인(초기 비밀번호 <b>123456</b>) · 로그인 후 비밀번호 변경 권장.<br>새 감수자라면 <a href="#" id="toReg" style="color:var(--han);font-weight:700">계정 만들기</a>로 직접 등록할 수 있습니다.</div>
+  </form>
+
+  <form class="login-card hidden" id="regForm">
+    <div class="lk">집필자 · 감수자 계정 만들기</div>
+    <h1>계정 만들기</h1>
+    <div class="en">최초 1회 설정 — 이메일이 아이디가 됩니다</div>
+    <label>이메일 (아이디)</label>
+    <input type="email" id="rg-email" autocomplete="username" placeholder="name@seoul.re.kr" required>
+    <label>이름 (메모에 표시됩니다)</label>
+    <input type="text" id="rg-name" autocomplete="name" placeholder="홍길동" required>
+    <label>역할</label>
+    <select id="rg-role" style="width:100%;padding:11px 13px;border:1px solid var(--line);border-radius:10px;font-size:15px;font-family:inherit">
+      <option value="author">집필자</option>
+      <option value="reviewer" selected>감수자</option>
+    </select>
+    <label>비밀번호 (6자 이상)</label>
+    <input type="password" id="rg-pw" autocomplete="new-password" placeholder="비밀번호" required>
+    <button class="btn btn-primary" type="submit">계정 만들고 시작하기</button>
+    <div class="login-err" id="rg-err"></div>
+    <div class="login-hint"><a href="#" id="toLogin" style="color:var(--han);font-weight:700">← 이미 계정이 있어요 (로그인)</a></div>
+  </form>
+</div>
+
+<!-- App -->
+<div id="app" class="hidden">
+  <header class="hero">
+    <div class="wrap hero-in">
+      <div class="hero-top">
+        <div>
+          <div class="kicker" id="h-pub"></div>
+          <h1 id="h-kr"></h1>
+          <div class="en" id="h-en"></div>
+        </div>
+        <div class="userchip" id="userchip"></div>
+      </div>
+      <div class="stats">
+        <div class="stat"><div class="n" id="st-ch">0</div><div class="l">챕터 Chapters</div></div>
+        <div class="stat"><div class="n" id="st-case">0</div><div class="l">서울의 경험 사례</div></div>
+        <div class="stat"><div class="n" id="st-img">0</div><div class="l">그림·사진 Figures</div></div>
+        <div class="stat"><div class="n" id="st-memo">0</div><div class="l">메모 Memos</div></div>
+      </div>
+    </div>
+    <div class="umenu" id="umenu"></div>
+  </header>
+
+  <div class="toolbar">
+    <div class="wrap toolbar-in">
+      <div class="tabs">
+        <button class="tab active" data-view="chapters">📖 챕터 목록</button>
+        <button class="tab" data-view="table">📑 사례 키워드표</button>
+      </div>
+      <div class="search" id="searchBox">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+        <input id="q" type="text" placeholder="본문·제목·사례 전체 검색…">
+        <button class="clr" id="clrBtn" type="button">×</button>
+      </div>
+      <div class="filters" id="filters"></div>
+    </div>
+  </div>
+
+  <main><div class="wrap">
+    <div class="list-view" id="listView"></div>
+    <div class="reader" id="reader"></div>
+  </div></main>
+  <footer class="wrap" id="foot"></footer>
+</div>
+
+<!-- memo side panel -->
+<div class="overlay" id="overlay"></div>
+<div class="memo-panel" id="memoPanel">
+  <div class="mp-head"><h3 id="mp-title">메모</h3><button class="x" id="mp-close">×</button></div>
+  <div class="mp-body" id="mp-body"></div>
+</div>
+
+<!-- modal (admin / password) -->
+<div class="modal-bg" id="modalBg"><div class="modal" id="modalCard"></div></div>
+<!-- image zoom -->
+<div class="imgzoom" id="imgzoom"><img id="zoomImg" src=""></div>
+
+<script src="/static/app.js"></script>
+</body>
+</html>

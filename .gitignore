@@ -1,0 +1,13 @@
+# 로컬 비밀/상태 (절대 커밋 금지)
+book.db
+secret.key
+cert.pem
+*.pem
+cloudflared.yml
+bin/cloudflared
+bin/
+__pycache__/
+*.pyc
+.DS_Store
+/tmp/
+serve_public.sh

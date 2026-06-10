@@ -1,0 +1,24 @@
+# Render 블루프린트 — 무료 웹서비스. DATABASE_URL(Neon) 등은 대시보드에서 입력.
+services:
+  - type: web
+    name: growing-cities-book
+    runtime: python
+    plan: free
+    region: singapore
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn -w 2 --threads 4 -b 0.0.0.0:$PORT app:app"
+    envVars:
+      - key: PUBLIC
+        value: "1"
+      - key: REG_OPEN
+        value: "1"
+      - key: PYTHON_VERSION
+        value: "3.11.9"
+      - key: SECRET_KEY
+        generateValue: true        # 자동 생성·고정 → 배포해도 세션 유지
+      - key: DATABASE_URL
+        sync: false                # Neon 연결 문자열을 대시보드에서 입력
+      - key: ADMIN_EMAIL
+        sync: false                # (선택) 미입력 시 junyoung.choi@si.re.kr
+      - key: ADMIN_PASSWORD
+        sync: false                # (선택) 미입력 시 2969
