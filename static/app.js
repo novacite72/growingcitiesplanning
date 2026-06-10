@@ -153,7 +153,7 @@ async function openReader(order,scrollBi){
       body+=`<${tag} class="read-h blk" id="${id}" data-bi="${bi}">${esc(b.kr)}${b.en?`<span class="en">${esc(b.en)}</span>`:''}${memoUI(id,b.kr)}</${tag}>`;
       if(b.level<=2)toc+=`<a href="#${id}" class="t${b.level} ${b.kind}" data-id="${id}">${esc(b.kr)}</a>`;
     }else if(b.t==='img'){
-      body+=`<figure id="${id}"><img src="/static/${esc(b.src)}" loading="lazy" alt="그림"></figure>`;
+      body+=`<figure id="${id}" class="blk figblk" data-bi="${bi}"><img src="/static/${esc(b.src)}" loading="lazy" alt="그림">${memoUI(id,'그림/사진')}</figure>`;
     }else if(b.t==='table'){
       const rows=b.rows.map((r,ri)=>{const tag=ri===0?'th':'td';return '<tr>'+r.map(c=>`<${tag}>${esc(c).replace(/\n/g,'<br>')}</${tag}>`).join('')+'</tr>';}).join('');
       body+=`<div class="tbl-scroll blk" id="${id}" data-bi="${bi}"><table class="doc-tbl">${rows}</table>${memoUI(id,'표')}</div>`;
@@ -223,30 +223,37 @@ function renderThread(c,depth,kids){
     <div class="replies">${ch.map(k=>renderThread(k,depth+1,kids)).join('')}</div>
   </div>`;
 }
+function marginMode(){return window.innerWidth>1080;}   // 데스크탑=여백 레일 / 모바일=인라인
 function renderNotes(){
   const rail=$('#crail');if(!rail)return;
+  const margin=marginMode();
   rail.innerHTML='';
+  $$('#reader .notes').forEach(n=>n.remove());          // clear inline note blocks
   $$('.blk').forEach(b=>b.classList.remove('hascom'));
   if(!memoMode){positionComments();return;}
   const {kids,roots}=threadMaps();
   const total={};comments.forEach(c=>{total[c.block]=(total[c.block]||0)+1;});
-  // build a margin card per commented block, in document order
   $$('article.read .blk').forEach(b=>{
     const bid=b.id;if(!roots[bid])return;
     b.classList.add('hascom');
-    const card=document.createElement('div');card.className='ccard';card.dataset.block=bid;
-    card.innerHTML=`<div class="ccard-h">💬 메모 ${total[bid]}개</div>`+
+    const inner=`<div class="ccard-h">💬 메모 ${total[bid]}개</div>`+
       roots[bid].slice().sort((a,b)=>a.id-b.id).map(r=>renderThread(r,0,kids)).join('');
-    card.addEventListener('mouseenter',()=>{b.classList.add('blk-focus');card.classList.add('focus');});
-    card.addEventListener('mouseleave',()=>{b.classList.remove('blk-focus');card.classList.remove('focus');});
-    rail.appendChild(card);
+    if(margin){   // 데스크탑: 본문 옆 여백 레일
+      const card=document.createElement('div');card.className='ccard';card.dataset.block=bid;card.innerHTML=inner;
+      card.addEventListener('mouseenter',()=>{b.classList.add('blk-focus');card.classList.add('focus');});
+      card.addEventListener('mouseleave',()=>{b.classList.remove('blk-focus');card.classList.remove('focus');});
+      rail.appendChild(card);
+    }else{        // 모바일: 해당 블록 바로 아래 인라인
+      const wrap=document.createElement('div');wrap.className='notes';wrap.dataset.block=bid;wrap.innerHTML=inner;
+      b.after(wrap);
+    }
   });
   bindNoteActions();
   positionComments();
 }
 function positionComments(){
   const rail=$('#crail'),art=$('article.read');if(!rail||!art)return;
-  if(window.innerWidth<=1080){rail.style.height='';$$('#crail > *').forEach(c=>{c.style.top='';});return;}
+  if(!marginMode()){rail.style.height='';$$('#crail > *').forEach(c=>{c.style.top='';});return;}
   const artTop=art.getBoundingClientRect().top;
   const items=$$('#crail > *').map(card=>{
     const b=card.dataset.block?document.getElementById(card.dataset.block):null;
@@ -256,7 +263,16 @@ function positionComments(){
   items.forEach(({card,y})=>{const top=Math.max(y,last+8);card.style.top=top+'px';last=top+card.offsetHeight;});
   rail.style.height=Math.max(art.offsetHeight,last+20)+'px';
 }
-window.addEventListener('resize',()=>{if(curRead!==null)positionComments();});
+let _rzTimer=null,_lastMargin=null;
+window.addEventListener('resize',()=>{
+  if(curRead===null)return;
+  clearTimeout(_rzTimer);
+  _rzTimer=setTimeout(()=>{
+    const m=marginMode();
+    if(m!==_lastMargin){_lastMargin=m;renderNotes();}   // 모드 전환 시 재구성
+    else positionComments();
+  },120);
+});
 function bindNoteActions(){
   $$('.note [data-del]').forEach(b=>b.onclick=async()=>{if(!confirm('이 메모와 하위 답글을 모두 삭제할까요?'))return;await api('/api/comments/'+b.dataset.del,{method:'DELETE'});await reloadComments();});
   $$('.note [data-resolve]').forEach(b=>b.onclick=async()=>{await api('/api/comments/'+b.dataset.resolve+'/resolve',{method:'POST',body:JSON.stringify({resolved:+b.dataset.v})});await reloadComments();});
@@ -272,19 +288,20 @@ async function reloadComments(){
 function composerHTML(label,ph){
   return `<textarea placeholder="${ph}"></textarea><div class="cb"><button class="cancel">취소</button><button class="save">${label}</button></div>`;
 }
-function openComposer(bid,anchor,order){   // 새 메모(뿌리) — 본문 옆 여백에 작성
-  $$('#crail .composer').forEach(c=>c.remove());
-  const rail=$('#crail');if(!rail)return;
-  const host=$('#'+CSS.escape(bid));if(host)host.classList.add('blk-focus');
+function openComposer(bid,anchor,order){   // 새 메모(뿌리)
+  $$('.composer').forEach(c=>c.remove());
+  const host=$('#'+CSS.escape(bid));if(!host)return;host.classList.add('blk-focus');
   const cm=document.createElement('div');cm.className='composer';cm.dataset.block=bid;
-  cm.innerHTML=`<div class="ccard-h">💬 새 메모</div>`+composerHTML('메모 저장','이 문단에 대한 메모를 입력하세요…');
-  rail.appendChild(cm);positionComments();
+  const ph=anchor==='그림/사진'?'이 그림에 대한 메모를 입력하세요…':'이 문단에 대한 메모를 입력하세요…';
+  cm.innerHTML=`<div class="ccard-h">💬 새 메모</div>`+composerHTML('메모 저장',ph);
+  if(marginMode()){$('#crail').appendChild(cm);positionComments();}
+  else{host.after(cm);}   // 모바일: 블록 바로 아래
   const ta=cm.querySelector('textarea');ta.focus();ta.scrollIntoView({block:'center'});
-  cm.querySelector('.cancel').onclick=()=>{cm.remove();if(host)host.classList.remove('blk-focus');positionComments();};
+  cm.querySelector('.cancel').onclick=()=>{cm.remove();host.classList.remove('blk-focus');positionComments();};
   cm.querySelector('.save').onclick=async()=>{
     const body=ta.value.trim();if(!body)return;
     await api('/api/comments',{method:'POST',body:JSON.stringify({chapter:order,block:bid,anchor,body})});
-    if(host)host.classList.remove('blk-focus');memoMode=true;await reloadComments();
+    host.classList.remove('blk-focus');memoMode=true;await reloadComments();
   };
 }
 function openReplyComposer(pid){           // 답글(댓글·대댓글·대대댓글…)

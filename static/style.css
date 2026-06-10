@@ -123,8 +123,16 @@ article.read>h1{font-size:29px;font-weight:800;margin:2px 0 4px}
 article.read>.den{font-size:15px;color:var(--ink3);font-style:italic;margin-bottom:26px;padding-bottom:20px;border-bottom:2px solid var(--line)}
 .blk{position:relative;border-radius:8px;transition:background .15s}
 .blk:hover{background:#fafbfd}
-.blk .addmemo{position:absolute;right:-30px;top:3px;width:24px;height:24px;border-radius:7px;border:1px solid var(--line);background:#fff;color:var(--gold);cursor:pointer;font-size:13px;opacity:0;transition:.12s;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow)}
+.blk{position:relative}
+.blk .addmemo{position:absolute;right:-30px;top:3px;width:24px;height:24px;border-radius:7px;border:1px solid var(--line);background:#fff;color:var(--gold);cursor:pointer;font-size:13px;opacity:0;transition:.12s;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow);z-index:3}
 .blk:hover .addmemo{opacity:1}
+/* image (figure) gets a clear corner memo button */
+figure.figblk{position:relative}
+figure.figblk .addmemo{right:8px;top:8px;width:auto;height:28px;padding:0 10px;gap:4px;border-radius:8px;background:rgba(255,255,255,.94);font-weight:700;font-size:12px}
+figure.figblk .addmemo::after{content:"메모"}
+figure.figblk:hover .addmemo{opacity:1}
+/* touch devices have no hover → keep the button visible */
+@media (hover:none){.blk .addmemo{opacity:.6}.blk .addmemo:active{opacity:1}}
 .blk.hascom{background:#fffaf0}
 .blk .cbadge{position:absolute;right:-30px;top:3px;min-width:24px;height:24px;border-radius:12px;background:var(--gold);color:#fff;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;padding:0 6px;cursor:pointer}
 h2.read-h{font-size:22px;font-weight:800;margin:34px 0 6px;scroll-margin-top:128px}
@@ -148,8 +156,9 @@ article.read .figs-h{color:var(--ink2)}
 ul.refs{font-size:13.5px;color:var(--ink3);line-height:1.7;padding-left:20px}
 .hl{background:#fff2c2;animation:hlf 2.6s ease}@keyframes hlf{0%,40%{background:#ffe27a}100%{background:transparent}}
 
-/* comment note cards under blocks */
-.notes{margin:6px 0 16px}
+/* inline comment block (mobile): grouped card under the block */
+.notes{margin:8px 0 18px;background:#fffaf0;border:1px solid #f0e2c4;border-radius:11px;padding:10px 13px}
+.notes .ccard-h{font-size:11.5px;font-weight:800;color:var(--gold);margin-bottom:4px}
 .note{background:#fff;border:1px solid #ecdcb8;border-left:3px solid var(--gold);border-radius:9px;padding:10px 13px;margin:7px 0;font-size:13.5px;box-shadow:var(--shadow)}
 .note.resolved{opacity:.6;border-left-color:var(--green)}
 .note .nh{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
@@ -180,11 +189,9 @@ ul.refs{font-size:13.5px;color:var(--ink3);line-height:1.7;padding-left:20px}
 .blk.hascom{background:#fffdf6}
 .blk.blk-focus{background:#fff5e0;box-shadow:inset 3px 0 0 var(--gold)}
 @media(max-width:1080px){
-  .read-layout{grid-template-columns:1fr}
+  .read-layout{grid-template-columns:minmax(0,1fr)}
   .toc{display:none}
-  .crail{position:static}
-  .crail .ccard,.crail .composer{position:static!important;left:auto;right:auto;margin-bottom:10px}
-  .crail .ccard{margin-left:0}
+  .crail{display:none}        /* 모바일은 인라인 표시 → 레일 숨김 */
 }
 .notes-h{font-size:12px;font-weight:700;color:var(--gold);margin:8px 0 2px}
 .note .replies{margin-top:6px}
@@ -234,4 +241,63 @@ table.users select,table.users input{border:1px solid var(--line);border-radius:
 .imgzoom.open{display:flex}.imgzoom img{max-width:96%;max-height:96%;border-radius:8px}
 .empty{text-align:center;padding:60px 20px;color:var(--ink3)}
 footer{border-top:1px solid var(--line);padding:22px 0;color:var(--ink3);font-size:12.5px;text-align:center}
-@media(max-width:820px){.read-layout{grid-template-columns:1fr}.toc{display:none}article.read{padding:24px 20px 36px}.blk .addmemo,.blk .cbadge{right:2px;top:2px}}
+/* ---------- 태블릿/모바일 ---------- */
+@media(max-width:820px){
+  .read-layout{grid-template-columns:minmax(0,1fr);gap:0}
+  .toc{display:none}
+  article.read{padding:22px 18px 40px;border-radius:12px;font-size:15.5px;min-width:0;overflow-wrap:break-word}
+  .tbl-scroll{max-width:100%}
+  .blk .addmemo,.blk .cbadge{right:0;top:1px}
+  .blk .addmemo{opacity:.55}
+  figure.figblk .addmemo{right:8px;top:8px;opacity:.9}
+}
+@media(max-width:640px){
+  .wrap{padding:0 14px}
+  /* header */
+  .hero-in{padding:24px 0 20px}
+  .hero-top{gap:10px}
+  .hero h1{font-size:22px}
+  .hero .en{font-size:13.5px}
+  .hero .sub{font-size:12px;margin-top:5px}
+  .kicker{font-size:11.5px;letter-spacing:.1em}
+  .stats{gap:15px;margin-top:14px}
+  .stat .n{font-size:20px}.stat .l{font-size:10.5px}
+  .userchip{padding:5px 5px 5px 10px;gap:7px}
+  .userchip .un{font-size:12.5px}.userchip .ur{font-size:10px;max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .userchip .uav{width:30px;height:30px;font-size:13px}
+  /* toolbar: 모바일은 고정 해제(리더바와 이중 고정 방지), 검색은 한 줄 차지 */
+  .toolbar{position:static;padding:8px 0}
+  .toolbar-in{gap:8px}
+  .tabs{order:1}.tab{padding:7px 12px;font-size:13px}
+  .filters{order:2;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%}
+  .filters::-webkit-scrollbar{display:none}
+  .search{order:3;flex-basis:100%;min-width:0}
+  .chip{padding:6px 11px;font-size:12.5px}
+  .grid{grid-template-columns:1fr;gap:12px}
+  main{padding:18px 0 56px}
+  /* reader */
+  .rbar{top:0;padding:9px 0}
+  .rbar-in{gap:9px}
+  .rbar .rt{font-size:13.5px;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .rbar .rt small{display:none}
+  .back{padding:7px 11px;font-size:13px}
+  .memo-toggle{padding:7px 11px;font-size:12px}
+  article.read{padding:20px 16px 40px}
+  article.read>h1{font-size:22px}
+  article.read>.den{font-size:13.5px;margin-bottom:20px}
+  h2.read-h{font-size:19px}h3.read-h{font-size:16.5px}h4.read-h{font-size:15px}
+  .case-h h2{font-size:17.5px}
+  .blk .addmemo{width:28px;height:28px;font-size:14px}   /* 터치 타깃 확대 */
+  /* memo panel & modals full-bleed */
+  .memo-panel{width:100%;max-width:100%}
+  .modal-bg{padding:0;align-items:stretch}
+  .modal{border-radius:0;min-height:100%}
+  .modal-body{max-height:none}
+  .adduser{grid-template-columns:1fr}
+  .login-card{padding:28px 20px 24px;border-radius:16px}
+  .login-bg{padding:12px}
+  table.cases{font-size:12.5px}
+  table.cases th,table.cases td{padding:8px 9px}
+  table.cases th{top:0}
+  table.doc-tbl{font-size:12px}
+}
