@@ -126,6 +126,41 @@ def detect_mode(d):
     if any(s in styles for s in NAMED): return 'named'
     return 'font'
 
+# ---- cover-block stripping + figure/table number correction ----
+COVER_RE = re.compile(r'(서울의 도시계획 이야기|성장하는 도시를 위한 도시계획|Urban Planning for Growing|'
+                      r'Opening Chapter|Spatial Structure|Governance and Information|^Part\s)')
+QUOTE_START = ('"', '“', '”', '‘', '’', "'", '·', '—')
+def strip_cover(content):
+    """원고 맨 앞의 표지 줄(시리즈명·책제목·장제목·영문제목·Part·번호)을 제거."""
+    i, n = 0, len(content)
+    # 1) 표지성 표(담당자/검수자/파트 제목) 제거 — named 모드
+    while i < n and content[i]['t'] == 'table':
+        tx = ' '.join(' '.join(r) for r in content[i].get('rows', []))
+        if re.search(r'담당자|검수자|파트\s*제목', tx): i += 1
+        else: break
+    # 2) 장 제목 표제 헤딩 제거 — font 모드("9. 물 체계" / "10장 쓰레기 관리 체계")
+    if i < n and content[i]['t'] == 'h' and re.match(r'^\d+\s*장\b|^\d+\.\s+\D', content[i]['kr']):
+        i += 1
+    # 3) 표지 문단(키워드 포함 또는 55자 미만 제목 조각) 제거. 인용구·본문·헤딩에서 정지
+    while i < n and content[i]['t'] == 'p':
+        t = content[i]['text'].strip()
+        if t.startswith(QUOTE_START) and not COVER_RE.search(t): break
+        if COVER_RE.search(t) or len(t) < 55: i += 1
+        else: break
+    return content[i:]
+
+def fignum_shift(text, shift):
+    """캡션·본문의 '그림/표 N-M'에서 장번호 N을 shift만큼 감소(책 장번호와 일치)."""
+    if not shift or not text: return text
+    return re.sub(r'(그림|표|사진|도면)(\s*\[?\s*)(\d+)(\s*[-–])',
+                  lambda m: m.group(1) + m.group(2) + str(int(m.group(3)) - shift) + m.group(4), text)
+
+def label_shift(label):
+    m = re.match(r'(\d+)\s*장', label)
+    if not m: return 0
+    num = int(m.group(1))
+    return 1 if 1 <= num <= 14 else (2 if num in (15, 16) else 0)
+
 def save_image(doc, rid, order, seq, placed_parts):
     part = doc.part.related_parts.get(rid)
     if part is None: return None
@@ -307,6 +342,13 @@ def main():
         d = docx.Document(match)
         mode = detect_mode(d)
         content = walk(d, mode, idx, label)
+        content = strip_cover(content)                       # 표지 4줄 제거
+        sh = label_shift(label)                              # 그림/표 장번호 보정
+        if sh:
+            for b in content:
+                if b.get('text'): b['text'] = fignum_shift(b['text'], sh)
+                if b['t'] == 'h': b['kr'] = fignum_shift(b['kr'], sh)
+                if b['t'] == 'table': b['rows'] = [[fignum_shift(c, sh) for c in row] for row in b['rows']]
         headings = [c for c in content if c['t'] == 'h']
         cases = [{'kr': c['kr'], 'en': c['en'], 'keywords': case_keywords(c['kr'])}
                  for c in headings if c['kind'] == 'core']

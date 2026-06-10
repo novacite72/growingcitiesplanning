@@ -261,13 +261,22 @@ def list_comments():
     ch = request.args.get('chapter')
     q = 'SELECT * FROM comments'; args = []
     if ch is not None: q += ' WHERE chapter=?'; args.append(int(ch))
-    q += ' ORDER BY id'   # 스레드 토론이므로 모든 역할이 전체 메모 열람
+    q += ' ORDER BY id'
     rows = [dict(r) for r in db().execute(q, args).fetchall()]
+    # 가시성: 감수자는 '자신이 시작한 스레드'(본인 뿌리메모+그 답글)만, 관리자·집필자는 전체
+    if u['role'] == 'reviewer':
+        byid = {r['id']: r for r in rows}
+        def root_email(r):
+            seen = set()
+            while r.get('parent_id') and r['parent_id'] in byid and r['id'] not in seen:
+                seen.add(r['id']); r = byid[r['parent_id']]
+            return r['email']
+        rows = [r for r in rows if root_email(r) == u['email']]
     for r in rows:
         r['roleName'] = ROLES.get(r['role'], r['role'])
         r['mine'] = (r['email'] == u['email'])
         r['canDelete'] = r['mine'] or u['role'] == 'admin'
-    return jsonify(comments=rows, canSeeAll=True)
+    return jsonify(comments=rows, canSeeAll=(u['role'] in ('admin', 'author')))
 
 @app.post('/api/comments')
 @login_required

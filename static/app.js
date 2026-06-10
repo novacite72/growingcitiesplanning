@@ -94,13 +94,13 @@ function tableView(){
     rows+=`<tr class="part-sep"><td colspan="4">${esc(p)}</td></tr>`;
     chs.forEach(c=>c.cases.forEach((cs,i)=>{
       rows+=`<tr class="crow" data-ch="${c.order}"><td class="tnum">${i===0?esc(c.label):''}</td>
+        <td class="tpart">${i===0?esc(c.titleKR):''}</td>
         <td class="tcase">${esc(cs.kr)}${cs.en?`<div class="tpart" style="font-style:italic;margin-top:2px">${esc(cs.en)}</div>`:''}</td>
-        <td>${cs.keywords.map(k=>`<span class="kw">${esc(k)}</span>`).join('')}</td>
-        <td class="tpart">${i===0?esc(c.titleKR):''}</td></tr>`;
+        <td>${cs.keywords.map(k=>`<span class="kw">${esc(k)}</span>`).join('')}</td></tr>`;
     }));
   });
   return `<div class="part-group"><div class="part-h"><span class="pt">서울의 경험으로 선택한 사례 — 키워드 정리</span><span class="pc">총 ${CH.reduce((s,c)=>s+c.caseCount,0)}개</span></div>
-    <div class="tbl-wrap"><table class="cases"><thead><tr><th style="width:64px">장</th><th>사례 (핵심 정책·경험)</th><th style="width:30%">키워드</th><th style="width:150px">체계</th></tr></thead><tbody>${rows}</tbody></table></div></div>`;
+    <div class="tbl-wrap"><table class="cases"><thead><tr><th style="width:60px">장</th><th style="width:130px">체계</th><th>사례 (핵심 정책·경험)</th><th style="width:28%">키워드</th></tr></thead><tbody>${rows}</tbody></table></div></div>`;
 }
 function searchView(){
   const ql=query.toLowerCase(),res=[];
