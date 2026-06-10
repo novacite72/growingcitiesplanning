@@ -2,7 +2,7 @@
 // ---------- state ----------
 let ME=null, ROLES={}, BOOK=null, CH=[], M={}, PARTS=[];
 let view='chapters', query='', partFilter='all', curRead=null;
-let comments=[], canSeeAll=false, memoMode=true;
+let comments=[], canSeeAll=false, memoMode=true, editMode=false;
 
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 function esc(s){return (s||'').replace(/[&<>]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[m]));}
@@ -165,17 +165,24 @@ async function openReader(order,scrollBi){
   if(refs.length)body+=`<ul class="refs">${refs.map(r=>`<li>${esc(r)}</li>`).join('')}</ul>`;
   const memoN=comments.length;
   $('#reader').innerHTML=`<div class="rbar"><div class="wrap" style="padding:0"><div class="rbar-in">
-      <button class="back" onclick="closeReader()">‹ 목록으로</button>
+      <button class="back" onclick="closeReader()">‹ 목록</button>
       <div class="rt">${esc(c.label)} · ${esc(c.titleKR)}<small>${esc(c.partname.replace(/ ·.*/,''))}</small></div>
-      <button class="memo-toggle ${memoMode?'on':''}" id="memoToggle">📝 메모 ${memoN}</button>
+      ${c.canEdit?`<button class="rbtn" id="editToggle" title="본문 편집">✏️ 편집</button>`:''}
+      <button class="rbtn" id="btnDoc" title="Word(.doc) 저장">⬇ DOC</button>
+      <button class="rbtn" id="btnPdf" title="PDF 저장(인쇄)">⬇ PDF</button>
+      <button class="memo-toggle ${memoMode?'on':''}" id="memoToggle">📝 ${memoN}</button>
     </div></div></div>
     <div class="read-layout"><nav class="toc">${toc}</nav>
       <article class="read"><div class="doc-h">${esc(c.label)} · ${esc(c.partname.replace(/ ·.*/,''))}</div>
         <h1>${esc(c.titleKR)}</h1><div class="den">${esc(c.titleEN)}</div>${body}</article>
       <div class="crail" id="crail"></div></div>`;
   $('#listView').classList.add('off');$('#reader').classList.add('on');window.scrollTo(0,0);
+  editMode=false;
   setupReader(order);renderNotes();
   $('#memoToggle').onclick=()=>openMemoPanel(order);
+  $('#btnDoc').onclick=()=>exportDoc(c);
+  $('#btnPdf').onclick=()=>exportPdf(c);
+  if($('#editToggle'))$('#editToggle').onclick=()=>toggleEdit(order);
   if(scrollBi!=null){const el=$('#b'+order+'_'+scrollBi);if(el)setTimeout(()=>{el.scrollIntoView({block:'center'});el.classList.add('hl');},60);}
 }
 function memoUI(id,anchor){
@@ -196,7 +203,80 @@ function setupReader(order){
   const links=$$('.toc a'),map={};links.forEach(a=>map[a.dataset.id]=a);
   const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.remove('active'));const a=map[e.target.id];if(a)a.classList.add('active');}});},{rootMargin:'-120px 0px -70% 0px'});
   $$('article.read [id]').forEach(el=>{if(map[el.id])obs.observe(el);});
-  links.forEach(a=>a.onclick=ev=>{ev.preventDefault();const el=$('#'+CSS.escape(a.dataset.id));if(el)el.scrollIntoView({behavior:'smooth',block:'start'});});
+  links.forEach(a=>a.onclick=ev=>{ev.preventDefault();gotoBlock(a.dataset.id);});
+}
+function gotoBlock(id){
+  const el=document.getElementById(id);if(!el)return;
+  const y=el.getBoundingClientRect().top+window.pageYOffset-118, y0=window.pageYOffset;
+  try{window.scrollTo({top:y,behavior:'smooth'});}catch(e){window.scrollTo(0,y);}
+  setTimeout(()=>{if(Math.abs(window.pageYOffset-y0)<4)window.scrollTo(0,y);},130);  // smooth 미지원 폴백
+  el.classList.add('hl');setTimeout(()=>el.classList.remove('hl'),1700);
+}
+
+// ---------- export: .doc / .pdf ----------
+function blockExportHTML(b){
+  if(b.t==='h'){const tag=b.level===1?'h2':b.level===2?'h3':'h4';return `<${tag}>${esc(b.kr)}${b.en?` <span style="font-weight:400;color:#777;font-style:italic">${esc(b.en)}</span>`:''}</${tag}>`;}
+  if(b.t==='img')return `<p style="text-align:center"><img src="${location.origin}/static/${esc(b.src)}" style="max-width:520px;border:1px solid #ccc"></p>`;
+  if(b.t==='cap')return `<p style="font-size:10pt;color:#555;font-style:italic;margin:2px 0 12px">${esc(b.text)}</p>`;
+  if(b.t==='table')return '<table border="1" cellpadding="5" style="border-collapse:collapse;margin:10px 0;font-size:10pt">'+b.rows.map((r,ri)=>'<tr>'+r.map(c=>`<${ri===0?'th':'td'} style="text-align:left">${esc(c).replace(/\n/g,'<br>')}</${ri===0?'th':'td'}>`).join('')+'</tr>').join('')+'</table>';
+  if(b.t==='note')return '';
+  if(b.t==='ref')return `<p style="font-size:9pt;color:#666">${esc(b.text)}</p>`;
+  return `<p>${esc(b.text)}</p>`;
+}
+function chapterExportHTML(c){
+  return `<h1>${esc(c.label)} · ${esc(c.titleKR)}</h1><p style="color:#666;font-style:italic">${esc(c.titleEN)}</p><hr>`+c.content.map(blockExportHTML).join('');
+}
+function exportDoc(c){
+  const html=`<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40"><head><meta charset="utf-8"><title>${esc(c.titleKR)}</title></head><body style="font-family:'Malgun Gothic','맑은 고딕',sans-serif;line-height:1.7;font-size:11pt">${chapterExportHTML(c)}</body></html>`;
+  const blob=new Blob(['﻿'+html],{type:'application/msword'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`${c.label}_${c.titleKR}.doc`;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+  toast('Word 문서(.doc)를 저장했습니다.');
+}
+function exportPdf(c){
+  const wasEdit=editMode;if(editMode)toggleEdit(curRead);
+  document.body.classList.add('printing');
+  toast('인쇄 대화상자에서 "PDF로 저장"을 선택하세요.');
+  setTimeout(()=>{window.print();document.body.classList.remove('printing');},250);
+}
+
+// ---------- edit mode (관리자=전체, 집필자=배정 장) ----------
+function toggleEdit(order){
+  editMode=!editMode;
+  const art=$('article.read');if(art)art.classList.toggle('editing',editMode);
+  const btn=$('#editToggle');if(btn){btn.classList.toggle('on',editMode);btn.textContent=editMode?'✓ 편집 종료':'✏️ 편집';}
+  if(editMode){
+    $$('article.read .txt.blk, article.read .cap.blk').forEach(el=>el.onclick=ev=>{
+      if(ev.target.closest('.addmemo, .blk-editor'))return; openEditor(order,el);});
+    toast('편집 모드 — 문단/캡션을 클릭하면 수정창이 열립니다.');
+  }else{
+    $$('.blk-editor').forEach(e=>e.remove());
+    $$('article.read .blk').forEach(el=>el.onclick=null);
+  }
+}
+function openEditor(order,el){
+  $$('.blk-editor').forEach(e=>e.remove());
+  const idx=+el.id.split('_')[1];
+  const ch=CH.find(c=>c.order===order);const b=ch.content[idx];if(!b)return;
+  const cur=b.text||'';
+  const ed=document.createElement('div');ed.className='blk-editor';
+  ed.innerHTML=`<textarea spellcheck="false"></textarea><div class="cb"><button class="cancel">취소</button><button class="save">저장</button></div>`;
+  ed.querySelector('textarea').value=cur;
+  el.after(ed);const ta=ed.querySelector('textarea');ta.style.height=Math.max(64,ta.scrollHeight+8)+'px';ta.focus();
+  ed.querySelector('.cancel').onclick=()=>ed.remove();
+  ed.querySelector('.save').onclick=async()=>{
+    const val=ta.value;
+    try{
+      const r=await api('/api/edit',{method:'POST',body:JSON.stringify({chapter:order,blk:idx,value:val})});
+      b.text=val;const btn=el.querySelector('.addmemo');
+      el.textContent=(b.t==='cap'?'▣ ':'')+val;if(btn){el.appendChild(btn);btn.onclick=e=>{e.stopPropagation();openComposer(btn.dataset.id,btn.dataset.anchor,order);};}
+      el.classList.add('edited');ed.remove();toast(r.unchanged?'변경 없음':'저장되었습니다.');positionComments();
+    }catch(e){alert(e.message);}
+  };
+}
+let _toastT=null;
+function toast(msg){
+  let t=$('#toast');if(!t){t=document.createElement('div');t.id='toast';document.body.appendChild(t);}
+  t.textContent=msg;t.classList.add('show');clearTimeout(_toastT);_toastT=setTimeout(()=>t.classList.remove('show'),2600);
 }
 
 // ---------- threaded comments (메모 · 댓글 · 대댓글 · 대대댓글…) ----------
@@ -358,28 +438,56 @@ window.closeModal=closeModal;
 
 // ---------- admin: users ----------
 async function openUsers(){
-  const r=await api('/api/users');
-  const rows=r.users.map(u=>`<tr><td><b>${esc(u.name)}</b><div class="tpart">${esc(u.email)}</div></td>
+  const r=await api('/api/users');ADMIN_CHAPTERS=r.chapters;
+  const chapName=o=>{const c=r.chapters.find(x=>x.order===o);return c?c.label:o;};
+  const rows=r.users.map(u=>{
+    const chips=(u.chapters||[]).map(o=>`<span class="chipmini">${esc(chapName(o))}</span>`).join('')||'<span class="tpart">없음</span>';
+    return `<tr><td><b>${esc(u.name)}</b><div class="tpart">${esc(u.email)}</div></td>
     <td><select data-role="${esc(u.email)}">${Object.entries(r.roles).map(([k,v])=>`<option value="${k}" ${u.role===k?'selected':''}>${v}</option>`).join('')}</select></td>
-    <td><input data-assigned="${esc(u.email)}" value="${esc(u.assigned||'')}" placeholder="담당" style="width:120px"></td>
-    <td class="tpart">${u.comments}개</td>
+    <td>${u.role==='admin'?'<span class="tpart">전체</span>':`<div class="asgn">${chips}</div><button class="back asgnbtn" style="padding:3px 8px;font-size:11px;margin-top:4px" data-asgn="${esc(u.email)}">장 배정 수정</button>`}</td>
+    <td class="tpart">${u.comments}</td>
     <td><button class="back" style="padding:4px 9px;font-size:12px" data-save="${esc(u.email)}">저장</button>
-    ${u.email===ME.email?'':`<button class="back" style="padding:4px 9px;font-size:12px;color:var(--red);margin-left:4px" data-deluser="${esc(u.email)}">삭제</button>`}</td></tr>`).join('');
-  openModal(`<div class="modal-head"><h2>사용자 관리</h2><button class="x" onclick="closeModal()">×</button></div>
+    ${u.email===ME.email?'':`<button class="back" style="padding:4px 9px;font-size:12px;color:var(--red);margin-left:4px" data-deluser="${esc(u.email)}">삭제</button>`}</td></tr>`;}).join('');
+  openModal(`<div class="modal-head"><h2>사용자 · 권한 관리</h2>
+     <div style="display:flex;gap:8px"><button class="rbtn" id="btnLog" style="background:rgba(255,255,255,.2);color:#fff">📝 편집 로그</button><button class="x" onclick="closeModal()">×</button></div></div>
    <div class="modal-body">
-    <table class="users"><thead><tr><th>이름 / 로그인 ID</th><th>역할</th><th>담당</th><th>메모</th><th></th></tr></thead><tbody>${rows}</tbody></table>
+    <p class="tpart" style="margin:0 0 12px">집필자=배정 장 <b>편집</b>, 감수자=배정 장 <b>열람·메모</b>, 관리자=전체. 역할 변경 후 <b>저장</b>.</p>
+    <table class="users"><thead><tr><th>이름 / ID</th><th>역할</th><th>배정 장</th><th>메모</th><th></th></tr></thead><tbody>${rows}</tbody></table>
     <div class="adduser"><h4>＋ 사용자 추가</h4>
       <input id="nu-name" placeholder="이름"><input id="nu-email" placeholder="이메일">
       <select id="nu-role">${Object.entries(r.roles).map(([k,v])=>`<option value="${k}" ${k==='reviewer'?'selected':''}>${v}</option>`).join('')}</select>
       <input id="nu-pw" placeholder="초기 비밀번호 (6자+)">
-      <input class="full" id="nu-assigned" placeholder="담당 장/파트 (선택)">
       <div class="msg" id="nu-msg"></div>
       <button class="btn btn-primary full" id="nu-add" style="margin-top:0">추가</button></div></div>`);
+  $('#btnLog').onclick=openEditLog;
   $$('[data-save]').forEach(b=>b.onclick=async()=>{const em=b.dataset.save;
-    const role=$(`select[data-role="${em}"]`).value,assigned=$(`input[data-assigned="${em}"]`).value;
-    await api('/api/users/'+encodeURIComponent(em),{method:'PUT',body:JSON.stringify({role,assigned})});b.textContent='✓';setTimeout(()=>b.textContent='저장',1000);});
+    await api('/api/users/'+encodeURIComponent(em),{method:'PUT',body:JSON.stringify({role:$(`select[data-role="${em}"]`).value})});b.textContent='✓';setTimeout(()=>b.textContent='저장',1000);});
   $$('[data-deluser]').forEach(b=>b.onclick=async()=>{if(!confirm(b.dataset.deluser+' 계정을 삭제할까요?'))return;await api('/api/users/'+encodeURIComponent(b.dataset.deluser),{method:'DELETE'});openUsers();});
-  $('#nu-add').onclick=async()=>{try{await api('/api/users',{method:'POST',body:JSON.stringify({name:$('#nu-name').value,email:$('#nu-email').value,role:$('#nu-role').value,password:$('#nu-pw').value,assigned:$('#nu-assigned').value})});openUsers();}catch(e){$('#nu-msg').style.color='var(--red)';$('#nu-msg').textContent=e.message;}};
+  $$('[data-asgn]').forEach(b=>b.onclick=()=>openAssign(b.dataset.asgn,r.users.find(u=>u.email===b.dataset.asgn).chapters||[]));
+  $('#nu-add').onclick=async()=>{try{await api('/api/users',{method:'POST',body:JSON.stringify({name:$('#nu-name').value,email:$('#nu-email').value,role:$('#nu-role').value,password:$('#nu-pw').value})});openUsers();}catch(e){$('#nu-msg').style.color='var(--red)';$('#nu-msg').textContent=e.message;}};
+}
+let ADMIN_CHAPTERS=[];
+function openAssign(email,current){
+  const set=new Set(current);
+  const boxes=ADMIN_CHAPTERS.map(c=>`<label class="asgnchk"><input type="checkbox" value="${c.order}" ${set.has(c.order)?'checked':''}> ${esc(c.label)} <span class="tpart">${esc(c.titleKR)}</span></label>`).join('');
+  openModal(`<div class="modal-head"><h2>장 배정 · ${esc(email)}</h2><button class="x" onclick="closeModal()">×</button></div>
+    <div class="modal-body"><div class="asgngrid">${boxes}</div>
+    <div class="msg" id="as-msg"></div>
+    <div style="display:flex;gap:8px;margin-top:14px"><button class="btn btn-primary" id="as-save" style="margin-top:0">저장</button>
+      <button class="back" onclick="openUsers()">← 목록</button></div></div>`);
+  $('#as-save').onclick=async()=>{
+    const chs=$$('.asgngrid input:checked').map(i=>+i.value);
+    await api('/api/assignments/'+encodeURIComponent(email),{method:'PUT',body:JSON.stringify({chapters:chs})});
+    $('#as-msg').style.color='var(--green)';$('#as-msg').textContent='저장되었습니다.';setTimeout(openUsers,700);
+  };
+}
+async function openEditLog(){
+  const r=await api('/api/editlog');
+  const rows=r.log.map(e=>`<tr><td class="tpart" style="white-space:nowrap">${fmtTime(e.ts)}</td><td><b>${esc(e.name)}</b> ${roleBadge(e.role)}</td>
+    <td class="tnum">${esc(e.chapterLabel)}</td><td style="font-size:12px"><span style="color:var(--red);text-decoration:line-through">${esc((e.oldv||'').slice(0,40))}</span> → <span style="color:var(--green)">${esc((e.newv||'').slice(0,40))}</span></td></tr>`).join('')||'<tr><td colspan="4" class="tpart" style="padding:20px;text-align:center">편집 기록이 없습니다.</td></tr>';
+  openModal(`<div class="modal-head"><h2>편집 로그 (${r.log.length})</h2><button class="x" onclick="closeModal()">×</button></div>
+    <div class="modal-body"><table class="users"><thead><tr><th>시각</th><th>편집자</th><th>장</th><th>변경(이전→이후)</th></tr></thead><tbody>${rows}</tbody></table>
+    <button class="back" style="margin-top:14px" onclick="openUsers()">← 사용자 관리</button></div>`);
 }
 
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){if($('#imgzoom').classList.contains('open'))$('#imgzoom').classList.remove('open');else if($('#memoPanel').classList.contains('open'))closeMemoPanel();else if($('#modalBg').classList.contains('open'))closeModal();else if(curRead!==null)closeReader();}});

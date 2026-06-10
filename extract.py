@@ -343,6 +343,9 @@ def main():
         mode = detect_mode(d)
         content = walk(d, mode, idx, label)
         content = strip_cover(content)                       # 표지 4줄 제거
+        # 담당자/검수자/파트 제목 표지 표는 위치 무관 전부 제거
+        content = [b for b in content if not (b['t'] == 'table' and
+                   re.search(r'담당자|검수자|파트\s*제목', ' '.join(' '.join(r) for r in b.get('rows', []))))]
         sh = label_shift(label)                              # 그림/표 장번호 보정
         if sh:
             for b in content:

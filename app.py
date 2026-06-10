@@ -5,7 +5,7 @@
 실행: python3 app.py   →  http://localhost:8000
 배포: gunicorn -w 4 -b 0.0.0.0:8000 app:app
 """
-import os, json, sqlite3, secrets, datetime, time
+import os, json, sqlite3, secrets, datetime, time, copy
 from functools import wraps
 from flask import (Flask, request, session, jsonify, send_from_directory,
                    render_template, g, abort)
@@ -114,6 +114,14 @@ REVIEWERS = [
     ('김광중', '14장 주거'), ('최봉문', '16장 정보체계'),
     ('이인근', '종장 맺음말'),
 ]
+# 배정표 → 장(order) 목록. order: 0=서장,1~16=장,17=종장
+ASSIGN_SEED = {
+    '권원용': [0], '강명구': [1, 2, 3, 15, 17], '유영호': [4, 5, 6, 7], '이동건': [8],
+    '류예승': [9, 10, 11], '전백찬': [12, 13, 14], '최준영': [16],
+    '김상일': [0, 3], '김학진': [1], '이주일': [2, 15], '이창': [4], '고준호': [5],
+    '최창규': [6], '김형규': [7], '최영준': [8, 11], '유기영': [9], '방설아': [10],
+    '김묵한': [12], '양재섭': [13], '김광중': [14], '최봉문': [16], '이인근': [17],
+}
 
 def init_db():
     con = DB()
@@ -136,6 +144,20 @@ def init_db():
         cols = [r[1] for r in con.execute('PRAGMA table_info(comments)')]
         if 'parent_id' not in cols:
             con.execute('ALTER TABLE comments ADD COLUMN parent_id INTEGER')
+    # 권한 배정 / 본문 편집 오버라이드 / 편집 로그
+    if IS_PG:
+        con.execute('CREATE TABLE IF NOT EXISTS assignments(email TEXT, chapter INTEGER, PRIMARY KEY(email,chapter))')
+        con.execute('''CREATE TABLE IF NOT EXISTS overrides(
+          chapter INTEGER, blk INTEGER, value TEXT, editor TEXT, ts TEXT, PRIMARY KEY(chapter,blk))''')
+        con.execute('''CREATE TABLE IF NOT EXISTS editlog(
+          id SERIAL PRIMARY KEY, chapter INTEGER, blk INTEGER, oldv TEXT, newv TEXT,
+          editor TEXT, name TEXT, role TEXT, ts TEXT)''')
+    else:
+        con.conn.executescript('''
+          CREATE TABLE IF NOT EXISTS assignments(email TEXT, chapter INTEGER, PRIMARY KEY(email,chapter));
+          CREATE TABLE IF NOT EXISTS overrides(chapter INTEGER, blk INTEGER, value TEXT, editor TEXT, ts TEXT, PRIMARY KEY(chapter,blk));
+          CREATE TABLE IF NOT EXISTS editlog(id INTEGER PRIMARY KEY AUTOINCREMENT, chapter INTEGER, blk INTEGER,
+            oldv TEXT, newv TEXT, editor TEXT, name TEXT, role TEXT, ts TEXT);''')
     ignore = 'ON CONFLICT (email) DO NOTHING' if IS_PG else 'OR IGNORE'
     ins = ('INSERT OR IGNORE INTO users VALUES(?,?,?,?,?,?)' if not IS_PG
            else 'INSERT INTO users VALUES(?,?,?,?,?,?) ON CONFLICT (email) DO NOTHING')
@@ -148,6 +170,13 @@ def init_db():
         for name, assigned in REVIEWERS:
             con.execute(ins, (name, name, 'reviewer', generate_password_hash('123456'), now(), assigned))
         print(f'[seed] 관리자 {admin_id}/{admin_pw}, 집필 {len(AUTHORS)}명·감수 {len(REVIEWERS)}명 ({"PG" if IS_PG else "SQLite"})')
+    # 배정 시드(비어 있을 때 1회)
+    if con.execute('SELECT COUNT(*) FROM assignments').fetchone()[0] == 0:
+        ains = ('INSERT INTO assignments VALUES(?,?) ON CONFLICT DO NOTHING' if IS_PG
+                else 'INSERT OR IGNORE INTO assignments VALUES(?,?)')
+        for email, chs in ASSIGN_SEED.items():
+            for ch in chs:
+                con.execute(ains, (email, ch))
     con.commit(); con.close()
 
 def now(): return datetime.datetime.now().isoformat(timespec='seconds')
@@ -173,6 +202,26 @@ def admin_required(f):
         if not u or u['role'] != 'admin': return jsonify(error='관리자 권한이 필요합니다.'), 403
         return f(*a, **k)
     return w
+
+# ---------------- permissions ----------------
+def assigned_chapters(email):
+    return {r[0] for r in db().execute('SELECT chapter FROM assignments WHERE email=?', (email,)).fetchall()}
+
+def can_view(u, ch):
+    # 관리자·집필자는 전체 열람, 감수자는 배정 장만
+    if u['role'] in ('admin', 'author'): return True
+    return ch in assigned_chapters(u['email'])
+
+def can_edit(u, ch):
+    # 관리자는 전체 편집, 집필자는 배정 장만, 감수자는 편집 불가
+    if u['role'] == 'admin': return True
+    if u['role'] == 'author': return ch in assigned_chapters(u['email'])
+    return False
+
+def block_field(b):
+    if b['t'] == 'h': return 'kr'
+    if b['t'] in ('p', 'cap', 'ref', 'note'): return 'text'
+    return None
 
 # ---------------- pages ----------------
 @app.route('/')
@@ -233,6 +282,8 @@ def me():
     u = current()
     if not u: return jsonify(user=None)
     u['roleName'] = ROLES.get(u['role'], u['role'])
+    u['assigned'] = sorted(assigned_chapters(u['email']))
+    u['canEditAny'] = (u['role'] in ('admin', 'author'))
     return jsonify(user=u, roles=ROLES)
 
 @app.post('/api/password')
@@ -248,10 +299,68 @@ def change_pw():
     return jsonify(ok=True)
 
 # ---------------- book data ----------------
+def load_overrides():
+    return {(r['chapter'], r['blk']): r['value']
+            for r in db().execute('SELECT chapter,blk,value FROM overrides').fetchall()}
+
 @app.get('/api/data')
 @login_required
 def data():
-    return jsonify(BOOK)
+    u = current()
+    ov = load_overrides()
+    chs = []
+    for c in BOOK['chapters']:
+        if not can_view(u, c['order']): continue          # 감수자: 배정 장만
+        cc = copy.deepcopy(c)
+        for idx, b in enumerate(cc['content']):
+            key = (c['order'], idx)
+            if key in ov:
+                f = block_field(b)
+                if f: b[f] = ov[key]; b['edited'] = True
+        cc['canEdit'] = can_edit(u, c['order'])
+        chs.append(cc)
+    return jsonify({'chapters': chs, 'meta': BOOK['meta']})
+
+@app.post('/api/edit')
+@login_required
+def edit_block():
+    u = current(); j = request.get_json(force=True)
+    ch = int(j.get('chapter', -1)); blk = int(j.get('blk', -1))
+    val = (j.get('value') or '').strip()
+    if not can_edit(u, ch):
+        return jsonify(error='이 장을 편집할 권한이 없습니다.'), 403
+    chap = next((c for c in BOOK['chapters'] if c['order'] == ch), None)
+    if not chap or blk < 0 or blk >= len(chap['content']):
+        return jsonify(error='대상 블록을 찾을 수 없습니다.'), 404
+    b = chap['content'][blk]; f = block_field(b)
+    if not f: return jsonify(error='편집할 수 없는 블록입니다.'), 400
+    ov = load_overrides().get((ch, blk))
+    oldv = ov if ov is not None else b[f]
+    if val == oldv: return jsonify(ok=True, unchanged=True)
+    con = db()
+    if IS_PG:
+        con.execute('''INSERT INTO overrides(chapter,blk,value,editor,ts) VALUES(?,?,?,?,?)
+                       ON CONFLICT (chapter,blk) DO UPDATE SET value=excluded.value,editor=excluded.editor,ts=excluded.ts''',
+                    (ch, blk, val, u['email'], now()))
+    else:
+        con.execute('INSERT OR REPLACE INTO overrides(chapter,blk,value,editor,ts) VALUES(?,?,?,?,?)',
+                    (ch, blk, val, u['email'], now()))
+    con.execute('INSERT INTO editlog(chapter,blk,oldv,newv,editor,name,role,ts) VALUES(?,?,?,?,?,?,?,?)',
+                (ch, blk, oldv, val, u['email'], u['name'], u['role'], now()))
+    con.commit()
+    return jsonify(ok=True)
+
+@app.get('/api/editlog')
+@admin_required
+def editlog():
+    ch = request.args.get('chapter')
+    q = 'SELECT * FROM editlog'; args = []
+    if ch is not None: q += ' WHERE chapter=?'; args.append(int(ch))
+    q += ' ORDER BY id DESC LIMIT 300'
+    rows = [dict(r) for r in db().execute(q, args).fetchall()]
+    label = {c['order']: c['label'] for c in BOOK['chapters']}
+    for r in rows: r['chapterLabel'] = label.get(r['chapter'], str(r['chapter']))
+    return jsonify(log=rows)
 
 # ---------------- comments ----------------
 @app.get('/api/comments')
@@ -290,6 +399,8 @@ def add_comment():
         p = db().execute('SELECT chapter,block,anchor FROM comments WHERE id=?', (parent_id,)).fetchone()
         if not p: return jsonify(error='원 메모를 찾을 수 없습니다.'), 404
         chapter, block, anchor = p['chapter'], p['block'], p['anchor']
+    if not can_view(u, chapter):   # 감수자: 배정된 장에만 메모 가능
+        return jsonify(error='이 장에 메모할 권한이 없습니다.'), 403
     nid = db().insert(
         'INSERT INTO comments(chapter,block,anchor,body,email,name,role,created,parent_id) VALUES(?,?,?,?,?,?,?,?,?)',
         (chapter, block, anchor, body, u['email'], u['name'], u['role'], now(), parent_id))
@@ -332,7 +443,21 @@ def users():
     for r in out:
         r['roleName'] = ROLES.get(r['role'], r['role'])
         r['comments'] = db().execute('SELECT COUNT(*) FROM comments WHERE email=?', (r['email'],)).fetchone()[0]
-    return jsonify(users=out, roles=ROLES)
+        r['chapters'] = sorted(assigned_chapters(r['email']))
+    chapters = [{'order': c['order'], 'label': c['label'], 'titleKR': c['titleKR']} for c in BOOK['chapters']]
+    return jsonify(users=out, roles=ROLES, chapters=chapters)
+
+@app.put('/api/assignments/<email>')
+@admin_required
+def set_assignments(email):
+    j = request.get_json(force=True); email = email.lower()
+    chs = sorted({int(x) for x in j.get('chapters', [])})
+    con = db()
+    con.execute('DELETE FROM assignments WHERE email=?', (email,))
+    for ch in chs:
+        con.execute('INSERT INTO assignments VALUES(?,?)', (email, ch))
+    con.commit()
+    return jsonify(ok=True, chapters=chs)
 
 @app.post('/api/users')
 @admin_required
