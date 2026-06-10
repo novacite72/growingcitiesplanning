@@ -361,8 +361,9 @@ article.editing h2.read-h.blk:hover,article.editing h3.read-h.blk:hover,article.
 /* 헤더: 영문 크게 위 / 국문 작게 아래 */
 .hero .ksub{font-size:15px;opacity:.92;font-weight:500;margin-top:3px}
 /* 도움말 플로팅 버튼 + 패널 */
-#helpBtn{position:fixed;right:22px;bottom:22px;width:50px;height:50px;border-radius:50%;border:0;background:var(--han);color:#fff;font-size:24px;font-weight:800;cursor:pointer;box-shadow:var(--shadow-lg);z-index:90}
-#helpBtn:hover{background:var(--han-d)}
+.hero-right{display:flex;align-items:center;gap:10px;flex:none}
+#helpBtn{border:0;background:rgba(255,255,255,.16);color:#fff;border-radius:30px;padding:9px 15px;font-size:12.5px;font-weight:700;cursor:pointer;white-space:nowrap}
+#helpBtn:hover{background:rgba(255,255,255,.28)}
 .help-tabs{display:flex;gap:6px;margin-bottom:16px}
 .help-tabs .ht{border:1px solid var(--line);background:#fff;border-radius:9px;padding:8px 14px;font-size:13.5px;font-weight:700;color:var(--ink2);cursor:pointer}
 .help-tabs .ht.active{background:var(--han);border-color:var(--han);color:#fff}
@@ -379,3 +380,9 @@ article.editing h2.read-h.blk:hover,article.editing h3.read-h.blk:hover,article.
 .blk.dragging{opacity:.4}
 .blk.dragover{box-shadow:0 -3px 0 var(--gold) inset;background:#fff7e6}
 @media(max-width:640px){#helpBtn{right:14px;bottom:14px;width:44px;height:44px;font-size:21px}}
+
+@media(max-width:640px){
+  .hero-right{gap:7px}
+  #helpBtn{padding:7px 10px;font-size:11px}
+  .hero-top{flex-wrap:wrap}
+}

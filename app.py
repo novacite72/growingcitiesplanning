@@ -214,8 +214,8 @@ def assigned_chapters(email):
     return {r[0] for r in db().execute('SELECT chapter FROM assignments WHERE email=?', (email,)).fetchall()}
 
 def can_view(u, ch):
-    # 관리자·집필자는 전체 열람, 감수자는 배정 장만
-    if u['role'] in ('admin', 'author'): return True
+    # 관리자만 전체 열람, 집필자·감수자는 '배정된 장'만 열람
+    if u['role'] == 'admin': return True
     return ch in assigned_chapters(u['email'])
 
 def can_edit(u, ch):
