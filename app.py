@@ -60,7 +60,10 @@ class DB:
     Rows support positional (row[0]) and key (row['col']) access on both."""
     def __init__(self):
         if IS_PG:
-            self.conn = psycopg2.connect(DATABASE_URL, sslmode=os.environ.get('PGSSLMODE', 'require'))
+            kw = {}
+            if 'sslmode=' not in DATABASE_URL:
+                kw['sslmode'] = os.environ.get('PGSSLMODE', 'require')
+            self.conn = psycopg2.connect(DATABASE_URL, **kw)
         else:
             self.conn = sqlite3.connect(DB_PATH); self.conn.row_factory = sqlite3.Row
     def execute(self, sql, params=()):
