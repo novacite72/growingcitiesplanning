@@ -139,7 +139,8 @@ async function openReader(order,scrollBi){
   try{const r=await api('/api/comments?chapter='+order);comments=r.comments;canSeeAll=r.canSeeAll;}catch(e){comments=[];}
   let toc='',body='',refs=[];
   c.content.forEach((b,bi)=>{
-    const id=`b${order}_${bi}`;
+    const oi=b.oi!=null?b.oi:bi;
+    const id=`b${order}_${oi}`;
     if(b.t==='h'){
       if(b.kind==='refs'){body+=`<h2 class="read-h figs-h" id="${id}">${esc(b.kr)}${b.en?`<span class="en">${esc(b.en)}</span>`:''}</h2>`;return;}
       if(b.kind==='figs'){body+=`<h2 class="read-h figs-h" id="${id}">${esc(b.kr)} · ${esc(b.en||'')}</h2>`;return;}
@@ -240,38 +241,69 @@ function exportPdf(c){
 }
 
 // ---------- edit mode (관리자=전체, 집필자=배정 장) ----------
+const EDITABLE='article.read .txt.blk, article.read .cap.blk, article.read .read-h.blk, article.read .case-h.blk';
 function toggleEdit(order){
   editMode=!editMode;
   const art=$('article.read');if(art)art.classList.toggle('editing',editMode);
   const btn=$('#editToggle');if(btn){btn.classList.toggle('on',editMode);btn.textContent=editMode?'✓ 편집 종료':'✏️ 편집';}
   if(editMode){
-    $$('article.read .txt.blk, article.read .cap.blk').forEach(el=>el.onclick=ev=>{
-      if(ev.target.closest('.addmemo, .blk-editor'))return; openEditor(order,el);});
-    toast('편집 모드 — 문단/캡션을 클릭하면 수정창이 열립니다.');
+    $$(EDITABLE).forEach(el=>{
+      el.onclick=ev=>{if(ev.target.closest('.addmemo,.blk-editor,.movectl'))return;openEditor(order,el);};
+      addMoveCtl(el,order);
+    });
+    toast('편집 모드 — 클릭하면 제목·문단을 수정, ▲▼로 이동합니다.');
   }else{
-    $$('.blk-editor').forEach(e=>e.remove());
+    $$('.blk-editor,.movectl').forEach(e=>e.remove());
     $$('article.read .blk').forEach(el=>el.onclick=null);
   }
 }
+function addMoveCtl(el,order){
+  if(el.querySelector(':scope > .movectl'))return;
+  const oi=+el.id.split('_')[1];
+  const mc=document.createElement('span');mc.className='movectl';
+  mc.innerHTML='<button class="mv" data-d="-1" title="위로 이동">▲</button><button class="mv" data-d="1" title="아래로 이동">▼</button>';
+  el.appendChild(mc);
+  mc.querySelectorAll('.mv').forEach(bb=>bb.onclick=e=>{e.stopPropagation();moveBlock(order,oi,+bb.dataset.d);});
+}
 function openEditor(order,el){
   $$('.blk-editor').forEach(e=>e.remove());
-  const idx=+el.id.split('_')[1];
-  const ch=CH.find(c=>c.order===order);const b=ch.content[idx];if(!b)return;
-  const cur=b.text||'';
+  const oi=+el.id.split('_')[1];
+  const ch=CH.find(c=>c.order===order);const b=ch.content.find(x=>(x.oi!=null?x.oi:-1)===oi);if(!b)return;
+  const isH=b.t==='h';const cur=isH?(b.kr||''):(b.text||'');
   const ed=document.createElement('div');ed.className='blk-editor';
-  ed.innerHTML=`<textarea spellcheck="false"></textarea><div class="cb"><button class="cancel">취소</button><button class="save">저장</button></div>`;
+  ed.innerHTML=`${isH?'<div class="ccard-h">제목 수정</div>':''}<textarea spellcheck="false"></textarea><div class="cb"><button class="cancel">취소</button><button class="save">저장</button></div>`;
   ed.querySelector('textarea').value=cur;
-  el.after(ed);const ta=ed.querySelector('textarea');ta.style.height=Math.max(64,ta.scrollHeight+8)+'px';ta.focus();
+  el.after(ed);const ta=ed.querySelector('textarea');ta.style.height=Math.max(60,ta.scrollHeight+8)+'px';ta.focus();
   ed.querySelector('.cancel').onclick=()=>ed.remove();
   ed.querySelector('.save').onclick=async()=>{
     const val=ta.value;
     try{
-      const r=await api('/api/edit',{method:'POST',body:JSON.stringify({chapter:order,blk:idx,value:val})});
-      b.text=val;const btn=el.querySelector('.addmemo');
-      el.textContent=(b.t==='cap'?'▣ ':'')+val;if(btn){el.appendChild(btn);btn.onclick=e=>{e.stopPropagation();openComposer(btn.dataset.id,btn.dataset.anchor,order);};}
-      el.classList.add('edited');ed.remove();toast(r.unchanged?'변경 없음':'저장되었습니다.');positionComments();
+      const r=await api('/api/edit',{method:'POST',body:JSON.stringify({chapter:order,blk:oi,value:val})});
+      ed.remove();
+      if(r.unchanged){toast('변경 없음');return;}
+      if(isH){b.kr=val;toast('제목을 수정했습니다.');await reopenInEdit(order,oi);}   // 제목→TOC 갱신 위해 재렌더
+      else{
+        b.text=val;const btn=el.querySelector('.addmemo'),mc=el.querySelector('.movectl');
+        el.textContent=(b.t==='cap'?'▣ ':'')+val;
+        if(btn){el.appendChild(btn);btn.onclick=e=>{e.stopPropagation();openComposer(btn.dataset.id,btn.dataset.anchor,order);};}
+        if(mc)el.appendChild(mc);
+        el.classList.add('edited');toast('저장되었습니다.');positionComments();
+      }
     }catch(e){alert(e.message);}
   };
+}
+async function reloadData(){const d=await api('/api/data');CH=d.chapters;}
+async function reopenInEdit(order,scrollOi){
+  await reloadData();await openReader(order);toggleEdit(order);
+  if(scrollOi!=null)setTimeout(()=>gotoBlock('b'+order+'_'+scrollOi),180);
+}
+async function moveBlock(order,oi,dir){
+  const ch=CH.find(c=>c.order===order);const seq=ch.content.map(b=>b.oi!=null?b.oi:0);
+  const pos=seq.indexOf(oi),np=pos+dir;
+  if(np<0||np>=seq.length){toast('더 이동할 수 없습니다.');return;}
+  [seq[pos],seq[np]]=[seq[np],seq[pos]];
+  try{await api('/api/order',{method:'POST',body:JSON.stringify({chapter:order,order:seq})});toast('이동했습니다.');await reopenInEdit(order,oi);}
+  catch(e){alert(e.message);}
 }
 let _toastT=null;
 function toast(msg){
@@ -442,7 +474,8 @@ async function openUsers(){
   const chapName=o=>{const c=r.chapters.find(x=>x.order===o);return c?c.label:o;};
   const rows=r.users.map(u=>{
     const chips=(u.chapters||[]).map(o=>`<span class="chipmini">${esc(chapName(o))}</span>`).join('')||'<span class="tpart">없음</span>';
-    return `<tr><td><b>${esc(u.name)}</b><div class="tpart">${esc(u.email)}</div></td>
+    return `<tr><td><input class="uedit" data-name="${esc(u.email)}" value="${esc(u.name)}" placeholder="이름" style="width:88px">
+      <div><input class="uedit small" data-email="${esc(u.email)}" value="${esc(u.email)}" placeholder="아이디" style="width:150px"></div></td>
     <td><select data-role="${esc(u.email)}">${Object.entries(r.roles).map(([k,v])=>`<option value="${k}" ${u.role===k?'selected':''}>${v}</option>`).join('')}</select></td>
     <td>${u.role==='admin'?'<span class="tpart">전체</span>':`<div class="asgn">${chips}</div><button class="back asgnbtn" style="padding:3px 8px;font-size:11px;margin-top:4px" data-asgn="${esc(u.email)}">장 배정 수정</button>`}</td>
     <td class="tpart">${u.comments}</td>
@@ -461,7 +494,10 @@ async function openUsers(){
       <button class="btn btn-primary full" id="nu-add" style="margin-top:0">추가</button></div></div>`);
   $('#btnLog').onclick=openEditLog;
   $$('[data-save]').forEach(b=>b.onclick=async()=>{const em=b.dataset.save;
-    await api('/api/users/'+encodeURIComponent(em),{method:'PUT',body:JSON.stringify({role:$(`select[data-role="${em}"]`).value})});b.textContent='✓';setTimeout(()=>b.textContent='저장',1000);});
+    const name=$(`input[data-name="${em}"]`).value.trim(),email=$(`input[data-email="${em}"]`).value.trim(),role=$(`select[data-role="${em}"]`).value;
+    try{const res=await api('/api/users/'+encodeURIComponent(em),{method:'PUT',body:JSON.stringify({name,email,role})});
+      b.textContent='✓';if(email.toLowerCase()!==em.toLowerCase())setTimeout(openUsers,600);else setTimeout(()=>b.textContent='저장',1000);
+    }catch(e){alert(e.message);}});
   $$('[data-deluser]').forEach(b=>b.onclick=async()=>{if(!confirm(b.dataset.deluser+' 계정을 삭제할까요?'))return;await api('/api/users/'+encodeURIComponent(b.dataset.deluser),{method:'DELETE'});openUsers();});
   $$('[data-asgn]').forEach(b=>b.onclick=()=>openAssign(b.dataset.asgn,r.users.find(u=>u.email===b.dataset.asgn).chapters||[]));
   $('#nu-add').onclick=async()=>{try{await api('/api/users',{method:'POST',body:JSON.stringify({name:$('#nu-name').value,email:$('#nu-email').value,role:$('#nu-role').value,password:$('#nu-pw').value})});openUsers();}catch(e){$('#nu-msg').style.color='var(--red)';$('#nu-msg').textContent=e.message;}};

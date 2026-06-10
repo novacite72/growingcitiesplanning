@@ -152,12 +152,14 @@ def init_db():
         con.execute('''CREATE TABLE IF NOT EXISTS editlog(
           id SERIAL PRIMARY KEY, chapter INTEGER, blk INTEGER, oldv TEXT, newv TEXT,
           editor TEXT, name TEXT, role TEXT, ts TEXT)''')
+        con.execute('CREATE TABLE IF NOT EXISTS chorder(chapter INTEGER PRIMARY KEY, seq TEXT)')
     else:
         con.conn.executescript('''
           CREATE TABLE IF NOT EXISTS assignments(email TEXT, chapter INTEGER, PRIMARY KEY(email,chapter));
           CREATE TABLE IF NOT EXISTS overrides(chapter INTEGER, blk INTEGER, value TEXT, editor TEXT, ts TEXT, PRIMARY KEY(chapter,blk));
           CREATE TABLE IF NOT EXISTS editlog(id INTEGER PRIMARY KEY AUTOINCREMENT, chapter INTEGER, blk INTEGER,
-            oldv TEXT, newv TEXT, editor TEXT, name TEXT, role TEXT, ts TEXT);''')
+            oldv TEXT, newv TEXT, editor TEXT, name TEXT, role TEXT, ts TEXT);
+          CREATE TABLE IF NOT EXISTS chorder(chapter INTEGER PRIMARY KEY, seq TEXT);''')
     ignore = 'ON CONFLICT (email) DO NOTHING' if IS_PG else 'OR IGNORE'
     ins = ('INSERT OR IGNORE INTO users VALUES(?,?,?,?,?,?)' if not IS_PG
            else 'INSERT INTO users VALUES(?,?,?,?,?,?) ON CONFLICT (email) DO NOTHING')
@@ -303,23 +305,52 @@ def load_overrides():
     return {(r['chapter'], r['blk']): r['value']
             for r in db().execute('SELECT chapter,blk,value FROM overrides').fetchall()}
 
+def load_order():
+    return {r['chapter']: json.loads(r['seq']) for r in db().execute('SELECT chapter,seq FROM chorder').fetchall()}
+
 @app.get('/api/data')
 @login_required
 def data():
     u = current()
-    ov = load_overrides()
+    ov = load_overrides(); orders = load_order()
     chs = []
     for c in BOOK['chapters']:
         if not can_view(u, c['order']): continue          # 감수자: 배정 장만
-        cc = copy.deepcopy(c)
-        for idx, b in enumerate(cc['content']):
-            key = (c['order'], idx)
+        n = len(c['content'])
+        seq = orders.get(c['order'])
+        if not seq: seq = list(range(n))
+        else:                                              # 누락/초과 보정(원고 재추출 대비)
+            seq = [i for i in seq if 0 <= i < n] + [i for i in range(n) if i not in set(seq)]
+        cc = copy.deepcopy(c); cc['content'] = []
+        for oi in seq:
+            b = copy.deepcopy(c['content'][oi]); b['oi'] = oi
+            key = (c['order'], oi)
             if key in ov:
                 f = block_field(b)
                 if f: b[f] = ov[key]; b['edited'] = True
+            cc['content'].append(b)
         cc['canEdit'] = can_edit(u, c['order'])
         chs.append(cc)
     return jsonify({'chapters': chs, 'meta': BOOK['meta']})
+
+@app.post('/api/order')
+@login_required
+def set_order():
+    u = current(); j = request.get_json(force=True)
+    ch = int(j.get('chapter', -1)); seq = [int(x) for x in j.get('order', [])]
+    if not can_edit(u, ch): return jsonify(error='이 장을 편집할 권한이 없습니다.'), 403
+    chap = next((c for c in BOOK['chapters'] if c['order'] == ch), None)
+    if not chap: return jsonify(error='장을 찾을 수 없습니다.'), 404
+    con = db()
+    if IS_PG:
+        con.execute('''INSERT INTO chorder(chapter,seq) VALUES(?,?)
+                       ON CONFLICT (chapter) DO UPDATE SET seq=excluded.seq''', (ch, json.dumps(seq)))
+    else:
+        con.execute('INSERT OR REPLACE INTO chorder(chapter,seq) VALUES(?,?)', (ch, json.dumps(seq)))
+    con.execute('INSERT INTO editlog(chapter,blk,oldv,newv,editor,name,role,ts) VALUES(?,?,?,?,?,?,?,?)',
+                (ch, -1, '(순서)', '단락 이동', u['email'], u['name'], u['role'], now()))
+    con.commit()
+    return jsonify(ok=True)
 
 @app.post('/api/edit')
 @login_required
@@ -479,18 +510,34 @@ def add_user():
 @app.put('/api/users/<email>')
 @admin_required
 def update_user(email):
-    j = request.get_json(force=True); email = email.lower()
+    j = request.get_json(force=True); email = email.lower(); con = db()
+    u = con.execute('SELECT * FROM users WHERE email=?', (email,)).fetchone()
+    if not u: return jsonify(error='없는 계정입니다.'), 404
+    # 아이디(이메일/로그인ID) 변경 → 모든 참조 cascade
+    new_email = (j.get('email') or '').strip().lower()
+    if new_email and new_email != email:
+        if con.execute('SELECT 1 FROM users WHERE email=?', (new_email,)).fetchone():
+            return jsonify(error='이미 사용 중인 아이디입니다.'), 400
+        con.execute('UPDATE users SET email=? WHERE email=?', (new_email, email))
+        con.execute('UPDATE comments SET email=? WHERE email=?', (new_email, email))
+        con.execute('UPDATE assignments SET email=? WHERE email=?', (new_email, email))
+        con.execute('UPDATE overrides SET editor=? WHERE editor=?', (new_email, email))
+        con.execute('UPDATE editlog SET editor=? WHERE editor=?', (new_email, email))
+        email = new_email
     fields, args = [], []
     if 'role' in j and j['role'] in ROLES: fields.append('role=?'); args.append(j['role'])
-    if 'name' in j: fields.append('name=?'); args.append(j['name'].strip())
-    if 'assigned' in j: fields.append('assigned=?'); args.append(j['assigned'].strip())
+    if 'name' in j and j['name'].strip():
+        nm = j['name'].strip(); fields.append('name=?'); args.append(nm)
+        con.execute('UPDATE comments SET name=? WHERE email=?', (nm, email))   # 메모 표시 이름 동기화
+        con.execute('UPDATE editlog SET name=? WHERE editor=?', (nm, email))
     if j.get('password'):
         if len(j['password']) < 6: return jsonify(error='비밀번호는 6자 이상.'), 400
         fields.append('pw=?'); args.append(generate_password_hash(j['password']))
-    if not fields: return jsonify(error='변경할 내용이 없습니다.'), 400
-    args.append(email)
-    db().execute(f'UPDATE users SET {",".join(fields)} WHERE email=?', args); db().commit()
-    return jsonify(ok=True)
+    if fields:
+        args.append(email)
+        con.execute(f'UPDATE users SET {",".join(fields)} WHERE email=?', args)
+    con.commit()
+    return jsonify(ok=True, email=email)
 
 @app.delete('/api/users/<email>')
 @admin_required

@@ -347,3 +347,13 @@ article.editing .addmemo{display:none}
   .rbar-in{flex-wrap:wrap}
   .rbtn{padding:6px 9px;font-size:11.5px}
 }
+
+/* 블록 이동 컨트롤 + 제목 편집 */
+.movectl{position:absolute;left:-34px;top:2px;display:flex;flex-direction:column;gap:1px;opacity:.5;transition:.12s}
+.blk:hover .movectl{opacity:1}
+.movectl .mv{border:1px solid var(--line);background:#fff;color:var(--han);width:24px;height:18px;font-size:10px;line-height:1;border-radius:5px;cursor:pointer;padding:0;display:flex;align-items:center;justify-content:center}
+.movectl .mv:hover{background:var(--han);color:#fff}
+article.editing h2.read-h.blk:hover,article.editing h3.read-h.blk:hover,article.editing h4.read-h.blk:hover,article.editing .case-h.blk:hover{background:#fff7e6;cursor:pointer;outline:1px dashed var(--gold)}
+.uedit{border:1px solid var(--line);border-radius:6px;padding:4px 7px;font-size:12.5px;font-family:inherit}
+.uedit.small{font-size:11px;color:var(--ink2);margin-top:3px}
+@media(max-width:820px){.movectl{left:auto;right:2px;top:auto;bottom:2px;flex-direction:row}}
