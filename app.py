@@ -151,15 +151,19 @@ def init_db():
           chapter INTEGER, blk INTEGER, value TEXT, editor TEXT, ts TEXT, PRIMARY KEY(chapter,blk))''')
         con.execute('''CREATE TABLE IF NOT EXISTS editlog(
           id SERIAL PRIMARY KEY, chapter INTEGER, blk INTEGER, oldv TEXT, newv TEXT,
-          editor TEXT, name TEXT, role TEXT, ts TEXT)''')
+          editor TEXT, name TEXT, role TEXT, ts TEXT, undone INTEGER DEFAULT 0)''')
         con.execute('CREATE TABLE IF NOT EXISTS chorder(chapter INTEGER PRIMARY KEY, seq TEXT)')
+        try: con.execute('ALTER TABLE editlog ADD COLUMN IF NOT EXISTS undone INTEGER DEFAULT 0'); con.commit()
+        except Exception: con.rollback()
     else:
         con.conn.executescript('''
           CREATE TABLE IF NOT EXISTS assignments(email TEXT, chapter INTEGER, PRIMARY KEY(email,chapter));
           CREATE TABLE IF NOT EXISTS overrides(chapter INTEGER, blk INTEGER, value TEXT, editor TEXT, ts TEXT, PRIMARY KEY(chapter,blk));
           CREATE TABLE IF NOT EXISTS editlog(id INTEGER PRIMARY KEY AUTOINCREMENT, chapter INTEGER, blk INTEGER,
-            oldv TEXT, newv TEXT, editor TEXT, name TEXT, role TEXT, ts TEXT);
+            oldv TEXT, newv TEXT, editor TEXT, name TEXT, role TEXT, ts TEXT, undone INTEGER DEFAULT 0);
           CREATE TABLE IF NOT EXISTS chorder(chapter INTEGER PRIMARY KEY, seq TEXT);''')
+        if 'undone' not in [r[1] for r in con.execute('PRAGMA table_info(editlog)')]:
+            con.execute('ALTER TABLE editlog ADD COLUMN undone INTEGER DEFAULT 0')
     ignore = 'ON CONFLICT (email) DO NOTHING' if IS_PG else 'OR IGNORE'
     ins = ('INSERT OR IGNORE INTO users VALUES(?,?,?,?,?,?)' if not IS_PG
            else 'INSERT INTO users VALUES(?,?,?,?,?,?) ON CONFLICT (email) DO NOTHING')
@@ -342,15 +346,59 @@ def set_order():
     chap = next((c for c in BOOK['chapters'] if c['order'] == ch), None)
     if not chap: return jsonify(error='장을 찾을 수 없습니다.'), 404
     con = db()
+    cur = con.execute('SELECT seq FROM chorder WHERE chapter=?', (ch,)).fetchone()
+    oldseq = cur['seq'] if cur else json.dumps(list(range(len(chap['content']))))
     if IS_PG:
         con.execute('''INSERT INTO chorder(chapter,seq) VALUES(?,?)
                        ON CONFLICT (chapter) DO UPDATE SET seq=excluded.seq''', (ch, json.dumps(seq)))
     else:
         con.execute('INSERT OR REPLACE INTO chorder(chapter,seq) VALUES(?,?)', (ch, json.dumps(seq)))
     con.execute('INSERT INTO editlog(chapter,blk,oldv,newv,editor,name,role,ts) VALUES(?,?,?,?,?,?,?,?)',
-                (ch, -1, '(순서)', '단락 이동', u['email'], u['name'], u['role'], now()))
+                (ch, -1, oldseq, json.dumps(seq), u['email'], u['name'], u['role'], now()))
     con.commit()
     return jsonify(ok=True)
+
+@app.post('/api/undo')
+@login_required
+def undo_edit():
+    u = current(); j = request.get_json(force=True); ch = int(j.get('chapter', -1))
+    if not can_edit(u, ch): return jsonify(error='권한이 없습니다.'), 403
+    con = db()
+    e = con.execute('SELECT * FROM editlog WHERE chapter=? AND undone=0 ORDER BY id DESC LIMIT 1', (ch,)).fetchone()
+    if not e: return jsonify(ok=True, nothing=True, remaining=0)
+    chap = next((c for c in BOOK['chapters'] if c['order'] == ch), None)
+    if e['blk'] == -1:        # 순서 이동 되돌리기 → 이전 seq 복원
+        oldseq = json.loads(e['oldv']) if e['oldv'] else list(range(len(chap['content'])))
+        if oldseq == list(range(len(chap['content']))):
+            con.execute('DELETE FROM chorder WHERE chapter=?', (ch,))
+        elif IS_PG:
+            con.execute('''INSERT INTO chorder(chapter,seq) VALUES(?,?)
+                           ON CONFLICT (chapter) DO UPDATE SET seq=excluded.seq''', (ch, json.dumps(oldseq)))
+        else:
+            con.execute('INSERT OR REPLACE INTO chorder(chapter,seq) VALUES(?,?)', (ch, json.dumps(oldseq)))
+    else:                     # 텍스트 편집 되돌리기 → 이전 값(원본이면 override 삭제)
+        b = chap['content'][e['blk']] if chap and 0 <= e['blk'] < len(chap['content']) else None
+        orig = (b.get('kr') if b and b['t'] == 'h' else (b.get('text') if b else None))
+        if e['oldv'] == orig:
+            con.execute('DELETE FROM overrides WHERE chapter=? AND blk=?', (ch, e['blk']))
+        elif IS_PG:
+            con.execute('''INSERT INTO overrides(chapter,blk,value,editor,ts) VALUES(?,?,?,?,?)
+                           ON CONFLICT (chapter,blk) DO UPDATE SET value=excluded.value''',
+                        (ch, e['blk'], e['oldv'], u['email'], now()))
+        else:
+            con.execute('INSERT OR REPLACE INTO overrides(chapter,blk,value,editor,ts) VALUES(?,?,?,?,?)',
+                        (ch, e['blk'], e['oldv'], u['email'], now()))
+    con.execute('UPDATE editlog SET undone=1 WHERE id=?', (e['id'],))
+    con.commit()
+    remaining = con.execute('SELECT COUNT(*) FROM editlog WHERE chapter=? AND undone=0', (ch,)).fetchone()[0]
+    return jsonify(ok=True, remaining=remaining)
+
+@app.get('/api/undocount')
+@login_required
+def undo_count():
+    ch = int(request.args.get('chapter', -1))
+    n = db().execute('SELECT COUNT(*) FROM editlog WHERE chapter=? AND undone=0', (ch,)).fetchone()[0]
+    return jsonify(count=n)
 
 @app.post('/api/edit')
 @login_required

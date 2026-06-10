@@ -357,3 +357,25 @@ article.editing h2.read-h.blk:hover,article.editing h3.read-h.blk:hover,article.
 .uedit{border:1px solid var(--line);border-radius:6px;padding:4px 7px;font-size:12.5px;font-family:inherit}
 .uedit.small{font-size:11px;color:var(--ink2);margin-top:3px}
 @media(max-width:820px){.movectl{left:auto;right:2px;top:auto;bottom:2px;flex-direction:row}}
+
+/* 헤더: 영문 크게 위 / 국문 작게 아래 */
+.hero .ksub{font-size:15px;opacity:.92;font-weight:500;margin-top:3px}
+/* 도움말 플로팅 버튼 + 패널 */
+#helpBtn{position:fixed;right:22px;bottom:22px;width:50px;height:50px;border-radius:50%;border:0;background:var(--han);color:#fff;font-size:24px;font-weight:800;cursor:pointer;box-shadow:var(--shadow-lg);z-index:90}
+#helpBtn:hover{background:var(--han-d)}
+.help-tabs{display:flex;gap:6px;margin-bottom:16px}
+.help-tabs .ht{border:1px solid var(--line);background:#fff;border-radius:9px;padding:8px 14px;font-size:13.5px;font-weight:700;color:var(--ink2);cursor:pointer}
+.help-tabs .ht.active{background:var(--han);border-color:var(--han);color:#fff}
+.man-item{border-left:3px solid var(--han-l);padding:2px 0 2px 12px;margin-bottom:14px}
+.man-t{font-weight:800;color:var(--han-d);font-size:14.5px;margin-bottom:3px}
+.man-d{font-size:13.5px;color:var(--ink2);line-height:1.65}
+.cl-item{margin-bottom:16px}
+.cl-v{font-weight:800;color:var(--gold);font-size:15px;margin-bottom:5px}
+.cl-v .cl-d{color:var(--ink3);font-size:12px;font-weight:600;margin-left:6px}
+.cl-item ul{margin:0;padding-left:18px;font-size:13.5px;color:var(--ink2);line-height:1.7}
+/* 드래그앤드롭 */
+.movectl .draghandle{border:1px solid var(--line);background:#fff;color:var(--ink3);width:24px;height:18px;font-size:11px;border-radius:5px;cursor:grab;padding:0;display:flex;align-items:center;justify-content:center}
+.movectl .draghandle:active{cursor:grabbing}
+.blk.dragging{opacity:.4}
+.blk.dragover{box-shadow:0 -3px 0 var(--gold) inset;background:#fff7e6}
+@media(max-width:640px){#helpBtn{right:14px;bottom:14px;width:44px;height:44px;font-size:21px}}

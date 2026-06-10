@@ -32,12 +32,45 @@ async function boot(){
   ME=r.user; ROLES=r.roles;
   const d=await api('/api/data'); BOOK=d; CH=d.chapters; M=d.meta; PARTS=[...new Set(CH.map(c=>c.partname))];
   $('#login').classList.add('hidden'); $('#app').classList.remove('hidden');
-  $('#h-pub').textContent='발간 · '+M.publisher; $('#h-kr').textContent=M.titleKR; $('#h-en').textContent=M.titleEN;
+  $('#h-pub').textContent='영문단행본 발간 · 서울연구원 글로벌연구협력센터';
+  $('#h-en').textContent=M.titleEN;   // 영문 제목 크게(위)
+  $('#h-kr').textContent=M.titleKR;   // 국문 제목 작게(아래)
   $('#st-ch').textContent=CH.length;
   $('#st-case').textContent=CH.reduce((s,c)=>s+c.caseCount,0);
   $('#st-img').textContent=CH.reduce((s,c)=>s+(c.images||0),0);
-  $('#foot').innerHTML=M.titleKR+' · '+M.titleEN+' &nbsp;|&nbsp; '+M.publisher+' &nbsp;|&nbsp; 원고 검수 시스템';
+  $('#foot').innerHTML='서울연구원 글로벌연구협력센터 · 영문단행본 감수 시스템 &nbsp;|&nbsp; © 최준영';
   renderUserChip(); buildFilters(); loadAllMemoCount(); render();
+  $('#helpBtn').classList.remove('hidden'); $('#helpBtn').onclick=openHelp;
+}
+// ---------- 사용 매뉴얼 · 업데이트 내역 ----------
+const CHANGELOG=[
+  {v:'v0.1', date:'2026-06-11', items:[
+    '영문단행본 18장 본문·그림·표·사례 열람, 키워드표(장·체계·사례·키워드)',
+    '이메일/이름 로그인, 역할(관리자·집필자·감수자)별 권한 — 감수자는 배정 장만 열람·메모',
+    '문단별 스레드 메모(댓글·대댓글) — 본문 옆 여백/모바일 인라인 표시',
+    '본문·제목 직접 편집 + 편집 로그, 블록 이동(드래그앤드롭·▲▼) 및 되돌리기',
+    '장별 .doc / .pdf 저장, 관리자 장 배정 관리, 모바일 최적화',
+  ]},
+];
+const MANUAL=[
+  ['열람', '상단 <b>챕터 목록</b>에서 장을 열면 본문이 열립니다. 왼쪽 <b>목차</b>를 누르면 해당 위치로 이동합니다. 상단 검색창으로 전체 본문을 검색할 수 있습니다.'],
+  ['메모', '본문 문단·그림에 마우스를 올리면 나오는 <b>＋</b>(모바일은 항상 표시)로 메모를 답니다. 메모에 <b>↩답글</b>로 댓글·대댓글을 달 수 있습니다. 감수자의 메모는 본인과 관리자만 봅니다.'],
+  ['편집(관리자·집필자)', '본문 우측 상단 <b>✏️ 편집</b> → 문단·제목을 클릭해 수정창에서 <b>저장</b>. 핸들(⠿)을 드래그하거나 ▲▼로 단락을 이동합니다. <b>↩ 되돌리기</b>로 최초 상태까지 한 단계씩 되돌릴 수 있습니다.'],
+  ['저장(.doc/.pdf)', '본문 우측 상단 <b>⬇ DOC</b>(Word) / <b>⬇ PDF</b>(인쇄→PDF로 저장)로 각 장을 내려받습니다.'],
+  ['권한·계정', '관리자는 우상단 메뉴 → <b>사용자 관리</b>에서 계정의 이름·아이디·역할·장 배정을 관리하고 <b>편집 로그</b>를 확인합니다. 비밀번호는 우상단 메뉴에서 변경합니다.'],
+];
+function openHelp(){
+  const log=CHANGELOG.map(c=>`<div class="cl-item"><div class="cl-v">${esc(c.v)} <span class="cl-d">${esc(c.date)}</span></div><ul>${c.items.map(i=>`<li>${i}</li>`).join('')}</ul></div>`).join('');
+  const man=MANUAL.map(([t,d])=>`<div class="man-item"><div class="man-t">${esc(t)}</div><div class="man-d">${d}</div></div>`).join('');
+  openModal(`<div class="modal-head"><h2>도움말 · 업데이트</h2><button class="x" onclick="closeModal()">×</button></div>
+    <div class="modal-body">
+      <div class="help-tabs"><button class="ht active" data-h="man">📖 사용 매뉴얼</button><button class="ht" data-h="log">🆕 업데이트 내역</button></div>
+      <div id="help-man">${man}</div>
+      <div id="help-log" class="hidden">${log}</div>
+      <div class="tpart" style="margin-top:16px;border-top:1px solid var(--line2);padding-top:10px">서울연구원 글로벌연구협력센터 · 영문단행본 감수 시스템 · © 최준영</div>
+    </div>`);
+  $$('.ht').forEach(b=>b.onclick=()=>{$$('.ht').forEach(x=>x.classList.toggle('active',x===b));
+    $('#help-man').classList.toggle('hidden',b.dataset.h!=='man');$('#help-log').classList.toggle('hidden',b.dataset.h!=='log');});
 }
 function showLogin(){$('#app').classList.add('hidden');$('#login').classList.remove('hidden');}
 function renderUserChip(){
@@ -169,6 +202,7 @@ async function openReader(order,scrollBi){
       <button class="back" onclick="closeReader()">‹ 목록</button>
       <div class="rt">${esc(c.label)} · ${esc(c.titleKR)}<small>${esc(c.partname.replace(/ ·.*/,''))}</small></div>
       ${c.canEdit?`<button class="rbtn" id="editToggle" title="본문 편집">✏️ 편집</button>`:''}
+      ${c.canEdit?`<button class="rbtn" id="undoBtn" title="되돌리기" style="display:none">↩ 되돌리기</button>`:''}
       <button class="rbtn" id="btnDoc" title="Word(.doc) 저장">⬇ DOC</button>
       <button class="rbtn" id="btnPdf" title="PDF 저장(인쇄)">⬇ PDF</button>
       <button class="memo-toggle ${memoMode?'on':''}" id="memoToggle">📝 ${memoN}</button>
@@ -184,6 +218,7 @@ async function openReader(order,scrollBi){
   $('#btnDoc').onclick=()=>exportDoc(c);
   $('#btnPdf').onclick=()=>exportPdf(c);
   if($('#editToggle'))$('#editToggle').onclick=()=>toggleEdit(order);
+  if($('#undoBtn'))$('#undoBtn').onclick=()=>undoChapter(order);
   if(scrollBi!=null){const el=$('#b'+order+'_'+scrollBi);if(el)setTimeout(()=>{el.scrollIntoView({block:'center'});el.classList.add('hl');},60);}
 }
 function memoUI(id,anchor){
@@ -241,29 +276,59 @@ function exportPdf(c){
 }
 
 // ---------- edit mode (관리자=전체, 집필자=배정 장) ----------
-const EDITABLE='article.read .txt.blk, article.read .cap.blk, article.read .read-h.blk, article.read .case-h.blk';
+const EDITABLE='article.read .txt.blk, article.read .cap.blk, article.read .read-h.blk, article.read .case-h.blk, article.read figure.figblk, article.read .tbl-scroll.blk';
+let _dragOi=null;
 function toggleEdit(order){
   editMode=!editMode;
   const art=$('article.read');if(art)art.classList.toggle('editing',editMode);
   const btn=$('#editToggle');if(btn){btn.classList.toggle('on',editMode);btn.textContent=editMode?'✓ 편집 종료':'✏️ 편집';}
+  const ub=$('#undoBtn');if(ub)ub.style.display=editMode?'':'none';
   if(editMode){
     $$(EDITABLE).forEach(el=>{
-      el.onclick=ev=>{if(ev.target.closest('.addmemo,.blk-editor,.movectl'))return;openEditor(order,el);};
+      el.onclick=ev=>{if(ev.target.closest('.addmemo,.blk-editor,.movectl,.draghandle'))return;
+        if(el.matches('.txt.blk,.cap.blk,.read-h.blk,.case-h.blk'))openEditor(order,el);};
       addMoveCtl(el,order);
     });
-    toast('편집 모드 — 클릭하면 제목·문단을 수정, ▲▼로 이동합니다.');
+    updateUndoBtn(order);
+    toast('편집 모드 — 클릭=수정 · 핸들(⠿) 드래그 또는 ▲▼=이동 · 저장은 각 수정창에서');
   }else{
     $$('.blk-editor,.movectl').forEach(e=>e.remove());
-    $$('article.read .blk').forEach(el=>el.onclick=null);
+    $$('article.read .blk').forEach(el=>{el.onclick=null;el.draggable=false;el.classList.remove('dragover','dragging');});
   }
 }
 function addMoveCtl(el,order){
   if(el.querySelector(':scope > .movectl'))return;
   const oi=+el.id.split('_')[1];
   const mc=document.createElement('span');mc.className='movectl';
-  mc.innerHTML='<button class="mv" data-d="-1" title="위로 이동">▲</button><button class="mv" data-d="1" title="아래로 이동">▼</button>';
+  mc.innerHTML='<button class="draghandle" title="드래그하여 이동" draggable="true">⠿</button>'+
+    '<button class="mv" data-d="-1" title="위로">▲</button><button class="mv" data-d="1" title="아래로">▼</button>';
   el.appendChild(mc);
   mc.querySelectorAll('.mv').forEach(bb=>bb.onclick=e=>{e.stopPropagation();moveBlock(order,oi,+bb.dataset.d);});
+  // drag & drop
+  const handle=mc.querySelector('.draghandle');
+  handle.addEventListener('dragstart',e=>{_dragOi=oi;el.classList.add('dragging');e.dataTransfer.effectAllowed='move';e.dataTransfer.setData('text','b');});
+  handle.addEventListener('dragend',()=>{el.classList.remove('dragging');$$('.dragover').forEach(x=>x.classList.remove('dragover'));});
+  el.addEventListener('dragover',e=>{if(_dragOi==null)return;e.preventDefault();el.classList.add('dragover');});
+  el.addEventListener('dragleave',()=>el.classList.remove('dragover'));
+  el.addEventListener('drop',e=>{e.preventDefault();el.classList.remove('dragover');
+    if(_dragOi==null||_dragOi===oi)return;dropMove(order,_dragOi,oi);_dragOi=null;});
+}
+async function dropMove(order,fromOi,toOi){   // fromOi를 toOi 앞으로 이동
+  const ch=CH.find(c=>c.order===order);let seq=ch.content.map(b=>b.oi!=null?b.oi:0);
+  seq=seq.filter(x=>x!==fromOi);
+  const ti=seq.indexOf(toOi);seq.splice(ti,0,fromOi);
+  try{await api('/api/order',{method:'POST',body:JSON.stringify({chapter:order,order:seq})});toast('이동했습니다.');await reopenInEdit(order,fromOi);}
+  catch(e){alert(e.message);}
+}
+async function undoChapter(order){
+  try{const r=await api('/api/undo',{method:'POST',body:JSON.stringify({chapter:order})});
+    if(r.nothing){toast('되돌릴 편집이 없습니다.');return;}
+    toast('되돌렸습니다. (남은 되돌리기 '+r.remaining+')');await reopenInEdit(order,null);
+  }catch(e){alert(e.message);}
+}
+async function updateUndoBtn(order){
+  const ub=$('#undoBtn');if(!ub)return;
+  try{const r=await api('/api/undocount?chapter='+order);ub.textContent='↩ 되돌리기'+(r.count?' ('+r.count+')':'');ub.disabled=!r.count;ub.style.opacity=r.count?'1':'.5';}catch(e){}
 }
 function openEditor(order,el){
   $$('.blk-editor').forEach(e=>e.remove());
