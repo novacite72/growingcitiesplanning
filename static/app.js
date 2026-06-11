@@ -44,6 +44,11 @@ async function boot(){
 }
 // ---------- 사용 매뉴얼 · 업데이트 내역 ----------
 const CHANGELOG=[
+  {v:'v0.13', date:'2026-06-11', items:[
+    '수퍼관리자 역할 추가 — 관리자 포함 모든 사용자·권한 관리',
+    '일반 관리자는 집필자·감수자 계정만 관리(관리자 권한 변경은 수퍼관리자만)',
+    '집필자·감수자 초기 비밀번호 123456(본인 변경 가능)',
+  ]},
   {v:'v0.12', date:'2026-06-11', items:[
     '집필자도 본인에게 배정된 장만 열람·편집(감수자와 동일하게 제한)',
     '시스템 매뉴얼·업데이트 노트 게시판을 화면 우측 상단으로 이동',
@@ -83,7 +88,7 @@ function renderUserChip(){
     <div class="uav">${esc(ini)}</div><button class="menu-btn" id="menuBtn">▾</button>`;
   $('#menuBtn').onclick=e=>{e.stopPropagation();$('#umenu').classList.toggle('open');};
   let menu=`<button id="m-pw">비밀번호 변경</button>`;
-  if(ME.role==='admin') menu=`<button id="m-users">사용자 관리</button>`+menu;
+  if(ME.role==='admin'||ME.role==='superadmin') menu=`<button id="m-users">사용자 관리</button>`+menu;
   menu+=`<button class="sep" id="m-out">로그아웃</button>`;
   $('#umenu').innerHTML=menu;
   $('#m-out').onclick=async()=>{await api('/api/logout',{method:'POST'});location.reload();};
@@ -381,7 +386,7 @@ function toast(msg){
 }
 
 // ---------- threaded comments (메모 · 댓글 · 대댓글 · 대대댓글…) ----------
-function roleBadge(role){const cls={admin:'rb-admin',author:'rb-author',reviewer:'rb-reviewer'}[role]||'';return `<span class="rb ${cls}">${esc(ROLES[role]||role)}</span>`;}
+function roleBadge(role){const cls={superadmin:'rb-super',admin:'rb-admin',author:'rb-author',reviewer:'rb-reviewer'}[role]||'';return `<span class="rb ${cls}">${esc(ROLES[role]||role)}</span>`;}
 function threadMaps(){
   const kids={},roots={};
   comments.forEach(c=>{
@@ -393,7 +398,7 @@ function threadMaps(){
 function renderThread(c,depth,kids){
   const ch=(kids[c.id]||[]).slice().sort((a,b)=>a.id-b.id);
   const acts=[`<button data-reply="${c.id}">↩ 답글</button>`];
-  if(depth===0&&(ME.role==='admin'||ME.role==='author'))
+  if(depth===0&&(ME.role==='admin'||ME.role==='superadmin'||ME.role==='author'))
     acts.push(`<button data-resolve="${c.id}" data-v="${c.resolved?0:1}">${c.resolved?'미해결로':'✔ 해결'}</button>`);
   if(c.canDelete)acts.push(`<button data-del="${c.id}">삭제</button>`);
   const ind=Math.min(depth,6)*16;
@@ -541,24 +546,32 @@ window.closeModal=closeModal;
 async function openUsers(){
   const r=await api('/api/users');ADMIN_CHAPTERS=r.chapters;
   const chapName=o=>{const c=r.chapters.find(x=>x.order===o);return c?c.label:o;};
+  const SUPER=ME.isSuper, isAdminRole=rr=>['admin','superadmin'].includes(rr);
+  const roleOpts=sel=>Object.entries(r.roles).filter(([k])=>SUPER||!isAdminRole(k)).map(([k,v])=>`<option value="${k}" ${sel===k?'selected':''}>${v}</option>`).join('');
   const rows=r.users.map(u=>{
     const chips=(u.chapters||[]).map(o=>`<span class="chipmini">${esc(chapName(o))}</span>`).join('')||'<span class="tpart">없음</span>';
+    const asgnCell=isAdminRole(u.role)?'<span class="tpart">전체</span>':`<div class="asgn">${chips}</div><button class="back asgnbtn" style="padding:3px 8px;font-size:11px;margin-top:4px" data-asgn="${esc(u.email)}">장 배정 수정</button>`;
+    if(isAdminRole(u.role)&&!SUPER){   // 일반 관리자는 관리자급 계정을 변경 불가(읽기전용)
+      return `<tr style="opacity:.65"><td><b>${esc(u.name)}</b><div class="tpart">${esc(u.email)}</div></td>
+        <td>${roleBadge(u.role)}</td><td><span class="tpart">전체</span></td><td class="tpart">${u.comments}</td>
+        <td><span class="tpart" style="font-size:11px">🔒 수퍼관리자 전용</span></td></tr>`;
+    }
     return `<tr><td><input class="uedit" data-name="${esc(u.email)}" value="${esc(u.name)}" placeholder="이름" style="width:88px">
       <div><input class="uedit small" data-email="${esc(u.email)}" value="${esc(u.email)}" placeholder="아이디" style="width:150px"></div></td>
-    <td><select data-role="${esc(u.email)}">${Object.entries(r.roles).map(([k,v])=>`<option value="${k}" ${u.role===k?'selected':''}>${v}</option>`).join('')}</select></td>
-    <td>${u.role==='admin'?'<span class="tpart">전체</span>':`<div class="asgn">${chips}</div><button class="back asgnbtn" style="padding:3px 8px;font-size:11px;margin-top:4px" data-asgn="${esc(u.email)}">장 배정 수정</button>`}</td>
+    <td><select data-role="${esc(u.email)}">${roleOpts(u.role)}</select></td>
+    <td>${asgnCell}</td>
     <td class="tpart">${u.comments}</td>
     <td><button class="back" style="padding:4px 9px;font-size:12px" data-save="${esc(u.email)}">저장</button>
     ${u.email===ME.email?'':`<button class="back" style="padding:4px 9px;font-size:12px;color:var(--red);margin-left:4px" data-deluser="${esc(u.email)}">삭제</button>`}</td></tr>`;}).join('');
   openModal(`<div class="modal-head"><h2>사용자 · 권한 관리</h2>
      <div style="display:flex;gap:8px"><button class="rbtn" id="btnLog" style="background:rgba(255,255,255,.2);color:#fff">📝 편집 로그</button><button class="x" onclick="closeModal()">×</button></div></div>
    <div class="modal-body">
-    <p class="tpart" style="margin:0 0 12px">집필자=배정 장 <b>편집</b>, 감수자=배정 장 <b>열람·메모</b>, 관리자=전체. 역할 변경 후 <b>저장</b>.</p>
+    <p class="tpart" style="margin:0 0 12px">${SUPER?'<b>수퍼관리자</b> — 관리자 포함 모든 계정·권한 관리.':'집필자·감수자 계정만 관리할 수 있습니다(관리자 권한은 수퍼관리자만).'} 집필자=배정 장 편집 · 감수자=배정 장 열람·메모.</p>
     <table class="users"><thead><tr><th>이름 / ID</th><th>역할</th><th>배정 장</th><th>메모</th><th></th></tr></thead><tbody>${rows}</tbody></table>
     <div class="adduser"><h4>＋ 사용자 추가</h4>
       <input id="nu-name" placeholder="이름"><input id="nu-email" placeholder="이메일">
-      <select id="nu-role">${Object.entries(r.roles).map(([k,v])=>`<option value="${k}" ${k==='reviewer'?'selected':''}>${v}</option>`).join('')}</select>
-      <input id="nu-pw" placeholder="초기 비밀번호 (6자+)">
+      <select id="nu-role">${roleOpts('reviewer')}</select>
+      <input id="nu-pw" placeholder="초기 비밀번호" value="123456">
       <div class="msg" id="nu-msg"></div>
       <button class="btn btn-primary full" id="nu-add" style="margin-top:0">추가</button></div></div>`);
   $('#btnLog').onclick=openEditLog;

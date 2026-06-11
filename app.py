@@ -51,7 +51,8 @@ def _rl_ok(ip):
 def _rl_fail(ip):
     _login_fails.setdefault(ip, []).append(time.time())
 
-ROLES = {'admin': '관리자', 'author': '집필자', 'reviewer': '감수자'}
+ROLES = {'superadmin': '수퍼관리자', 'admin': '관리자', 'author': '집필자', 'reviewer': '감수자'}
+ADMIN_ROLES = ('admin', 'superadmin')   # 관리자급
 BOOK = json.load(open(DATA, encoding='utf-8'))
 
 # ---------------- DB (SQLite local / Postgres cloud) ----------------
@@ -205,7 +206,15 @@ def admin_required(f):
     @wraps(f)
     def w(*a, **k):
         u = current()
-        if not u or u['role'] != 'admin': return jsonify(error='관리자 권한이 필요합니다.'), 403
+        if not u or u['role'] not in ADMIN_ROLES: return jsonify(error='관리자 권한이 필요합니다.'), 403
+        return f(*a, **k)
+    return w
+
+def super_required(f):
+    @wraps(f)
+    def w(*a, **k):
+        u = current()
+        if not u or u['role'] != 'superadmin': return jsonify(error='수퍼관리자만 가능합니다.'), 403
         return f(*a, **k)
     return w
 
@@ -214,13 +223,13 @@ def assigned_chapters(email):
     return {r[0] for r in db().execute('SELECT chapter FROM assignments WHERE email=?', (email,)).fetchall()}
 
 def can_view(u, ch):
-    # 관리자만 전체 열람, 집필자·감수자는 '배정된 장'만 열람
-    if u['role'] == 'admin': return True
+    # 관리자급은 전체 열람, 집필자·감수자는 '배정된 장'만 열람
+    if u['role'] in ADMIN_ROLES: return True
     return ch in assigned_chapters(u['email'])
 
 def can_edit(u, ch):
-    # 관리자는 전체 편집, 집필자는 배정 장만, 감수자는 편집 불가
-    if u['role'] == 'admin': return True
+    # 관리자급은 전체 편집, 집필자는 배정 장만, 감수자는 편집 불가
+    if u['role'] in ADMIN_ROLES: return True
     if u['role'] == 'author': return ch in assigned_chapters(u['email'])
     return False
 
@@ -289,7 +298,8 @@ def me():
     if not u: return jsonify(user=None)
     u['roleName'] = ROLES.get(u['role'], u['role'])
     u['assigned'] = sorted(assigned_chapters(u['email']))
-    u['canEditAny'] = (u['role'] in ('admin', 'author'))
+    u['canEditAny'] = (u['role'] in ADMIN_ROLES or u['role'] == 'author')
+    u['isSuper'] = (u['role'] == 'superadmin')
     return jsonify(user=u, roles=ROLES)
 
 @app.post('/api/password')
@@ -463,8 +473,8 @@ def list_comments():
     for r in rows:
         r['roleName'] = ROLES.get(r['role'], r['role'])
         r['mine'] = (r['email'] == u['email'])
-        r['canDelete'] = r['mine'] or u['role'] == 'admin'
-    return jsonify(comments=rows, canSeeAll=(u['role'] in ('admin', 'author')))
+        r['canDelete'] = r['mine'] or u['role'] in ADMIN_ROLES
+    return jsonify(comments=rows, canSeeAll=(u['role'] in ADMIN_ROLES or u['role'] == 'author'))
 
 @app.post('/api/comments')
 @login_required
@@ -490,7 +500,7 @@ def add_comment():
 @login_required
 def resolve_comment(cid):
     u = current()
-    if u['role'] not in ('admin', 'author'): return jsonify(error='권한이 없습니다.'), 403
+    if u['role'] not in ADMIN_ROLES and u['role'] != 'author': return jsonify(error='권한이 없습니다.'), 403
     j = request.get_json(force=True)
     db().execute('UPDATE comments SET resolved=? WHERE id=?', (1 if j.get('resolved') else 0, cid)); db().commit()
     return jsonify(ok=True)
@@ -501,7 +511,7 @@ def del_comment(cid):
     u = current()
     r = db().execute('SELECT email FROM comments WHERE id=?', (cid,)).fetchone()
     if not r: return jsonify(error='없는 메모입니다.'), 404
-    if u['role'] != 'admin' and r['email'] != u['email']:
+    if u['role'] not in ADMIN_ROLES and r['email'] != u['email']:
         return jsonify(error='본인 메모만 삭제할 수 있습니다.'), 403
     # 답글이 달린 메모를 지우면 하위 답글(대댓글·대대댓글…)까지 함께 삭제
     con = db(); to_del = [cid]; frontier = [cid]
@@ -530,6 +540,9 @@ def users():
 @admin_required
 def set_assignments(email):
     j = request.get_json(force=True); email = email.lower()
+    tgt = db().execute('SELECT role FROM users WHERE email=?', (email,)).fetchone()
+    if tgt and tgt['role'] in ADMIN_ROLES and current()['role'] != 'superadmin':
+        return jsonify(error='관리자 계정은 수퍼관리자만 변경할 수 있습니다.'), 403
     chs = sorted({int(x) for x in j.get('chapters', [])})
     con = db()
     con.execute('DELETE FROM assignments WHERE email=?', (email,))
@@ -548,6 +561,8 @@ def add_user():
     assigned = (j.get('assigned') or '').strip()
     if '@' not in email: return jsonify(error='올바른 이메일을 입력하세요.'), 400
     if role not in ROLES: return jsonify(error='역할이 올바르지 않습니다.'), 400
+    if role in ADMIN_ROLES and current()['role'] != 'superadmin':
+        return jsonify(error='관리자 계정 생성은 수퍼관리자만 가능합니다.'), 403
     if len(pw) < 6: return jsonify(error='비밀번호는 6자 이상이어야 합니다.'), 400
     if db().execute('SELECT 1 FROM users WHERE email=?', (email,)).fetchone():
         return jsonify(error='이미 등록된 이메일입니다.'), 400
@@ -561,6 +576,11 @@ def update_user(email):
     j = request.get_json(force=True); email = email.lower(); con = db()
     u = con.execute('SELECT * FROM users WHERE email=?', (email,)).fetchone()
     if not u: return jsonify(error='없는 계정입니다.'), 404
+    actor = current()
+    if u['role'] in ADMIN_ROLES and actor['role'] != 'superadmin':
+        return jsonify(error='관리자 계정은 수퍼관리자만 변경할 수 있습니다.'), 403
+    if 'role' in j and j['role'] in ADMIN_ROLES and actor['role'] != 'superadmin':
+        return jsonify(error='관리자 권한 부여/변경은 수퍼관리자만 가능합니다.'), 403
     # 아이디(이메일/로그인ID) 변경 → 모든 참조 cascade
     new_email = (j.get('email') or '').strip().lower()
     if new_email and new_email != email:
@@ -592,6 +612,9 @@ def update_user(email):
 def del_user(email):
     u = current(); email = email.lower()
     if email == u['email']: return jsonify(error='본인 계정은 삭제할 수 없습니다.'), 400
+    tgt = db().execute('SELECT role FROM users WHERE email=?', (email,)).fetchone()
+    if tgt and tgt['role'] in ADMIN_ROLES and u['role'] != 'superadmin':
+        return jsonify(error='관리자 계정은 수퍼관리자만 삭제할 수 있습니다.'), 403
     db().execute('DELETE FROM users WHERE email=?', (email,)); db().commit()
     return jsonify(ok=True)
 
