@@ -32,18 +32,23 @@ async function boot(){
   ME=r.user; ROLES=r.roles;
   const d=await api('/api/data'); BOOK=d; CH=d.chapters; M=d.meta; PARTS=[...new Set(CH.map(c=>c.partname))];
   $('#login').classList.add('hidden'); $('#app').classList.remove('hidden');
-  $('#h-pub').textContent='영문단행본 발간 · 서울연구원 글로벌연구협력센터';
+  $('#h-pub').textContent='영문단행본 · 서울연구원 최준영 박사 개인 연구 플랫폼';
   $('#h-en').textContent=M.titleEN;   // 영문 제목 크게(위)
   $('#h-kr').textContent=M.titleKR;   // 국문 제목 작게(아래)
   $('#st-ch').textContent=CH.length;
   $('#st-case').textContent=CH.reduce((s,c)=>s+c.caseCount,0);
   $('#st-img').textContent=CH.reduce((s,c)=>s+(c.images||0),0);
-  $('#foot').innerHTML='서울연구원 글로벌연구협력센터 · 영문단행본 감수 시스템 &nbsp;|&nbsp; © 최준영';
+  $('#foot').innerHTML='서울연구원 최준영 박사 개인 연구 플랫폼 · 영문단행본 감수 &nbsp;|&nbsp; © 최준영';
   renderUserChip(); buildFilters(); loadAllMemoCount(); render();
   $('#helpBtn').classList.remove('hidden'); $('#helpBtn').onclick=openHelp;
 }
 // ---------- 사용 매뉴얼 · 업데이트 내역 ----------
 const CHANGELOG=[
+  {v:'v0.21', date:'2026-06-11', items:[
+    '서울연구원 최준영 박사 개인 연구 플랫폼으로 개편(브랜딩 정리)',
+    '수퍼관리자(junyoung.choi@si.re.kr)가 4개 서브시스템 권한을 통합 관리',
+    '세계대도시협력(WPSC)은 수퍼관리자 접근',
+  ]},
   {v:'v0.2', date:'2026-06-11', items:[
     '통합 포털 신설 — 4개 서브시스템(아시아·아프리카 스마트도시 DB, 세계대도시협력, 영문단행본 감수)',
     '아이콘 클릭 → 시스템 선택된 상태로 로그인 / DB는 추후 공개 안내 / 세계대도시협력은 WPSC 일정 연결',
@@ -81,7 +86,7 @@ function openHelp(){
       <div class="help-tabs"><button class="ht active" data-h="man">📖 사용 매뉴얼</button><button class="ht" data-h="log">🆕 업데이트 내역</button></div>
       <div id="help-man">${man}</div>
       <div id="help-log" class="hidden">${log}</div>
-      <div class="tpart" style="margin-top:16px;border-top:1px solid var(--line2);padding-top:10px">서울연구원 글로벌연구협력센터 · 영문단행본 감수 시스템 · © 최준영</div>
+      <div class="tpart" style="margin-top:16px;border-top:1px solid var(--line2);padding-top:10px">서울연구원 최준영 박사 개인 연구 플랫폼 · 영문단행본 감수 · © 최준영</div>
     </div>`);
   $$('.ht').forEach(b=>b.onclick=()=>{$$('.ht').forEach(x=>x.classList.toggle('active',x===b));
     $('#help-man').classList.toggle('hidden',b.dataset.h!=='man');$('#help-log').classList.toggle('hidden',b.dataset.h!=='log');});
