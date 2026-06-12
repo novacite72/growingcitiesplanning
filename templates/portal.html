@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>글로벌 도시연구 플랫폼 · Global Urban Research Platform</title>
+<style>
+:root{
+  --ink:#13243b;--ink2:#43586e;--ink3:#7a8aa0;--line:#e2e8f0;--bg:#f4f7fb;
+  --un:#009edb;--un-d:#0a4f7a;--navy:#0a3d62;--teal:#138f8f;--green:#3a8a3a;--amber:#d99b2b;
+  --shadow:0 1px 2px rgba(15,40,70,.05),0 10px 30px rgba(15,40,70,.07);
+  --shadow-lg:0 18px 50px rgba(15,40,70,.16);
+}
+*{box-sizing:border-box}html,body{margin:0;padding:0}
+body{font-family:"Pretendard","Apple SD Gothic Neo","Malgun Gothic",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1140px;margin:0 auto;padding:0 24px}
+a{color:inherit;text-decoration:none}
+/* top bar */
+.topbar{background:#fff;border-bottom:1px solid var(--line)}
+.topbar-in{display:flex;align-items:center;justify-content:space-between;height:58px}
+.brand{display:flex;align-items:center;gap:11px;font-weight:800;font-size:15px;color:var(--navy)}
+.brand .dot{width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,var(--un),var(--teal));display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px}
+.brand small{display:block;font-size:10.5px;color:var(--ink3);font-weight:600;letter-spacing:.02em}
+.topbar .lang{font-size:12px;color:var(--ink3);font-weight:600}
+/* hero */
+.hero{background:linear-gradient(135deg,#072f4d 0%,#0a4f7a 55%,#0d6aa0 100%);color:#fff;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;right:-120px;top:-100px;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle at center,rgba(0,158,219,.35),transparent 68%)}
+.hero-in{padding:64px 0 56px;position:relative;z-index:1;max-width:760px}
+.hero .kick{font-size:13px;letter-spacing:.16em;font-weight:700;color:#7fd4f5;text-transform:uppercase}
+.hero h1{font-size:40px;font-weight:800;letter-spacing:-.01em;margin:.32em 0 .1em;line-height:1.15}
+.hero .ko{font-size:19px;font-weight:500;opacity:.92}
+.hero p{font-size:15px;opacity:.84;margin:18px 0 0;max-width:620px;line-height:1.7}
+/* subsystem grid */
+main{padding:46px 0 70px}
+.sec-h{display:flex;align-items:baseline;gap:12px;margin:0 0 6px}
+.sec-h h2{font-size:21px;font-weight:800;color:var(--navy);margin:0}
+.sec-h .en{font-size:13px;color:var(--ink3);font-style:italic;font-weight:600}
+.sec-sub{color:var(--ink2);font-size:14px;margin:0 0 26px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.sys{background:#fff;border:1px solid var(--line);border-radius:18px;padding:26px 26px 22px;box-shadow:var(--shadow);cursor:pointer;transition:.18s;position:relative;overflow:hidden;display:flex;flex-direction:column}
+.sys::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--accent,#009edb)}
+.sys:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:#cfe0ee}
+.sys .ic{width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:30px;background:var(--accent-l,#e7f5fc);margin-bottom:16px}
+.sys h3{font-size:19px;font-weight:800;margin:0 0 2px;color:var(--ink)}
+.sys .en{font-size:12.5px;color:var(--ink3);font-style:italic;font-weight:600;margin-bottom:11px}
+.sys .desc{font-size:13.5px;color:var(--ink2);line-height:1.65;flex:1}
+.sys .foot{display:flex;align-items:center;justify-content:space-between;margin-top:16px;padding-top:13px;border-top:1px dashed var(--line)}
+.badge{font-size:11.5px;font-weight:800;padding:3px 10px;border-radius:20px}
+.b-open{background:#e7f3ec;color:var(--green)} .b-soon{background:#fbf1dd;color:var(--amber)} .b-link{background:#e6f5f5;color:var(--teal)}
+.sys .go{font-size:13px;font-weight:700;color:var(--un-d)}
+footer{border-top:1px solid var(--line);background:#fff;padding:26px 0;color:var(--ink3);font-size:12.5px;text-align:center}
+/* modal */
+.mbg{position:fixed;inset:0;background:rgba(10,30,55,.55);backdrop-filter:blur(4px);z-index:100;display:none;align-items:center;justify-content:center;padding:20px}
+.mbg.open{display:flex}
+.modal{background:#fff;border-radius:20px;width:100%;max-width:420px;box-shadow:var(--shadow-lg);overflow:hidden;animation:pop .2s ease}
+@keyframes pop{from{transform:translateY(12px) scale(.98);opacity:0}to{transform:none;opacity:1}}
+.mhead{padding:22px 26px 18px;color:#fff;position:relative}
+.mhead .selsys{font-size:11.5px;letter-spacing:.1em;font-weight:700;opacity:.9;text-transform:uppercase}
+.mhead h3{margin:6px 0 2px;font-size:20px;font-weight:800}
+.mhead .en{font-size:12.5px;opacity:.85;font-style:italic}
+.mhead .x{position:absolute;top:16px;right:16px;border:0;background:rgba(255,255,255,.2);color:#fff;width:32px;height:32px;border-radius:9px;font-size:17px;cursor:pointer}
+.mbody{padding:22px 26px 26px}
+.mbody label{display:block;font-size:13px;font-weight:700;color:var(--ink2);margin:12px 0 5px}
+.mbody input{width:100%;padding:11px 13px;border:1px solid var(--line);border-radius:10px;font-size:15px;font-family:inherit}
+.mbody input:focus{outline:none;border-color:var(--un);box-shadow:0 0 0 3px #e7f5fc}
+.mbtn{width:100%;border:0;border-radius:10px;padding:12px;font-size:15px;font-weight:700;color:#fff;cursor:pointer;margin-top:20px;background:var(--un-d)}
+.mbtn:hover{filter:brightness(1.08)}
+.merr{color:#c0392b;font-size:13px;margin-top:12px;min-height:17px}
+.soonbox{text-align:center;padding:14px 6px 4px}
+.soonbox .si{font-size:46px}.soonbox h4{margin:10px 0 6px;font-size:19px;color:var(--navy)}.soonbox p{color:var(--ink2);font-size:14px;margin:0}
+@media(max-width:760px){.grid{grid-template-columns:1fr}.hero h1{font-size:30px}.hero-in{padding:46px 0 40px}}
+</style>
+</head>
+<body>
+<div class="topbar"><div class="wrap topbar-in">
+  <a href="/" class="brand"><span class="dot">◴</span><span>서울연구원 글로벌연구협력센터<small>Seoul Institute · Global Research Cooperation Center</small></span></a>
+  <span class="lang">KOR / ENG</span>
+</div></div>
+
+<header class="hero"><div class="wrap hero-in">
+  <div class="kick">Global Urban Research Platform</div>
+  <h1>Global Urban Research Platform</h1>
+  <div class="ko">글로벌 도시연구 플랫폼</div>
+  <p>서울연구원 글로벌연구협력센터가 운영하는 통합 연구 플랫폼입니다. 아시아·아프리카 스마트도시 연구 데이터베이스, 세계 대도시 협력, 영문 단행본 감수 시스템을 하나의 창구에서 제공합니다.</p>
+</div></header>
+
+<main><div class="wrap">
+  <div class="sec-h"><h2>서브시스템</h2><span class="en">Subsystems</span></div>
+  <p class="sec-sub">이용하실 시스템을 선택하세요. 아이콘을 클릭하면 로그인 후 해당 시스템으로 이동합니다.</p>
+  <div class="grid" id="grid"></div>
+</div></main>
+
+<footer><div class="wrap">서울연구원 글로벌연구협력센터 · Global Research Cooperation Center, The Seoul Institute &nbsp;|&nbsp; © 최준영</div></footer>
+
+<div class="mbg" id="mbg"><div class="modal" id="modalCard"></div></div>
+
+<script>
+const $=s=>document.querySelector(s);
+const META={
+  asia:{ic:'🌏',accent:'#0a7d8c',accentL:'#e2f3f5',desc:'아시아 도시의 스마트도시 정책·지표·우수사례를 수집·분석하는 연구 데이터베이스입니다.'},
+  africa:{ic:'🌍',accent:'#c77a16',accentL:'#fbf0db',desc:'아프리카 도시의 스마트도시 정책·데이터·사례를 담은 연구 데이터베이스입니다.'},
+  wpsc:{ic:'🤝',accent:'#138f8f',accentL:'#e3f3f3',desc:'세계 대도시 간 정책 교류·협력과 국제행사(WPSC 등) 출장·일정을 관리합니다.'},
+  book:{ic:'📘',accent:'#0a4f7a',accentL:'#e7f1fa',desc:'영문 단행본 「성장하는 도시를 위한 도시계획」의 본문 열람·메모·감수·편집 시스템입니다.'},
+};
+const ORDER=['asia','africa','wpsc','book'];
+let SYS={};
+function badge(st){return st==='open'?'<span class="badge b-open">열람 가능</span>':st==='soon'?'<span class="badge b-soon">추후 공개</span>':'<span class="badge b-link">바로가기</span>';}
+async function init(){
+  const r=await (await fetch('/api/systems')).json();SYS=r.systems;
+  $('#grid').innerHTML=ORDER.map(k=>{const s=SYS[k],m=META[k];
+    return `<div class="sys" style="--accent:${m.accent};--accent-l:${m.accentL}" data-k="${k}">
+      <div class="ic">${m.ic}</div>
+      <h3>${s.kr}</h3><div class="en">${s.en}</div>
+      <div class="desc">${m.desc}</div>
+      <div class="foot">${badge(s.status)}<span class="go">${s.status==='soon'?'준비 중':'들어가기 ›'}</span></div></div>`;}).join('');
+  document.querySelectorAll('.sys').forEach(el=>el.onclick=()=>openSys(el.dataset.k));
+  // auto-open login if redirected (?sys=) or denied
+  const p=new URLSearchParams(location.search);
+  if(p.get('denied'))alert("'"+(SYS[p.get('denied')]?.kr||'')+"' 접근 권한이 없습니다. 관리자에게 문의하세요.");
+  else if(p.get('sys')&&SYS[p.get('sys')])openSys(p.get('sys'));
+}
+function openSys(k){
+  const s=SYS[k],m=META[k];
+  if(s.status==='soon'){
+    $('#modalCard').innerHTML=`<div class="mhead" style="background:linear-gradient(135deg,${m.accent},${m.accent}cc)"><button class="x" onclick="closeM()">×</button><div class="selsys">${s.en}</div><h3>${s.kr}</h3></div>
+      <div class="mbody"><div class="soonbox"><div class="si">🛠️</div><h4>추후 공개 예정</h4><p>해당 데이터베이스는 현재 준비 중입니다.<br>공개 시점은 추후 공지될 예정입니다.</p></div>
+      <button class="mbtn" style="background:${m.accent}" onclick="closeM()">확인</button></div>`;
+    $('#mbg').classList.add('open');return;
+  }
+  // 로그인(시스템 선택됨)
+  $('#modalCard').innerHTML=`<div class="mhead" style="background:linear-gradient(135deg,${m.accent},${m.accent}cc)"><button class="x" onclick="closeM()">×</button>
+      <div class="selsys">선택한 시스템 · ${s.en}</div><h3>${m.ic} ${s.kr}</h3></div>
+    <div class="mbody">
+      <label>이름 또는 이메일</label><input id="li-id" autocomplete="username" placeholder="아이디">
+      <label>비밀번호</label><input id="li-pw" type="password" autocomplete="current-password" placeholder="비밀번호">
+      <button class="mbtn" style="background:${m.accent}" id="li-go">로그인</button>
+      <div class="merr" id="li-err"></div></div>`;
+  $('#mbg').classList.add('open');setTimeout(()=>$('#li-id').focus(),60);
+  const go=async()=>{$('#li-err').textContent='';
+    try{await fetch('/api/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:$('#li-id').value,password:$('#li-pw').value,system:k})}).then(async r=>{const j=await r.json();if(!r.ok)throw new Error(j.error||'오류');});
+      location.href = k==='book' ? '/book' : '/'+k;
+    }catch(e){$('#li-err').textContent=e.message;}};
+  $('#li-go').onclick=go;
+  $('#li-pw').addEventListener('keydown',e=>{if(e.key==='Enter')go();});
+}
+function closeM(){$('#mbg').classList.remove('open');}
+window.closeM=closeM;
+$('#mbg').onclick=e=>{if(e.target.id==='mbg')closeM();};
+init();
+</script>
+</body>
+</html>

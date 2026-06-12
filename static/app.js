@@ -28,7 +28,7 @@ $('#regForm').addEventListener('submit',async e=>{
   }catch(err){$('#rg-err').textContent=err.message;}
 });
 async function boot(){
-  const r=await api('/api/me'); if(!r.user){showLogin();return;}
+  const r=await api('/api/me'); if(!r.user){location.replace('/?sys=book');return;}
   ME=r.user; ROLES=r.roles;
   const d=await api('/api/data'); BOOK=d; CH=d.chapters; M=d.meta; PARTS=[...new Set(CH.map(c=>c.partname))];
   $('#login').classList.add('hidden'); $('#app').classList.remove('hidden');
@@ -44,6 +44,11 @@ async function boot(){
 }
 // ---------- 사용 매뉴얼 · 업데이트 내역 ----------
 const CHANGELOG=[
+  {v:'v0.2', date:'2026-06-11', items:[
+    '통합 포털 신설 — 4개 서브시스템(아시아·아프리카 스마트도시 DB, 세계대도시협력, 영문단행본 감수)',
+    '아이콘 클릭 → 시스템 선택된 상태로 로그인 / DB는 추후 공개 안내 / 세계대도시협력은 WPSC 일정 연결',
+    '수퍼관리자가 사용자별 시스템 접근권한을 통합 관리(개별 시스템 관리자는 자기 시스템만 열람)',
+  ]},
   {v:'v0.13', date:'2026-06-11', items:[
     '수퍼관리자 역할 추가 — 관리자 포함 모든 사용자·권한 관리',
     '일반 관리자는 집필자·감수자 계정만 관리(관리자 권한 변경은 수퍼관리자만)',
@@ -87,11 +92,12 @@ function renderUserChip(){
   $('#userchip').innerHTML=`<div class="ui"><div class="un">${esc(ME.name)}</div><div class="ur">${esc(ME.roleName)} · ${esc(ME.email)}</div></div>
     <div class="uav">${esc(ini)}</div><button class="menu-btn" id="menuBtn">▾</button>`;
   $('#menuBtn').onclick=e=>{e.stopPropagation();$('#umenu').classList.toggle('open');};
-  let menu=`<button id="m-pw">비밀번호 변경</button>`;
+  let menu=`<button id="m-pw">비밀번호 변경</button><button id="m-home">← 플랫폼 홈</button>`;
   if(ME.role==='admin'||ME.role==='superadmin') menu=`<button id="m-users">사용자 관리</button>`+menu;
   menu+=`<button class="sep" id="m-out">로그아웃</button>`;
   $('#umenu').innerHTML=menu;
-  $('#m-out').onclick=async()=>{await api('/api/logout',{method:'POST'});location.reload();};
+  $('#m-home').onclick=()=>{location.href='/';};
+  $('#m-out').onclick=async()=>{await api('/api/logout',{method:'POST'});location.href='/';};
   $('#m-pw').onclick=()=>{$('#umenu').classList.remove('open');openPwModal();};
   if($('#m-users'))$('#m-users').onclick=()=>{$('#umenu').classList.remove('open');openUsers();};
 }
@@ -547,19 +553,23 @@ async function openUsers(){
   const r=await api('/api/users');ADMIN_CHAPTERS=r.chapters;
   const chapName=o=>{const c=r.chapters.find(x=>x.order===o);return c?c.label:o;};
   const SUPER=ME.isSuper, isAdminRole=rr=>['admin','superadmin'].includes(rr);
+  ADMIN_SYS=r.systems||{};
   const roleOpts=sel=>Object.entries(r.roles).filter(([k])=>SUPER||!isAdminRole(k)).map(([k,v])=>`<option value="${k}" ${sel===k?'selected':''}>${v}</option>`).join('');
+  const sysChips=u=>(u.role==='superadmin'?Object.keys(ADMIN_SYS):(u.systems||[])).map(s=>`<span class="chipmini" style="background:#e6f5f5;color:#138f8f">${esc((ADMIN_SYS[s]||{}).kr||s).replace(/ .*/,'').slice(0,6)||s}</span>`).join('')||'<span class="tpart">없음</span>';
   const rows=r.users.map(u=>{
     const chips=(u.chapters||[]).map(o=>`<span class="chipmini">${esc(chapName(o))}</span>`).join('')||'<span class="tpart">없음</span>';
     const asgnCell=isAdminRole(u.role)?'<span class="tpart">전체</span>':`<div class="asgn">${chips}</div><button class="back asgnbtn" style="padding:3px 8px;font-size:11px;margin-top:4px" data-asgn="${esc(u.email)}">장 배정 수정</button>`;
+    const sysCell=`<div class="asgn">${sysChips(u)}</div>${SUPER&&u.role!=='superadmin'?`<button class="back" style="padding:3px 8px;font-size:11px;margin-top:4px" data-sys="${esc(u.email)}">시스템 권한</button>`:''}`;
     if(isAdminRole(u.role)&&!SUPER){   // 일반 관리자는 관리자급 계정을 변경 불가(읽기전용)
       return `<tr style="opacity:.65"><td><b>${esc(u.name)}</b><div class="tpart">${esc(u.email)}</div></td>
-        <td>${roleBadge(u.role)}</td><td><span class="tpart">전체</span></td><td class="tpart">${u.comments}</td>
+        <td>${roleBadge(u.role)}</td><td><span class="tpart">전체</span></td><td>${sysChips(u)}</td><td class="tpart">${u.comments}</td>
         <td><span class="tpart" style="font-size:11px">🔒 수퍼관리자 전용</span></td></tr>`;
     }
     return `<tr><td><input class="uedit" data-name="${esc(u.email)}" value="${esc(u.name)}" placeholder="이름" style="width:88px">
       <div><input class="uedit small" data-email="${esc(u.email)}" value="${esc(u.email)}" placeholder="아이디" style="width:150px"></div></td>
     <td><select data-role="${esc(u.email)}">${roleOpts(u.role)}</select></td>
     <td>${asgnCell}</td>
+    <td>${sysCell}</td>
     <td class="tpart">${u.comments}</td>
     <td><button class="back" style="padding:4px 9px;font-size:12px" data-save="${esc(u.email)}">저장</button>
     ${u.email===ME.email?'':`<button class="back" style="padding:4px 9px;font-size:12px;color:var(--red);margin-left:4px" data-deluser="${esc(u.email)}">삭제</button>`}</td></tr>`;}).join('');
@@ -567,7 +577,7 @@ async function openUsers(){
      <div style="display:flex;gap:8px"><button class="rbtn" id="btnLog" style="background:rgba(255,255,255,.2);color:#fff">📝 편집 로그</button><button class="x" onclick="closeModal()">×</button></div></div>
    <div class="modal-body">
     <p class="tpart" style="margin:0 0 12px">${SUPER?'<b>수퍼관리자</b> — 관리자 포함 모든 계정·권한 관리.':'집필자·감수자 계정만 관리할 수 있습니다(관리자 권한은 수퍼관리자만).'} 집필자=배정 장 편집 · 감수자=배정 장 열람·메모.</p>
-    <table class="users"><thead><tr><th>이름 / ID</th><th>역할</th><th>배정 장</th><th>메모</th><th></th></tr></thead><tbody>${rows}</tbody></table>
+    <table class="users"><thead><tr><th>이름 / ID</th><th>역할</th><th>배정 장</th><th>시스템</th><th>메모</th><th></th></tr></thead><tbody>${rows}</tbody></table>
     <div class="adduser"><h4>＋ 사용자 추가</h4>
       <input id="nu-name" placeholder="이름"><input id="nu-email" placeholder="이메일">
       <select id="nu-role">${roleOpts('reviewer')}</select>
@@ -582,9 +592,25 @@ async function openUsers(){
     }catch(e){alert(e.message);}});
   $$('[data-deluser]').forEach(b=>b.onclick=async()=>{if(!confirm(b.dataset.deluser+' 계정을 삭제할까요?'))return;await api('/api/users/'+encodeURIComponent(b.dataset.deluser),{method:'DELETE'});openUsers();});
   $$('[data-asgn]').forEach(b=>b.onclick=()=>openAssign(b.dataset.asgn,r.users.find(u=>u.email===b.dataset.asgn).chapters||[]));
+  $$('[data-sys]').forEach(b=>b.onclick=()=>openUserSystems(b.dataset.sys,r.users.find(u=>u.email===b.dataset.sys).systems||[]));
   $('#nu-add').onclick=async()=>{try{await api('/api/users',{method:'POST',body:JSON.stringify({name:$('#nu-name').value,email:$('#nu-email').value,role:$('#nu-role').value,password:$('#nu-pw').value})});openUsers();}catch(e){$('#nu-msg').style.color='var(--red)';$('#nu-msg').textContent=e.message;}};
 }
-let ADMIN_CHAPTERS=[];
+let ADMIN_CHAPTERS=[],ADMIN_SYS={};
+function openUserSystems(email,current){
+  const set=new Set(current);
+  const boxes=Object.entries(ADMIN_SYS).map(([k,v])=>`<label class="asgnchk"><input type="checkbox" value="${k}" ${set.has(k)?'checked':''}> ${esc(v.kr)} <span class="tpart">${esc(v.en)}</span></label>`).join('');
+  openModal(`<div class="modal-head"><h2>시스템 접근 권한 · ${esc(email)}</h2><button class="x" onclick="closeModal()">×</button></div>
+    <div class="modal-body"><p class="tpart" style="margin:0 0 12px">이 사용자가 접근할 수 있는 서브시스템을 선택하세요.</p>
+    <div class="asgngrid" style="grid-template-columns:1fr">${boxes}</div>
+    <div class="msg" id="sy-msg"></div>
+    <div style="display:flex;gap:8px;margin-top:14px"><button class="btn btn-primary" id="sy-save" style="margin-top:0">저장</button>
+      <button class="back" onclick="openUsers()">← 목록</button></div></div>`);
+  $('#sy-save').onclick=async()=>{
+    const syss=$$('.asgngrid input:checked').map(i=>i.value);
+    await api('/api/usersystems/'+encodeURIComponent(email),{method:'PUT',body:JSON.stringify({systems:syss})});
+    $('#sy-msg').style.color='var(--green)';$('#sy-msg').textContent='저장되었습니다.';setTimeout(openUsers,700);
+  };
+}
 function openAssign(email,current){
   const set=new Set(current);
   const boxes=ADMIN_CHAPTERS.map(c=>`<label class="asgnchk"><input type="checkbox" value="${c.order}" ${set.has(c.order)?'checked':''}> ${esc(c.label)} <span class="tpart">${esc(c.titleKR)}</span></label>`).join('');

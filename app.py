@@ -8,7 +8,7 @@
 import os, json, sqlite3, secrets, datetime, time, copy
 from functools import wraps
 from flask import (Flask, request, session, jsonify, send_from_directory,
-                   render_template, g, abort)
+                   render_template, g, abort, redirect, send_file)
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.middleware.proxy_fix import ProxyFix
 
@@ -53,6 +53,13 @@ def _rl_fail(ip):
 
 ROLES = {'superadmin': '수퍼관리자', 'admin': '관리자', 'author': '집필자', 'reviewer': '감수자'}
 ADMIN_ROLES = ('admin', 'superadmin')   # 관리자급
+# 4개 서브시스템: code -> (국문, 영문, 상태)  status: 'open'|'soon'|'link'
+SYSTEMS = {
+    'asia':   ('아시아 스마트도시연구 데이터베이스', 'Asia Smart City Research Database', 'soon'),
+    'africa': ('아프리카 스마트도시연구 데이터베이스', 'Africa Smart City Research Database', 'soon'),
+    'wpsc':   ('세계대도시협력', 'World Metropolitan Cooperation', 'link'),
+    'book':   ('영문단행본 「성장하는 도시를 위한 도시계획」', 'Urban Planning for Growing Cities', 'open'),
+}
 BOOK = json.load(open(DATA, encoding='utf-8'))
 
 # ---------------- DB (SQLite local / Postgres cloud) ----------------
@@ -165,6 +172,12 @@ def init_db():
           CREATE TABLE IF NOT EXISTS chorder(chapter INTEGER PRIMARY KEY, seq TEXT);''')
         if 'undone' not in [r[1] for r in con.execute('PRAGMA table_info(editlog)')]:
             con.execute('ALTER TABLE editlog ADD COLUMN undone INTEGER DEFAULT 0')
+    # users.systems 컬럼(서브시스템 접근권한, 콤마구분 코드)
+    try:
+        if IS_PG: con.execute('ALTER TABLE users ADD COLUMN IF NOT EXISTS systems TEXT'); con.commit()
+        elif 'systems' not in [r[1] for r in con.execute('PRAGMA table_info(users)')]:
+            con.execute('ALTER TABLE users ADD COLUMN systems TEXT')
+    except Exception: con.rollback()
     ignore = 'ON CONFLICT (email) DO NOTHING' if IS_PG else 'OR IGNORE'
     ins = ('INSERT OR IGNORE INTO users VALUES(?,?,?,?,?,?)' if not IS_PG
            else 'INSERT INTO users VALUES(?,?,?,?,?,?) ON CONFLICT (email) DO NOTHING')
@@ -184,6 +197,10 @@ def init_db():
         for email, chs in ASSIGN_SEED.items():
             for ch in chs:
                 con.execute(ains, (email, ch))
+    # systems 기본값: 수퍼관리자=전체, 그 외=book (비어 있는 계정만)
+    allsys = ','.join(SYSTEMS.keys())
+    con.execute("UPDATE users SET systems=? WHERE role='superadmin' AND (systems IS NULL OR systems='')", (allsys,))
+    con.execute("UPDATE users SET systems='book' WHERE role<>'superadmin' AND (systems IS NULL OR systems='')")
     con.commit(); con.close()
 
 def now(): return datetime.datetime.now().isoformat(timespec='seconds')
@@ -192,8 +209,15 @@ def now(): return datetime.datetime.now().isoformat(timespec='seconds')
 def current():
     em = session.get('email')
     if not em: return None
-    r = db().execute('SELECT email,name,role,assigned FROM users WHERE email=?', (em,)).fetchone()
+    r = db().execute('SELECT email,name,role,assigned,systems FROM users WHERE email=?', (em,)).fetchone()
     return dict(r) if r else None
+
+def user_systems(u):
+    if u['role'] == 'superadmin': return list(SYSTEMS.keys())
+    return [s for s in (u.get('systems') or '').split(',') if s in SYSTEMS]
+
+def can_access_system(u, sys):
+    return u['role'] == 'superadmin' or sys in user_systems(u)
 
 def login_required(f):
     @wraps(f)
@@ -240,8 +264,19 @@ def block_field(b):
 
 # ---------------- pages ----------------
 @app.route('/')
-def index():
-    return render_template('index.html')
+def portal():
+    return render_template('portal.html')
+
+@app.route('/book')
+def book_app():
+    return render_template('index.html')   # 영문단행본 감수 시스템 SPA
+
+@app.route('/wpsc')
+def wpsc_page():
+    u = current()
+    if not u: return redirect('/?sys=wpsc')
+    if not can_access_system(u, 'wpsc'): return redirect('/?denied=wpsc')
+    return send_file(os.path.join(HERE, 'wpsc.html'))
 
 @app.route('/static/img/<path:p>')
 def img(p):
@@ -260,8 +295,14 @@ def login():
     if not r or not check_password_hash(r['pw'], pw):
         _rl_fail(ip)
         return jsonify(error='이메일/이름 또는 비밀번호가 올바르지 않습니다.'), 401
+    system = j.get('system')   # 포털에서 선택한 서브시스템(선택)
+    if system and system in SYSTEMS:
+        u0 = dict(r)
+        if r['role'] != 'superadmin' and system not in [s for s in (u0.get('systems') or '').split(',') if s]:
+            return jsonify(error=f"'{SYSTEMS[system][0]}' 접근 권한이 없습니다."), 403
+        session['system'] = system
     session.permanent = True; session['email'] = email
-    return jsonify(ok=True, user={'email': r['email'], 'name': r['name'],
+    return jsonify(ok=True, system=system, user={'email': r['email'], 'name': r['name'],
                                   'role': r['role'], 'roleName': ROLES.get(r['role'], r['role'])})
 
 @app.post('/api/register')
@@ -300,7 +341,12 @@ def me():
     u['assigned'] = sorted(assigned_chapters(u['email']))
     u['canEditAny'] = (u['role'] in ADMIN_ROLES or u['role'] == 'author')
     u['isSuper'] = (u['role'] == 'superadmin')
+    u['systems'] = user_systems(u)
     return jsonify(user=u, roles=ROLES)
+
+@app.get('/api/systems')
+def systems_list():
+    return jsonify(systems={k: {'kr': v[0], 'en': v[1], 'status': v[2]} for k, v in SYSTEMS.items()})
 
 @app.post('/api/password')
 @login_required
@@ -527,14 +573,29 @@ def del_comment(cid):
 @app.get('/api/users')
 @admin_required
 def users():
-    rows = db().execute('SELECT email,name,role,assigned,created FROM users ORDER BY role,email').fetchall()
-    out = [dict(r) for r in rows]
-    for r in out:
-        r['roleName'] = ROLES.get(r['role'], r['role'])
-        r['comments'] = db().execute('SELECT COUNT(*) FROM comments WHERE email=?', (r['email'],)).fetchone()[0]
-        r['chapters'] = sorted(assigned_chapters(r['email']))
+    actor = current(); asys = set(user_systems(actor))
+    rows = db().execute('SELECT email,name,role,assigned,systems,created FROM users ORDER BY role,email').fetchall()
+    out = []
+    for r in rows:
+        d = dict(r); d['systems'] = [s for s in (d.get('systems') or '').split(',') if s in SYSTEMS]
+        # 개별 시스템 관리자는 자기 시스템의 사용자만 조회(수퍼관리자는 전체)
+        if actor['role'] != 'superadmin' and not (set(d['systems']) & asys):
+            continue
+        d['roleName'] = ROLES.get(r['role'], r['role'])
+        d['comments'] = db().execute('SELECT COUNT(*) FROM comments WHERE email=?', (r['email'],)).fetchone()[0]
+        d['chapters'] = sorted(assigned_chapters(r['email']))
+        out.append(d)
     chapters = [{'order': c['order'], 'label': c['label'], 'titleKR': c['titleKR']} for c in BOOK['chapters']]
-    return jsonify(users=out, roles=ROLES, chapters=chapters)
+    sysmeta = {k: {'kr': v[0], 'en': v[1]} for k, v in SYSTEMS.items()}
+    return jsonify(users=out, roles=ROLES, chapters=chapters, systems=sysmeta, isSuper=(actor['role'] == 'superadmin'))
+
+@app.put('/api/usersystems/<email>')
+@super_required
+def set_user_systems(email):
+    j = request.get_json(force=True); email = email.lower()
+    syss = ','.join([s for s in j.get('systems', []) if s in SYSTEMS])
+    db().execute('UPDATE users SET systems=? WHERE email=?', (syss, email)); db().commit()
+    return jsonify(ok=True, systems=syss)
 
 @app.put('/api/assignments/<email>')
 @admin_required
@@ -567,7 +628,9 @@ def add_user():
     if db().execute('SELECT 1 FROM users WHERE email=?', (email,)).fetchone():
         return jsonify(error='이미 등록된 이메일입니다.'), 400
     db().execute('INSERT INTO users VALUES(?,?,?,?,?,?)',
-                 (email, name, role, generate_password_hash(pw), now(), assigned)); db().commit()
+                 (email, name, role, generate_password_hash(pw), now(), assigned))
+    defsys = ','.join(SYSTEMS.keys()) if role == 'superadmin' else (','.join(j.get('systems')) if j.get('systems') else 'book')
+    db().execute('UPDATE users SET systems=? WHERE email=?', (defsys, email)); db().commit()
     return jsonify(ok=True)
 
 @app.put('/api/users/<email>')
