@@ -28,6 +28,15 @@ a{color:inherit;text-decoration:none}
 .topbar-right{display:flex;align-items:center;gap:10px;flex-shrink:0}
 .home-link{font-size:13px;font-weight:700;color:var(--purple);white-space:nowrap;padding:6px 10px;border-radius:8px;border:1px solid var(--purple-l);background:var(--purple-l);transition:.15s}
 .home-link:hover{background:#e0d8f5}
+.sysswitch{position:relative;flex-shrink:0}
+.ss-btn{font-size:12.5px;font-weight:800;color:var(--purple);background:var(--purple-l);border:1px solid #ddd6f5;padding:6px 12px;border-radius:8px;cursor:pointer;white-space:nowrap}
+.ss-btn:hover{background:#e0d8f5}
+.ss-menu{position:absolute;top:calc(100% + 6px);right:0;background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:0 18px 50px rgba(15,40,70,.16);padding:6px;min-width:215px;display:none;z-index:60}
+.ss-menu.open{display:block}
+.ss-menu a{display:block;padding:9px 12px;font-size:13px;font-weight:700;color:var(--ink);border-radius:7px;white-space:nowrap}
+.ss-menu a:hover{background:var(--bg)}
+.ss-menu a.cur{color:var(--purple);background:var(--purple-l);cursor:default}
+.ss-menu a.ss-home{border-top:1px solid var(--line);margin-top:4px;color:var(--ink2)}
 .userchip{display:flex;align-items:center;gap:8px;position:relative}
 .userchip .uinfo{text-align:right}
 .userchip .uname{font-size:13px;font-weight:700;color:var(--ink)}
@@ -196,6 +205,16 @@ footer{border-top:1px solid var(--line);background:#fff;padding:22px 0;color:var
       </span>
     </a>
     <div class="topbar-right">
+      <div class="sysswitch" id="sysSwitch" style="display:none">
+        <button class="ss-btn" id="ssBtn">⇄ 서브시스템 이동 ▾</button>
+        <div class="ss-menu" id="ssMenu">
+          <a href="/worldcities">🌐 세계도시 연구 DB</a>
+          <a href="/urbanrobotics" class="cur">🤖 도시로봇·HRI 연구 DB</a>
+          <a href="/wpsc">🤝 세계대도시협력</a>
+          <a href="/book">📘 영문단행본</a>
+          <a href="/" class="ss-home">🏠 플랫폼 홈</a>
+        </div>
+      </div>
       <a href="/" class="home-link">← 플랫폼 홈</a>
       <div class="userchip" id="userchip">
         <div class="uinfo">
@@ -547,6 +566,14 @@ async function boot(){
     try{ await fetch('/api/logout',{method:'POST'}); } catch(e){}
     location.href = '/';
   });
+  /* 서브시스템 이동 스위처 — 수퍼관리자만 */
+  if(me.isSuper || me.role==='superadmin'){
+    const sw=$('#sysSwitch'); if(sw){ sw.style.display='block';
+      const menu=$('#ssMenu');
+      $('#ssBtn').addEventListener('click', e=>{ e.stopPropagation(); menu.classList.toggle('open'); });
+      document.addEventListener('click', ()=> menu.classList.remove('open'));
+    }
+  }
   /* load data */
   await loadData();
   /* deep link */

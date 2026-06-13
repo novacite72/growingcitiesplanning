@@ -45,6 +45,12 @@ async function boot(){
 }
 // ---------- 사용 매뉴얼 · 업데이트 내역 ----------
 const CHANGELOG=[
+  {v:'v0.26', date:'2026-06-14', items:[
+    '로그인 시 첫화면에서 서브시스템 선택 후 아이디·비밀번호 입력(흐름 정리)',
+    '수퍼관리자는 한 시스템에 로그인하면 다른 서브시스템도 재로그인 없이 입장',
+    '각 서브시스템에 “⇄ 서브시스템 이동” 스위처 추가 — 수퍼관리자에게만 표시',
+    '포털에 로그인 사용자 표시(이름·로그아웃), 접근 가능한 시스템은 “바로 입장”',
+  ]},
   {v:'v0.25', date:'2026-06-14', items:[
     '공개 “플랫폼 아키텍처” 페이지(/architecture) 신설 — 4개 서브시스템 구조도·기술스택·권한모델, 계정 없이 열람',
     '포털 첫화면에 아키텍처 바로가기(상단 링크 + 배너) 추가',
@@ -124,6 +130,14 @@ function renderUserChip(){
   $('#menuBtn').onclick=e=>{e.stopPropagation();$('#umenu').classList.toggle('open');};
   let menu=`<button id="m-pw">비밀번호 변경</button><button id="m-home">← 플랫폼 홈</button>`;
   if(ME.role==='admin'||ME.role==='superadmin') menu=`<button id="m-users">사용자 관리</button>`+menu;
+  // 수퍼관리자: 서브시스템 이동(재로그인 없이)
+  if(ME.role==='superadmin'){
+    menu=`<div class="m-lbl">⇄ 서브시스템 이동</div>`
+      +`<button onclick="location.href='/worldcities'">🌐 세계도시 연구 DB</button>`
+      +`<button onclick="location.href='/urbanrobotics'">🤖 도시로봇·HRI 연구 DB</button>`
+      +`<button onclick="location.href='/wpsc'">🤝 세계대도시협력</button>`
+      +`<div class="m-div"></div>`+menu;
+  }
   menu+=`<button class="sep" id="m-out">로그아웃</button>`;
   $('#umenu').innerHTML=menu;
   $('#m-home').onclick=()=>{location.href='/';};

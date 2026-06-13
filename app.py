@@ -8,7 +8,7 @@
 import os, json, sqlite3, secrets, datetime, time, copy, io, base64
 from functools import wraps
 from flask import (Flask, request, session, jsonify, send_from_directory,
-                   render_template, g, abort, redirect, send_file)
+                   render_template, g, abort, redirect, send_file, Response)
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.middleware.proxy_fix import ProxyFix
 
@@ -308,12 +308,30 @@ def architecture_page():
 def book_app():
     return render_template('index.html')   # 영문단행본 감수 시스템 SPA
 
+WPSC_SWITCHER = """
+<div id="gcpSwitch" style="position:fixed;top:12px;right:12px;z-index:2147483600;font-family:-apple-system,'Apple SD Gothic Neo',sans-serif">
+  <button onclick="var m=document.getElementById('gcpSwMenu');m.style.display=(m.style.display==='block'?'none':'block')"
+    style="font-size:12.5px;font-weight:800;color:#0a4f7a;background:#e7f1fa;border:1px solid #cfe0ee;padding:7px 13px;border-radius:20px;cursor:pointer;box-shadow:0 4px 14px rgba(15,40,70,.18)">⇄ 서브시스템 이동 ▾</button>
+  <div id="gcpSwMenu" style="display:none;position:absolute;top:calc(100% + 6px);right:0;background:#fff;border:1px solid #e2e8f0;border-radius:10px;box-shadow:0 18px 50px rgba(15,40,70,.18);padding:6px;min-width:215px">
+    <a href="/worldcities" style="display:block;padding:9px 12px;font-size:13px;font-weight:700;color:#13243b;border-radius:7px;text-decoration:none">🌐 세계도시 연구 DB</a>
+    <a href="/urbanrobotics" style="display:block;padding:9px 12px;font-size:13px;font-weight:700;color:#13243b;border-radius:7px;text-decoration:none">🤖 도시로봇·HRI 연구 DB</a>
+    <a href="/wpsc" style="display:block;padding:9px 12px;font-size:13px;font-weight:700;color:#138f8f;background:#e6f5f5;border-radius:7px;text-decoration:none">🤝 세계대도시협력</a>
+    <a href="/book" style="display:block;padding:9px 12px;font-size:13px;font-weight:700;color:#13243b;border-radius:7px;text-decoration:none">📘 영문단행본</a>
+    <a href="/" style="display:block;padding:9px 12px;font-size:13px;font-weight:700;color:#43586e;border-top:1px solid #e2e8f0;margin-top:4px;border-radius:7px;text-decoration:none">🏠 플랫폼 홈</a>
+  </div>
+</div>
+"""
+
 @app.route('/wpsc')
 def wpsc_page():
     u = current()
     if not u: return redirect('/?sys=wpsc')
     if not can_access_system(u, 'wpsc'): return redirect('/?denied=wpsc')
-    return send_file(os.path.join(HERE, 'wpsc.html'))
+    # WPSC는 수퍼관리자만 접근 → 서브시스템 이동 스위처를 항상 주입
+    html = open(os.path.join(HERE, 'wpsc.html'), encoding='utf-8').read()
+    inject = WPSC_SWITCHER + '</body>'
+    html = html.replace('</body>', inject, 1) if '</body>' in html else html + WPSC_SWITCHER
+    return Response(html, mimetype='text/html')
 
 @app.route('/worldcities')
 @app.route('/world-cities')
