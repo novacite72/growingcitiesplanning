@@ -45,6 +45,13 @@ async function boot(){
 }
 // ---------- 사용 매뉴얼 · 업데이트 내역 ----------
 const CHANGELOG=[
+  {v:'v0.27', date:'2026-06-14', items:[
+    '세계대도시협력(WPSC)을 게시판으로 개편 — 국외 출장·연구원 내원·글로벌 협력기관 3구분 + 진행상황 타임라인',
+    'WPSC 출장 항목에서 “WPSC 출장 일정 보기”로 기존 일정 페이지(/wpsc/itinerary) 연결',
+    '서브시스템 이동 UI를 전 시스템 동일한 드롭다운으로 통일(단행본 포함)',
+    '지식 그래프 페이지(/graph) 신설 — 연구 DB 노드·교차참조 엣지를 인터랙티브 시각화',
+    '플랫폼 아키텍처 페이지에 그래프·추출 파이프라인 반영',
+  ]},
   {v:'v0.26', date:'2026-06-14', items:[
     '로그인 시 첫화면에서 서브시스템 선택 후 아이디·비밀번호 입력(흐름 정리)',
     '수퍼관리자는 한 시스템에 로그인하면 다른 서브시스템도 재로그인 없이 입장',
@@ -130,16 +137,17 @@ function renderUserChip(){
   $('#menuBtn').onclick=e=>{e.stopPropagation();$('#umenu').classList.toggle('open');};
   let menu=`<button id="m-pw">비밀번호 변경</button><button id="m-home">← 플랫폼 홈</button>`;
   if(ME.role==='admin'||ME.role==='superadmin') menu=`<button id="m-users">사용자 관리</button>`+menu;
-  // 수퍼관리자: 서브시스템 이동(재로그인 없이)
-  if(ME.role==='superadmin'){
-    menu=`<div class="m-lbl">⇄ 서브시스템 이동</div>`
-      +`<button onclick="location.href='/worldcities'">🌐 세계도시 연구 DB</button>`
-      +`<button onclick="location.href='/urbanrobotics'">🤖 도시로봇·HRI 연구 DB</button>`
-      +`<button onclick="location.href='/wpsc'">🤝 세계대도시협력</button>`
-      +`<div class="m-div"></div>`+menu;
-  }
   menu+=`<button class="sep" id="m-out">로그아웃</button>`;
   $('#umenu').innerHTML=menu;
+  // 서브시스템 이동 스위처(통일된 드롭다운) — 수퍼관리자만
+  if(ME.role==='superadmin'){
+    const sw=document.getElementById('sysSwitch');
+    if(sw){ sw.style.display='block';
+      const sm=document.getElementById('ssMenu');
+      document.getElementById('ssBtn').onclick=e=>{e.stopPropagation();sm.classList.toggle('open');};
+      document.addEventListener('click',()=>sm.classList.remove('open'));
+    }
+  }
   $('#m-home').onclick=()=>{location.href='/';};
   $('#m-out').onclick=async()=>{await api('/api/logout',{method:'POST'});location.href='/';};
   $('#m-pw').onclick=()=>{$('#umenu').classList.remove('open');openPwModal();};

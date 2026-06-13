@@ -52,6 +52,16 @@ header.hero::after{content:"";position:absolute;right:-80px;top:-60px;width:340p
 .umenu .sep{border-top:1px solid var(--line2)}
 .umenu .m-lbl{font-size:10.5px;font-weight:800;color:var(--ink3);padding:9px 16px 3px;text-transform:uppercase;letter-spacing:.04em}
 .umenu .m-div{border-top:1px solid var(--line2);margin:4px 0}
+/* 통일된 서브시스템 이동 스위처 */
+.sysswitch{position:relative;flex-shrink:0}
+.ss-btn{font-size:12.5px;font-weight:800;color:var(--han);background:var(--han-l);border:1px solid #cfe2f3;padding:6px 12px;border-radius:8px;cursor:pointer;white-space:nowrap}
+.ss-btn:hover{background:#dceaf7}
+.ss-menu{position:absolute;top:calc(100% + 6px);right:0;background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:var(--shadow-lg);padding:6px;min-width:215px;display:none;z-index:120}
+.ss-menu.open{display:block}
+.ss-menu a{display:block;padding:9px 12px;font-size:13px;font-weight:700;color:var(--ink);border-radius:7px;white-space:nowrap;text-decoration:none}
+.ss-menu a:hover{background:var(--bg)}
+.ss-menu a.cur{color:var(--han);background:var(--han-l);cursor:default}
+.ss-menu a.ss-home{border-top:1px solid var(--line);margin-top:4px;color:var(--ink2)}
 
 /* ---------- Toolbar ---------- */
 .toolbar{position:sticky;top:0;z-index:40;background:rgba(246,248,251,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:10px 0}

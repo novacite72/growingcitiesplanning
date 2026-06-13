@@ -308,30 +308,27 @@ def architecture_page():
 def book_app():
     return render_template('index.html')   # 영문단행본 감수 시스템 SPA
 
-WPSC_SWITCHER = """
-<div id="gcpSwitch" style="position:fixed;top:12px;right:12px;z-index:2147483600;font-family:-apple-system,'Apple SD Gothic Neo',sans-serif">
-  <button onclick="var m=document.getElementById('gcpSwMenu');m.style.display=(m.style.display==='block'?'none':'block')"
-    style="font-size:12.5px;font-weight:800;color:#0a4f7a;background:#e7f1fa;border:1px solid #cfe0ee;padding:7px 13px;border-radius:20px;cursor:pointer;box-shadow:0 4px 14px rgba(15,40,70,.18)">⇄ 서브시스템 이동 ▾</button>
-  <div id="gcpSwMenu" style="display:none;position:absolute;top:calc(100% + 6px);right:0;background:#fff;border:1px solid #e2e8f0;border-radius:10px;box-shadow:0 18px 50px rgba(15,40,70,.18);padding:6px;min-width:215px">
-    <a href="/worldcities" style="display:block;padding:9px 12px;font-size:13px;font-weight:700;color:#13243b;border-radius:7px;text-decoration:none">🌐 세계도시 연구 DB</a>
-    <a href="/urbanrobotics" style="display:block;padding:9px 12px;font-size:13px;font-weight:700;color:#13243b;border-radius:7px;text-decoration:none">🤖 도시로봇·HRI 연구 DB</a>
-    <a href="/wpsc" style="display:block;padding:9px 12px;font-size:13px;font-weight:700;color:#138f8f;background:#e6f5f5;border-radius:7px;text-decoration:none">🤝 세계대도시협력</a>
-    <a href="/book" style="display:block;padding:9px 12px;font-size:13px;font-weight:700;color:#13243b;border-radius:7px;text-decoration:none">📘 영문단행본</a>
-    <a href="/" style="display:block;padding:9px 12px;font-size:13px;font-weight:700;color:#43586e;border-top:1px solid #e2e8f0;margin-top:4px;border-radius:7px;text-decoration:none">🏠 플랫폼 홈</a>
-  </div>
-</div>
-"""
-
 @app.route('/wpsc')
 def wpsc_page():
     u = current()
     if not u: return redirect('/?sys=wpsc')
     if not can_access_system(u, 'wpsc'): return redirect('/?denied=wpsc')
-    # WPSC는 수퍼관리자만 접근 → 서브시스템 이동 스위처를 항상 주입
-    html = open(os.path.join(HERE, 'wpsc.html'), encoding='utf-8').read()
-    inject = WPSC_SWITCHER + '</body>'
-    html = html.replace('</body>', inject, 1) if '</body>' in html else html + WPSC_SWITCHER
-    return Response(html, mimetype='text/html')
+    return render_template('wpsc.html')   # 게시판 SPA(국외출장·연구원내원·글로벌협력기관)
+
+@app.route('/wpsc/itinerary')
+def wpsc_itinerary():
+    u = current()
+    if not u: return redirect('/?sys=wpsc')
+    if not can_access_system(u, 'wpsc'): return redirect('/?denied=wpsc')
+    return send_file(os.path.join(HERE, 'wpsc_itinerary.html'))   # 기존 WPSC 출장 일정 페이지
+
+@app.get('/api/wpsc')
+def api_wpsc():
+    u = current()
+    if not u: return jsonify(error='로그인이 필요합니다.'), 401
+    if not can_access_system(u, 'wpsc'): return jsonify(error='접근 권한이 없습니다.'), 403
+    import wpscdata
+    return jsonify(data=wpscdata.WPSC, categories=wpscdata.CATEGORIES)
 
 @app.route('/worldcities')
 @app.route('/world-cities')
@@ -414,6 +411,45 @@ def db_detail(subsystem, slug):
                          (subsystem if r in recs else ('urbanrobotics' if subsystem == 'worldcities' else 'worldcities'))}
              for r in allrecs}
     return jsonify(subsystem=subsystem, record=rec, index=index)
+
+@app.get('/graph')
+@login_required
+def graph_page():
+    return render_template('graph.html')
+
+@app.get('/api/graph')
+@login_required
+def api_graph():
+    """접근 가능한 연구 DB(worldcities·urbanrobotics)의 노드+엣지(slug 교차참조) 지식그래프."""
+    u = current()
+    subs = [s for s in ('worldcities', 'urbanrobotics') if can_access_system(u, s)]
+    recs = []
+    for s in subs:
+        recs += _load_records(s)
+    # 노드: slug → {id,label,kind,subsystem}
+    bysub = {}
+    for s in subs:
+        for r in _load_records(s):
+            bysub[r['slug']] = s
+    nodes, slugset = [], set()
+    for r in recs:
+        slugset.add(r['slug'])
+        nodes.append({'id': r['slug'], 'label': r['title'], 'kind': r['kind'],
+                      'subsystem': bysub.get(r['slug'], '')})
+    # 엣지: 각 레코드의 필드값 중 다른 노드 slug 와 일치하는 것
+    SKIP = {'id', 'slug', 'title', 'kind', 'updated', 'body'}
+    edges, seen = [], set()
+    for r in recs:
+        for k, v in r.items():
+            if k in SKIP: continue
+            vals = v if isinstance(v, list) else ([v] if isinstance(v, str) else [])
+            for item in vals:
+                if isinstance(item, str) and item in slugset and item != r['slug']:
+                    key = tuple(sorted((r['slug'], item)))
+                    if key in seen: continue
+                    seen.add(key)
+                    edges.append({'from': r['slug'], 'to': item, 'label': k})
+    return jsonify(nodes=nodes, edges=edges, subsystems=subs)
 
 @app.post('/api/generate/<tool>')
 @login_required

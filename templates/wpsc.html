@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>세계대도시협력 · World Metropolitan Cooperation</title>
+<style>
+:root{
+  --ink:#13243b;--ink2:#43586e;--ink3:#7a8aa0;--line:#e2e8f0;--bg:#f4f7fb;
+  --teal:#138f8f;--teal-d:#0e6f6f;--teal-l:#e3f3f3;--teal-ll:#f0f9f9;--navy:#0a3d62;--un-d:#0a4f7a;
+  --shadow:0 1px 2px rgba(15,40,70,.05),0 10px 30px rgba(15,40,70,.07);
+  --shadow-lg:0 18px 50px rgba(15,40,70,.16);
+}
+*{box-sizing:border-box}html,body{margin:0;padding:0}
+body{font-family:"Pretendard","Apple SD Gothic Neo","Malgun Gothic",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1140px;margin:0 auto;padding:0 24px}
+a{color:inherit;text-decoration:none}
+.topbar{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50}
+.topbar-in{display:flex;align-items:center;justify-content:space-between;height:58px;gap:12px}
+.brand{display:flex;align-items:center;gap:11px;font-weight:800;font-size:14px;color:var(--navy);min-width:0}
+.brand .dot{width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,var(--teal),#3ab3b3);display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;flex-shrink:0}
+.brand-text{min-width:0}
+.brand-kr{font-size:14px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brand-en{font-size:10.5px;color:var(--ink3);font-weight:600}
+.topbar-right{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.sysswitch{position:relative;flex-shrink:0}
+.ss-btn{font-size:12.5px;font-weight:800;color:var(--teal);background:var(--teal-l);border:1px solid #c8e8e8;padding:6px 12px;border-radius:8px;cursor:pointer;white-space:nowrap}
+.ss-btn:hover{background:#cde8e8}
+.ss-menu{position:absolute;top:calc(100% + 6px);right:0;background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:var(--shadow-lg);padding:6px;min-width:215px;display:none;z-index:60}
+.ss-menu.open{display:block}
+.ss-menu a{display:block;padding:9px 12px;font-size:13px;font-weight:700;color:var(--ink);border-radius:7px;white-space:nowrap}
+.ss-menu a:hover{background:var(--bg)}
+.ss-menu a.cur{color:var(--teal);background:var(--teal-l);cursor:default}
+.ss-menu a.ss-home{border-top:1px solid var(--line);margin-top:4px;color:var(--ink2)}
+.home-link{font-size:13px;font-weight:700;color:var(--teal);white-space:nowrap;padding:6px 10px;border-radius:8px;border:1px solid #c8e8e8;background:var(--teal-l)}
+.home-link:hover{background:#cde8e8}
+.user-chip{display:flex;align-items:center;gap:8px;background:var(--teal-ll);border:1px solid #c8e8e8;border-radius:22px;padding:5px 12px 5px 8px}
+.user-chip .avatar{width:26px;height:26px;border-radius:50%;background:var(--teal);color:#fff;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center}
+.user-chip .uname{font-size:13px;font-weight:700;max-width:120px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.logout-btn{font-size:12px;color:var(--ink3);font-weight:700;background:none;border:0;cursor:pointer;padding:2px 4px}
+.logout-btn:hover{color:var(--ink2)}
+/* hero */
+.hero{background:linear-gradient(135deg,#0a4d4d 0%,#138f8f 60%,#1aa6a6 100%);color:#fff;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;right:-120px;top:-100px;width:460px;height:460px;border-radius:50%;background:radial-gradient(circle at center,rgba(255,255,255,.18),transparent 68%)}
+.hero-in{padding:46px 0 40px;position:relative;z-index:1;max-width:780px}
+.hero .kick{font-size:12.5px;letter-spacing:.16em;font-weight:700;color:#bdeeee;text-transform:uppercase}
+.hero h1{font-size:32px;font-weight:800;margin:.3em 0 .1em;line-height:1.15}
+.hero .ko{font-size:17px;font-weight:500;opacity:.92}
+.hero p{font-size:14px;opacity:.85;margin:14px 0 0;max-width:620px}
+.stats{display:flex;gap:26px;margin-top:20px}
+.stats .s b{font-size:26px;font-weight:800;display:block}
+.stats .s span{font-size:12px;opacity:.85}
+main{padding:30px 0 70px}
+/* progress timeline */
+.prog{background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:18px 20px;margin-bottom:24px}
+.prog h2{font-size:14px;font-weight:800;color:var(--teal-d);margin:0 0 12px;text-transform:uppercase;letter-spacing:.04em}
+.prog .row{display:flex;gap:14px;padding:8px 0;border-top:1px dashed var(--line)}
+.prog .row:first-of-type{border-top:none}
+.prog .pd{font-size:12.5px;font-weight:800;color:var(--teal);min-width:78px;flex-shrink:0;padding-top:1px}
+.prog .ps{font-size:13.5px;color:var(--ink2)}
+/* tabs */
+.tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}
+.tab{display:flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:22px;padding:9px 16px;font-size:13.5px;font-weight:700;color:var(--ink2);cursor:pointer;box-shadow:var(--shadow)}
+.tab .c{font-size:12px;font-weight:800;color:#fff;background:var(--ink3);border-radius:11px;padding:1px 8px}
+.tab.active{background:var(--teal);color:#fff;border-color:var(--teal)}
+.tab.active .c{background:rgba(255,255,255,.3)}
+/* cards */
+.list{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 20px;box-shadow:var(--shadow);border-left:4px solid var(--teal);display:flex;flex-direction:column}
+.card .ch{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:6px}
+.card h3{margin:0;font-size:16px;font-weight:800;line-height:1.35}
+.card .meta{font-size:12px;color:var(--ink3);font-weight:700;margin-bottom:8px}
+.card .meta b{color:var(--teal-d)}
+.card p{font-size:13.5px;color:var(--ink2);line-height:1.65;margin:0;flex:1}
+.card .tags{margin-top:10px;display:flex;flex-wrap:wrap;gap:5px}
+.tag{font-size:11px;font-weight:700;color:var(--teal-d);background:var(--teal-l);border-radius:11px;padding:2px 9px}
+.pill{font-size:11px;font-weight:800;border-radius:20px;padding:3px 10px;white-space:nowrap}
+.p-mou{background:#e7f3ec;color:#3a8a3a}.p-net{background:var(--teal-l);color:var(--teal-d)}.p-etc{background:#f1f6fb;color:var(--ink3)}
+.wpsc-link{margin-top:12px;display:inline-flex;align-items:center;gap:6px;align-self:flex-start;background:var(--teal);color:#fff;font-size:12.5px;font-weight:800;padding:8px 14px;border-radius:9px}
+.wpsc-link:hover{background:var(--teal-d)}
+.loading,.empty{text-align:center;color:var(--ink3);padding:50px 0;font-size:14px}
+footer{border-top:1px solid var(--line);background:#fff;padding:24px 0;color:var(--ink3);font-size:12.5px;text-align:center}
+@media(max-width:760px){.list{grid-template-columns:1fr}.hero h1{font-size:25px}.brand-en{display:none}.user-chip .uname{max-width:64px}.stats{gap:16px}}
+</style>
+</head>
+<body>
+<div class="topbar"><div class="wrap topbar-in">
+  <a href="/" class="brand"><span class="dot">🤝</span><span class="brand-text">
+    <span class="brand-kr">세계대도시협력</span>
+    <span class="brand-en">World Metropolitan Cooperation · growingcitiesplanning.org</span>
+  </span></a>
+  <div class="topbar-right">
+    <div class="sysswitch" id="sysSwitch">
+      <button class="ss-btn" id="ssBtn">⇄ 서브시스템 이동 ▾</button>
+      <div class="ss-menu" id="ssMenu">
+        <a href="/worldcities">🌐 세계도시 연구 DB</a>
+        <a href="/urbanrobotics">🤖 도시로봇·HRI 연구 DB</a>
+        <a href="/wpsc" class="cur">🤝 세계대도시협력</a>
+        <a href="/book">📘 영문단행본</a>
+        <a href="/" class="ss-home">🏠 플랫폼 홈</a>
+      </div>
+    </div>
+    <a href="/" class="home-link">← 플랫폼 홈</a>
+    <div class="user-chip" id="userChip" style="display:none">
+      <div class="avatar" id="uav"></div><span class="uname" id="uname"></span>
+      <button class="logout-btn" id="logoutBtn">로그아웃</button>
+    </div>
+  </div>
+</div></div>
+
+<header class="hero"><div class="wrap hero-in">
+  <div class="kick">World Metropolitan Cooperation · 국제협력</div>
+  <h1>세계대도시협력</h1>
+  <div class="ko">국외 출장 · 연구원 내원 · 글로벌 협력기관</div>
+  <p>서울연구원의 국제 도시협력 활동 — 해외 출장과 학술참가, 외국 대표단 내원, 글로벌 협력기관 네트워크를 정리합니다.</p>
+  <div class="stats" id="stats"></div>
+</div></header>
+
+<main><div class="wrap">
+  <div class="prog" id="prog"></div>
+  <div class="tabs" id="tabs"></div>
+  <div id="list" class="list"><div class="loading">불러오는 중…</div></div>
+</div></main>
+
+<footer><div class="wrap">세계대도시협력 · 서울연구원 최준영 박사 개인 연구 플랫폼 &nbsp;|&nbsp; © 최준영</div></footer>
+
+<script>
+'use strict';
+const $=s=>document.querySelector(s);
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let DATA=null, CATS=null, cur='trips';
+
+async function boot(){
+  let me=null;
+  try{ me=(await (await fetch('/api/me')).json()).user; }catch(e){}
+  if(!me){ location.replace('/?sys=wpsc'); return; }
+  $('#userChip').style.display='flex';
+  $('#uname').textContent=me.name||me.email;
+  $('#uav').textContent=((me.name||me.email)[0]||'U').toUpperCase();
+  $('#logoutBtn').onclick=async()=>{ try{await fetch('/api/logout',{method:'POST'});}catch(e){} location.href='/'; };
+  // 서브시스템 스위처(WPSC는 수퍼관리자 전용이라 항상 노출)
+  const menu=$('#ssMenu');
+  $('#ssBtn').onclick=e=>{e.stopPropagation();menu.classList.toggle('open');};
+  document.addEventListener('click',()=>menu.classList.remove('open'));
+  try{
+    const r=await (await fetch('/api/wpsc')).json();
+    DATA=r.data; CATS=r.categories;
+  }catch(e){ $('#list').innerHTML='<div class="empty">데이터 로드 오류</div>'; return; }
+  renderStats(); renderProgress(); renderTabs(); render();
+}
+
+function renderStats(){
+  $('#stats').innerHTML=CATS.map(c=>`<div class="s"><b>${(DATA[c.key]||[]).length}</b><span>${c.icon} ${c.kr}</span></div>`).join('');
+}
+function renderProgress(){
+  const ps=DATA.progress||[];
+  $('#prog').innerHTML='<h2>최근 진행상황 Timeline</h2>'+ps.map(p=>
+    `<div class="row"><div class="pd">${esc(p.period)}</div><div class="ps">${esc(p.summary)}</div></div>`).join('');
+}
+function renderTabs(){
+  $('#tabs').innerHTML=CATS.map(c=>
+    `<div class="tab ${c.key===cur?'active':''}" data-k="${c.key}">${c.icon} ${c.kr} <span class="en">${c.en}</span> <span class="c">${(DATA[c.key]||[]).length}</span></div>`).join('');
+  document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{cur=t.dataset.k;renderTabs();render();});
+}
+function render(){
+  const items=DATA[cur]||[];
+  if(!items.length){ $('#list').innerHTML='<div class="empty">항목이 없습니다.</div>'; return; }
+  $('#list').innerHTML=items.map(it=> cur==='partners'?partnerCard(it):cur==='visits'?visitCard(it):tripCard(it)).join('');
+}
+function tripCard(t){
+  const wpsc = t.wpsc ? `<a class="wpsc-link" href="/wpsc/itinerary">📅 WPSC 출장 일정 보기 →</a>` : '';
+  return `<div class="card">
+    <div class="ch"><h3>${esc(t.title)}</h3>${t.wpsc?'<span class="pill p-net">WPSC</span>':''}</div>
+    <div class="meta"><b>${esc(t.date)}</b> · ${esc(t.city)}, ${esc(t.country)} · ${esc(t.purpose)}</div>
+    <p>${esc(t.summary)}</p>${wpsc}</div>`;
+}
+function visitCard(v){
+  return `<div class="card">
+    <div class="ch"><h3>${esc(v.title)}</h3></div>
+    <div class="meta"><b>${esc(v.date)}</b> · ${esc(v.who)}</div>
+    <p>${esc(v.summary)}</p></div>`;
+}
+function partnerCard(p){
+  const rel=p.relationship||'';
+  const cls=/MoU/i.test(rel)?'p-mou':/네트워크/.test(rel)?'p-net':'p-etc';
+  const tags=(p.keywords||[]).slice(0,5).map(k=>`<span class="tag">${esc(k)}</span>`).join('');
+  return `<div class="card">
+    <div class="ch"><h3>${esc(p.org_kr)}</h3><span class="pill ${cls}">${esc(rel)}</span></div>
+    <div class="meta">${esc(p.city)}, ${esc(p.country)}${p.org_en?' · '+esc(p.org_en):''}</div>
+    <p>${esc(p.summary)}</p><div class="tags">${tags}</div></div>`;
+}
+boot();
+</script>
+</body>
+</html>

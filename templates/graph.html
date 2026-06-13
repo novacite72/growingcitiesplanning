@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>지식 그래프 · Knowledge Graph · 글로벌 도시연구 플랫폼</title>
+<script src="https://unpkg.com/vis-network@9.1.9/standalone/umd/vis-network.min.js"></script>
+<style>
+:root{--ink:#13243b;--ink2:#43586e;--ink3:#7a8aa0;--line:#e2e8f0;--bg:#f4f7fb;--navy:#0a3d62;
+  --teal:#0a6e8c;--purple:#6d4bb6;--shadow:0 1px 2px rgba(15,40,70,.05),0 10px 30px rgba(15,40,70,.07);--shadow-lg:0 18px 50px rgba(15,40,70,.16);}
+*{box-sizing:border-box}html,body{margin:0;padding:0;height:100%}
+body{font-family:"Pretendard","Apple SD Gothic Neo","Malgun Gothic",-apple-system,sans-serif;color:var(--ink);background:var(--bg);display:flex;flex-direction:column;height:100vh}
+a{color:inherit;text-decoration:none}
+.topbar{background:#fff;border-bottom:1px solid var(--line);flex-shrink:0}
+.topbar-in{display:flex;align-items:center;justify-content:space-between;height:56px;gap:12px;max-width:1400px;margin:0 auto;padding:0 20px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:14px;color:var(--navy)}
+.brand .dot{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,var(--teal),var(--purple));display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px}
+.tr{display:flex;align-items:center;gap:10px}
+.sysswitch{position:relative}
+.ss-btn{font-size:12.5px;font-weight:800;color:var(--navy);background:#eef3f8;border:1px solid #d6e2ee;padding:6px 12px;border-radius:8px;cursor:pointer}
+.ss-menu{position:absolute;top:calc(100% + 6px);right:0;background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:var(--shadow-lg);padding:6px;min-width:215px;display:none;z-index:60}
+.ss-menu.open{display:block}
+.ss-menu a{display:block;padding:9px 12px;font-size:13px;font-weight:700;border-radius:7px}
+.ss-menu a:hover{background:var(--bg)}
+.ss-menu a.ss-home{border-top:1px solid var(--line);margin-top:4px;color:var(--ink2)}
+.home-link{font-size:13px;font-weight:700;color:var(--navy);padding:6px 10px;border-radius:8px;background:#eef3f8;border:1px solid #d6e2ee}
+.legend{display:flex;gap:14px;align-items:center;background:#fff;border-bottom:1px solid var(--line);padding:9px 20px;flex-wrap:wrap;flex-shrink:0;max-width:1400px;margin:0 auto;width:100%}
+.legend .t{font-size:13px;font-weight:800;color:var(--navy)}
+.legend .lg{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--ink2);font-weight:600}
+.legend .dot2{width:12px;height:12px;border-radius:50%}
+.legend .hint{margin-left:auto;font-size:12px;color:var(--ink3)}
+#net{flex:1;min-height:0;background:radial-gradient(circle at 50% 40%,#fff,#eef3f8)}
+.loading{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:var(--ink3);font-size:14px}
+</style>
+</head>
+<body>
+<div class="topbar"><div class="topbar-in">
+  <a href="/" class="brand"><span class="dot">◴</span>지식 그래프 · Knowledge Graph</a>
+  <div class="tr">
+    <div class="sysswitch" id="sysSwitch" style="display:none">
+      <button class="ss-btn" id="ssBtn">⇄ 서브시스템 이동 ▾</button>
+      <div class="ss-menu" id="ssMenu">
+        <a href="/worldcities">🌐 세계도시 연구 DB</a>
+        <a href="/urbanrobotics">🤖 도시로봇·HRI 연구 DB</a>
+        <a href="/wpsc">🤝 세계대도시협력</a>
+        <a href="/book">📘 영문단행본</a>
+        <a href="/" class="ss-home">🏠 플랫폼 홈</a>
+      </div>
+    </div>
+    <a href="/" class="home-link">← 플랫폼 홈</a>
+  </div>
+</div></div>
+<div class="legend">
+  <span class="t">지식 그래프</span>
+  <span class="lg"><span class="dot2" style="background:#0a6e8c"></span>세계도시 DB</span>
+  <span class="lg"><span class="dot2" style="background:#6d4bb6"></span>도시로봇·HRI DB</span>
+  <span class="hint" id="hint">노드를 클릭하면 상세로 이동 · 드래그로 탐색</span>
+</div>
+<div id="net"><div class="loading" id="loading">그래프 구성 중…</div></div>
+
+<script>
+const KIND_ICON={city:'🏙',case:'📋',policy:'📜',topic:'💡',robottype:'🤖',robotcase:'📦',hri:'🧠',studydesign:'🔬',observation:'👁',experiment:'🧪',instrument:'📐',policyissue:'⚖'};
+(async()=>{
+  // 스위처
+  try{const me=(await (await fetch('/api/me')).json()).user;
+    if(me&&(me.isSuper||me.role==='superadmin')){const sw=document.getElementById('sysSwitch');sw.style.display='block';
+      const sm=document.getElementById('ssMenu');document.getElementById('ssBtn').onclick=e=>{e.stopPropagation();sm.classList.toggle('open');};
+      document.addEventListener('click',()=>sm.classList.remove('open'));}
+  }catch(e){}
+  let g;
+  try{ g=await (await fetch('/api/graph')).json(); }
+  catch(e){ document.getElementById('loading').textContent='로드 오류'; return; }
+  if(!g.nodes||!g.nodes.length){ document.getElementById('loading').textContent='표시할 노드가 없습니다.'; return; }
+  const color=s=> s==='urbanrobotics'?{bg:'#efeafb',bd:'#6d4bb6',ft:'#3a2a6a'}:{bg:'#e2f1f5',bd:'#0a6e8c',ft:'#0a4f6a'};
+  const nodes=g.nodes.map(n=>{const c=color(n.subsystem);return {
+    id:n.id, label:(KIND_ICON[n.kind]||'•')+' '+n.label, title:n.label+' ('+n.kind+')',
+    shape:'box', color:{background:c.bg,border:c.bd}, font:{color:c.ft,size:13,face:'Pretendard'},
+    borderWidth:1.5, margin:7, _sys:n.subsystem };});
+  const edges=g.edges.map(e=>({from:e.from,to:e.to,color:{color:'#c3d3e0',highlight:'#0a6e8c'},width:1,smooth:{type:'continuous'}}));
+  const net=new vis.Network(document.getElementById('net'),
+    {nodes:new vis.DataSet(nodes),edges:new vis.DataSet(edges)},
+    {physics:{barnesHut:{gravitationalConstant:-9000,springLength:130,springConstant:0.03},stabilization:{iterations:220}},
+     interaction:{hover:true,tooltipDelay:120},nodes:{shadow:false},edges:{selectionWidth:2}});
+  net.on('stabilizationIterationsDone',()=>{const l=document.getElementById('loading');if(l)l.remove();});
+  net.on('click',params=>{
+    if(!params.nodes.length)return;
+    const id=params.nodes[0]; const n=g.nodes.find(x=>x.id===id); if(!n)return;
+    location.href=(n.subsystem==='urbanrobotics'?'/urbanrobotics':'/worldcities')+'?slug='+encodeURIComponent(id);
+  });
+  document.getElementById('hint').textContent=g.nodes.length+'개 노드 · '+g.edges.length+'개 연결';
+})();
+</script>
+</body>
+</html>
