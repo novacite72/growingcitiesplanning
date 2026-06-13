@@ -388,3 +388,10 @@ article.editing h2.read-h.blk:hover,article.editing h3.read-h.blk:hover,article.
 }
 .rb-super{background:#efe3fb;color:#6b3fa0}
 .userchip .ur .rolepill{}
+
+/* 그림 교체(이미지 업로드) */
+.imgedit-btn{position:absolute;left:50%;bottom:12px;transform:translateX(-50%);border:0;background:rgba(19,143,143,.94);color:#fff;border-radius:9px;padding:8px 15px;font-size:12.5px;font-weight:700;cursor:pointer;box-shadow:var(--shadow-lg);z-index:4;display:none;white-space:nowrap}
+.imgedit-btn:hover{background:#0e7373}
+article.editing figure.figblk .imgedit-btn{display:block}
+article.editing figure.figblk{outline:1px dashed #cfd9e3;outline-offset:4px}
+figure.figblk.edited{outline:2px solid var(--green);outline-offset:3px}

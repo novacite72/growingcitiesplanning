@@ -5,7 +5,7 @@
 실행: python3 app.py   →  http://localhost:8000
 배포: gunicorn -w 4 -b 0.0.0.0:8000 app:app
 """
-import os, json, sqlite3, secrets, datetime, time, copy
+import os, json, sqlite3, secrets, datetime, time, copy, io, base64
 from functools import wraps
 from flask import (Flask, request, session, jsonify, send_from_directory,
                    render_template, g, abort, redirect, send_file)
@@ -37,7 +37,7 @@ else:
     except OSError: pass
     app.secret_key = k
 app.config.update(SESSION_COOKIE_HTTPONLY=True, SESSION_COOKIE_SAMESITE='Lax',
-                  SESSION_COOKIE_SECURE=PUBLIC,
+                  SESSION_COOKIE_SECURE=PUBLIC, MAX_CONTENT_LENGTH=16 * 1024 * 1024,
                   PERMANENT_SESSION_LIFETIME=datetime.timedelta(days=14))
 
 # --- simple in-memory login rate limiter (brute-force 완화) ---
@@ -161,6 +161,8 @@ def init_db():
           id SERIAL PRIMARY KEY, chapter INTEGER, blk INTEGER, oldv TEXT, newv TEXT,
           editor TEXT, name TEXT, role TEXT, ts TEXT, undone INTEGER DEFAULT 0)''')
         con.execute('CREATE TABLE IF NOT EXISTS chorder(chapter INTEGER PRIMARY KEY, seq TEXT)')
+        con.execute('''CREATE TABLE IF NOT EXISTS images(
+          id SERIAL PRIMARY KEY, chapter INTEGER, blk INTEGER, mime TEXT, data TEXT, editor TEXT, ts TEXT)''')
         try: con.execute('ALTER TABLE editlog ADD COLUMN IF NOT EXISTS undone INTEGER DEFAULT 0'); con.commit()
         except Exception: con.rollback()
     else:
@@ -169,7 +171,8 @@ def init_db():
           CREATE TABLE IF NOT EXISTS overrides(chapter INTEGER, blk INTEGER, value TEXT, editor TEXT, ts TEXT, PRIMARY KEY(chapter,blk));
           CREATE TABLE IF NOT EXISTS editlog(id INTEGER PRIMARY KEY AUTOINCREMENT, chapter INTEGER, blk INTEGER,
             oldv TEXT, newv TEXT, editor TEXT, name TEXT, role TEXT, ts TEXT, undone INTEGER DEFAULT 0);
-          CREATE TABLE IF NOT EXISTS chorder(chapter INTEGER PRIMARY KEY, seq TEXT);''')
+          CREATE TABLE IF NOT EXISTS chorder(chapter INTEGER PRIMARY KEY, seq TEXT);
+          CREATE TABLE IF NOT EXISTS images(id INTEGER PRIMARY KEY AUTOINCREMENT, chapter INTEGER, blk INTEGER, mime TEXT, data TEXT, editor TEXT, ts TEXT);''')
         if 'undone' not in [r[1] for r in con.execute('PRAGMA table_info(editlog)')]:
             con.execute('ALTER TABLE editlog ADD COLUMN undone INTEGER DEFAULT 0')
     # users.systems 컬럼(서브시스템 접근권한, 콤마구분 코드)
@@ -259,6 +262,7 @@ def can_edit(u, ch):
 
 def block_field(b):
     if b['t'] == 'h': return 'kr'
+    if b['t'] == 'img': return 'src'
     if b['t'] in ('p', 'cap', 'ref', 'note'): return 'text'
     return None
 
@@ -434,7 +438,7 @@ def undo_edit():
             con.execute('INSERT OR REPLACE INTO chorder(chapter,seq) VALUES(?,?)', (ch, json.dumps(oldseq)))
     else:                     # 텍스트 편집 되돌리기 → 이전 값(원본이면 override 삭제)
         b = chap['content'][e['blk']] if chap and 0 <= e['blk'] < len(chap['content']) else None
-        orig = (b.get('kr') if b and b['t'] == 'h' else (b.get('text') if b else None))
+        orig = b.get(block_field(b)) if b and block_field(b) else None
         if e['oldv'] == orig:
             con.execute('DELETE FROM overrides WHERE chapter=? AND blk=?', (ch, e['blk']))
         elif IS_PG:
@@ -484,6 +488,82 @@ def edit_block():
                 (ch, blk, oldv, val, u['email'], u['name'], u['role'], now()))
     con.commit()
     return jsonify(ok=True)
+
+def _set_override(con, ch, blk, val, editor):
+    if IS_PG:
+        con.execute('''INSERT INTO overrides(chapter,blk,value,editor,ts) VALUES(?,?,?,?,?)
+                       ON CONFLICT (chapter,blk) DO UPDATE SET value=excluded.value,editor=excluded.editor,ts=excluded.ts''',
+                    (ch, blk, val, editor, now()))
+    else:
+        con.execute('INSERT OR REPLACE INTO overrides(chapter,blk,value,editor,ts) VALUES(?,?,?,?,?)',
+                    (ch, blk, val, editor, now()))
+
+@app.post('/api/upload-image')
+@login_required
+def upload_image():
+    from PIL import Image
+    u = current()
+    try:
+        ch = int(request.form.get('chapter', -1)); blk = int(request.form.get('blk', -1))
+    except (TypeError, ValueError):
+        return jsonify(error='잘못된 요청입니다.'), 400
+    if not can_edit(u, ch): return jsonify(error='이 장을 편집할 권한이 없습니다.'), 403
+    chap = next((c for c in BOOK['chapters'] if c['order'] == ch), None)
+    if not chap or blk < 0 or blk >= len(chap['content']) or chap['content'][blk]['t'] != 'img':
+        return jsonify(error='이미지 블록이 아닙니다.'), 400
+    f = request.files.get('file')
+    if not f: return jsonify(error='이미지 파일을 선택하세요.'), 400
+    try:
+        im = Image.open(f.stream); im.load()
+    except Exception:
+        return jsonify(error='유효한 이미지 파일이 아닙니다.'), 400
+    fmt = (im.format or 'PNG').upper()
+    if fmt not in ('PNG', 'JPEG', 'JPG', 'GIF', 'WEBP'): fmt = 'PNG'
+    if im.mode in ('P', 'RGBA', 'LA') and fmt in ('JPEG', 'JPG'): im = im.convert('RGB')
+    if im.width > 1600:
+        im = im.resize((1600, max(1, round(im.height * 1600 / im.width))))
+    buf = io.BytesIO(); im.save(buf, format='PNG' if fmt == 'GIF' else fmt)
+    mime = 'image/jpeg' if fmt in ('JPEG', 'JPG') else 'image/png' if fmt == 'PNG' else 'image/webp'
+    data_b64 = base64.b64encode(buf.getvalue()).decode('ascii')
+    b = chap['content'][blk]
+    oldv = load_overrides().get((ch, blk)) or b.get('src')
+    con = db()
+    img_id = con.insert('INSERT INTO images(chapter,blk,mime,data,editor,ts) VALUES(?,?,?,?,?,?)',
+                        (ch, blk, mime, data_b64, u['email'], now()))
+    newsrc = f'/api/image/{img_id}'
+    _set_override(con, ch, blk, newsrc, u['email'])
+    con.execute('INSERT INTO editlog(chapter,blk,oldv,newv,editor,name,role,ts) VALUES(?,?,?,?,?,?,?,?)',
+                (ch, blk, oldv, newsrc, u['email'], u['name'], u['role'], now()))   # 실제 src 저장 → 되돌리기 복원
+    con.commit()
+    return jsonify(ok=True, src=newsrc)
+
+@app.get('/api/image/<int:img_id>')
+def serve_image(img_id):
+    r = db().execute('SELECT mime,data FROM images WHERE id=?', (img_id,)).fetchone()
+    if not r: abort(404)
+    from flask import Response
+    resp = Response(base64.b64decode(r['data']), mimetype=r['mime'] or 'image/png')
+    resp.headers['Cache-Control'] = 'public, max-age=86400'
+    return resp
+
+@app.post('/api/revert-block')
+@login_required
+def revert_block():
+    """해당 블록의 편집(그림 교체 포함)을 취소하고 원본으로 복원."""
+    u = current(); j = request.get_json(force=True)
+    ch = int(j.get('chapter', -1)); blk = int(j.get('blk', -1))
+    if not can_edit(u, ch): return jsonify(error='권한이 없습니다.'), 403
+    chap = next((c for c in BOOK['chapters'] if c['order'] == ch), None)
+    if not chap or blk < 0 or blk >= len(chap['content']): return jsonify(error='대상을 찾을 수 없습니다.'), 404
+    con = db()
+    cur = load_overrides().get((ch, blk))
+    if cur is None: return jsonify(ok=True, unchanged=True)
+    b = chap['content'][blk]; orig = b.get(block_field(b))
+    con.execute('DELETE FROM overrides WHERE chapter=? AND blk=?', (ch, blk))
+    con.execute('INSERT INTO editlog(chapter,blk,oldv,newv,editor,name,role,ts) VALUES(?,?,?,?,?,?,?,?)',
+                (ch, blk, cur, orig, u['email'], u['name'], u['role'], now()))   # oldv=직전(교체) src → 되돌리기로 재복원 가능
+    con.commit()
+    return jsonify(ok=True, src=orig)
 
 @app.get('/api/editlog')
 @admin_required

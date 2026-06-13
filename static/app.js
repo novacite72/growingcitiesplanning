@@ -6,6 +6,7 @@ let comments=[], canSeeAll=false, memoMode=true, editMode=false;
 
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 function esc(s){return (s||'').replace(/[&<>]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[m]));}
+function imgURL(s){return s&&(s[0]==='/'||/^https?:/.test(s))?s:'/static/'+s;}
 function api(url,opts){return fetch(url,Object.assign({headers:{'Content-Type':'application/json'}},opts)).then(async r=>{const j=await r.json().catch(()=>({}));if(!r.ok)throw new Error(j.error||'오류');return j;});}
 function hl(s,q){if(!q)return esc(s);const i=s.toLowerCase().indexOf(q.toLowerCase());if(i<0)return esc(s);return esc(s.slice(0,i))+'<mark>'+esc(s.slice(i,i+q.length))+'</mark>'+esc(s.slice(i+q.length));}
 function fmtTime(iso){const d=new Date(iso);const p=n=>String(n).padStart(2,'0');return `${d.getFullYear()}.${p(d.getMonth()+1)}.${p(d.getDate())} ${p(d.getHours())}:${p(d.getMinutes())}`;}
@@ -44,6 +45,11 @@ async function boot(){
 }
 // ---------- 사용 매뉴얼 · 업데이트 내역 ----------
 const CHANGELOG=[
+  {v:'v0.22', date:'2026-06-13', items:[
+    '본문 그림을 직접 업로드해 교체하는 기능 — 편집 모드에서 그림 위 \u201c🖼 그림 교체\u201d',
+    '교체해도 이전 그림은 보관 — \u201c↩ 되돌리기\u201d 또는 \u201c원본 그림으로 복원\u201d으로 복구',
+    '업로드 이미지는 DB에 영구 저장(재배포에도 유지)',
+  ]},
   {v:'v0.21', date:'2026-06-11', items:[
     '서울연구원 최준영 박사 개인 연구 플랫폼으로 개편(브랜딩 정리)',
     '수퍼관리자(junyoung.choi@si.re.kr)가 4개 서브시스템 권한을 통합 관리',
@@ -74,7 +80,7 @@ const CHANGELOG=[
 const MANUAL=[
   ['열람', '상단 <b>챕터 목록</b>에서 장을 열면 본문이 열립니다. 왼쪽 <b>목차</b>를 누르면 해당 위치로 이동합니다. 상단 검색창으로 전체 본문을 검색할 수 있습니다.'],
   ['메모', '본문 문단·그림에 마우스를 올리면 나오는 <b>＋</b>(모바일은 항상 표시)로 메모를 답니다. 메모에 <b>↩답글</b>로 댓글·대댓글을 달 수 있습니다. 감수자의 메모는 본인과 관리자만 봅니다.'],
-  ['편집(관리자·집필자)', '본문 우측 상단 <b>✏️ 편집</b> → 문단·제목을 클릭해 수정창에서 <b>저장</b>. 핸들(⠿)을 드래그하거나 ▲▼로 단락을 이동합니다. <b>↩ 되돌리기</b>로 최초 상태까지 한 단계씩 되돌릴 수 있습니다.'],
+  ['편집(관리자·집필자)', '본문 우측 상단 <b>✏️ 편집</b> → 문단·제목을 클릭해 수정창에서 <b>저장</b>. 핸들(⠿)을 드래그하거나 ▲▼로 단락을 이동하고, 그림 위 <b>🖼 그림 교체</b>로 그림을 바꿀 수 있습니다. <b>↩ 되돌리기</b>로 최초 상태까지 한 단계씩 되돌릴 수 있습니다.'],
   ['저장(.doc/.pdf)', '본문 우측 상단 <b>⬇ DOC</b>(Word) / <b>⬇ PDF</b>(인쇄→PDF로 저장)로 각 장을 내려받습니다.'],
   ['권한·계정', '관리자는 우상단 메뉴 → <b>사용자 관리</b>에서 계정의 이름·아이디·역할·장 배정을 관리하고 <b>편집 로그</b>를 확인합니다. 비밀번호는 우상단 메뉴에서 변경합니다.'],
 ];
@@ -207,7 +213,7 @@ async function openReader(order,scrollBi){
       body+=`<${tag} class="read-h blk" id="${id}" data-bi="${bi}">${esc(b.kr)}${b.en?`<span class="en">${esc(b.en)}</span>`:''}${memoUI(id,b.kr)}</${tag}>`;
       if(b.level<=2)toc+=`<a href="#${id}" class="t${b.level} ${b.kind}" data-id="${id}">${esc(b.kr)}</a>`;
     }else if(b.t==='img'){
-      body+=`<figure id="${id}" class="blk figblk" data-bi="${bi}"><img src="/static/${esc(b.src)}" loading="lazy" alt="그림">${memoUI(id,'그림/사진')}</figure>`;
+      body+=`<figure id="${id}" class="blk figblk${b.edited?' edited':''}" data-bi="${bi}"><img src="${imgURL(b.src)}" loading="lazy" alt="그림">${memoUI(id,'그림/사진')}</figure>`;
     }else if(b.t==='table'){
       const rows=b.rows.map((r,ri)=>{const tag=ri===0?'th':'td';return '<tr>'+r.map(c=>`<${tag}>${esc(c).replace(/\n/g,'<br>')}</${tag}>`).join('')+'</tr>';}).join('');
       body+=`<div class="tbl-scroll blk" id="${id}" data-bi="${bi}"><table class="doc-tbl">${rows}</table>${memoUI(id,'표')}</div>`;
@@ -272,7 +278,7 @@ function gotoBlock(id){
 // ---------- export: .doc / .pdf ----------
 function blockExportHTML(b){
   if(b.t==='h'){const tag=b.level===1?'h2':b.level===2?'h3':'h4';return `<${tag}>${esc(b.kr)}${b.en?` <span style="font-weight:400;color:#777;font-style:italic">${esc(b.en)}</span>`:''}</${tag}>`;}
-  if(b.t==='img')return `<p style="text-align:center"><img src="${location.origin}/static/${esc(b.src)}" style="max-width:520px;border:1px solid #ccc"></p>`;
+  if(b.t==='img')return `<p style="text-align:center"><img src="${location.origin}${imgURL(b.src)}" style="max-width:520px;border:1px solid #ccc"></p>`;
   if(b.t==='cap')return `<p style="font-size:10pt;color:#555;font-style:italic;margin:2px 0 12px">${esc(b.text)}</p>`;
   if(b.t==='table')return '<table border="1" cellpadding="5" style="border-collapse:collapse;margin:10px 0;font-size:10pt">'+b.rows.map((r,ri)=>'<tr>'+r.map(c=>`<${ri===0?'th':'td'} style="text-align:left">${esc(c).replace(/\n/g,'<br>')}</${ri===0?'th':'td'}>`).join('')+'</tr>').join('')+'</table>';
   if(b.t==='note')return '';
@@ -324,6 +330,10 @@ function addMoveCtl(el,order){
     '<button class="mv" data-d="-1" title="위로">▲</button><button class="mv" data-d="1" title="아래로">▼</button>';
   el.appendChild(mc);
   mc.querySelectorAll('.mv').forEach(bb=>bb.onclick=e=>{e.stopPropagation();moveBlock(order,oi,+bb.dataset.d);});
+  if(el.matches('figure.figblk')&&!el.querySelector(':scope > .imgedit-btn')){
+    const ib=document.createElement('button');ib.className='imgedit-btn';ib.textContent='🖼 그림 교체';
+    ib.onclick=e=>{e.stopPropagation();openImageEditor(order,el);};el.appendChild(ib);
+  }
   // drag & drop
   const handle=mc.querySelector('.draghandle');
   handle.addEventListener('dragstart',e=>{_dragOi=oi;el.classList.add('dragging');e.dataTransfer.effectAllowed='move';e.dataTransfer.setData('text','b');});
@@ -375,6 +385,35 @@ function openEditor(order,el){
         el.classList.add('edited');toast('저장되었습니다.');positionComments();
       }
     }catch(e){alert(e.message);}
+  };
+}
+function openImageEditor(order,el){
+  const oi=+el.id.split('_')[1];
+  const ch=CH.find(c=>c.order===order);const b=ch.content.find(x=>(x.oi!=null?x.oi:-1)===oi);if(!b)return;
+  openModal(`<div class="modal-head"><h2>🖼 그림 교체 · ${esc(ch.label)}</h2><button class="x" onclick="closeModal()">×</button></div>
+    <div class="modal-body">
+      <div class="tpart" style="margin-bottom:8px">현재 그림 ${b.edited?'<b style="color:var(--green)">· 교체됨</b>':'· 원본'}</div>
+      <div style="text-align:center;background:#f4f7fb;border:1px solid var(--line);border-radius:10px;padding:12px;margin-bottom:14px"><img src="${imgURL(b.src)}" style="max-width:100%;max-height:300px;border-radius:6px"></div>
+      <label class="back" style="display:inline-block;cursor:pointer">📁 새 그림 선택<input type="file" id="img-file" accept="image/*" style="display:none"></label>
+      <span id="img-fname" class="tpart" style="margin-left:8px"></span>
+      <div class="msg" id="img-msg"></div>
+      <div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap">
+        <button class="btn btn-primary" id="img-up" style="margin-top:0;width:auto;padding:11px 18px" disabled>업로드하여 교체</button>
+        ${b.edited?`<button class="back" id="img-revert" style="color:var(--gold)">↩ 원본 그림으로 복원</button>`:''}
+      </div>
+      <p class="tpart" style="margin-top:14px;line-height:1.6">※ 교체해도 <b>이전 그림은 보관</b>됩니다. 상단 <b>↩ 되돌리기</b>(단계별) 또는 위 <b>원본 그림으로 복원</b>으로 언제든 되돌릴 수 있습니다.</p></div>`);
+  const fi=$('#img-file');
+  fi.onchange=()=>{$('#img-fname').textContent=fi.files[0]?fi.files[0].name:'';$('#img-up').disabled=!fi.files[0];};
+  $('#img-up').onclick=async()=>{
+    if(!fi.files[0])return;
+    const fd=new FormData();fd.append('chapter',order);fd.append('blk',oi);fd.append('file',fi.files[0]);
+    $('#img-up').textContent='업로드 중…';$('#img-up').disabled=true;
+    try{const r=await fetch('/api/upload-image',{method:'POST',body:fd});const j=await r.json();if(!r.ok)throw new Error(j.error||'업로드 실패');
+      closeModal();toast('그림을 교체했습니다.');await reopenInEdit(order,oi);
+    }catch(e){$('#img-msg').style.color='var(--red)';$('#img-msg').textContent=e.message;$('#img-up').textContent='업로드하여 교체';$('#img-up').disabled=false;}
+  };
+  if($('#img-revert'))$('#img-revert').onclick=async()=>{
+    try{await api('/api/revert-block',{method:'POST',body:JSON.stringify({chapter:order,blk:oi})});closeModal();toast('원본 그림으로 복원했습니다.');await reopenInEdit(order,oi);}catch(e){alert(e.message);}
   };
 }
 async function reloadData(){const d=await api('/api/data');CH=d.chapters;}
