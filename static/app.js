@@ -45,6 +45,13 @@ async function boot(){
 }
 // ---------- 사용 매뉴얼 · 업데이트 내역 ----------
 const CHANGELOG=[
+  {v:'v0.24', date:'2026-06-14', items:[
+    '연구 DB를 로컬 우선(local-first) 지식기반 체계로 전환 — Obsidian(Markdown 위키)에서 작성→빌드→발행',
+    '발행 API(/api/admin/import, 수퍼관리자) — 로컬 빌드 결과를 slug 기준 멱등 upsert(+prune 삭제동기화)',
+    '상세페이지에 “서술형 위키 본문” 렌더 추가(Markdown + [[교차참조]] 칩)',
+    '백업·복원용 내보내기(/api/admin/export)',
+    '로컬 툴킷(growingcities-kb): kb_bootstrap·kb_build·kb_publish + Zotero(.bib)·GitHub 동기화',
+  ]},
   {v:'v0.23', date:'2026-06-14', items:[
     '추후 공개였던 2개 DB를 실제 연구 데이터베이스로 교체 — “세계도시 연구 데이터베이스”, “도시로봇·HRI 연구 데이터베이스”',
     '세계도시 DB: 도시·사례·정책·토픽 프로파일(검색·필터·교차참조)',

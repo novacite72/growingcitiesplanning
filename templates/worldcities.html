@@ -139,6 +139,13 @@ main{padding:36px 0 72px}
 .xref-chip.ext{color:var(--teal);border-color:var(--teal)}
 .xref-chip.ext:hover{background:#e3f3f3}
 .xref-list{display:flex;flex-wrap:wrap;gap:4px;margin:0}
+.wiki-body{margin:0 0 22px;padding:0 0 20px;border-bottom:1px solid var(--line);color:var(--ink);font-size:15px;line-height:1.75}
+.wiki-body h3,.wiki-body h4,.wiki-body h5,.wiki-body h6{margin:18px 0 8px;color:var(--navy);font-weight:800;line-height:1.3}
+.wiki-body h3{font-size:18px}.wiki-body h4{font-size:16px}.wiki-body h5{font-size:14.5px}
+.wiki-body p{margin:0 0 12px}.wiki-body ul,.wiki-body ol{margin:0 0 12px;padding-left:20px}.wiki-body li{margin:3px 0}
+.wiki-body code{background:#eef3f8;border:1px solid var(--line);border-radius:4px;padding:1px 5px;font-size:13px}
+.wiki-body a{color:var(--un-d);text-decoration:underline}
+.wiki-body .xref-chip{vertical-align:baseline}
 
 /* footer */
 footer{border-top:1px solid var(--line);background:#fff;padding:22px 0;color:var(--ink3);font-size:12.5px;text-align:center}
@@ -479,8 +486,8 @@ function renderDetail(rec){
     ${sub?`<div class="detail-sub">${esc(sub)}</div>`:''}
   `;
 
-  // skip fields that are structural/meta or already shown in header
-  const SKIP=new Set(['id','slug','title','name','kind','createdAt','updatedAt']);
+  // skip fields that are structural/meta or already shown in header (body=서술형 위키, 별도 렌더)
+  const SKIP=new Set(['id','slug','title','name','kind','createdAt','updatedAt','updated','body']);
   // field ordering — known important fields first
   const ORDER=['summary','definition','country','region','population','policyDomain','period','leadOrganization',
     'implementationStatus','caseType','cityId','urbanProblem','intervention','outcomes','topicCategory',
@@ -521,7 +528,8 @@ function renderDetail(rec){
       </div>`;
     }
   });
-  $('#detailBody').innerHTML=html||'<p style="color:var(--ink3)">상세 정보가 없습니다.</p>';
+  const bodyHtml=rec.body?`<div class="wiki-body">${mdToHtml(rec.body,'worldcities')}</div>`:'';
+  $('#detailBody').innerHTML=(bodyHtml+html)||'<p style="color:var(--ink3)">상세 정보가 없습니다.</p>';
 
   // bind xref chip clicks
   $('#detailBody').querySelectorAll('[data-xref]').forEach(el=>{
@@ -549,6 +557,40 @@ function renderItem(item){
     </span>`;
   }
   return `<span>${esc(item)}</span>`;
+}
+
+/* 서술형 위키 본문(Markdown) → HTML + [[wikilink]] 교차참조 해석 (경량 렌더러) */
+function wikiInline(t,homeSys){
+  t=esc(t);
+  // [[slug]] / [[slug|alias]] → 교차참조 칩(INDEX에 있으면) 또는 별칭 텍스트
+  t=t.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g,(m,slug,alias)=>{
+    slug=slug.trim(); const label=(alias||'').trim();
+    const idx=INDEX[slug];
+    if(idx){const sys=idx.subsystem||homeSys; const ext=sys!==homeSys; const km=KIND_META[idx.kind]||{icon:'🔗'};
+      return `<span class="xref-chip${ext?' ext':''}" data-xref="${esc(slug)}" data-sys="${esc(sys)}">${km.icon} ${esc(label||idx.title||slug)}${ext?' ↗':''}</span>`;}
+    return esc(label||slug);
+  });
+  t=t.replace(/`([^`]+)`/g,'<code>$1</code>');
+  t=t.replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>');
+  t=t.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g,'<a href="$2" target="_blank" rel="noopener">$1</a>');
+  return t;
+}
+function mdToHtml(src,homeSys){
+  const lines=String(src).replace(/\r\n/g,'\n').split('\n');
+  let out='',list=null,para=[];
+  const flushP=()=>{if(para.length){out+=`<p>${para.join('<br>')}</p>`;para=[];}};
+  const flushL=()=>{if(list){out+=`</${list}>`;list=null;}};
+  for(let raw of lines){
+    const line=raw.replace(/\s+$/,'');
+    if(!line.trim()){flushP();flushL();continue;}
+    let m;
+    if((m=line.match(/^(#{1,4})\s+(.*)$/))){flushP();flushL();const lv=Math.min(m[1].length+2,6);out+=`<h${lv}>${wikiInline(m[2],homeSys)}</h${lv}>`;continue;}
+    if((m=line.match(/^\s*[-*]\s+(.*)$/))){flushP();if(list!=='ul'){flushL();list='ul';out+='<ul>';}out+=`<li>${wikiInline(m[1],homeSys)}</li>`;continue;}
+    if((m=line.match(/^\s*\d+\.\s+(.*)$/))){flushP();if(list!=='ol'){flushL();list='ol';out+='<ol>';}out+=`<li>${wikiInline(m[1],homeSys)}</li>`;continue;}
+    flushL();para.push(wikiInline(line,homeSys));
+  }
+  flushP();flushL();
+  return out;
 }
 
 function detailSub(r){

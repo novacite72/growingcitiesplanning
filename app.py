@@ -407,6 +407,73 @@ def db_generate(tool):
         return jsonify(error=f'생성 오류: {e}'), 400
     return jsonify(ok=True, markdown=md)
 
+# ---------- 지식기반 적재(로컬 빌드 → 발행) ----------
+def _upsert_record(con, rec):
+    """dbrecords UPSERT(subsystem,slug 기준, 멱등). 반환: 'inserted'|'updated'|'skipped'."""
+    import json as _json
+    sub = rec.get('subsystem'); slug = rec.get('slug')
+    if sub not in DB_SUBSYSTEMS or not slug:
+        return 'skipped'
+    kind = rec.get('kind'); title = rec.get('title') or slug
+    data = rec.get('data')
+    if not isinstance(data, dict): data = {}
+    if rec.get('body') is not None and 'body' not in data:   # 서술형 위키 본문
+        data['body'] = rec['body']
+    payload = _json.dumps(data, ensure_ascii=False)
+    ex = con.execute('SELECT id FROM dbrecords WHERE subsystem=? AND slug=?', (sub, slug)).fetchone()
+    if ex:
+        con.execute('UPDATE dbrecords SET kind=?,title=?,data=?,updated=? WHERE subsystem=? AND slug=?',
+                    (kind, title, payload, now(), sub, slug))
+        return 'updated'
+    con.execute('INSERT INTO dbrecords(subsystem,kind,slug,title,data,updated) VALUES(?,?,?,?,?,?)',
+                (sub, kind, slug, title, payload, now()))
+    return 'inserted'
+
+@app.post('/api/admin/import')
+@super_required
+def admin_import():
+    """로컬 Obsidian 빌드 결과(records.json)를 발행. prune=true면 페이로드에 포함된
+    서브시스템 한정으로 누락 슬러그를 삭제(전체 동기화)."""
+    j = request.get_json(force=True) or {}
+    recs = j.get('records')
+    if not isinstance(recs, list):
+        return jsonify(error="'records' 배열이 필요합니다."), 400
+    con = db()
+    res = {'inserted': 0, 'updated': 0, 'skipped': 0, 'deleted': 0}
+    for rec in recs:
+        try:
+            res[_upsert_record(con, rec)] += 1
+        except Exception:
+            res['skipped'] += 1
+    if j.get('prune'):
+        from collections import defaultdict
+        bysub = defaultdict(set)
+        for rec in recs:
+            if rec.get('subsystem') in DB_SUBSYSTEMS and rec.get('slug'):
+                bysub[rec['subsystem']].add(rec['slug'])
+        for sub, slugs in bysub.items():   # 페이로드에 등장한 서브시스템만 prune(빈 입력 전체삭제 방지)
+            for row in con.execute('SELECT slug FROM dbrecords WHERE subsystem=?', (sub,)).fetchall():
+                if row[0] not in slugs:
+                    con.execute('DELETE FROM dbrecords WHERE subsystem=? AND slug=?', (sub, row[0]))
+                    res['deleted'] += 1
+    con.commit()
+    return jsonify(ok=True, total=len(recs), **res)
+
+@app.get('/api/admin/export')
+@super_required
+def admin_export():
+    """현재 dbrecords 전체를 JSON으로 내보내기(백업·round-trip)."""
+    import json as _json
+    rows = db().execute('SELECT subsystem,kind,slug,title,data,updated FROM dbrecords ORDER BY subsystem,kind,slug').fetchall()
+    out = []
+    for r in rows:
+        d = dict(r)
+        try: data = _json.loads(d['data'] or '{}')
+        except Exception: data = {}
+        out.append({'subsystem': d['subsystem'], 'kind': d['kind'], 'slug': d['slug'],
+                    'title': d['title'], 'data': data, 'updated': d['updated']})
+    return jsonify(records=out, count=len(out))
+
 # ---------------- auth API ----------------
 @app.post('/api/login')
 def login():

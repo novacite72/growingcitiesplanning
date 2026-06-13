@@ -118,6 +118,13 @@ main{padding:30px 0 70px}
 .detail-field:last-child{margin-bottom:0}
 .field-label{font-size:12px;font-weight:700;color:var(--ink3);margin-bottom:4px;letter-spacing:.04em;text-transform:uppercase}
 .field-value{font-size:14px;color:var(--ink);line-height:1.7}
+.wiki-section{border-left:4px solid var(--purple)}
+.wiki-body{color:var(--ink);font-size:15px;line-height:1.75}
+.wiki-body h3,.wiki-body h4,.wiki-body h5,.wiki-body h6{margin:16px 0 8px;color:var(--purple);font-weight:800;line-height:1.3;text-transform:none;border:none;padding:0}
+.wiki-body h3{font-size:18px}.wiki-body h4{font-size:16px}.wiki-body h5{font-size:14.5px}
+.wiki-body p{margin:0 0 12px}.wiki-body ul,.wiki-body ol{margin:0 0 12px;padding-left:20px}.wiki-body li{margin:3px 0}
+.wiki-body code{background:#efeafb;border:1px solid #ddd6f5;border-radius:4px;padding:1px 5px;font-size:13px}
+.wiki-body a{color:var(--purple);text-decoration:underline}
 .field-value ul{margin:4px 0;padding-left:18px}
 .field-value ul li{margin-bottom:3px}
 .xref-chip{display:inline-flex;align-items:center;gap:4px;font-size:12.5px;font-weight:600;padding:3px 10px;border-radius:10px;background:var(--purple-l);color:var(--purple);cursor:pointer;border:1px solid #ddd6f5;margin:2px 3px 2px 0;transition:.15s;vertical-align:middle}
@@ -739,7 +746,7 @@ function renderDetail(r, idx){
   if(r.country) keyTags.push(r.country);
   if(r.cityName) keyTags.push(r.cityName);
   /* fields */
-  const skipAlways = new Set(['id','kind','slug','title','createdAt','updatedAt']);
+  const skipAlways = new Set(['id','kind','slug','title','createdAt','updatedAt','updated','body']);
   const fields = Object.entries(r).filter(([k]) => !skipAlways.has(k));
   const fieldsHtml = fields.map(([k,v]) => {
     if(v === null || v === undefined || v === '') return '';
@@ -766,11 +773,46 @@ function renderDetail(r, idx){
       <div class="detail-tags">${keyTags.map(t=>`<span class="detail-tag">${esc(t)}</span>`).join('')}</div>
     </div>
     <div class="detail-body">
+      ${r.body?`<div class="detail-section wiki-section"><div class="wiki-body">${mdToHtml(r.body,'urbanrobotics',idx)}</div></div>`:''}
       <div class="detail-section">
         <h3>상세 정보 Record Details</h3>
         ${fieldsHtml || '<p style="color:var(--ink3)">추가 필드가 없습니다.</p>'}
       </div>
     </div>`;
+}
+
+/* 서술형 위키 본문(Markdown) → HTML + [[wikilink]] 교차참조 해석 (경량 렌더러) */
+function wikiInline(t, idx){
+  t = esc(t);
+  t = t.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (m, slug, alias) => {
+    slug = slug.trim(); const label = (alias||'').trim();
+    const entry = idx && idx[slug];
+    if(entry){const sys = entry.subsystem||'urbanrobotics'; const ext = sys==='worldcities';
+      const cls = ext?'xref-chip ext':'xref-chip'; const ic = ext?'🌐 ':'🔗 ';
+      return `<span class="${cls}" data-slug="${esc(slug)}" data-subsystem="${esc(sys)}">${ic}${esc(label||entry.title||slug)}</span>`;}
+    return esc(label||slug);
+  });
+  t = t.replace(/`([^`]+)`/g, '<code>$1</code>');
+  t = t.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+  t = t.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+  return t;
+}
+function mdToHtml(src, homeSys, idx){
+  const lines = String(src).replace(/\r\n/g,'\n').split('\n');
+  let out='', list=null, para=[];
+  const flushP = () => { if(para.length){ out += `<p>${para.join('<br>')}</p>`; para=[]; } };
+  const flushL = () => { if(list){ out += `</${list}>`; list=null; } };
+  for(const raw of lines){
+    const line = raw.replace(/\s+$/,'');
+    if(!line.trim()){ flushP(); flushL(); continue; }
+    let m;
+    if((m = line.match(/^(#{1,4})\s+(.*)$/))){ flushP(); flushL(); const lv = Math.min(m[1].length+2,6); out += `<h${lv}>${wikiInline(m[2],idx)}</h${lv}>`; continue; }
+    if((m = line.match(/^\s*[-*]\s+(.*)$/))){ flushP(); if(list!=='ul'){ flushL(); list='ul'; out+='<ul>'; } out += `<li>${wikiInline(m[1],idx)}</li>`; continue; }
+    if((m = line.match(/^\s*\d+\.\s+(.*)$/))){ flushP(); if(list!=='ol'){ flushL(); list='ol'; out+='<ol>'; } out += `<li>${wikiInline(m[1],idx)}</li>`; continue; }
+    flushL(); para.push(wikiInline(line, idx));
+  }
+  flushP(); flushL();
+  return out;
 }
 
 function makeXrefChip(val, idx){
