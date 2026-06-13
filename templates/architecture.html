@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>플랫폼 아키텍처 · Platform Architecture · 글로벌 도시연구 플랫폼</title>
+<style>
+:root{
+  --ink:#13243b;--ink2:#43586e;--ink3:#7a8aa0;--line:#e2e8f0;--bg:#f4f7fb;
+  --un:#009edb;--un-d:#0a4f7a;--navy:#0a3d62;--teal:#138f8f;--green:#3a8a3a;--amber:#d99b2b;--purple:#6d4bb6;
+  --shadow:0 1px 2px rgba(15,40,70,.05),0 10px 30px rgba(15,40,70,.07);
+  --shadow-lg:0 18px 50px rgba(15,40,70,.16);
+}
+*{box-sizing:border-box}html,body{margin:0;padding:0}
+body{font-family:"Pretendard","Apple SD Gothic Neo","Malgun Gothic",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1140px;margin:0 auto;padding:0 24px}
+a{color:inherit;text-decoration:none}
+.topbar{background:#fff;border-bottom:1px solid var(--line)}
+.topbar-in{display:flex;align-items:center;justify-content:space-between;height:58px}
+.brand{display:flex;align-items:center;gap:11px;font-weight:800;font-size:15px;color:var(--navy)}
+.brand .dot{width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,var(--un),var(--teal));display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px}
+.brand small{display:block;font-size:10.5px;color:var(--ink3);font-weight:600;letter-spacing:.02em}
+.home-link{font-size:13px;color:var(--un-d);font-weight:700}
+.hero{background:linear-gradient(135deg,#072f4d 0%,#0a4f7a 55%,#0d6aa0 100%);color:#fff;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;right:-120px;top:-100px;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle at center,rgba(0,158,219,.35),transparent 68%)}
+.hero-in{padding:52px 0 46px;position:relative;z-index:1;max-width:780px}
+.hero .kick{font-size:13px;letter-spacing:.16em;font-weight:700;color:#7fd4f5;text-transform:uppercase}
+.hero h1{font-size:34px;font-weight:800;letter-spacing:-.01em;margin:.3em 0 .1em;line-height:1.15}
+.hero .ko{font-size:18px;font-weight:500;opacity:.92}
+.hero p{font-size:14.5px;opacity:.85;margin:16px 0 0;max-width:660px;line-height:1.7}
+.hero .pub{display:inline-block;margin-top:8px;font-size:12px;background:rgba(255,255,255,.16);padding:4px 12px;border-radius:20px;font-weight:700}
+main{padding:44px 0 70px}
+.sec-h{display:flex;align-items:baseline;gap:12px;margin:34px 0 6px}
+.sec-h h2{font-size:21px;font-weight:800;color:var(--navy);margin:0}
+.sec-h .en{font-size:13px;color:var(--ink3);font-style:italic;font-weight:600}
+.sec-sub{color:var(--ink2);font-size:14px;margin:0 0 22px}
+/* ── architecture diagram ── */
+.diagram{background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);padding:26px 22px;margin-bottom:14px}
+.layer{display:flex;flex-direction:column;align-items:center}
+.node{border-radius:12px;padding:13px 18px;font-weight:700;font-size:14px;text-align:center;border:1px solid var(--line);background:#f8fafc;color:var(--ink);min-width:240px;box-shadow:var(--shadow)}
+.node small{display:block;font-weight:600;font-size:11.5px;color:var(--ink3);margin-top:2px}
+.node.users{background:#eef6fb;border-color:#cfe6f4}
+.node.edge{background:#fff4e6;border-color:#f3d9b0}
+.node.app{background:#e7f1fa;border-color:#bcd7ee;color:var(--un-d);min-width:340px}
+.node.data{background:#eef7ef;border-color:#c4e3c6;color:#2f6f33;min-width:340px}
+.arrow{width:2px;height:22px;background:var(--ink3);position:relative;margin:4px 0}
+.arrow::after{content:"";position:absolute;bottom:-1px;left:-4px;border-left:5px solid transparent;border-right:5px solid transparent;border-top:7px solid var(--ink3)}
+.subsys-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;width:100%;margin:2px 0}
+.sbox{border-radius:12px;padding:14px 12px;text-align:center;border:1px solid var(--line);background:#fff;box-shadow:var(--shadow);border-top:4px solid var(--ac,#009edb)}
+.sbox .ic{font-size:26px}
+.sbox b{display:block;font-size:13px;margin:6px 0 2px;color:var(--ink)}
+.sbox small{font-size:11px;color:var(--ink3)}
+.sbox.locked::after{content:"🔒 로그인";display:block;margin-top:6px;font-size:10px;color:var(--ink3)}
+.sbox.openp::after{content:"공개";display:block;margin-top:6px;font-size:10px;color:var(--green);font-weight:700}
+/* KB pipeline band */
+.pipeline{margin-top:18px;background:#faf8ff;border:1px dashed #d8cdf2;border-radius:14px;padding:16px 14px}
+.pipeline .pl-h{font-size:12.5px;font-weight:800;color:var(--purple);text-transform:uppercase;letter-spacing:.05em;margin-bottom:12px;text-align:center}
+.flow{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:6px}
+.pnode{background:#fff;border:1px solid #e0d8f3;border-radius:10px;padding:9px 13px;font-size:12.5px;font-weight:700;color:#4a3a7a;text-align:center}
+.pnode small{display:block;font-weight:600;color:var(--ink3);font-size:10.5px}
+.parrow{color:var(--purple);font-weight:800;font-size:16px}
+/* subsystem detail cards */
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:var(--shadow);border-left:5px solid var(--ac,#009edb)}
+.card .ch{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.card .ic{font-size:26px}
+.card h3{margin:0;font-size:17px;font-weight:800}
+.card .en{font-size:12px;color:var(--ink3);font-style:italic;font-weight:600}
+.card p{font-size:13.5px;color:var(--ink2);margin:6px 0 10px;line-height:1.65}
+.badge{display:inline-block;font-size:11px;font-weight:800;padding:2px 9px;border-radius:20px}
+.b-open{background:#e7f3ec;color:var(--green)} .b-link{background:#e6f5f5;color:var(--teal)}
+/* stack table */
+table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);font-size:13.5px}
+th,td{text-align:left;padding:11px 16px;border-bottom:1px solid var(--line)}
+th{background:#f1f6fb;color:var(--navy);font-weight:800;font-size:12.5px}
+tr:last-child td{border-bottom:none}
+td b{color:var(--ink)}
+.roles{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.role{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px;box-shadow:var(--shadow)}
+.role b{display:block;color:var(--navy);font-size:13.5px;margin-bottom:3px}
+.role small{font-size:11.5px;color:var(--ink2);line-height:1.5}
+footer{border-top:1px solid var(--line);background:#fff;padding:26px 0;color:var(--ink3);font-size:12.5px;text-align:center;margin-top:10px}
+@media(max-width:760px){
+  .hero h1{font-size:26px}.grid{grid-template-columns:1fr}.subsys-row{grid-template-columns:1fr 1fr}
+  .roles{grid-template-columns:1fr 1fr}.node.app,.node.data{min-width:0;width:100%}.node{min-width:0;width:100%}
+  .flow{flex-direction:column}.parrow{transform:rotate(90deg)}
+}
+</style>
+</head>
+<body>
+<div class="topbar"><div class="wrap topbar-in">
+  <a href="/" class="brand"><span class="dot">◴</span><span>글로벌 도시연구 플랫폼<small>서울연구원 최준영 박사 개인 연구 플랫폼 · Dr. Junyoung Choi</small></span></a>
+  <a href="/" class="home-link">← 플랫폼 홈</a>
+</div></div>
+
+<header class="hero"><div class="wrap hero-in">
+  <div class="kick">Platform Architecture · 플랫폼 아키텍처</div>
+  <h1>growingcitiesplanning.org 구조도</h1>
+  <div class="ko">4개 서브시스템과 운영 아키텍처</div>
+  <p>이 플랫폼은 하나의 도메인 아래 4개의 연구 서브시스템을 제공하며, 클라우드(Render+Neon)에서 24시간 운영되고
+  로컬 우선(local-first) 지식기반 파이프라인으로 연구 데이터를 발행합니다. 이 페이지는 <b>계정 없이</b> 누구나 볼 수 있습니다.</p>
+  <span class="pub">🔓 공개 페이지 · 로그인 불필요</span>
+</div></header>
+
+<main><div class="wrap">
+
+  <div class="sec-h"><h2>전체 구조도</h2><span class="en">System Architecture</span></div>
+  <p class="sec-sub">이용자 → 도메인/CDN → 애플리케이션(4개 서브시스템) → 데이터베이스, 그리고 로컬 우선 지식기반 발행 흐름입니다.</p>
+
+  <div class="diagram">
+    <div class="layer">
+      <div class="node users">🌐 이용자 (브라우저 · 모바일)<small>연구자 · 집필자 · 감수자 · 일반 방문자</small></div>
+      <div class="arrow"></div>
+      <div class="node edge">Cloudflare DNS · TLS<small>growingcitiesplanning.org (+ www)</small></div>
+      <div class="arrow"></div>
+      <div class="node app">Render · Flask 애플리케이션 (gunicorn)<small>통합 포털 · 로그인 · 역할 기반 접근권한 · API</small></div>
+      <div class="arrow"></div>
+
+      <div class="subsys-row">
+        <div class="sbox openp" style="--ac:#0a6e8c"><div class="ic">🌐</div><b>세계도시 연구 DB</b><small>도시·사례·정책·토픽</small></div>
+        <div class="sbox openp" style="--ac:#6d4bb6"><div class="ic">🤖</div><b>도시로봇·HRI 연구 DB</b><small>로봇·HRI·연구설계·생성기</small></div>
+        <div class="sbox locked" style="--ac:#138f8f"><div class="ic">🤝</div><b>세계대도시협력</b><small>WPSC 출장·일정</small></div>
+        <div class="sbox locked" style="--ac:#0a4f7a"><div class="ic">📘</div><b>영문단행본</b><small>본문·메모·감수·편집</small></div>
+      </div>
+
+      <div class="arrow"></div>
+      <div class="node data">Neon · PostgreSQL (영구 저장)<small>dbrecords(연구DB) · users · comments(메모) · images · assignments/overrides/editlog</small></div>
+    </div>
+
+    <div class="pipeline">
+      <div class="pl-h">로컬 우선 지식기반 발행 파이프라인 · Local-first Knowledge Base</div>
+      <div class="flow">
+        <div class="pnode">Zotero<small>원문·참고문헌(.bib)</small></div>
+        <div class="parrow">→</div>
+        <div class="pnode">Obsidian<small>Markdown 위키 · [[교차참조]]</small></div>
+        <div class="parrow">→</div>
+        <div class="pnode">kb_build<small>노트 → records.json</small></div>
+        <div class="parrow">→</div>
+        <div class="pnode">kb_publish<small>Import API(발행)</small></div>
+        <div class="parrow">→</div>
+        <div class="pnode" style="color:#2f6f33;border-color:#c4e3c6">Neon DB<small>dbrecords 갱신</small></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec-h"><h2>4개 서브시스템</h2><span class="en">Four Subsystems</span></div>
+  <p class="sec-sub">하나의 포털에서 진입하며, 시스템별로 접근 권한이 관리됩니다.</p>
+  <div class="grid">
+    <div class="card" style="--ac:#0a6e8c">
+      <div class="ch"><span class="ic">🌐</span><div><h3>세계도시 연구 데이터베이스</h3><div class="en">World Cities Research Database</div></div></div>
+      <p>세계 도시·스마트도시·고령도시·보행도시·공공공간·스마트 모빌리티의 정책·사례·지표를 정리한 연구 지식베이스. 도시로봇 연구의 도시 맥락을 제공합니다. <b>도시·사례·정책·토픽</b>을 검색·필터·교차참조로 탐색.</p>
+      <span class="badge b-open">열람 가능</span>
+    </div>
+    <div class="card" style="--ac:#6d4bb6">
+      <div class="ch"><span class="ic">🤖</span><div><h3>도시로봇·HRI 연구 데이터베이스</h3><div class="en">Urban Robotics &amp; HRI Research Database</div></div></div>
+      <p>자율주행 배송로봇·돌봄로봇·인간-로봇 상호작용(HRI)의 사례·구성개념·연구설계·관찰/실험 프로토콜·연구도구·정책이슈. <b>연구 산출물 생성기</b>(HRI 연구설계·관찰 코딩북·실험 프로토콜)와 Markdown 내보내기를 제공합니다.</p>
+      <span class="badge b-open">열람 가능</span>
+    </div>
+    <div class="card" style="--ac:#138f8f">
+      <div class="ch"><span class="ic">🤝</span><div><h3>세계대도시협력</h3><div class="en">World Metropolitan Cooperation (WPSC)</div></div></div>
+      <p>세계 대도시 간 정책 교류·협력과 국제행사(WPSC 등)의 출장·일정을 관리합니다. 수퍼관리자가 접근합니다.</p>
+      <span class="badge b-link">바로가기 · 로그인</span>
+    </div>
+    <div class="card" style="--ac:#0a4f7a">
+      <div class="ch"><span class="ic">📘</span><div><h3>영문단행본</h3><div class="en">Urban Planning for Growing Cities</div></div></div>
+      <p>영문 단행본 「성장하는 도시를 위한 도시계획」의 본문 열람·문단별 메모·감수·직접 편집(그림 교체 포함) 시스템. 역할별 권한과 장(章) 배정으로 운영됩니다.</p>
+      <span class="badge b-link">로그인 · 역할 기반</span>
+    </div>
+  </div>
+
+  <div class="sec-h"><h2>기술 스택</h2><span class="en">Technology Stack</span></div>
+  <table>
+    <tr><th>계층</th><th>구성</th><th>역할</th></tr>
+    <tr><td><b>도메인 · CDN</b></td><td>Cloudflare</td><td>DNS · TLS(HTTPS) · 트래픽 보호</td></tr>
+    <tr><td><b>애플리케이션</b></td><td>Render · Flask (gunicorn)</td><td>포털·4개 서브시스템 라우트, 로그인, 역할 기반 권한, REST API</td></tr>
+    <tr><td><b>데이터베이스</b></td><td>Neon · PostgreSQL</td><td>연구 레코드·계정·메모·이미지·편집이력 영구 저장(SQLite 로컬 자동전환)</td></tr>
+    <tr><td><b>프런트엔드</b></td><td>Vanilla JS SPA · UN-Habitat 스타일</td><td>검색·필터·상세·교차참조·서술형 위키 본문 렌더</td></tr>
+    <tr><td><b>지식기반</b></td><td>Zotero · Obsidian · Markdown · GitHub</td><td>로컬 우선 작성→빌드→발행(Import API), 참고문헌 자동 확장</td></tr>
+    <tr><td><b>AI</b></td><td>Claude</td><td>연구 산출물 생성기(연구설계·코딩북·실험 프로토콜)</td></tr>
+  </table>
+
+  <div class="sec-h"><h2>접근 권한 모델</h2><span class="en">Role-based Access</span></div>
+  <p class="sec-sub">서브시스템별로 권한이 통합 관리됩니다. 이 아키텍처 페이지와 연구 DB의 공개 범위 안내는 계정 없이 볼 수 있습니다.</p>
+  <div class="roles">
+    <div class="role"><b>수퍼관리자</b><small>4개 서브시스템·모든 사용자 권한 통합 관리</small></div>
+    <div class="role"><b>관리자</b><small>담당 시스템의 집필자·감수자 계정 관리</small></div>
+    <div class="role"><b>집필자</b><small>배정된 장(章) 열람·편집</small></div>
+    <div class="role"><b>감수자</b><small>배정된 장 열람·메모(본인 스레드)</small></div>
+  </div>
+
+</div></main>
+
+<footer><div class="wrap">글로벌 도시연구 플랫폼 · 서울연구원 최준영 박사 개인 연구 플랫폼 &nbsp;|&nbsp; © 최준영 (Dr. Junyoung Choi)</div></footer>
+</body>
+</html>

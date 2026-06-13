@@ -299,6 +299,11 @@ def block_field(b):
 def portal():
     return render_template('portal.html')
 
+@app.route('/architecture')
+@app.route('/about')
+def architecture_page():
+    return render_template('architecture.html')   # 공개(로그인 불필요) 아키텍처 안내
+
 @app.route('/book')
 def book_app():
     return render_template('index.html')   # 영문단행본 감수 시스템 SPA
