@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>도시로봇·HRI 연구 데이터베이스 · Urban Robotics &amp; HRI Research Database</title>
+<style>
+:root{
+  --ink:#13243b;--ink2:#43586e;--ink3:#7a8aa0;--line:#e2e8f0;--bg:#f4f7fb;
+  --un:#009edb;--un-d:#0a4f7a;--navy:#0a3d62;--teal:#138f8f;--green:#3a8a3a;--amber:#d99b2b;
+  --purple:#6d4bb6;--purple-d:#4e3282;--purple-l:#efeafb;--purple-mid:#8b6bcc;
+  --shadow:0 1px 2px rgba(15,40,70,.05),0 10px 30px rgba(15,40,70,.07);
+  --shadow-lg:0 18px 50px rgba(15,40,70,.16);
+}
+*{box-sizing:border-box}html,body{margin:0;padding:0}
+body{font-family:"Pretendard","Apple SD Gothic Neo","Malgun Gothic",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1140px;margin:0 auto;padding:0 24px}
+a{color:inherit;text-decoration:none}
+
+/* === TOPBAR === */
+.topbar{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50}
+.topbar-in{display:flex;align-items:center;justify-content:space-between;height:58px;gap:12px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:14px;color:var(--navy);min-width:0}
+.brand .dot{width:32px;height:32px;border-radius:9px;background:linear-gradient(135deg,var(--purple),var(--purple-mid));display:flex;align-items:center;justify-content:center;color:#fff;font-size:17px;flex-shrink:0}
+.brand .btxt{min-width:0}
+.brand .btxt .main{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
+.brand small{display:block;font-size:10.5px;color:var(--ink3);font-weight:600;letter-spacing:.02em;white-space:nowrap}
+.topbar-right{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.home-link{font-size:13px;font-weight:700;color:var(--purple);white-space:nowrap;padding:6px 10px;border-radius:8px;border:1px solid var(--purple-l);background:var(--purple-l);transition:.15s}
+.home-link:hover{background:#e0d8f5}
+.userchip{display:flex;align-items:center;gap:8px;position:relative}
+.userchip .uinfo{text-align:right}
+.userchip .uname{font-size:13px;font-weight:700;color:var(--ink)}
+.userchip .urole{font-size:11px;color:var(--ink3)}
+.userchip .uav{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--purple),var(--purple-mid));color:#fff;font-size:14px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.logout-btn{border:0;background:none;color:var(--ink3);font-size:12px;font-weight:600;cursor:pointer;padding:5px 8px;border-radius:7px;transition:.15s}
+.logout-btn:hover{background:var(--line);color:var(--ink)}
+
+/* === HERO === */
+.hero{background:linear-gradient(135deg,#2d1760 0%,#4e3282 45%,#6d4bb6 100%);color:#fff;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;right:-100px;top:-80px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle at center,rgba(180,150,255,.3),transparent 68%)}
+.hero::before{content:"";position:absolute;left:-60px;bottom:-60px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle at center,rgba(109,75,182,.4),transparent 68%)}
+.hero-in{padding:56px 0 48px;position:relative;z-index:1;max-width:820px}
+.hero .kick{font-size:12.5px;letter-spacing:.16em;font-weight:700;color:#c9b8ff;text-transform:uppercase;margin-bottom:6px}
+.hero h1{font-size:36px;font-weight:800;letter-spacing:-.01em;margin:.3em 0 .1em;line-height:1.15}
+.hero .ko{font-size:18px;font-weight:500;opacity:.92}
+.hero p{font-size:14.5px;opacity:.84;margin:16px 0 0;max-width:640px;line-height:1.75}
+.hero-counts{display:flex;gap:20px;margin-top:24px;flex-wrap:wrap}
+.hcount{background:rgba(255,255,255,.12);border-radius:10px;padding:8px 16px;text-align:center}
+.hcount .hn{font-size:22px;font-weight:800;color:#e8dcff}
+.hcount .hl{font-size:11px;color:rgba(255,255,255,.75);font-weight:600;margin-top:1px}
+
+/* === FILTERS SECTION === */
+.filters-bar{background:#fff;border-bottom:1px solid var(--line);padding:14px 0}
+.filters-inner{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.search-wrap{position:relative;flex:1;min-width:180px;max-width:340px}
+.search-wrap input{width:100%;padding:8px 12px 8px 36px;border:1px solid var(--line);border-radius:9px;font-size:14px;font-family:inherit;color:var(--ink);outline:none;transition:.15s}
+.search-wrap input:focus{border-color:var(--purple);box-shadow:0 0 0 3px var(--purple-l)}
+.search-wrap .si{position:absolute;left:11px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--ink3)}
+.filter-group{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.filter-group label{font-size:12px;font-weight:700;color:var(--ink3);white-space:nowrap}
+.filter-group select{padding:7px 10px;border:1px solid var(--line);border-radius:8px;font-size:13px;font-family:inherit;color:var(--ink);background:#fff;outline:none;cursor:pointer;transition:.15s}
+.filter-group select:focus{border-color:var(--purple);box-shadow:0 0 0 3px var(--purple-l)}
+
+/* === NAV CHIPS === */
+.nav-section{padding:20px 0 0}
+.kind-chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{border:1px solid var(--line);background:#fff;color:var(--ink2);font-size:13px;font-weight:600;padding:7px 14px;border-radius:20px;cursor:pointer;transition:.15s;display:inline-flex;align-items:center;gap:5px}
+.chip:hover{border-color:var(--purple-mid);color:var(--purple)}
+.chip.active{background:var(--purple);border-color:var(--purple);color:#fff}
+.chip .cbadge{background:rgba(255,255,255,.25);font-size:11px;font-weight:800;padding:1px 6px;border-radius:10px;min-width:20px;text-align:center}
+.chip:not(.active) .cbadge{background:var(--purple-l);color:var(--purple)}
+
+/* === MAIN CONTENT === */
+main{padding:30px 0 70px}
+.sec-h{display:flex;align-items:baseline;gap:12px;margin:0 0 6px}
+.sec-h h2{font-size:20px;font-weight:800;color:var(--navy);margin:0}
+.sec-h .en{font-size:12.5px;color:var(--ink3);font-style:italic;font-weight:600}
+.sec-sub{color:var(--ink2);font-size:13.5px;margin:0 0 20px}
+
+/* === CARD GRID === */
+.card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.rcard{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px;box-shadow:var(--shadow);cursor:pointer;transition:.18s;position:relative;overflow:hidden;display:flex;flex-direction:column}
+.rcard::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--purple)}
+.rcard:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);border-color:#d8ccf0}
+.rcard .card-icon{font-size:24px;margin-bottom:10px}
+.rcard .card-kind{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:700;padding:3px 9px;border-radius:12px;background:var(--purple-l);color:var(--purple);margin-bottom:8px;width:fit-content}
+.rcard h3{font-size:15px;font-weight:800;margin:0 0 6px;color:var(--ink);line-height:1.4}
+.rcard .card-tag{font-size:11.5px;color:var(--ink3);font-weight:600;margin-bottom:8px;background:var(--bg);padding:3px 8px;border-radius:7px;display:inline-block}
+.rcard .snippet{font-size:13px;color:var(--ink2);line-height:1.6;flex:1;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+
+/* === EMPTY / LOADING / ERROR === */
+.state-box{text-align:center;padding:60px 20px;color:var(--ink3)}
+.state-box .sicon{font-size:48px;margin-bottom:12px}
+.state-box h3{margin:0 0 6px;font-size:18px;color:var(--ink2)}
+.state-box p{margin:0;font-size:14px}
+.spinner{display:inline-block;width:36px;height:36px;border:3px solid var(--purple-l);border-top-color:var(--purple);border-radius:50%;animation:spin .7s linear infinite;margin-bottom:12px}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* === DETAIL VIEW === */
+.detail-view{display:none}
+.detail-view.active{display:block}
+.list-view{display:block}
+.list-view.hidden{display:none}
+
+.detail-header{background:#fff;border:1px solid var(--line);border-radius:18px;padding:28px 30px;margin-bottom:20px;box-shadow:var(--shadow)}
+.detail-back{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:var(--purple);cursor:pointer;margin-bottom:16px;padding:6px 12px;border-radius:8px;background:var(--purple-l);border:1px solid #ddd6f5;transition:.15s}
+.detail-back:hover{background:#e0d8f5}
+.detail-kind-badge{display:inline-flex;align-items:center;gap:4px;font-size:11.5px;font-weight:700;padding:4px 11px;border-radius:12px;background:var(--purple-l);color:var(--purple);margin-bottom:10px}
+.detail-header h1{font-size:26px;font-weight:800;margin:0 0 10px;color:var(--ink);line-height:1.3}
+.detail-tags{display:flex;gap:8px;flex-wrap:wrap}
+.detail-tag{font-size:12px;font-weight:600;padding:4px 11px;border-radius:10px;background:var(--bg);border:1px solid var(--line);color:var(--ink2)}
+
+.detail-body{display:grid;grid-template-columns:1fr;gap:16px}
+.detail-section{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 24px;box-shadow:var(--shadow)}
+.detail-section h3{font-size:14px;font-weight:800;color:var(--purple);margin:0 0 12px;padding-bottom:8px;border-bottom:1px solid var(--purple-l);letter-spacing:.02em;text-transform:uppercase;font-size:12px}
+.detail-field{margin-bottom:16px}
+.detail-field:last-child{margin-bottom:0}
+.field-label{font-size:12px;font-weight:700;color:var(--ink3);margin-bottom:4px;letter-spacing:.04em;text-transform:uppercase}
+.field-value{font-size:14px;color:var(--ink);line-height:1.7}
+.field-value ul{margin:4px 0;padding-left:18px}
+.field-value ul li{margin-bottom:3px}
+.xref-chip{display:inline-flex;align-items:center;gap:4px;font-size:12.5px;font-weight:600;padding:3px 10px;border-radius:10px;background:var(--purple-l);color:var(--purple);cursor:pointer;border:1px solid #ddd6f5;margin:2px 3px 2px 0;transition:.15s;vertical-align:middle}
+.xref-chip:hover{background:#e0d8f5}
+.xref-chip.ext{background:#e3f3f3;color:var(--teal);border-color:#c8e8e8}
+.xref-chip.ext:hover{background:#cde8e8}
+
+/* === TOOLS SECTION === */
+.tools-section{margin-top:40px}
+.tools-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.tool-card{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);overflow:hidden}
+.tool-header{background:linear-gradient(135deg,var(--purple-d),var(--purple));color:#fff;padding:18px 20px 14px}
+.tool-header .tool-icon{font-size:22px;margin-bottom:6px}
+.tool-header h3{margin:0 0 3px;font-size:16px;font-weight:800}
+.tool-header .tool-en{font-size:11.5px;opacity:.82;font-style:italic}
+.tool-body{padding:18px 20px}
+.form-group{margin-bottom:14px}
+.form-group label{display:block;font-size:12.5px;font-weight:700;color:var(--ink2);margin-bottom:5px}
+.form-group select,
+.form-group input[type="text"]{width:100%;padding:8px 11px;border:1px solid var(--line);border-radius:9px;font-size:13px;font-family:inherit;color:var(--ink);outline:none;transition:.15s;background:#fff}
+.form-group select:focus,
+.form-group input[type="text"]:focus{border-color:var(--purple);box-shadow:0 0 0 3px var(--purple-l)}
+.form-group .hint{font-size:11px;color:var(--ink3);margin-top:3px}
+.gen-btn{width:100%;border:0;border-radius:10px;padding:10px;font-size:14px;font-weight:700;color:#fff;cursor:pointer;background:var(--purple);transition:.15s;margin-top:4px}
+.gen-btn:hover{background:var(--purple-d)}
+.gen-btn:disabled{background:#b0a0d8;cursor:not-allowed}
+.output-panel{display:none;margin-top:14px;border-top:1px solid var(--line);padding-top:14px}
+.output-panel.visible{display:block}
+.output-panel pre{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:14px;font-size:12.5px;font-family:"SFMono-Regular",Consolas,monospace;line-height:1.7;max-height:320px;overflow-y:auto;white-space:pre-wrap;word-break:break-word;color:var(--ink)}
+.output-actions{display:flex;gap:8px;margin-top:8px}
+.out-btn{flex:1;border:1px solid var(--line);border-radius:8px;padding:7px 10px;font-size:12.5px;font-weight:700;cursor:pointer;background:#fff;color:var(--ink2);transition:.15s;font-family:inherit}
+.out-btn:hover{background:var(--purple-l);border-color:var(--purple-mid);color:var(--purple)}
+.out-error{color:#c0392b;font-size:12.5px;margin-top:8px;display:none}
+.out-error.visible{display:block}
+
+/* === FOOTER === */
+footer{border-top:1px solid var(--line);background:#fff;padding:22px 0;color:var(--ink3);font-size:12.5px;text-align:center}
+
+/* === RESPONSIVE === */
+@media(max-width:960px){
+  .card-grid{grid-template-columns:1fr 1fr}
+  .tools-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:640px){
+  .card-grid{grid-template-columns:1fr}
+  .tools-grid{grid-template-columns:1fr}
+  .hero h1{font-size:26px}
+  .hero-in{padding:38px 0 32px}
+  .brand small{display:none}
+  .filters-inner{flex-direction:column;align-items:stretch}
+  .search-wrap{max-width:100%}
+  .userchip .uinfo{display:none}
+  .detail-header{padding:18px 16px}
+  .detail-header h1{font-size:20px}
+  .hero-counts{gap:10px}
+}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="wrap topbar-in">
+    <a href="/" class="brand">
+      <span class="dot">🤖</span>
+      <span class="btxt">
+        <span class="main">도시로봇·HRI 연구 데이터베이스 · Urban Robotics &amp; HRI Research Database</span>
+        <small>growingcitiesplanning.org · 서울연구원 최준영 박사 개인 연구 플랫폼</small>
+      </span>
+    </a>
+    <div class="topbar-right">
+      <a href="/" class="home-link">← 플랫폼 홈</a>
+      <div class="userchip" id="userchip">
+        <div class="uinfo">
+          <div class="uname" id="uname">—</div>
+          <div class="urole" id="urole">로딩 중</div>
+        </div>
+        <div class="uav" id="uav">?</div>
+        <button class="logout-btn" id="logoutBtn">로그아웃</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap hero-in">
+    <div class="kick">Urban Robotics &amp; HRI Research Database · 도시로봇 연구 지식베이스</div>
+    <h1>Urban Robotics &amp; HRI Research Database</h1>
+    <div class="ko">도시로봇·인간-로봇 상호작용 연구 데이터베이스</div>
+    <p>자율주행 배송로봇·돌봄로봇·인간-로봇 상호작용(HRI)의 사례·구성개념·연구방법·관찰/실험 프로토콜과 연구도구를 담은 연구 지식베이스입니다. 서울 도시 맥락에 적합한 HRI 연구를 설계하고 산출물을 생성할 수 있습니다.</p>
+    <div class="hero-counts" id="heroCounts"></div>
+  </div>
+</header>
+
+<!-- FILTERS BAR -->
+<div class="filters-bar">
+  <div class="wrap filters-inner">
+    <div class="search-wrap">
+      <span class="si">🔍</span>
+      <input type="text" id="searchInput" placeholder="제목·내용 검색...">
+    </div>
+    <div class="filter-group">
+      <label>로봇유형</label>
+      <select id="fRobotType">
+        <option value="">전체</option>
+        <option value="autonomous_delivery_robot">배송로봇</option>
+        <option value="care_robot">돌봄로봇</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <label>HRI 구성개념</label>
+      <select id="fHRI">
+        <option value="">전체</option>
+        <option value="trust">신뢰 Trust</option>
+        <option value="perceived_safety">안전인식 Perceived Safety</option>
+        <option value="acceptance">수용 Acceptance</option>
+        <option value="usability">사용성 Usability</option>
+        <option value="privacy_concern">프라이버시 우려</option>
+        <option value="social_presence">사회적 존재감</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <label>연구유형</label>
+      <select id="fStudyType">
+        <option value="">전체</option>
+        <option value="field_observation">현장관찰</option>
+        <option value="video_coding">영상코딩</option>
+        <option value="field_experiment">현장실험</option>
+        <option value="lab_experiment">실험실실험</option>
+        <option value="survey">설문</option>
+        <option value="interview">인터뷰</option>
+        <option value="mixed_methods">혼합연구</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <label>배치공간</label>
+      <select id="fSpace">
+        <option value="">전체</option>
+        <option value="sidewalk">보도 Sidewalk</option>
+        <option value="campus">캠퍼스</option>
+        <option value="residential_area">주거지</option>
+        <option value="welfare_center">복지센터</option>
+        <option value="nursing_home">요양원</option>
+        <option value="hospital">병원</option>
+        <option value="home">가정</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <label>정책이슈</label>
+      <select id="fPolicy">
+        <option value="">전체</option>
+        <option value="safety">안전</option>
+        <option value="privacy">프라이버시</option>
+        <option value="liability">책임</option>
+        <option value="sidewalk_governance">보도거버넌스</option>
+        <option value="care_ethics">돌봄윤리</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<main>
+  <div class="wrap">
+
+    <!-- KIND NAVIGATION -->
+    <div class="nav-section">
+      <div class="kind-chips" id="kindChips"></div>
+    </div>
+
+    <!-- LIST VIEW -->
+    <div class="list-view" id="listView" style="margin-top:24px">
+      <div class="sec-h"><h2 id="listTitle">레코드</h2><span class="en" id="listTitleEn">Records</span></div>
+      <p class="sec-sub" id="listSub">데이터베이스에서 레코드를 불러오는 중입니다.</p>
+      <div id="listState" class="state-box">
+        <div class="spinner"></div>
+        <h3>데이터 로딩 중...</h3>
+      </div>
+      <div class="card-grid" id="cardGrid" style="display:none"></div>
+    </div>
+
+    <!-- DETAIL VIEW -->
+    <div class="detail-view" id="detailView">
+      <div id="detailContent"></div>
+    </div>
+
+    <!-- TOOLS SECTION -->
+    <div class="tools-section" id="toolsSection">
+      <div class="sec-h"><h2>연구 산출물 생성기</h2><span class="en">Research Output Generator Tools</span></div>
+      <p class="sec-sub">로봇 유형과 연구 목적을 선택하면 HRI 연구설계, 관찰 코딩북, 실험 프로토콜을 자동으로 생성합니다.</p>
+      <div class="tools-grid">
+
+        <!-- Tool 1: HRI Study Design -->
+        <div class="tool-card">
+          <div class="tool-header">
+            <div class="tool-icon">📋</div>
+            <h3>HRI 연구설계 생성기</h3>
+            <div class="tool-en">HRI Study Design Generator</div>
+          </div>
+          <div class="tool-body">
+            <div class="form-group">
+              <label>로봇 유형 Robot Type</label>
+              <select id="t1-robotType">
+                <option value="autonomous_delivery_robot">자율주행 배송로봇</option>
+                <option value="care_robot">돌봄로봇</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>연구 유형 Study Type</label>
+              <select id="t1-studyType">
+                <option value="field_observation">현장관찰 Field Observation</option>
+                <option value="video_coding">영상코딩 Video Coding</option>
+                <option value="field_experiment">현장실험 Field Experiment</option>
+                <option value="lab_experiment">실험실실험 Lab Experiment</option>
+                <option value="survey">설문 Survey</option>
+                <option value="interview">인터뷰 Interview</option>
+                <option value="mixed_methods">혼합연구 Mixed Methods</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>HRI 구성개념 (쉼표 구분)</label>
+              <input type="text" id="t1-hriConstructs" placeholder="예: trust, perceived_safety, acceptance">
+              <div class="hint">영문 키워드를 쉼표로 구분하여 입력하세요</div>
+            </div>
+            <div class="form-group">
+              <label>대상 이용자 (쉼표 구분)</label>
+              <input type="text" id="t1-targetUsers" placeholder="예: pedestrians, older adults, caregivers">
+            </div>
+            <div class="form-group">
+              <label>현장 맥락 (쉼표 구분)</label>
+              <input type="text" id="t1-siteContext" placeholder="예: sidewalk, welfare center, campus">
+            </div>
+            <div class="form-group">
+              <label>대상 도시 (선택)</label>
+              <input type="text" id="t1-targetCity" placeholder="예: Seoul, 서울">
+            </div>
+            <button class="gen-btn" id="t1-btn">연구설계 생성 Generate</button>
+            <div class="out-error" id="t1-err"></div>
+            <div class="output-panel" id="t1-out">
+              <pre id="t1-pre"></pre>
+              <div class="output-actions">
+                <button class="out-btn" id="t1-copy">Markdown 복사</button>
+                <button class="out-btn" id="t1-dl">Markdown 다운로드</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tool 2: Observation Codebook -->
+        <div class="tool-card">
+          <div class="tool-header">
+            <div class="tool-icon">👁</div>
+            <h3>관찰 코딩북 생성기</h3>
+            <div class="tool-en">Observation Codebook Builder</div>
+          </div>
+          <div class="tool-body">
+            <div class="form-group">
+              <label>로봇 유형 Robot Type</label>
+              <select id="t2-robotType">
+                <option value="autonomous_delivery_robot">자율주행 배송로봇</option>
+                <option value="care_robot">돌봄로봇</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>관찰 현장 Observation Setting</label>
+              <select id="t2-setting">
+                <option value="sidewalk">보도 Sidewalk</option>
+                <option value="campus">캠퍼스 Campus</option>
+                <option value="commercial_district">상업지구 Commercial District</option>
+                <option value="residential_area">주거지 Residential Area</option>
+                <option value="hospital">병원 Hospital</option>
+                <option value="nursing_home">요양원 Nursing Home</option>
+                <option value="welfare_center">복지센터 Welfare Center</option>
+                <option value="home">가정 Home</option>
+                <option value="other">기타 Other</option>
+              </select>
+            </div>
+            <button class="gen-btn" id="t2-btn">코딩북 생성 Generate</button>
+            <div class="out-error" id="t2-err"></div>
+            <div class="output-panel" id="t2-out">
+              <pre id="t2-pre"></pre>
+              <div class="output-actions">
+                <button class="out-btn" id="t2-copy">Markdown 복사</button>
+                <button class="out-btn" id="t2-dl">Markdown 다운로드</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tool 3: Experiment Protocol -->
+        <div class="tool-card">
+          <div class="tool-header">
+            <div class="tool-icon">🧪</div>
+            <h3>실험 프로토콜 생성기</h3>
+            <div class="tool-en">Experiment Protocol Generator</div>
+          </div>
+          <div class="tool-body">
+            <div class="form-group">
+              <label>로봇 유형 Robot Type</label>
+              <select id="t3-robotType">
+                <option value="autonomous_delivery_robot">자율주행 배송로봇</option>
+                <option value="care_robot">돌봄로봇</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>HRI 구성개념 (쉼표 구분)</label>
+              <input type="text" id="t3-hriConstructs" placeholder="예: trust, comfort, social_presence">
+            </div>
+            <div class="form-group">
+              <label>실험 참여자 (쉼표 구분)</label>
+              <input type="text" id="t3-targetUsers" placeholder="예: older adults (65+), caregivers">
+            </div>
+            <button class="gen-btn" id="t3-btn">프로토콜 생성 Generate</button>
+            <div class="out-error" id="t3-err"></div>
+            <div class="output-panel" id="t3-out">
+              <pre id="t3-pre"></pre>
+              <div class="output-actions">
+                <button class="out-btn" id="t3-copy">Markdown 복사</button>
+                <button class="out-btn" id="t3-dl">Markdown 다운로드</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <!-- END TOOLS -->
+
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    도시로봇·HRI 연구 데이터베이스 · Urban Robotics &amp; HRI Research Database &nbsp;|&nbsp;
+    growingcitiesplanning.org · 서울연구원 최준영 박사 개인 연구 플랫폼 &nbsp;|&nbsp; © 최준영 (Dr. Junyoung Choi)
+  </div>
+</footer>
+
+<script>
+'use strict';
+
+/* -------- helpers -------- */
+const $  = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+function esc(s){ return (s||'').replace(/[&<>"']/g, m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
+function csv(str){ return str.split(',').map(s=>s.trim()).filter(Boolean); }
+
+/* -------- state -------- */
+let ALL_RECORDS = [];
+let INDEX = {};
+let KIND_COUNTS = {};
+let activeKind = 'all';
+let activeSlug = null;
+
+/* -------- field label map -------- */
+const FIELD_LABELS = {
+  robotCategory:'로봇 분류',definition:'정의',urbanContext:'도시 맥락',mainUsers:'주요 이용자',
+  hriIssues:'HRI 이슈',policyIssues:'정책 이슈',safetyIssues:'안전 이슈',privacyIssues:'프라이버시 이슈',
+  relatedCities:'관련 도시',relatedCases:'관련 사례',sources:'출처',
+  robotType:'로봇 유형',cityId:'도시 ID',cityName:'도시명',country:'국가',region:'지역',
+  deploymentSpace:'적용 공간',operator:'운영자',manufacturer:'제조사',deploymentPeriod:'배치 기간',
+  useCase:'활용 사례',targetUsers:'대상 이용자',serviceFunction:'서비스 기능',
+  hriFocus:'HRI 초점',observedInteractions:'관찰된 상호작용',evaluationMethods:'평가 방법',
+  evidenceLevel:'근거 수준',researchValue:'연구 가치',relevanceToSeoul:'서울 적용성',
+  relatedStudyDesigns:'관련 연구설계',
+  constructCategory:'구성개념 범주',applicableRobotTypes:'적용 로봇 유형',observableIndicators:'관찰 가능 지표',
+  surveyMeasures:'설문 측정 항목',interviewQuestions:'인터뷰 질문',experimentalVariables:'실험 변수',
+  relatedMethods:'관련 연구방법',
+  studyType:'연구 유형',researchBackground:'연구 배경',researchQuestions:'연구 질문',
+  hypotheses:'가설',targetParticipantsOrSubjects:'대상 참여자/피관찰자',siteContext:'현장 맥락',
+  independentVariables:'독립변수',dependentVariables:'종속변수',controlVariables:'통제변수',
+  scenarios:'시나리오',dataCollectionMethods:'자료 수집 방법',instruments:'연구도구',
+  analysisPlan:'분석 계획',ethicsChecklist:'윤리 체크리스트',expectedOutputs:'예상 산출물',
+  policyImplications:'정책적 함의',relatedSources:'관련 문헌',
+  observationSetting:'관찰 현장',purpose:'목적',contextVariables:'맥락 변수',
+  robotBehaviorVariables:'로봇 행동 변수',humanBehaviorVariables:'인간 행동 변수',
+  interactionTypes:'상호작용 유형',conflictCriteria:'충돌·위험 기준',samplingStrategy:'샘플링 전략',
+  observationUnit:'관찰 단위',recordingPlan:'기록 계획',privacyProtectionPlan:'개인정보 보호 계획',
+  codingProcedure:'코딩 절차',exportFormats:'내보내기 형식',
+  experimentType:'실험 유형',participantCriteria:'참여자 기준',experimentalConditions:'실험 조건',
+  measurementInstruments:'측정 도구',surveyItems:'설문 항목',observationItems:'관찰 항목',
+  ethicsConsiderations:'윤리 고려사항',expectedFindings:'예상 결과',
+  instrumentType:'도구 유형',relatedHRIConstructs:'관련 HRI 구성개념',content:'내용',
+  policyDomain:'정책 영역',issueDefinition:'이슈 정의',whyItMatters:'중요성',
+  internationalTrends:'국제 동향',keyCases:'주요 사례',policyOptions:'정책 옵션',
+  seoulImplications:'서울 시사점',relatedResearchQuestions:'관련 연구 질문',
+};
+
+/* -------- kind meta -------- */
+const KIND_META = {
+  all:         {icon:'📂', kr:'전체',          en:'All'},
+  robottype:   {icon:'🤖', kr:'로봇유형',       en:'Robot Types'},
+  robotcase:   {icon:'📍', kr:'사례',           en:'Cases'},
+  hri:         {icon:'🔬', kr:'HRI 구성개념',   en:'HRI Constructs'},
+  studydesign: {icon:'📋', kr:'연구설계',       en:'Study Designs'},
+  observation: {icon:'👁', kr:'관찰 프로토콜',  en:'Observation'},
+  experiment:  {icon:'🧪', kr:'실험 프로토콜',  en:'Experiment'},
+  instrument:  {icon:'🛠', kr:'연구도구',       en:'Instruments'},
+  policyissue: {icon:'⚖️', kr:'정책이슈',      en:'Policy Issues'},
+};
+
+const SKIP_FIELDS = new Set(['id','kind','slug','title','createdAt','updatedAt']);
+
+/* -------- auth & boot -------- */
+async function boot(){
+  let me;
+  try{
+    const r = await fetch('/api/me');
+    const j = await r.json();
+    me = j.user;
+  } catch(e){ me = null; }
+  if(!me){ location.replace('/?sys=urbanrobotics'); return; }
+  /* user chip */
+  const ini = (me.name||me.email||'?')[0].toUpperCase();
+  $('#uname').textContent = me.name || me.email;
+  $('#urole').textContent = me.roleName || me.role || '';
+  $('#uav').textContent = ini;
+  $('#logoutBtn').addEventListener('click', async () => {
+    try{ await fetch('/api/logout',{method:'POST'}); } catch(e){}
+    location.href = '/';
+  });
+  /* load data */
+  await loadData();
+  /* deep link */
+  const p = new URLSearchParams(location.search);
+  const slug = p.get('slug');
+  if(slug){ showDetail(slug); } else { renderList(); }
+}
+
+async function loadData(){
+  try{
+    const r = await fetch('/api/db/urbanrobotics');
+    if(!r.ok) throw new Error('API error ' + r.status);
+    const j = await r.json();
+    ALL_RECORDS = j.records || [];
+    KIND_COUNTS = j.counts || {};
+    buildHeroCounts();
+    buildKindChips();
+  } catch(e){
+    $('#listState').innerHTML = '<div class="sicon">⚠️</div><h3>데이터 로드 실패</h3><p>'+esc(e.message)+'</p>';
+  }
+}
+
+/* -------- hero counts -------- */
+function buildHeroCounts(){
+  const total = ALL_RECORDS.length;
+  const items = [
+    {n: total,                            l:'전체 레코드'},
+    {n: KIND_COUNTS.robotcase||0,         l:'사례 Cases'},
+    {n: KIND_COUNTS.hri||0,               l:'HRI 구성개념'},
+    {n: KIND_COUNTS.studydesign||0,       l:'연구설계'},
+    {n: KIND_COUNTS.instrument||0,        l:'연구도구'},
+  ];
+  $('#heroCounts').innerHTML = items.map(i =>
+    `<div class="hcount"><div class="hn">${i.n}</div><div class="hl">${esc(i.l)}</div></div>`
+  ).join('');
+}
+
+/* -------- kind chips -------- */
+function buildKindChips(){
+  const kinds = ['all','robottype','robotcase','hri','studydesign','observation','experiment','instrument','policyissue'];
+  $('#kindChips').innerHTML = kinds.map(k => {
+    const m = KIND_META[k];
+    const cnt = k==='all' ? ALL_RECORDS.length : (KIND_COUNTS[k]||0);
+    return `<button class="chip ${k===activeKind?'active':''}" data-kind="${k}">
+      ${m.icon} ${m.kr} <span class="en">${m.en}</span>
+      <span class="cbadge">${cnt}</span>
+    </button>`;
+  }).join('');
+  $$('.chip[data-kind]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      activeKind = btn.dataset.kind;
+      showList();
+      updateChips();
+      renderList();
+    });
+  });
+}
+
+function updateChips(){
+  $$('.chip[data-kind]').forEach(b => b.classList.toggle('active', b.dataset.kind===activeKind));
+}
+
+/* -------- list / filter / search -------- */
+function getFilteredRecords(){
+  let recs = ALL_RECORDS;
+  if(activeKind !== 'all') recs = recs.filter(r => r.kind === activeKind);
+  const q = ($('#searchInput').value||'').trim().toLowerCase();
+  const fRobot  = $('#fRobotType').value;
+  const fHRI    = $('#fHRI').value;
+  const fStudy  = $('#fStudyType').value;
+  const fSpace  = $('#fSpace').value;
+  const fPolicy = $('#fPolicy').value;
+  return recs.filter(r => {
+    if(q){
+      const hay = JSON.stringify(r).toLowerCase();
+      if(!hay.includes(q)) return false;
+    }
+    if(fRobot  && r.robotType !== fRobot && r.robotCategory !== fRobot && r.applicableRobotTypes !== fRobot) return false;
+    if(fHRI    && !matchField(r, fHRI, ['constructCategory','relatedHRIConstructs','hriIssues','hriFocus'])) return false;
+    if(fStudy  && r.studyType !== fStudy) return false;
+    if(fSpace  && !matchField(r, fSpace, ['deploymentSpace','observationSetting','siteContext','urbanContext'])) return false;
+    if(fPolicy && !matchField(r, fPolicy, ['policyDomain','policyIssues'])) return false;
+    return true;
+  });
+}
+
+function matchField(rec, val, fields){
+  for(const f of fields){
+    const v = rec[f];
+    if(!v) continue;
+    if(typeof v === 'string' && v === val) return true;
+    if(Array.isArray(v) && v.some(x => typeof x==='string' && x.toLowerCase().includes(val.toLowerCase()))) return true;
+  }
+  return false;
+}
+
+function renderList(){
+  const recs = getFilteredRecords();
+  const grid = $('#cardGrid');
+  const state = $('#listState');
+  const km = KIND_META[activeKind] || {kr:'레코드',en:'Records'};
+  $('#listTitle').textContent = km.kr;
+  $('#listTitleEn').textContent = km.en;
+  if(recs.length === 0){
+    grid.style.display = 'none';
+    state.style.display = 'block';
+    state.innerHTML = '<div class="sicon">🔍</div><h3>검색 결과 없음</h3><p>필터나 검색어를 조정해 보세요.</p>';
+    $('#listSub').textContent = '조건에 맞는 레코드가 없습니다.';
+    return;
+  }
+  $('#listSub').textContent = `${recs.length}개 레코드`;
+  state.style.display = 'none';
+  grid.style.display = 'grid';
+  grid.innerHTML = recs.map(r => renderCard(r)).join('');
+  grid.querySelectorAll('.rcard[data-slug]').forEach(c => {
+    c.addEventListener('click', () => { showDetail(c.dataset.slug); });
+  });
+}
+
+function renderCard(r){
+  const km = KIND_META[r.kind] || {icon:'📄', kr:r.kind};
+  const keyTag = r.robotType || r.robotCategory || r.studyType || r.deploymentSpace || r.constructCategory || r.instrumentType || r.policyDomain || '';
+  const snippet = r.definition || r.researchBackground || r.purpose || r.issueDefinition || r.useCase || r.content || '';
+  return `<div class="rcard" data-slug="${esc(r.slug||r.id)}">
+    <div class="card-icon">${km.icon}</div>
+    <span class="card-kind">${km.icon} ${km.kr}</span>
+    <h3>${esc(r.title||r.id)}</h3>
+    ${keyTag ? `<span class="card-tag">${esc(humanizeEnum(keyTag))}</span>` : ''}
+    <div class="snippet">${esc(snippet)}</div>
+  </div>`;
+}
+
+function humanizeEnum(val){
+  if(!val) return '';
+  return val.replace(/_/g,' ').replace(/\b\w/g, c => c.toUpperCase());
+}
+
+/* -------- detail view -------- */
+async function showDetail(slug){
+  activeSlug = slug;
+  showDetailView();
+  $('#detailContent').innerHTML = '<div class="state-box"><div class="spinner"></div><h3>로딩 중...</h3></div>';
+  /* try local first */
+  let rec = ALL_RECORDS.find(r => (r.slug||r.id) === slug);
+  let idx = INDEX;
+  if(!rec || Object.keys(idx).length === 0){
+    try{
+      const r = await fetch('/api/db/urbanrobotics/' + encodeURIComponent(slug));
+      if(r.ok){
+        const j = await r.json();
+        rec = j.record || rec;
+        idx = j.index || idx;
+        INDEX = idx;
+      }
+    } catch(e){}
+  }
+  if(!rec){
+    $('#detailContent').innerHTML = '<div class="state-box"><div class="sicon">⚠️</div><h3>레코드를 찾을 수 없습니다</h3><p>slug: '+esc(slug)+'</p></div>';
+    return;
+  }
+  /* push state */
+  const url = new URL(location.href);
+  url.searchParams.set('slug', slug);
+  history.pushState({slug}, '', url.toString());
+  /* render */
+  $('#detailContent').innerHTML = renderDetail(rec, idx);
+  $('#detailContent').querySelector('.detail-back').addEventListener('click', () => {
+    activeSlug = null;
+    showList();
+    const url2 = new URL(location.href);
+    url2.searchParams.delete('slug');
+    history.pushState({}, '', url2.toString());
+  });
+  /* xref chips */
+  $('#detailContent').querySelectorAll('.xref-chip[data-slug]').forEach(chip => {
+    chip.addEventListener('click', () => {
+      const s = chip.dataset.slug;
+      const sys = chip.dataset.subsystem;
+      if(sys === 'worldcities'){
+        location.href = '/worldcities?slug=' + encodeURIComponent(s);
+      } else {
+        showDetail(s);
+      }
+    });
+  });
+}
+
+function renderDetail(r, idx){
+  const km = KIND_META[r.kind] || {icon:'📄', kr:r.kind};
+  const keyTags = [];
+  if(r.robotType) keyTags.push(humanizeEnum(r.robotType));
+  if(r.robotCategory) keyTags.push(humanizeEnum(r.robotCategory));
+  if(r.studyType) keyTags.push(humanizeEnum(r.studyType));
+  if(r.deploymentSpace) keyTags.push(humanizeEnum(r.deploymentSpace));
+  if(r.constructCategory) keyTags.push(humanizeEnum(r.constructCategory));
+  if(r.policyDomain) keyTags.push(humanizeEnum(r.policyDomain));
+  if(r.country) keyTags.push(r.country);
+  if(r.cityName) keyTags.push(r.cityName);
+  /* fields */
+  const skipAlways = new Set(['id','kind','slug','title','createdAt','updatedAt']);
+  const fields = Object.entries(r).filter(([k]) => !skipAlways.has(k));
+  const fieldsHtml = fields.map(([k,v]) => {
+    if(v === null || v === undefined || v === '') return '';
+    const label = FIELD_LABELS[k] || k;
+    let html = '';
+    if(Array.isArray(v)){
+      if(v.length === 0) return '';
+      const items = v.map(item => {
+        const chip = makeXrefChip(item, idx);
+        return chip ? `<li>${chip}</li>` : `<li>${esc(String(item))}</li>`;
+      }).join('');
+      html = `<ul>${items}</ul>`;
+    } else {
+      const chip = makeXrefChip(String(v), idx);
+      html = chip ? chip : `<span>${esc(String(v))}</span>`;
+    }
+    return `<div class="detail-field"><div class="field-label">${esc(label)}</div><div class="field-value">${html}</div></div>`;
+  }).join('');
+  return `
+    <div class="detail-header">
+      <div class="detail-back">← 목록으로</div>
+      <div class="detail-kind-badge">${km.icon} ${km.kr}</div>
+      <h1>${esc(r.title||r.id||slug)}</h1>
+      <div class="detail-tags">${keyTags.map(t=>`<span class="detail-tag">${esc(t)}</span>`).join('')}</div>
+    </div>
+    <div class="detail-body">
+      <div class="detail-section">
+        <h3>상세 정보 Record Details</h3>
+        ${fieldsHtml || '<p style="color:var(--ink3)">추가 필드가 없습니다.</p>'}
+      </div>
+    </div>`;
+}
+
+function makeXrefChip(val, idx){
+  if(!val || !idx || typeof val !== 'string') return null;
+  const entry = idx[val];
+  if(!entry) return null;
+  const sys = entry.subsystem || 'urbanrobotics';
+  const cls = sys === 'worldcities' ? 'xref-chip ext' : 'xref-chip';
+  const icon = sys === 'worldcities' ? '🌐 ' : '🔗 ';
+  return `<span class="${cls}" data-slug="${esc(val)}" data-subsystem="${esc(sys)}">${icon}${esc(entry.title||val)}</span>`;
+}
+
+/* -------- view toggling -------- */
+function showList(){
+  $('#listView').classList.remove('hidden');
+  $('#detailView').classList.remove('active');
+  $('#toolsSection').style.display = '';
+}
+function showDetailView(){
+  $('#listView').classList.add('hidden');
+  $('#detailView').classList.add('active');
+  $('#toolsSection').style.display = 'none';
+}
+
+/* -------- generator tools -------- */
+function setupTool(num, toolName, bodyFn, filePrefix){
+  const btn = $(`#t${num}-btn`);
+  const out  = $(`#t${num}-out`);
+  const pre  = $(`#t${num}-pre`);
+  const err  = $(`#t${num}-err`);
+  const copy = $(`#t${num}-copy`);
+  const dl   = $(`#t${num}-dl`);
+  btn.addEventListener('click', async () => {
+    err.classList.remove('visible');
+    btn.disabled = true;
+    btn.textContent = '생성 중...';
+    out.classList.remove('visible');
+    try{
+      const body = bodyFn();
+      const r = await fetch('/api/generate/' + toolName, {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify(body),
+      });
+      const j = await r.json();
+      if(!r.ok || j.error) throw new Error(j.error || 'API error');
+      pre.textContent = j.markdown || '';
+      out.classList.add('visible');
+    } catch(e){
+      err.textContent = '오류: ' + e.message;
+      err.classList.add('visible');
+    } finally{
+      btn.disabled = false;
+      btn.textContent = '생성 Generate';
+    }
+  });
+  copy.addEventListener('click', () => {
+    navigator.clipboard.writeText(pre.textContent).then(() => {
+      copy.textContent = '복사됨 ✓';
+      setTimeout(() => { copy.textContent = 'Markdown 복사'; }, 1800);
+    }).catch(() => { copy.textContent = '복사 실패'; });
+  });
+  dl.addEventListener('click', () => {
+    const blob = new Blob([pre.textContent], {type:'text/markdown'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = filePrefix + '_' + new Date().toISOString().slice(0,10) + '.md';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(a.href);
+  });
+}
+
+/* -------- wire up generators -------- */
+setupTool(1, 'hri-study-design', () => ({
+  robotType: $('#t1-robotType').value,
+  studyType: $('#t1-studyType').value,
+  hriConstructs: csv($('#t1-hriConstructs').value),
+  targetUsers: csv($('#t1-targetUsers').value),
+  siteContext: csv($('#t1-siteContext').value),
+  targetCity: $('#t1-targetCity').value.trim() || undefined,
+}), 'hri_study_design');
+
+setupTool(2, 'observation-codebook', () => ({
+  robotType: $('#t2-robotType').value,
+  observationSetting: $('#t2-setting').value,
+}), 'observation_codebook');
+
+setupTool(3, 'experiment-protocol', () => ({
+  robotType: $('#t3-robotType').value,
+  hriConstructs: csv($('#t3-hriConstructs').value),
+  targetUsers: csv($('#t3-targetUsers').value),
+}), 'experiment_protocol');
+
+/* -------- filter / search events -------- */
+['searchInput','fRobotType','fHRI','fStudyType','fSpace','fPolicy'].forEach(id => {
+  const el = $('#'+id);
+  if(el) el.addEventListener('input', () => { if(!activeSlug) renderList(); });
+});
+
+/* -------- browser back/forward -------- */
+window.addEventListener('popstate', e => {
+  const slug = e.state && e.state.slug;
+  if(slug){ showDetail(slug); }
+  else { activeSlug=null; showList(); renderList(); }
+});
+
+/* -------- init -------- */
+boot();
+</script>
+</body>
+</html>

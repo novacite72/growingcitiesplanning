@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>세계도시 연구 데이터베이스 · World Cities Research Database</title>
+<style>
+:root{
+  --ink:#13243b;--ink2:#43586e;--ink3:#7a8aa0;--line:#e2e8f0;--bg:#f4f7fb;
+  --un:#009edb;--un-d:#0a4f7a;--navy:#0a3d62;--teal:#138f8f;--green:#3a8a3a;--amber:#d99b2b;
+  --primary:#0a6e8c;--primary-d:#085670;--primary-l:#e2f1f5;--primary-ll:#f0f8fb;
+  --shadow:0 1px 2px rgba(15,40,70,.05),0 10px 30px rgba(15,40,70,.07);
+  --shadow-lg:0 18px 50px rgba(15,40,70,.16);
+}
+*{box-sizing:border-box}html,body{margin:0;padding:0}
+body{font-family:"Pretendard","Apple SD Gothic Neo","Malgun Gothic",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1140px;margin:0 auto;padding:0 24px}
+a{color:inherit;text-decoration:none}
+
+/* ── topbar ── */
+.topbar{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50}
+.topbar-in{display:flex;align-items:center;justify-content:space-between;height:58px;gap:12px}
+.brand{display:flex;align-items:center;gap:11px;font-weight:800;font-size:14px;color:var(--navy);flex:1;min-width:0}
+.brand .dot{flex-shrink:0;width:32px;height:32px;border-radius:9px;background:linear-gradient(135deg,var(--primary),var(--teal));display:flex;align-items:center;justify-content:center;color:#fff;font-size:17px}
+.brand-text{min-width:0}
+.brand-kr{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:13.5px;font-weight:800;color:var(--navy)}
+.brand-en{font-size:10.5px;color:var(--ink3);font-weight:600;letter-spacing:.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.topbar-nav{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.home-link{font-size:13px;color:var(--primary);font-weight:700;white-space:nowrap;padding:5px 10px;border-radius:8px;transition:.15s}
+.home-link:hover{background:var(--primary-l)}
+.user-chip{display:flex;align-items:center;gap:8px;background:var(--primary-ll);border:1px solid #c5e4ef;border-radius:22px;padding:5px 12px 5px 8px}
+.user-chip .avatar{width:26px;height:26px;border-radius:50%;background:var(--primary);color:#fff;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.user-chip .uname{font-size:13px;font-weight:700;color:var(--ink);max-width:120px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.logout-btn{border:0;background:transparent;color:var(--ink3);font-size:12px;font-weight:700;cursor:pointer;padding:0;white-space:nowrap}
+.logout-btn:hover{color:var(--primary)}
+
+/* ── hero ── */
+.hero{background:linear-gradient(135deg,#062b44 0%,var(--primary-d) 50%,var(--primary) 100%);color:#fff;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;right:-100px;top:-80px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle at center,rgba(0,200,230,.28),transparent 65%)}
+.hero::before{content:"";position:absolute;left:-60px;bottom:-100px;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle at center,rgba(19,143,143,.22),transparent 65%)}
+.hero-in{padding:56px 0 48px;position:relative;z-index:1;max-width:780px}
+.hero .kick{font-size:12.5px;letter-spacing:.18em;font-weight:700;color:#7fd4f5;text-transform:uppercase;margin-bottom:10px}
+.hero h1{font-size:38px;font-weight:800;letter-spacing:-.01em;margin:0 0 6px;line-height:1.14}
+.hero .ko{font-size:17px;font-weight:600;opacity:.88;margin-bottom:14px}
+.hero p{font-size:14.5px;opacity:.82;margin:0;max-width:640px;line-height:1.72}
+.hero-stats{display:flex;gap:28px;margin-top:26px;flex-wrap:wrap}
+.hero-stat{display:flex;flex-direction:column}
+.hero-stat .num{font-size:28px;font-weight:800;line-height:1}
+.hero-stat .lbl{font-size:11.5px;opacity:.72;font-weight:600;margin-top:3px;letter-spacing:.04em}
+
+/* ── search & filters ── */
+.search-section{background:#fff;border-bottom:1px solid var(--line);padding:18px 0}
+.search-row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.search-box{position:relative;flex:1;min-width:220px}
+.search-box input{width:100%;padding:10px 14px 10px 40px;border:1.5px solid var(--line);border-radius:10px;font-size:14.5px;font-family:inherit;color:var(--ink);background:#fff;transition:.15s}
+.search-box input:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(10,110,140,.10)}
+.search-box .ico{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--ink3);font-size:16px;pointer-events:none}
+.filter-row{display:flex;gap:7px;flex-wrap:wrap;align-items:center;margin-top:10px}
+.filter-label{font-size:12px;font-weight:700;color:var(--ink3);white-space:nowrap}
+.chip{border:1.5px solid var(--line);background:#fff;color:var(--ink2);font-size:12.5px;font-weight:700;padding:5px 13px;border-radius:20px;cursor:pointer;transition:.15s;white-space:nowrap;font-family:inherit}
+.chip:hover{border-color:var(--primary);color:var(--primary)}
+.chip.active{background:var(--primary);border-color:var(--primary);color:#fff}
+.chip .cnt{font-size:10.5px;opacity:.75;margin-left:4px}
+.region-select{border:1.5px solid var(--line);background:#fff;color:var(--ink2);font-size:12.5px;font-weight:700;padding:5px 30px 5px 12px;border-radius:20px;cursor:pointer;font-family:inherit;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='7'%3E%3Cpath d='M0 0l5 7 5-7z' fill='%237a8aa0'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;outline:none;transition:.15s}
+.region-select:focus{border-color:var(--primary)}
+
+/* ── main ── */
+main{padding:36px 0 72px}
+.results-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+.results-count{font-size:13.5px;color:var(--ink2);font-weight:600}
+.results-count strong{color:var(--ink);font-weight:800}
+
+/* ── card grid ── */
+.card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 20px 16px;box-shadow:var(--shadow);cursor:pointer;transition:.18s;display:flex;flex-direction:column;position:relative;overflow:hidden}
+.card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--card-accent,var(--primary))}
+.card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);border-color:#c5e4ef}
+.card-head{display:flex;align-items:flex-start;gap:12px;margin-bottom:10px}
+.card-icon{width:44px;height:44px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:23px;flex-shrink:0;background:var(--card-accent-l,var(--primary-l))}
+.card-meta{flex:1;min-width:0}
+.card-kind{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;padding:2px 8px;border-radius:10px;margin-bottom:4px}
+.card-title{font-size:15px;font-weight:800;color:var(--ink);line-height:1.3;word-break:break-word}
+.card-sub{font-size:12px;color:var(--ink3);font-weight:600;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.card-snippet{font-size:13px;color:var(--ink2);line-height:1.6;flex:1;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.card-foot{display:flex;align-items:center;justify-content:flex-end;margin-top:10px;padding-top:8px;border-top:1px dashed var(--line)}
+.card-go{font-size:12px;font-weight:700;color:var(--primary)}
+
+/* kind color map */
+.k-city .card-kind{background:#e2f1f5;color:#085670}
+.k-city{--card-accent:var(--primary);--card-accent-l:var(--primary-l)}
+.k-case .card-kind{background:#e3f3f3;color:#0a5f5f}
+.k-case{--card-accent:var(--teal);--card-accent-l:#e3f3f3}
+.k-policy .card-kind{background:#e7f1fa;color:var(--un-d)}
+.k-policy{--card-accent:#1a7dc0;--card-accent-l:#e7f1fa}
+.k-topic .card-kind{background:#efeafb;color:#5a3d99}
+.k-topic{--card-accent:#7b5cc4;--card-accent-l:#efeafb}
+
+/* ── evidence badge ── */
+.ev-strong{background:#e7f3ec;color:#1e6e3f;font-size:10.5px;font-weight:800;padding:2px 7px;border-radius:8px}
+.ev-moderate{background:#fbf1dd;color:#8a5e0a;font-size:10.5px;font-weight:800;padding:2px 7px;border-radius:8px}
+.ev-weak{background:#fde8e8;color:#8b1e1e;font-size:10.5px;font-weight:800;padding:2px 7px;border-radius:8px}
+.ev-unverified{background:#f0f0f0;color:#666;font-size:10.5px;font-weight:800;padding:2px 7px;border-radius:8px}
+
+/* ── empty / loading / error ── */
+.state-box{text-align:center;padding:72px 24px;color:var(--ink3)}
+.state-box .si{font-size:52px;margin-bottom:16px}
+.state-box h3{font-size:19px;font-weight:800;color:var(--ink2);margin:0 0 8px}
+.state-box p{font-size:14px;margin:0}
+.spinner{display:inline-block;width:40px;height:40px;border:4px solid var(--line);border-top-color:var(--primary);border-radius:50%;animation:spin .7s linear infinite;margin-bottom:16px}
+@keyframes spin{
+  to{transform:rotate(360deg)}
+}
+
+/* ── detail view ── */
+.detail-view{display:none}
+.detail-view.active{display:block}
+.list-view{display:block}
+.list-view.hidden{display:none}
+
+.detail-header{background:#fff;border:1px solid var(--line);border-radius:18px;padding:28px 32px 24px;margin-bottom:24px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.detail-header::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--dh-accent,var(--primary))}
+.back-btn{display:inline-flex;align-items:center;gap:5px;font-size:13px;font-weight:700;color:var(--primary);cursor:pointer;padding:6px 12px;border-radius:8px;border:1.5px solid var(--primary-l);background:var(--primary-ll);margin-bottom:16px;transition:.15s}
+.back-btn:hover{background:var(--primary-l)}
+.detail-kind-row{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.detail-title{font-size:26px;font-weight:800;color:var(--ink);margin:0 0 6px;line-height:1.2}
+.detail-sub{font-size:15px;color:var(--ink2);font-weight:600}
+
+.detail-body{background:#fff;border:1px solid var(--line);border-radius:18px;padding:28px 32px;box-shadow:var(--shadow)}
+.field-section{margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid var(--line)}
+.field-section:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
+.field-label{font-size:11.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:6px}
+.field-value{font-size:14.5px;color:var(--ink);line-height:1.7}
+.field-list{margin:0;padding:0 0 0 18px;list-style:disc}
+.field-list li{font-size:14px;color:var(--ink);line-height:1.7;margin-bottom:2px}
+
+/* cross-ref chips */
+.xref-chip{display:inline-flex;align-items:center;gap:4px;font-size:12.5px;font-weight:700;padding:3px 10px;border-radius:12px;border:1.5px solid var(--line);background:#fff;cursor:pointer;transition:.15s;margin:2px;color:var(--primary)}
+.xref-chip:hover{border-color:var(--primary);background:var(--primary-ll)}
+.xref-chip.ext{color:var(--teal);border-color:var(--teal)}
+.xref-chip.ext:hover{background:#e3f3f3}
+.xref-list{display:flex;flex-wrap:wrap;gap:4px;margin:0}
+
+/* footer */
+footer{border-top:1px solid var(--line);background:#fff;padding:22px 0;color:var(--ink3);font-size:12.5px;text-align:center}
+
+/* responsive */
+@media(max-width:900px){
+  .card-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:600px){
+  .card-grid{grid-template-columns:1fr}
+  .hero h1{font-size:27px}
+  .hero-in{padding:40px 0 34px}
+  .detail-title{font-size:21px}
+  .detail-header,.detail-body{padding:18px 16px}
+  .topbar-in{gap:8px}
+  .brand-en{display:none}
+  .user-chip .uname{max-width:70px}
+}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar"><div class="wrap topbar-in">
+  <div class="brand">
+    <span class="dot">🌐</span>
+    <div class="brand-text">
+      <div class="brand-kr">세계도시 연구 데이터베이스 · World Cities Research Database</div>
+      <div class="brand-en">글로벌 도시연구 플랫폼 · growingcitiesplanning.org</div>
+    </div>
+  </div>
+  <div class="topbar-nav">
+    <a href="/" class="home-link">← 플랫폼 홈</a>
+    <div class="user-chip" id="userChip" style="display:none">
+      <div class="avatar" id="userAvatar"></div>
+      <span class="uname" id="userName"></span>
+      <button class="logout-btn" id="logoutBtn">로그아웃</button>
+    </div>
+  </div>
+</div></div>
+
+<!-- HERO -->
+<header class="hero"><div class="wrap hero-in">
+  <div class="kick">World Cities Research Database · 세계도시 연구 데이터베이스</div>
+  <h1>World Cities Research Database</h1>
+  <div class="ko">세계도시 연구 데이터베이스</div>
+  <p>스마트시티·고령도시·보행도시·도시 공공공간·스마트 모빌리티·도시로봇의 세계 도시 정책과 사례를 체계적으로 정리한 연구 지식베이스입니다. 도시 맥락을 기반으로 한국 서울의 도시로봇 연구와 정책 대응을 지원합니다.</p>
+  <div class="hero-stats" id="heroStats"></div>
+</div></header>
+
+<!-- SEARCH & FILTERS -->
+<div class="search-section"><div class="wrap">
+  <div class="search-row">
+    <div class="search-box">
+      <span class="ico">🔍</span>
+      <input type="text" id="searchInput" placeholder="도시명, 정책명, 키워드 검색... / Search cities, policies, keywords...">
+    </div>
+    <select class="region-select" id="regionFilter">
+      <option value="">모든 지역 (All Regions)</option>
+      <option value="asia">아시아 Asia</option>
+      <option value="europe">유럽 Europe</option>
+      <option value="north_america">북미 North America</option>
+      <option value="latin_america">라틴아메리카 Latin America</option>
+      <option value="africa">아프리카 Africa</option>
+      <option value="middle_east">중동 Middle East</option>
+      <option value="oceania">오세아니아 Oceania</option>
+    </select>
+  </div>
+  <div class="filter-row">
+    <span class="filter-label">유형:</span>
+    <button class="chip active" data-kind="all" id="chip-all">전체 All <span class="cnt" id="cnt-all"></span></button>
+    <button class="chip" data-kind="city" id="chip-city">🏙 도시 Cities <span class="cnt" id="cnt-city"></span></button>
+    <button class="chip" data-kind="case" id="chip-case">📋 사례 Cases <span class="cnt" id="cnt-case"></span></button>
+    <button class="chip" data-kind="policy" id="chip-policy">📜 정책 Policies <span class="cnt" id="cnt-policy"></span></button>
+    <button class="chip" data-kind="topic" id="chip-topic">💡 토픽 Topics <span class="cnt" id="cnt-topic"></span></button>
+  </div>
+</div></div>
+
+<!-- MAIN -->
+<main><div class="wrap">
+
+  <!-- LIST VIEW -->
+  <div class="list-view" id="listView">
+    <div class="results-header">
+      <div class="results-count" id="resultsCount"></div>
+    </div>
+    <div id="cardGrid" class="card-grid"></div>
+    <div id="stateBox"></div>
+  </div>
+
+  <!-- DETAIL VIEW -->
+  <div class="detail-view" id="detailView">
+    <button class="back-btn" id="backBtn">← 목록으로</button>
+    <div class="detail-header" id="detailHeader"></div>
+    <div class="detail-body" id="detailBody"></div>
+  </div>
+
+</div></main>
+
+<footer><div class="wrap">세계도시 연구 데이터베이스 · 글로벌 도시연구 플랫폼 &nbsp;|&nbsp; growingcitiesplanning.org &nbsp;|&nbsp; © 최준영 (Dr. Junyoung Choi)</div></footer>
+
+<script>
+'use strict';
+
+/* ── tiny helpers ── */
+const $=s=>document.querySelector(s);
+const esc=s=>(s||'').toString().replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
+function api(url,opts){
+  const hdr={'Content-Type':'application/json'};
+  return fetch(url,Object.assign({credentials:'same-origin',headers:hdr},opts))
+    .then(async r=>{const j=await r.json().catch(()=>({}));if(!r.ok)throw new Error(j.error||'오류');return j;});
+}
+
+/* ── state ── */
+let ME=null, ALL=[], COUNTS={}, INDEX={};
+let kindFilter='all', regionFilter='', searchQ='', DETAIL_REC=null;
+
+/* ── kind meta ── */
+const KIND_META={
+  city:{icon:'🏙',label:'도시',labelEn:'City',accent:'#0a6e8c',accentL:'#e2f1f5',cls:'k-city'},
+  case:{icon:'📋',label:'사례',labelEn:'Case',accent:'#138f8f',accentL:'#e3f3f3',cls:'k-case'},
+  policy:{icon:'📜',label:'정책',labelEn:'Policy',accent:'#1a7dc0',accentL:'#e7f1fa',cls:'k-policy'},
+  topic:{icon:'💡',label:'토픽',labelEn:'Topic',accent:'#7b5cc4',accentL:'#efeafb',cls:'k-topic'},
+};
+
+/* ── Korean label map ── */
+const FIELD_LABELS={
+  name:'도시명',country:'국가',region:'지역',population:'인구',
+  summary:'요약',definition:'정의',
+  smartCityRelevance:'스마트도시 연관성',agingCityRelevance:'고령도시 연관성',
+  walkabilityRelevance:'보행도시 연관성',publicSpaceRelevance:'공공공간 연관성',
+  careInfrastructureRelevance:'돌봄 인프라 연관성',urbanRobotRelevance:'도시로봇 연관성',
+  keyUrbanChallenges:'주요 도시 과제',keyPolicies:'핵심 정책',
+  relatedTopics:'관련 토픽',relatedRobotCases:'관련 로봇 사례',sources:'출처',
+  policyDomain:'정책 도메인',period:'시행 기간',leadOrganization:'주관 기관',
+  objectives:'목표',policyInstruments:'정책 수단',implementationStatus:'시행 상태',
+  relevanceToUrbanRobotics:'도시로봇 연관성',relevanceToSeoul:'서울 연관성',
+  cityId:'도시',caseType:'사례 유형',urbanProblem:'도시 문제',
+  intervention:'개입/솔루션',actors:'관련 주체',technologies:'기술',outcomes:'결과',
+  evidenceLevel:'근거 수준',relevanceToDeliveryRobots:'배송로봇 연관성',
+  relevanceToCareRobots:'돌봄로봇 연관성',relevanceToHRI:'HRI 연관성',
+  topicCategory:'토픽 카테고리',keyIssues:'핵심 이슈',relatedCities:'관련 도시',
+  relatedCases:'관련 사례',relatedRobotTopics:'관련 로봇 토픽',
+  researchQuestions:'연구 질문',policyImplications:'정책 함의',
+};
+
+const REGION_LABELS={
+  asia:'아시아',europe:'유럽',north_america:'북미',latin_america:'라틴아메리카',
+  africa:'아프리카',middle_east:'중동',oceania:'오세아니아',
+};
+const STATUS_LABELS={planned:'계획',ongoing:'진행 중',completed:'완료',unknown:'미상'};
+const DOMAIN_LABELS={
+  smart_city:'스마트시티',digital_governance:'디지털 거버넌스',mobility:'모빌리티',
+  aging:'고령화',public_space:'공공공간',care:'돌봄',robotics:'로봇',
+  data_platform:'데이터 플랫폼',climate_resilience:'기후 회복력',
+};
+const CASE_TYPE_LABELS={
+  smart_city:'스마트시티',aging_city:'고령도시',walkable_city:'보행도시',
+  public_space:'공공공간',smart_mobility:'스마트 모빌리티',
+  urban_data_platform:'도시 데이터 플랫폼',living_lab:'리빙랩',robot_testbed:'로봇 테스트베드',
+};
+const TOPIC_CAT_LABELS={
+  governance:'거버넌스',data:'데이터',mobility:'모빌리티',care:'돌봄',
+  aging:'고령화',public_space:'공공공간',robotics:'로봇',sustainability:'지속가능성',inclusion:'포용',
+};
+
+/* ── boot ── */
+async function boot(){
+  try{
+    const r=await api('/api/me');
+    if(!r.user){location.replace('/?sys=worldcities');return;}
+    ME=r.user;
+    renderUserChip();
+    await loadData();
+    checkDeepLink();
+  }catch(e){showError('로드 오류: '+e.message);}
+}
+
+function renderUserChip(){
+  const chip=$('#userChip');
+  chip.style.display='flex';
+  $('#userName').textContent=ME.name||ME.email;
+  $('#userAvatar').textContent=((ME.name||ME.email)[0]||'U').toUpperCase();
+  $('#logoutBtn').onclick=async()=>{
+    try{await api('/api/logout',{method:'POST'});}catch(e){}
+    location.href='/';
+  };
+}
+
+/* ── data load ── */
+async function loadData(){
+  showLoading();
+  try{
+    const url='/api/db/worldcities'+(searchQ?'?q='+encodeURIComponent(searchQ):'');
+    const d=await api(url);
+    ALL=d.records||[];
+    COUNTS=d.counts||{};
+    // build index from response if provided (full-list call may include it)
+    if(d.index)Object.assign(INDEX,d.index);
+    updateCountBadges();
+    renderHeroStats(d);
+    renderList();
+  }catch(e){showError('데이터 로드 실패: '+e.message);}
+}
+
+function updateCountBadges(){
+  const total=ALL.length;
+  $('#cnt-all').textContent=total;
+  ['city','case','policy','topic'].forEach(k=>{
+    const cnt=COUNTS[k]||ALL.filter(r=>r.kind===k).length;
+    $('#cnt-'+k).textContent=cnt;
+  });
+}
+
+function renderHeroStats(d){
+  const counts=d.counts||{};
+  const total=ALL.length;
+  const stats=[
+    {num:counts.city||0,lbl:'도시 Cities'},
+    {num:counts.case||0,lbl:'사례 Cases'},
+    {num:counts.policy||0,lbl:'정책 Policies'},
+    {num:counts.topic||0,lbl:'토픽 Topics'},
+  ];
+  $('#heroStats').innerHTML=stats.map(s=>
+    `<div class="hero-stat"><span class="num">${s.num}</span><span class="lbl">${s.lbl}</span></div>`
+  ).join('');
+}
+
+/* ── filtering ── */
+function filtered(){
+  let recs=ALL;
+  if(kindFilter!=='all') recs=recs.filter(r=>r.kind===kindFilter);
+  if(regionFilter) recs=recs.filter(r=>r.region===regionFilter||r.region===regionFilter);
+  if(searchQ){
+    const q=searchQ.toLowerCase();
+    recs=recs.filter(r=>{
+      const haystack=[r.title,r.name,r.summary,r.definition,r.country,r.region,r.policyDomain,r.caseType,r.topicCategory]
+        .filter(Boolean).join(' ').toLowerCase();
+      return haystack.includes(q);
+    });
+  }
+  return recs;
+}
+
+/* ── list render ── */
+function renderList(){
+  const recs=filtered();
+  const grid=$('#cardGrid');
+  const state=$('#stateBox');
+  const countEl=$('#resultsCount');
+  if(recs.length===0){
+    grid.innerHTML='';
+    state.innerHTML=`<div class="state-box"><div class="si">🔍</div><h3>검색 결과가 없습니다</h3><p>다른 키워드나 필터를 시도해 보세요.</p></div>`;
+    countEl.innerHTML='';
+    return;
+  }
+  state.innerHTML='';
+  countEl.innerHTML=`<strong>${recs.length}</strong>개의 레코드`;
+  grid.innerHTML=recs.map(r=>cardHTML(r)).join('');
+  grid.querySelectorAll('.card').forEach(el=>{
+    el.onclick=()=>openDetail(el.dataset.slug);
+  });
+}
+
+function showLoading(){
+  $('#cardGrid').innerHTML='';
+  $('#stateBox').innerHTML=`<div class="state-box"><div class="spinner"></div><h3>불러오는 중...</h3></div>`;
+  $('#resultsCount').innerHTML='';
+}
+
+function showError(msg){
+  $('#cardGrid').innerHTML='';
+  $('#stateBox').innerHTML=`<div class="state-box"><div class="si">⚠️</div><h3>오류</h3><p>${esc(msg)}</p></div>`;
+}
+
+function cardHTML(r){
+  const m=KIND_META[r.kind]||KIND_META.city;
+  const sub=cardSub(r);
+  const snippet=r.summary||r.definition||'';
+  return `<div class="card ${m.cls}" data-slug="${esc(r.slug)}" style="cursor:pointer">
+    <div class="card-head">
+      <div class="card-icon">${m.icon}</div>
+      <div class="card-meta">
+        <div class="card-kind">${m.label} · ${m.labelEn}</div>
+        <div class="card-title">${esc(r.title||r.name||r.slug)}</div>
+        ${sub?`<div class="card-sub">${esc(sub)}</div>`:''}
+      </div>
+    </div>
+    ${snippet?`<div class="card-snippet">${esc(snippet)}</div>`:''}
+    <div class="card-foot"><span class="card-go">상세 보기 ›</span></div>
+  </div>`;
+}
+
+function cardSub(r){
+  if(r.kind==='city') return [r.country,r.region?REGION_LABELS[r.region]||r.region:''].filter(Boolean).join(' · ');
+  if(r.kind==='case') return [r.country,r.caseType?CASE_TYPE_LABELS[r.caseType]||r.caseType:''].filter(Boolean).join(' · ');
+  if(r.kind==='policy') return [r.policyDomain?DOMAIN_LABELS[r.policyDomain]||r.policyDomain:'',r.period].filter(Boolean).join(' · ');
+  if(r.kind==='topic') return r.topicCategory?TOPIC_CAT_LABELS[r.topicCategory]||r.topicCategory:'';
+  return '';
+}
+
+/* ── detail view ── */
+async function openDetail(slug){
+  showDetailLoading();
+  switchView('detail');
+  try{
+    const d=await api('/api/db/worldcities/'+encodeURIComponent(slug));
+    const rec=d.record;
+    if(d.index) Object.assign(INDEX,d.index);
+    DETAIL_REC=rec;
+    renderDetail(rec);
+    history.pushState({slug},'','?slug='+encodeURIComponent(slug));
+  }catch(e){
+    $('#detailHeader').innerHTML=`<p style="color:#c00">상세 정보 로드 실패: ${esc(e.message)}</p>`;
+    $('#detailBody').innerHTML='';
+  }
+}
+
+function showDetailLoading(){
+  $('#detailHeader').innerHTML=`<div class="spinner" style="margin:0 0 8px"></div><p style="color:var(--ink3)">불러오는 중...</p>`;
+  $('#detailBody').innerHTML='';
+}
+
+function renderDetail(rec){
+  const m=KIND_META[rec.kind]||KIND_META.city;
+  const titleStr=rec.title||rec.name||rec.slug;
+  const sub=detailSub(rec);
+  const accentVar=`background:${m.accent}`;
+
+  $('#detailHeader').style.setProperty('--dh-accent',m.accent);
+  $('#detailHeader').innerHTML=`
+    <div class="detail-kind-row">
+      <span style="font-size:22px">${m.icon}</span>
+      <span class="card-kind ${m.cls}" style="display:inline-block">${m.label} · ${m.labelEn}</span>
+      ${rec.evidenceLevel?evBadge(rec.evidenceLevel):''}
+    </div>
+    <div class="detail-title">${esc(titleStr)}</div>
+    ${sub?`<div class="detail-sub">${esc(sub)}</div>`:''}
+  `;
+
+  // skip fields that are structural/meta or already shown in header
+  const SKIP=new Set(['id','slug','title','name','kind','createdAt','updatedAt']);
+  // field ordering — known important fields first
+  const ORDER=['summary','definition','country','region','population','policyDomain','period','leadOrganization',
+    'implementationStatus','caseType','cityId','urbanProblem','intervention','outcomes','topicCategory',
+    'smartCityRelevance','agingCityRelevance','walkabilityRelevance','publicSpaceRelevance',
+    'careInfrastructureRelevance','urbanRobotRelevance','relevanceToUrbanRobotics','relevanceToSeoul',
+    'relevanceToDeliveryRobots','relevanceToCareRobots','relevanceToHRI',
+    'keyUrbanChallenges','keyPolicies','objectives','policyInstruments',
+    'actors','technologies','keyIssues','relatedCities','relatedCases',
+    'relatedTopics','relatedRobotCases','relatedRobotTopics',
+    'researchQuestions','policyImplications','sources'];
+
+  const keys=[];
+  ORDER.forEach(k=>{if(k in rec && !SKIP.has(k)) keys.push(k);});
+  // add any remaining fields not in ORDER and not skipped
+  Object.keys(rec).forEach(k=>{if(!SKIP.has(k)&&!keys.includes(k)) keys.push(k);});
+
+  let html='';
+  keys.forEach(k=>{
+    const val=rec[k];
+    if(val===null||val===undefined||val==='') return;
+    const label=FIELD_LABELS[k]||k;
+    if(Array.isArray(val)){
+      if(val.length===0) return;
+      html+=`<div class="field-section">
+        <div class="field-label">${esc(label)}</div>
+        <div class="xref-list">${val.map(item=>renderItem(item)).join('')}</div>
+      </div>`;
+    } else {
+      let displayVal=val;
+      if(k==='region') displayVal=REGION_LABELS[val]||val;
+      else if(k==='implementationStatus') displayVal=STATUS_LABELS[val]||val;
+      else if(k==='policyDomain') displayVal=DOMAIN_LABELS[val]||val;
+      else if(k==='caseType') displayVal=CASE_TYPE_LABELS[val]||val;
+      else if(k==='topicCategory') displayVal=TOPIC_CAT_LABELS[val]||val;
+      html+=`<div class="field-section">
+        <div class="field-label">${esc(label)}</div>
+        <div class="field-value">${renderItem(String(displayVal))}</div>
+      </div>`;
+    }
+  });
+  $('#detailBody').innerHTML=html||'<p style="color:var(--ink3)">상세 정보가 없습니다.</p>';
+
+  // bind xref chip clicks
+  $('#detailBody').querySelectorAll('[data-xref]').forEach(el=>{
+    el.onclick=()=>{
+      const slug=el.dataset.xref;
+      const sys=el.dataset.sys;
+      if(sys==='urbanrobotics'){
+        location.href='/urbanrobotics?slug='+encodeURIComponent(slug);
+      } else {
+        openDetail(slug);
+      }
+    };
+  });
+}
+
+function renderItem(item){
+  // check if item is a slug in INDEX
+  const idx=INDEX[item];
+  if(idx){
+    const sys=idx.subsystem||'worldcities';
+    const isExt=sys!=='worldcities';
+    const kindM=KIND_META[idx.kind]||{icon:'🔗'};
+    return `<span class="xref-chip${isExt?' ext':''}" data-xref="${esc(item)}" data-sys="${esc(sys)}" title="${esc(isExt?'외부 데이터베이스 · '+sys:'세계도시 DB')}">
+      ${kindM.icon} ${esc(idx.title||item)}${isExt?' ↗':''}
+    </span>`;
+  }
+  return `<span>${esc(item)}</span>`;
+}
+
+function detailSub(r){
+  if(r.kind==='city') return [r.country,r.region?REGION_LABELS[r.region]||r.region:''].filter(Boolean).join(' · ');
+  if(r.kind==='case') return [r.country,r.region?REGION_LABELS[r.region]||r.region:'',r.caseType?CASE_TYPE_LABELS[r.caseType]||r.caseType:''].filter(Boolean).join(' · ');
+  if(r.kind==='policy') return [r.policyDomain?DOMAIN_LABELS[r.policyDomain]||r.policyDomain:'',r.country,r.period].filter(Boolean).join(' · ');
+  if(r.kind==='topic') return r.topicCategory?TOPIC_CAT_LABELS[r.topicCategory]||r.topicCategory:'';
+  return '';
+}
+
+function evBadge(ev){
+  const cls={'strong':'ev-strong','moderate':'ev-moderate','weak':'ev-weak','unverified':'ev-unverified'}[ev]||'ev-unverified';
+  const lbl={'strong':'근거 강함','moderate':'보통','weak':'약함','unverified':'미검증'}[ev]||ev;
+  return `<span class="${cls}">${lbl}</span>`;
+}
+
+/* ── view switching ── */
+function switchView(v){
+  if(v==='detail'){
+    $('#listView').classList.add('hidden');
+    $('#detailView').classList.add('active');
+  } else {
+    $('#detailView').classList.remove('active');
+    $('#listView').classList.remove('hidden');
+  }
+}
+
+function goBack(){
+  DETAIL_REC=null;
+  switchView('list');
+  history.pushState({},'',location.pathname);
+}
+
+/* ── deep link ── */
+function checkDeepLink(){
+  const p=new URLSearchParams(location.search);
+  const slug=p.get('slug');
+  if(slug) openDetail(slug);
+}
+
+/* ── filter events ── */
+document.querySelectorAll('.chip[data-kind]').forEach(btn=>{
+  btn.onclick=()=>{
+    document.querySelectorAll('.chip[data-kind]').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    kindFilter=btn.dataset.kind;
+    renderList();
+  };
+});
+
+$('#regionFilter').onchange=e=>{
+  regionFilter=e.target.value;
+  renderList();
+};
+
+let searchTimer=null;
+$('#searchInput').oninput=e=>{
+  clearTimeout(searchTimer);
+  searchTimer=setTimeout(()=>{
+    searchQ=e.target.value.trim();
+    renderList();
+  },220);
+};
+
+$('#backBtn').onclick=goBack;
+
+/* ── browser back/forward ── */
+window.onpopstate=e=>{
+  if(e.state&&e.state.slug){
+    openDetail(e.state.slug);
+  } else {
+    DETAIL_REC=null;
+    switchView('list');
+    renderList();
+  }
+};
+
+/* ── start ── */
+boot();
+</script>
+</body>
+</html>

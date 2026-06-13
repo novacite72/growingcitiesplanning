@@ -81,7 +81,7 @@ footer{border-top:1px solid var(--line);background:#fff;padding:26px 0;color:var
   <div class="kick">Personal Research Platform · 개인 연구 플랫폼</div>
   <h1>Global Urban Research Platform</h1>
   <div class="ko">글로벌 도시연구 플랫폼</div>
-  <p>서울연구원 <b>최준영 박사</b>가 운영하는 글로벌 도시연구를 위한 개인 연구 플랫폼입니다. 아시아·아프리카 스마트도시 연구 데이터베이스, 세계 대도시 협력, 영문 단행본 감수 시스템을 하나의 창구에서 제공합니다.</p>
+  <p>서울연구원 <b>최준영 박사</b>가 운영하는 글로벌 도시연구를 위한 개인 연구 플랫폼입니다. 세계도시 연구 데이터베이스, 도시로봇·HRI 연구 데이터베이스, 세계 대도시 협력, 영문 단행본 감수 시스템을 하나의 창구에서 제공합니다.</p>
 </div></header>
 
 <main><div class="wrap">
@@ -97,12 +97,12 @@ footer{border-top:1px solid var(--line);background:#fff;padding:26px 0;color:var
 <script>
 const $=s=>document.querySelector(s);
 const META={
-  asia:{ic:'🌏',accent:'#0a7d8c',accentL:'#e2f3f5',desc:'아시아 도시의 스마트도시 정책·지표·우수사례를 수집·분석하는 연구 데이터베이스입니다.'},
-  africa:{ic:'🌍',accent:'#c77a16',accentL:'#fbf0db',desc:'아프리카 도시의 스마트도시 정책·데이터·사례를 담은 연구 데이터베이스입니다.'},
+  worldcities:{ic:'🌐',accent:'#0a6e8c',accentL:'#e2f1f5',desc:'세계 도시·스마트도시·고령도시·보행도시·도시 공공공간·스마트 모빌리티의 정책·사례·지표를 담은 연구 지식베이스입니다. 도시로봇 연구의 도시 맥락을 제공합니다.'},
+  urbanrobotics:{ic:'🤖',accent:'#6d4bb6',accentL:'#efeafb',desc:'자율주행 배송로봇·돌봄로봇·인간-로봇 상호작용(HRI)의 사례·구성개념·연구방법·관찰/실험 프로토콜과 연구도구를 담은 데이터베이스입니다.'},
   wpsc:{ic:'🤝',accent:'#138f8f',accentL:'#e3f3f3',desc:'세계 대도시 간 정책 교류·협력과 국제행사(WPSC 등) 출장·일정을 관리합니다.'},
   book:{ic:'📘',accent:'#0a4f7a',accentL:'#e7f1fa',desc:'영문 단행본 「성장하는 도시를 위한 도시계획」의 본문 열람·메모·감수·편집 시스템입니다.'},
 };
-const ORDER=['asia','africa','wpsc','book'];
+const ORDER=['worldcities','urbanrobotics','wpsc','book'];
 let SYS={};
 function badge(st){return st==='open'?'<span class="badge b-open">열람 가능</span>':st==='soon'?'<span class="badge b-soon">추후 공개</span>':'<span class="badge b-link">바로가기</span>';}
 async function init(){
