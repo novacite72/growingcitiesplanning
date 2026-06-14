@@ -3,16 +3,19 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <title>플랫폼 아키텍처 · Platform Architecture · 글로벌 도시연구 플랫폼</title>
 <style>
 :root{
-  --ink:#13243b;--ink2:#43586e;--ink3:#7a8aa0;--line:#e2e8f0;--bg:#f4f7fb;
+  --ink:#13243b;--ink2:#43586e;--ink3:#7a8aa0;--line:#e2e8f0;--bg:#f5f3ee;
   --un:#009edb;--un-d:#0a4f7a;--navy:#0a3d62;--teal:#138f8f;--green:#3a8a3a;--amber:#d99b2b;--purple:#6d4bb6;
   --shadow:0 1px 2px rgba(15,40,70,.05),0 10px 30px rgba(15,40,70,.07);
   --shadow-lg:0 18px 50px rgba(15,40,70,.16);
 }
 *{box-sizing:border-box}html,body{margin:0;padding:0}
-body{font-family:"Pretendard","Apple SD Gothic Neo","Malgun Gothic",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
+body{font-family:"Montserrat","Pretendard","Apple SD Gothic Neo","Malgun Gothic",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:16px;color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
 .wrap{max-width:1140px;margin:0 auto;padding:0 24px}
 a{color:inherit;text-decoration:none}
 .topbar{background:#fff;border-bottom:1px solid var(--line)}
@@ -89,14 +92,14 @@ footer{border-top:1px solid var(--line);background:#fff;padding:26px 0;color:var
 </head>
 <body>
 <div class="topbar"><div class="wrap topbar-in">
-  <a href="/" class="brand"><span class="dot">◴</span><span>글로벌 도시연구 플랫폼<small>서울연구원 최준영 박사 개인 연구 플랫폼 · Dr. Junyoung Choi</small></span></a>
+  <a href="/" class="brand"><span class="dot">◴</span><span>Global Urban Research<small>글로벌 도시연구 플랫폼</small></span></a>
   <a href="/" class="home-link">← 플랫폼 홈</a>
 </div></div>
 
 <header class="hero"><div class="wrap hero-in">
   <div class="kick">Platform Architecture · 플랫폼 아키텍처</div>
-  <h1>growingcitiesplanning.org 구조도</h1>
-  <div class="ko">4개 서브시스템과 운영 아키텍처</div>
+  <h1>Platform Architecture</h1>
+  <div class="ko">growingcitiesplanning.org · 4개 서브시스템과 운영 아키텍처</div>
   <p>이 플랫폼은 하나의 도메인 아래 4개의 연구 서브시스템을 제공하며, 클라우드(Render+Neon)에서 24시간 운영되고
   로컬 우선(local-first) 지식기반 파이프라인으로 연구 데이터를 발행합니다. 이 페이지는 <b>계정 없이</b> 누구나 볼 수 있습니다.</p>
   <span class="pub">🔓 공개 페이지 · 로그인 불필요</span>
@@ -117,7 +120,7 @@ footer{border-top:1px solid var(--line);background:#fff;padding:26px 0;color:var
       <div class="arrow"></div>
 
       <div class="subsys-row">
-        <div class="sbox openp" style="--ac:#0a6e8c"><div class="ic">🌐</div><b>세계도시 연구 DB</b><small>도시·사례·정책·토픽</small></div>
+        <div class="sbox openp" style="--ac:#0a6e8c"><div class="ic">🌐</div><b>글로벌 도시 연구</b><small>도시·사례·정책·토픽</small></div>
         <div class="sbox openp" style="--ac:#6d4bb6"><div class="ic">🤖</div><b>도시로봇·HRI 연구 DB</b><small>로봇·HRI·연구설계·생성기</small></div>
         <div class="sbox locked" style="--ac:#138f8f"><div class="ic">🤝</div><b>세계대도시협력</b><small>WPSC 출장·일정</small></div>
         <div class="sbox locked" style="--ac:#0a4f7a"><div class="ic">📘</div><b>영문단행본</b><small>본문·메모·감수·편집</small></div>
@@ -150,7 +153,7 @@ footer{border-top:1px solid var(--line);background:#fff;padding:26px 0;color:var
   <p class="sec-sub">하나의 포털에서 진입하며, 시스템별로 접근 권한이 관리됩니다.</p>
   <div class="grid">
     <div class="card" style="--ac:#0a6e8c">
-      <div class="ch"><span class="ic">🌐</span><div><h3>세계도시 연구 데이터베이스</h3><div class="en">World Cities Research Database</div></div></div>
+      <div class="ch"><span class="ic">🌐</span><div><h3>Global Urban Research</h3><div class="en">글로벌 도시 연구</div></div></div>
       <p>세계 도시·스마트도시·고령도시·보행도시·공공공간·스마트 모빌리티의 정책·사례·지표를 정리한 연구 지식베이스. 도시로봇 연구의 도시 맥락을 제공합니다. <b>도시·사례·정책·토픽</b>을 검색·필터·교차참조로 탐색.</p>
       <span class="badge b-open">열람 가능</span>
     </div>

@@ -1,135 +1,220 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>글로벌 도시연구 플랫폼 · Global Urban Research Platform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<title>Global Urban Research Platform · 글로벌 도시연구 플랫폼</title>
 <style>
 :root{
-  --ink:#13243b;--ink2:#43586e;--ink3:#7a8aa0;--line:#e2e8f0;--bg:#f4f7fb;
-  --un:#009edb;--un-d:#0a4f7a;--navy:#0a3d62;--teal:#138f8f;--green:#3a8a3a;--amber:#d99b2b;
-  --shadow:0 1px 2px rgba(15,40,70,.05),0 10px 30px rgba(15,40,70,.07);
-  --shadow-lg:0 18px 50px rgba(15,40,70,.16);
+  --ink:#14304a;--ink2:#42566b;--ink3:#7d8a9b;--line:#e7e2d6;--bg:#f5f3ee;
+  --un:#168f8f;--un-d:#0d6a6a;--navy:#14304a;--teal:#168f8f;--green:#5aa469;--amber:#f3b13b;
+  --orange:#e8743b;--red:#e0503a;--cream:#fbf8f1;--purple:#6d4bb6;
+  --shadow:0 1px 2px rgba(40,40,30,.05),0 10px 30px rgba(40,40,30,.07);
+  --shadow-lg:0 18px 50px rgba(40,40,30,.16);
 }
 *{box-sizing:border-box}html,body{margin:0;padding:0}
-body{font-family:"Pretendard","Apple SD Gothic Neo","Malgun Gothic",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
-.wrap{max-width:1140px;margin:0 auto;padding:0 24px}
+body{font-family:"Montserrat","Pretendard","Apple SD Gothic Neo","Malgun Gothic",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;font-size:16px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
 a{color:inherit;text-decoration:none}
 /* top bar */
-.topbar{background:#fff;border-bottom:1px solid var(--line)}
-.topbar-in{display:flex;align-items:center;justify-content:space-between;height:58px}
-.brand{display:flex;align-items:center;gap:11px;font-weight:800;font-size:15px;color:var(--navy)}
-.brand .dot{width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,var(--un),var(--teal));display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px}
-.brand small{display:block;font-size:10.5px;color:var(--ink3);font-weight:600;letter-spacing:.02em}
-.topbar .lang{font-size:12px;color:var(--ink3);font-weight:600}
-.archlink{font-size:12.5px;color:var(--un-d);font-weight:800;background:#e7f1fa;border:1px solid #cfe0ee;padding:7px 13px;border-radius:20px;transition:.15s}
-.archlink:hover{background:#d7e8f6}
+.topbar{background:var(--cream);border-bottom:1px solid var(--line)}
+.topbar-in{display:flex;align-items:center;justify-content:space-between;height:62px}
+.brand{display:flex;align-items:center;gap:12px;font-weight:800;font-size:16px;color:var(--navy);letter-spacing:-.01em}
+.brand .dot{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,var(--teal),var(--amber));display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px}
+.brand b{display:block;line-height:1.15}
+.brand small{display:block;font-size:11px;color:var(--ink3);font-weight:600;letter-spacing:.01em}
+.archlink{font-size:13px;color:var(--un-d);font-weight:800;background:#e6f3f1;border:1px solid #c9e6e2;padding:8px 14px;border-radius:20px;transition:.15s}
+.archlink:hover{background:#d6ece8}
 .topright{display:flex;align-items:center;gap:10px}
-.uchip{font-size:12.5px;color:var(--ink2);font-weight:700;background:#f1f6fb;border:1px solid var(--line);padding:6px 12px;border-radius:20px}
+.uchip{font-size:13px;color:var(--ink2);font-weight:700;background:#fff;border:1px solid var(--line);padding:7px 13px;border-radius:20px}
 .uchip i{font-style:normal;color:var(--purple);font-weight:800}
-.ulogout{font-size:12px;color:var(--ink3);font-weight:700;background:none;border:1px solid var(--line);padding:6px 11px;border-radius:20px;cursor:pointer}
-.ulogout:hover{background:#f4f7fb;color:var(--ink2)}
-.archbanner{display:flex;align-items:center;gap:14px;background:linear-gradient(120deg,#eef6fb,#f3eefc);border:1px solid #d8e6f2;border-radius:14px;padding:14px 18px;margin:0 0 26px;box-shadow:var(--shadow);transition:.16s}
-.archbanner:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg);border-color:#c3d8ea}
-.archbanner .ab-ic{font-size:26px}
-.archbanner .ab-t{flex:1;display:flex;flex-direction:column}
-.archbanner .ab-t b{font-size:15px;color:var(--navy)}
-.archbanner .ab-t small{font-size:12px;color:var(--ink3)}
-.archbanner .ab-go{font-size:13px;font-weight:800;color:var(--un-d)}
-/* hero */
-.hero{background:linear-gradient(135deg,#072f4d 0%,#0a4f7a 55%,#0d6aa0 100%);color:#fff;position:relative;overflow:hidden}
-.hero::after{content:"";position:absolute;right:-120px;top:-100px;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle at center,rgba(0,158,219,.35),transparent 68%)}
-.hero-in{padding:64px 0 56px;position:relative;z-index:1;max-width:760px}
-.hero .kick{font-size:13px;letter-spacing:.16em;font-weight:700;color:#7fd4f5;text-transform:uppercase}
-.hero h1{font-size:40px;font-weight:800;letter-spacing:-.01em;margin:.32em 0 .1em;line-height:1.15}
-.hero .ko{font-size:19px;font-weight:500;opacity:.92}
-.hero p{font-size:15px;opacity:.84;margin:18px 0 0;max-width:620px;line-height:1.7}
+.ulogout{font-size:12.5px;color:var(--ink3);font-weight:700;background:none;border:1px solid var(--line);padding:7px 12px;border-radius:20px;cursor:pointer}
+.ulogout:hover{background:#fff;color:var(--ink2)}
+/* hero — warm flat tone */
+.hero{background:linear-gradient(180deg,#fcf9f2 0%,#f5f3ee 100%);border-bottom:1px solid var(--line);position:relative;overflow:hidden}
+.hero-in{display:flex;align-items:center;gap:34px;padding:54px 0 40px;position:relative;z-index:1}
+.hero-text{flex:1;min-width:0;max-width:600px}
+.hero .kick{font-size:13px;letter-spacing:.18em;font-weight:800;color:var(--teal);text-transform:uppercase}
+.hero h1{font-size:44px;font-weight:800;letter-spacing:-.02em;margin:.28em 0 .12em;line-height:1.1;color:var(--navy)}
+.hero .ko{font-size:20px;font-weight:600;color:var(--ink2)}
+.hero p{font-size:16px;color:var(--ink2);margin:18px 0 0;max-width:560px;line-height:1.7}
+.hero p .kr{display:block;font-size:14px;color:var(--ink3);margin-top:7px}
+.hero-art{flex:0 0 420px;max-width:46%}
+.hero-art svg{width:100%;height:auto;display:block;filter:drop-shadow(0 12px 26px rgba(40,40,30,.12))}
 /* subsystem grid */
-main{padding:46px 0 70px}
-.sec-h{display:flex;align-items:baseline;gap:12px;margin:0 0 6px}
-.sec-h h2{font-size:21px;font-weight:800;color:var(--navy);margin:0}
-.sec-h .en{font-size:13px;color:var(--ink3);font-style:italic;font-weight:600}
-.sec-sub{color:var(--ink2);font-size:14px;margin:0 0 26px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+main{padding:48px 0 30px}
+.sec-h{display:flex;align-items:baseline;gap:12px;margin:0 0 4px}
+.sec-h h2{font-size:26px;font-weight:800;color:var(--navy);margin:0;letter-spacing:-.01em}
+.sec-h .kr{font-size:15px;color:var(--ink3);font-weight:700}
+.sec-sub{color:var(--ink2);font-size:15px;margin:0 0 28px}
+.sec-sub .kr{display:block;font-size:13.5px;color:var(--ink3);margin-top:3px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
 .sys{background:#fff;border:1px solid var(--line);border-radius:18px;padding:26px 26px 22px;box-shadow:var(--shadow);cursor:pointer;transition:.18s;position:relative;overflow:hidden;display:flex;flex-direction:column}
-.sys::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--accent,#009edb)}
-.sys:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:#cfe0ee}
-.sys .ic{width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:30px;background:var(--accent-l,#e7f5fc);margin-bottom:16px}
-.sys h3{font-size:19px;font-weight:800;margin:0 0 2px;color:var(--ink)}
-.sys .en{font-size:12.5px;color:var(--ink3);font-style:italic;font-weight:600;margin-bottom:11px}
-.sys .desc{font-size:13.5px;color:var(--ink2);line-height:1.65;flex:1}
+.sys::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--accent,#168f8f)}
+.sys:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:#d7d0c0}
+.sys .ic{width:58px;height:58px;border-radius:15px;display:flex;align-items:center;justify-content:center;font-size:31px;background:var(--accent-l,#e6f3f1);margin-bottom:16px}
+.sys h3{font-size:20px;font-weight:800;margin:0 0 2px;color:var(--ink);letter-spacing:-.01em}
+.sys .kr{font-size:13px;color:var(--ink3);font-weight:700;margin-bottom:11px}
+.sys .desc{font-size:14px;color:var(--ink2);line-height:1.65;flex:1}
 .sys .foot{display:flex;align-items:center;justify-content:space-between;margin-top:16px;padding-top:13px;border-top:1px dashed var(--line)}
-.badge{font-size:11.5px;font-weight:800;padding:3px 10px;border-radius:20px}
-.b-open{background:#e7f3ec;color:var(--green)} .b-soon{background:#fbf1dd;color:var(--amber)} .b-link{background:#e6f5f5;color:var(--teal)}
-.sys .go{font-size:13px;font-weight:700;color:var(--un-d)}
-footer{border-top:1px solid var(--line);background:#fff;padding:26px 0;color:var(--ink3);font-size:12.5px;text-align:center}
+.badge{font-size:11.5px;font-weight:800;padding:3px 11px;border-radius:20px}
+.b-open{background:#e7f3ec;color:#3a8a4a} .b-soon{background:#fbf1dd;color:#b5841f} .b-link{background:#e6f3f1;color:var(--teal)}
+.sys .go{font-size:13.5px;font-weight:700;color:var(--un-d)}
+/* architecture banner — below subsystems */
+.archbanner{display:flex;align-items:center;gap:14px;background:linear-gradient(120deg,#f3efe4,#eef6f4);border:1px solid #ded6c6;border-radius:14px;padding:16px 20px;margin:30px 0 0;box-shadow:var(--shadow);transition:.16s}
+.archbanner:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg);border-color:#cfe0db}
+.archbanner .ab-ic{font-size:27px}
+.archbanner .ab-t{flex:1;display:flex;flex-direction:column}
+.archbanner .ab-t b{font-size:15.5px;color:var(--navy)}
+.archbanner .ab-t small{font-size:12.5px;color:var(--ink3)}
+.archbanner .ab-go{font-size:13.5px;font-weight:800;color:var(--un-d)}
+/* footer */
+footer{border-top:1px solid var(--line);background:var(--cream);padding:30px 0;margin-top:46px}
+.foot-in{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.foot-txt{color:var(--ink3);font-size:13px;font-weight:600}
+.foot-txt .kr{color:var(--ink3);opacity:.85}
+.yt{display:inline-flex;align-items:center;gap:9px;font-size:13px;font-weight:800;color:var(--ink2)}
+.yt:hover{color:var(--red)}
+.yt .ytlogo{width:34px;height:34px;border-radius:50%;background:#ff0000;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(255,0,0,.28)}
+.yt .ytlogo svg{display:block}
 /* modal */
-.mbg{position:fixed;inset:0;background:rgba(10,30,55,.55);backdrop-filter:blur(4px);z-index:100;display:none;align-items:center;justify-content:center;padding:20px}
+.mbg{position:fixed;inset:0;background:rgba(20,30,40,.5);backdrop-filter:blur(4px);z-index:100;display:none;align-items:center;justify-content:center;padding:20px}
 .mbg.open{display:flex}
-.modal{background:#fff;border-radius:20px;width:100%;max-width:420px;box-shadow:var(--shadow-lg);overflow:hidden;animation:pop .2s ease}
+.modal{background:#fff;border-radius:20px;width:100%;max-width:430px;box-shadow:var(--shadow-lg);overflow:hidden;animation:pop .2s ease}
 @keyframes pop{from{transform:translateY(12px) scale(.98);opacity:0}to{transform:none;opacity:1}}
 .mhead{padding:22px 26px 18px;color:#fff;position:relative}
-.mhead .selsys{font-size:11.5px;letter-spacing:.1em;font-weight:700;opacity:.9;text-transform:uppercase}
-.mhead h3{margin:6px 0 2px;font-size:20px;font-weight:800}
-.mhead .en{font-size:12.5px;opacity:.85;font-style:italic}
+.mhead .selsys{font-size:11.5px;letter-spacing:.1em;font-weight:700;opacity:.92;text-transform:uppercase}
+.mhead h3{margin:6px 0 2px;font-size:21px;font-weight:800}
 .mhead .x{position:absolute;top:16px;right:16px;border:0;background:rgba(255,255,255,.2);color:#fff;width:32px;height:32px;border-radius:9px;font-size:17px;cursor:pointer}
 .mbody{padding:22px 26px 26px}
-.mbody label{display:block;font-size:13px;font-weight:700;color:var(--ink2);margin:12px 0 5px}
-.mbody input{width:100%;padding:11px 13px;border:1px solid var(--line);border-radius:10px;font-size:15px;font-family:inherit}
-.mbody input:focus{outline:none;border-color:var(--un);box-shadow:0 0 0 3px #e7f5fc}
-.mbtn{width:100%;border:0;border-radius:10px;padding:12px;font-size:15px;font-weight:700;color:#fff;cursor:pointer;margin-top:20px;background:var(--un-d)}
+.mbody label{display:block;font-size:13.5px;font-weight:700;color:var(--ink2);margin:12px 0 5px}
+.mbody input{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:10px;font-size:16px;font-family:inherit}
+.mbody input:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 3px #e6f3f1}
+.mbtn{width:100%;border:0;border-radius:10px;padding:13px;font-size:16px;font-weight:700;color:#fff;cursor:pointer;margin-top:20px;background:var(--un-d)}
 .mbtn:hover{filter:brightness(1.08)}
 .merr{color:#c0392b;font-size:13px;margin-top:12px;min-height:17px}
 .soonbox{text-align:center;padding:14px 6px 4px}
-.soonbox .si{font-size:46px}.soonbox h4{margin:10px 0 6px;font-size:19px;color:var(--navy)}.soonbox p{color:var(--ink2);font-size:14px;margin:0}
-@media(max-width:760px){.grid{grid-template-columns:1fr}.hero h1{font-size:30px}.hero-in{padding:46px 0 40px}}
+.soonbox .si{font-size:46px}.soonbox h4{margin:10px 0 6px;font-size:20px;color:var(--navy)}.soonbox p{color:var(--ink2);font-size:14.5px;margin:0}
+@media(max-width:860px){.hero-in{flex-direction:column;align-items:flex-start;gap:24px}.hero-art{flex:none;max-width:100%;width:100%}}
+@media(max-width:760px){.grid{grid-template-columns:1fr}.hero h1{font-size:32px}.hero-in{padding:40px 0 32px}.brand small{display:none}}
 </style>
 </head>
 <body>
 <div class="topbar"><div class="wrap topbar-in">
-  <a href="/" class="brand"><span class="dot">◴</span><span>글로벌 도시연구 플랫폼<small>서울연구원 최준영 박사 개인 연구 플랫폼 · Dr. Junyoung Choi</small></span></a>
-  <div class="topright"><a href="/architecture" class="archlink">📐 플랫폼 아키텍처</a><span id="userbox"></span></div>
+  <a href="/" class="brand"><span class="dot">◴</span><span><b>Global Urban Research</b><small>글로벌 도시연구 플랫폼</small></span></a>
+  <div class="topright"><a href="/architecture" class="archlink">📐 Architecture</a><span id="userbox"></span></div>
 </div></div>
 
 <header class="hero"><div class="wrap hero-in">
-  <div class="kick">Personal Research Platform · 개인 연구 플랫폼</div>
-  <h1>Global Urban Research Platform</h1>
-  <div class="ko">글로벌 도시연구 플랫폼</div>
-  <p>서울연구원 <b>최준영 박사</b>가 운영하는 글로벌 도시연구를 위한 개인 연구 플랫폼입니다. 세계도시 연구 데이터베이스, 도시로봇·HRI 연구 데이터베이스, 세계 대도시 협력, 영문 단행본 감수 시스템을 하나의 창구에서 제공합니다.</p>
+  <div class="hero-text">
+    <div class="kick">Global Urban Research · 글로벌 도시연구</div>
+    <h1>Global Urban Research Platform</h1>
+    <div class="ko">글로벌 도시연구 플랫폼</div>
+    <p>A single gateway to the World Cities Research Database, the Urban Robotics &amp; HRI Research Database, World Metropolitan Cooperation, and the English monograph review system.
+      <span class="kr">글로벌 도시 연구, 도시로봇·HRI 연구 데이터베이스, 세계 대도시 협력, 영문 단행본 감수 시스템을 하나의 창구에서 제공합니다.</span></p>
+  </div>
+  <div class="hero-art">
+    <svg viewBox="0 0 460 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Flat illustration of an urban scene">
+      <!-- ground -->
+      <rect x="0" y="250" width="460" height="70" fill="#efe9db"/>
+      <rect x="0" y="250" width="460" height="6" fill="#e3dccb"/>
+      <!-- sun -->
+      <circle cx="392" cy="60" r="30" fill="#f3b13b" opacity="0.92"/>
+      <!-- skyline buildings -->
+      <rect x="26" y="120" width="52" height="130" rx="3" fill="#cdd2d6"/>
+      <g fill="#aeb4bb"><rect x="34" y="132" width="10" height="12"/><rect x="50" y="132" width="10" height="12"/><rect x="34" y="156" width="10" height="12"/><rect x="50" y="156" width="10" height="12"/><rect x="34" y="180" width="10" height="12"/><rect x="50" y="180" width="10" height="12"/></g>
+      <rect x="80" y="78" width="46" height="172" rx="3" fill="#168f8f"/>
+      <g fill="#bfe7e4"><rect x="88" y="92" width="9" height="13"/><rect x="103" y="92" width="9" height="13"/><rect x="88" y="116" width="9" height="13"/><rect x="103" y="116" width="9" height="13"/><rect x="88" y="140" width="9" height="13"/><rect x="103" y="140" width="9" height="13"/><rect x="88" y="164" width="9" height="13"/><rect x="103" y="164" width="9" height="13"/></g>
+      <rect x="130" y="150" width="40" height="100" rx="3" fill="#e8743b"/>
+      <g fill="#fbd9c4"><rect x="137" y="162" width="9" height="12"/><rect x="152" y="162" width="9" height="12"/><rect x="137" y="184" width="9" height="12"/><rect x="152" y="184" width="9" height="12"/></g>
+      <rect x="174" y="104" width="40" height="146" rx="3" fill="#e0503a"/>
+      <g fill="#f6cabf"><rect x="181" y="118" width="9" height="12"/><rect x="196" y="118" width="9" height="12"/><rect x="181" y="142" width="9" height="12"/><rect x="196" y="142" width="9" height="12"/><rect x="181" y="166" width="9" height="12"/><rect x="196" y="166" width="9" height="12"/></g>
+      <rect x="218" y="64" width="50" height="186" rx="3" fill="#14304a"/>
+      <g fill="#5e7186"><rect x="226" y="78" width="10" height="13"/><rect x="244" y="78" width="10" height="13"/><rect x="226" y="102" width="10" height="13"/><rect x="244" y="102" width="10" height="13"/><rect x="226" y="126" width="10" height="13"/><rect x="244" y="126" width="10" height="13"/><rect x="226" y="150" width="10" height="13"/><rect x="244" y="150" width="10" height="13"/></g>
+      <rect x="272" y="140" width="42" height="110" rx="3" fill="#f3b13b"/>
+      <g fill="#fff" opacity="0.55"><rect x="280" y="152" width="9" height="12"/><rect x="296" y="152" width="9" height="12"/><rect x="280" y="174" width="9" height="12"/><rect x="296" y="174" width="9" height="12"/></g>
+      <rect x="318" y="112" width="46" height="138" rx="3" fill="#cdd2d6"/>
+      <g fill="#aeb4bb"><rect x="326" y="126" width="10" height="12"/><rect x="342" y="126" width="10" height="12"/><rect x="326" y="150" width="10" height="12"/><rect x="342" y="150" width="10" height="12"/><rect x="326" y="174" width="10" height="12"/><rect x="342" y="174" width="10" height="12"/></g>
+      <!-- tree -->
+      <rect x="372" y="208" width="7" height="42" fill="#8a6d4b"/>
+      <circle cx="375.5" cy="200" r="22" fill="#5aa469"/>
+      <circle cx="362" cy="210" r="14" fill="#6fb87a"/><circle cx="390" cy="210" r="14" fill="#6fb87a"/>
+      <!-- road -->
+      <rect x="0" y="280" width="460" height="40" fill="#d8d2c4"/>
+      <g stroke="#f3efe4" stroke-width="3" stroke-dasharray="16 14"><line x1="0" y1="300" x2="460" y2="300"/></g>
+      <!-- EV car -->
+      <g>
+        <rect x="40" y="262" width="58" height="20" rx="6" fill="#168f8f"/>
+        <path d="M52 262 q6 -12 18 -12 h10 q10 0 14 12 z" fill="#1ba6a6"/>
+        <circle cx="56" cy="284" r="7" fill="#2b3a4a"/><circle cx="56" cy="284" r="3" fill="#cdd2d6"/>
+        <circle cx="86" cy="284" r="7" fill="#2b3a4a"/><circle cx="86" cy="284" r="3" fill="#cdd2d6"/>
+        <text x="69" y="277" font-size="11" fill="#bff0ee" text-anchor="middle" font-family="Montserrat,sans-serif" font-weight="800">⚡</text>
+      </g>
+      <!-- cyclist -->
+      <g>
+        <circle cx="190" cy="290" r="9" fill="none" stroke="#2b3a4a" stroke-width="3"/>
+        <circle cx="218" cy="290" r="9" fill="none" stroke="#2b3a4a" stroke-width="3"/>
+        <path d="M190 290 L204 290 L211 278 M204 290 L218 290" fill="none" stroke="#2b3a4a" stroke-width="3" stroke-linecap="round"/>
+        <line x1="211" y1="278" x2="221" y2="278" stroke="#2b3a4a" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="206" cy="262" r="6" fill="#e8743b"/>
+        <path d="M206 268 L204 280 M206 270 L214 277 M206 270 L198 276" stroke="#e8743b" stroke-width="3" fill="none" stroke-linecap="round"/>
+      </g>
+      <!-- pedestrians -->
+      <g>
+        <circle cx="262" cy="262" r="6" fill="#6d4bb6"/>
+        <path d="M262 268 L262 282 M262 272 L255 279 M262 272 L269 279 M262 282 L257 294 M262 282 L267 294" stroke="#6d4bb6" stroke-width="3" fill="none" stroke-linecap="round"/>
+      </g>
+      <g>
+        <circle cx="290" cy="262" r="6" fill="#e0503a"/>
+        <path d="M290 268 L290 282 M290 272 L283 278 M290 272 L297 278 M290 282 L285 294 M290 282 L295 294" stroke="#e0503a" stroke-width="3" fill="none" stroke-linecap="round"/>
+      </g>
+    </svg>
+  </div>
 </div></header>
 
 <main><div class="wrap">
+  <div class="sec-h"><h2>Global Urban Research</h2><span class="kr">글로벌 도시 연구</span></div>
+  <p class="sec-sub">Select a system to enter. Click an icon to sign in and open it.
+    <span class="kr">이용하실 시스템을 선택하세요. 아이콘을 클릭하면 로그인 후 해당 시스템으로 이동합니다.</span></p>
+  <div class="grid" id="grid"></div>
+
   <a href="/architecture" class="archbanner">
     <span class="ab-ic">📐</span>
-    <span class="ab-t"><b>플랫폼 아키텍처 보기</b><small>4개 서브시스템 구조도와 설명 · 계정 없이 열람 가능</small></span>
-    <span class="ab-go">바로가기 ›</span>
+    <span class="ab-t"><b>Platform Architecture · 플랫폼 아키텍처 보기</b><small>Structure and overview of the systems · open without an account · 계정 없이 열람 가능</small></span>
+    <span class="ab-go">View ›</span>
   </a>
-  <div class="sec-h"><h2>서브시스템</h2><span class="en">Subsystems</span></div>
-  <p class="sec-sub">이용하실 시스템을 선택하세요. 아이콘을 클릭하면 로그인 후 해당 시스템으로 이동합니다.</p>
-  <div class="grid" id="grid"></div>
 </div></main>
 
-<footer><div class="wrap">글로벌 도시연구 플랫폼 · 서울연구원 최준영 박사 개인 연구 플랫폼 &nbsp;|&nbsp; © 최준영 (Dr. Junyoung Choi)</div></footer>
+<footer><div class="wrap foot-in">
+  <div class="foot-txt">Global Urban Research Platform · <span class="kr">글로벌 도시연구 플랫폼</span> &nbsp;|&nbsp; © Dr. Junyoung Choi</div>
+  <a class="yt" href="https://www.youtube.com/@novacite" target="_blank" rel="noopener" aria-label="YouTube @novacite">
+    <span class="ytlogo"><svg width="20" height="14" viewBox="0 0 20 14" xmlns="http://www.w3.org/2000/svg"><path d="M7.8 9.6V4.4l4.6 2.6-4.6 2.6z" fill="#fff"/></svg></span>
+    <span>YouTube · @novacite</span>
+  </a>
+</div></footer>
 
 <div class="mbg" id="mbg"><div class="modal" id="modalCard"></div></div>
 
 <script>
 const $=s=>document.querySelector(s);
 const META={
-  worldcities:{ic:'🌐',accent:'#0a6e8c',accentL:'#e2f1f5',desc:'세계 도시·스마트도시·고령도시·보행도시·도시 공공공간·스마트 모빌리티의 정책·사례·지표를 담은 연구 지식베이스입니다. 도시로봇 연구의 도시 맥락을 제공합니다.'},
+  worldcities:{ic:'🌐',accent:'#168f8f',accentL:'#e6f3f1',desc:'세계 도시·스마트도시·고령도시·보행도시·도시 공공공간·스마트 모빌리티의 정책·사례·지표를 담은 연구 지식베이스입니다. 도시로봇 연구의 도시 맥락을 제공합니다.'},
   urbanrobotics:{ic:'🤖',accent:'#6d4bb6',accentL:'#efeafb',desc:'자율주행 배송로봇·돌봄로봇·인간-로봇 상호작용(HRI)의 사례·구성개념·연구방법·관찰/실험 프로토콜과 연구도구를 담은 데이터베이스입니다.'},
   wpsc:{ic:'🤝',accent:'#138f8f',accentL:'#e3f3f3',desc:'세계 대도시 간 정책 교류·협력과 국제행사(WPSC 등) 출장·일정을 관리합니다.'},
-  book:{ic:'📘',accent:'#0a4f7a',accentL:'#e7f1fa',desc:'영문 단행본 「성장하는 도시를 위한 도시계획」의 본문 열람·메모·감수·편집 시스템입니다.'},
+  book:{ic:'📘',accent:'#14304a',accentL:'#e7edf3',desc:'영문 단행본 「성장하는 도시를 위한 도시계획」의 본문 열람·메모·감수·편집 시스템입니다.'},
 };
 const ORDER=['worldcities','urbanrobotics','wpsc','book'];
 let SYS={}, ME=null;
-function badge(st){return st==='open'?'<span class="badge b-open">열람 가능</span>':st==='soon'?'<span class="badge b-soon">추후 공개</span>':'<span class="badge b-link">바로가기</span>';}
+function badge(st){return st==='open'?'<span class="badge b-open">Open · 열람 가능</span>':st==='soon'?'<span class="badge b-soon">Soon · 추후 공개</span>':'<span class="badge b-link">Open · 바로가기</span>';}
 function dest(k){return k==='book'?'/book':'/'+k;}
 function canAccess(k){return !!(ME && (ME.isSuper || (ME.systems||[]).includes(k)));}
 function renderUserbox(){
   const ub=$('#userbox'); if(!ub)return;
   if(ME){
-    ub.innerHTML=`<span class="uchip"><b>${ME.name||ME.email}</b>${ME.isSuper?'<i> · 수퍼관리자</i>':''}</span><button class="ulogout" id="ulogout">로그아웃</button>`;
+    ub.innerHTML=`<span class="uchip"><b>${ME.name||ME.email}</b>${ME.isSuper?'<i> · Super Admin</i>':''}</span><button class="ulogout" id="ulogout">Sign out</button>`;
     $('#ulogout').onclick=async()=>{await fetch('/api/logout',{method:'POST'});location.reload();};
   } else ub.innerHTML='';
 }
@@ -140,7 +225,7 @@ async function init(){
   $('#grid').innerHTML=ORDER.map(k=>{const s=SYS[k],m=META[k];const acc=canAccess(k);
     return `<div class="sys" style="--accent:${m.accent};--accent-l:${m.accentL}" data-k="${k}">
       <div class="ic">${m.ic}</div>
-      <h3>${s.kr}</h3><div class="en">${s.en}</div>
+      <h3>${s.en}</h3><div class="kr">${s.kr}</div>
       <div class="desc">${m.desc}</div>
       <div class="foot">${badge(s.status)}<span class="go">${s.status==='soon'?'준비 중':(acc?'바로 입장 ›':'들어가기 ›')}</span></div></div>`;}).join('');
   document.querySelectorAll('.sys').forEach(el=>el.onclick=()=>openSys(el.dataset.k));
@@ -157,15 +242,13 @@ function openSys(k){
       <button class="mbtn" style="background:${m.accent}" onclick="closeM()">확인</button></div>`;
     $('#mbg').classList.add('open');return;
   }
-  // 이미 로그인 + 접근권한 보유 → 재로그인 없이 바로 입장(수퍼관리자는 모든 시스템)
   if(canAccess(k)){ location.href=dest(k); return; }
-  // 로그인(시스템 선택됨). 로그인됐으나 권한 없으면 다른 계정으로 로그인 가능.
   $('#modalCard').innerHTML=`<div class="mhead" style="background:linear-gradient(135deg,${m.accent},${m.accent}cc)"><button class="x" onclick="closeM()">×</button>
-      <div class="selsys">선택한 시스템 · ${s.en}</div><h3>${m.ic} ${s.kr}</h3></div>
+      <div class="selsys">Selected · ${s.en}</div><h3>${m.ic} ${s.kr}</h3></div>
     <div class="mbody">
-      <label>이름 또는 이메일</label><input id="li-id" autocomplete="username" placeholder="아이디">
-      <label>비밀번호</label><input id="li-pw" type="password" autocomplete="current-password" placeholder="비밀번호">
-      <button class="mbtn" style="background:${m.accent}" id="li-go">로그인</button>
+      <label>Name or Email · 이름 또는 이메일</label><input id="li-id" autocomplete="username" placeholder="아이디">
+      <label>Password · 비밀번호</label><input id="li-pw" type="password" autocomplete="current-password" placeholder="비밀번호">
+      <button class="mbtn" style="background:${m.accent}" id="li-go">Sign in · 로그인</button>
       <div class="merr" id="li-err"></div></div>`;
   $('#mbg').classList.add('open');setTimeout(()=>$('#li-id').focus(),60);
   const go=async()=>{$('#li-err').textContent='';
