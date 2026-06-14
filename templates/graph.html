@@ -31,6 +31,11 @@ a{color:inherit;text-decoration:none}
 .legend .hint{margin-left:auto;font-size:12px;color:var(--ink3)}
 #net{flex:1;min-height:0;background:radial-gradient(circle at 50% 40%,#fff,#eef3f8)}
 .loading{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:var(--ink3);font-size:14px}
+.gviews{display:flex;gap:6px}
+.gv{font-size:12px;font-weight:800;color:var(--ink2);background:#eef3f8;border:1px solid #d6e2ee;padding:5px 11px;border-radius:8px;cursor:pointer}
+.gv:hover{background:#e2ebf4}
+.gv.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+.lg.off{opacity:.32}
 </style>
 </head>
 <body>
@@ -52,8 +57,13 @@ a{color:inherit;text-decoration:none}
 </div></div>
 <div class="legend">
   <span class="t">지식 그래프</span>
-  <span class="lg"><span class="dot2" style="background:#0a6e8c"></span>세계도시 DB</span>
-  <span class="lg"><span class="dot2" style="background:#6d4bb6"></span>도시로봇·HRI DB</span>
+  <div class="gviews" id="gviews">
+    <button class="gv active" data-v="all">🕸 통합</button>
+    <button class="gv" data-v="worldcities">🌐 도시연구</button>
+    <button class="gv" data-v="urbanrobotics">🤖 로봇연구</button>
+  </div>
+  <span class="lg" id="lgW"><span class="dot2" style="background:#0a6e8c"></span>세계도시 DB</span>
+  <span class="lg" id="lgR"><span class="dot2" style="background:#6d4bb6"></span>도시로봇·HRI DB</span>
   <span class="hint" id="hint">노드를 클릭하면 상세로 이동 · 드래그로 탐색</span>
 </div>
 <div id="net"><div class="loading" id="loading">그래프 구성 중…</div></div>
@@ -72,13 +82,9 @@ const KIND_ICON={city:'🏙',case:'📋',policy:'📜',topic:'💡',robottype:'�
   catch(e){ document.getElementById('loading').textContent='로드 오류'; return; }
   if(!g.nodes||!g.nodes.length){ document.getElementById('loading').textContent='표시할 노드가 없습니다.'; return; }
   const color=s=> s==='urbanrobotics'?{bg:'#efeafb',bd:'#6d4bb6',ft:'#3a2a6a'}:{bg:'#e2f1f5',bd:'#0a6e8c',ft:'#0a4f6a'};
-  const nodes=g.nodes.map(n=>{const c=color(n.subsystem);return {
-    id:n.id, label:(KIND_ICON[n.kind]||'•')+' '+n.label, title:n.label+' ('+n.kind+')',
-    shape:'box', color:{background:c.bg,border:c.bd}, font:{color:c.ft,size:13,face:'Pretendard'},
-    borderWidth:1.5, margin:7, _sys:n.subsystem };});
-  const edges=g.edges.map(e=>({from:e.from,to:e.to,color:{color:'#c3d3e0',highlight:'#0a6e8c'},width:1,smooth:{type:'continuous'}}));
+  // 네트워크는 1회 생성, 보기 전환 시 setData 로 노드·엣지만 교체
   const net=new vis.Network(document.getElementById('net'),
-    {nodes:new vis.DataSet(nodes),edges:new vis.DataSet(edges)},
+    {nodes:new vis.DataSet([]),edges:new vis.DataSet([])},
     {physics:{barnesHut:{gravitationalConstant:-9000,springLength:130,springConstant:0.03},stabilization:{iterations:220}},
      interaction:{hover:true,tooltipDelay:120},nodes:{shadow:false},edges:{selectionWidth:2}});
   net.on('stabilizationIterationsDone',()=>{const l=document.getElementById('loading');if(l)l.remove();});
@@ -87,7 +93,28 @@ const KIND_ICON={city:'🏙',case:'📋',policy:'📜',topic:'💡',robottype:'�
     const id=params.nodes[0]; const n=g.nodes.find(x=>x.id===id); if(!n)return;
     location.href=(n.subsystem==='urbanrobotics'?'/urbanrobotics':'/worldcities')+'?slug='+encodeURIComponent(id);
   });
-  document.getElementById('hint').textContent=g.nodes.length+'개 노드 · '+g.edges.length+'개 연결';
+  // view: 'all' | 'worldcities' | 'urbanrobotics' — 도시연구·로봇연구 지식그래프 분리
+  function apply(view){
+    const keep=n=> view==='all' || n.subsystem===view;
+    const fnodes=g.nodes.filter(keep);
+    const ids=new Set(fnodes.map(n=>n.id));
+    const nodes=fnodes.map(n=>{const c=color(n.subsystem);return {
+      id:n.id, label:(KIND_ICON[n.kind]||'•')+' '+n.label, title:n.label+' ('+n.kind+')',
+      shape:'box', color:{background:c.bg,border:c.bd}, font:{color:c.ft,size:13,face:'Pretendard'},
+      borderWidth:1.5, margin:7 };});
+    const edges=g.edges.filter(e=>ids.has(e.from)&&ids.has(e.to))
+      .map(e=>({from:e.from,to:e.to,color:{color:'#c3d3e0',highlight:'#0a6e8c'},width:1,smooth:{type:'continuous'}}));
+    net.setData({nodes:new vis.DataSet(nodes),edges:new vis.DataSet(edges)});
+    document.getElementById('lgW').classList.toggle('off',view==='urbanrobotics');
+    document.getElementById('lgR').classList.toggle('off',view==='worldcities');
+    const lbl=view==='worldcities'?'도시연구':view==='urbanrobotics'?'로봇연구':'통합';
+    document.getElementById('hint').textContent=lbl+' · '+nodes.length+'개 노드 · '+edges.length+'개 연결';
+  }
+  document.querySelectorAll('#gviews .gv').forEach(b=>b.onclick=()=>{
+    document.querySelectorAll('#gviews .gv').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active'); apply(b.dataset.v);
+  });
+  apply('all');
 })();
 </script>
 </body>

@@ -79,6 +79,43 @@ main{padding:30px 0 70px}
 .wpsc-link{margin-top:12px;display:inline-flex;align-items:center;gap:6px;align-self:flex-start;background:var(--teal);color:#fff;font-size:12.5px;font-weight:800;padding:8px 14px;border-radius:9px}
 .wpsc-link:hover{background:var(--teal-d)}
 .loading,.empty{text-align:center;color:var(--ink3);padding:50px 0;font-size:14px}
+/* 협력자료 로컬 분석 */
+.an-intro{font-size:13.5px;color:var(--ink2);margin:0 0 16px;max-width:720px}
+.an-intro .priv{display:inline-block;margin-top:8px;font-size:12px;font-weight:700;color:var(--teal-d);background:var(--teal-l);border:1px solid #c8e8e8;border-radius:8px;padding:5px 11px}
+.drop{border:2px dashed #b6d9d9;border-radius:16px;background:var(--teal-ll);padding:34px 24px;text-align:center;transition:.15s;cursor:default}
+.drop.over{border-color:var(--teal);background:#dff3f3;transform:scale(1.005)}
+.drop .ico{font-size:34px}
+.drop .big{font-size:15px;font-weight:800;color:var(--teal-d);margin:8px 0 4px}
+.drop .sub{font-size:12.5px;color:var(--ink3)}
+.drop .btns{margin-top:14px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.drop .btns button{font-size:13px;font-weight:800;color:#fff;background:var(--teal);border:0;border-radius:9px;padding:9px 18px;cursor:pointer}
+.drop .btns button.alt{background:#fff;color:var(--teal-d);border:1px solid #c8e8e8}
+.drop .btns button:hover{filter:brightness(.96)}
+.an-res{margin-top:20px;display:none}
+.an-res.show{display:block}
+.an-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px}
+.an-stat{background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);padding:14px 16px}
+.an-stat b{font-size:24px;font-weight:800;color:var(--teal-d);display:block}
+.an-stat span{font-size:12px;color:var(--ink3);font-weight:700}
+.an-block{background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:16px 20px;margin-bottom:16px}
+.an-block h3{margin:0 0 12px;font-size:13.5px;font-weight:800;color:var(--teal-d);text-transform:uppercase;letter-spacing:.04em}
+.an-chips{display:flex;flex-wrap:wrap;gap:6px}
+.an-chip{font-size:12px;font-weight:700;color:var(--teal-d);background:var(--teal-l);border-radius:20px;padding:3px 11px}
+.an-chip .n{opacity:.65;font-weight:800;margin-left:4px}
+.an-chip.match{background:#e7f3ec;color:#2f7a3a}
+.an-chip.new{background:#fff3e0;color:#b5701a}
+.an-table{width:100%;border-collapse:collapse;font-size:12.5px}
+.an-table th,.an-table td{text-align:left;padding:7px 9px;border-bottom:1px solid var(--line);vertical-align:top}
+.an-table th{color:var(--ink3);font-weight:800;font-size:11px;text-transform:uppercase;letter-spacing:.03em}
+.an-table td.r{text-align:right;color:var(--ink3);white-space:nowrap}
+.an-table .ftype{font-size:11px;font-weight:700;color:var(--ink3);background:var(--bg);border-radius:6px;padding:1px 7px}
+.an-empty{color:var(--ink3);font-size:13px}
+.an-bars .bar{display:flex;align-items:center;gap:10px;margin:5px 0}
+.an-bars .bl{font-size:12.5px;font-weight:700;color:var(--ink2);min-width:120px}
+.an-bars .bt{flex:1;height:9px;background:var(--teal-l);border-radius:6px;overflow:hidden}
+.an-bars .bf{height:100%;background:var(--teal);border-radius:6px}
+.an-bars .bn{font-size:12px;font-weight:800;color:var(--teal-d);min-width:28px;text-align:right}
+@media(max-width:760px){.an-cards{grid-template-columns:1fr 1fr}}
 footer{border-top:1px solid var(--line);background:#fff;padding:24px 0;color:var(--ink3);font-size:12.5px;text-align:center}
 @media(max-width:760px){.list{grid-template-columns:1fr}.hero h1{font-size:25px}.brand-en{display:none}.user-chip .uname{max-width:64px}.stats{gap:16px}}
 </style>
@@ -158,11 +195,15 @@ function renderProgress(){
     `<div class="row"><div class="pd">${esc(p.period)}</div><div class="ps">${esc(p.summary)}</div></div>`).join('');
 }
 function renderTabs(){
-  $('#tabs').innerHTML=CATS.map(c=>
+  const base=CATS.map(c=>
     `<div class="tab ${c.key===cur?'active':''}" data-k="${c.key}">${c.icon} ${c.kr} <span class="en">${c.en}</span> <span class="c">${(DATA[c.key]||[]).length}</span></div>`).join('');
+  const an=`<div class="tab ${cur==='analyze'?'active':''}" data-k="analyze">📂 협력자료 분석 <span class="en">Local Analysis</span></div>`;
+  $('#tabs').innerHTML=base+an;
   document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{cur=t.dataset.k;renderTabs();render();});
 }
 function render(){
+  if(cur==='analyze'){ renderAnalyzer(); return; }
+  $('#list').className='list';
   const items=DATA[cur]||[];
   if(!items.length){ $('#list').innerHTML='<div class="empty">항목이 없습니다.</div>'; return; }
   $('#list').innerHTML=items.map(it=> cur==='partners'?partnerCard(it):cur==='visits'?visitCard(it):tripCard(it)).join('');
@@ -189,6 +230,188 @@ function partnerCard(p){
     <div class="meta">${esc(p.city)}, ${esc(p.country)}${p.org_en?' · '+esc(p.org_en):''}</div>
     <p>${esc(p.summary)}</p><div class="tags">${tags}</div></div>`;
 }
+/* ============ 협력자료 로컬 분석 (브라우저 내 분석 · 서버 전송 없음) ============ */
+let ANALYSIS=null;   // 마지막 분석 결과(탭 전환 시 보존)
+
+const TEXT_EXT=new Set(['txt','md','markdown','csv','tsv','json','html','htm','xml','log','rtf','vtt','srt','yml','yaml','tex']);
+// 협력 키워드 사전(표시명 → 동의어). 대소문자 무시(소문자 비교).
+const COOP_LEX=[
+  ['MoU·협약',['mou','협약','양해각서','memorandum','agreement','협정']],
+  ['자매·우호도시',['자매도시','우호도시','sister city','friendship city']],
+  ['대표단·방문',['대표단','방문','내원','delegation']],
+  ['출장',['출장']],
+  ['네트워크',['네트워크','network']],
+  ['교류',['교류','exchange']],
+  ['공동연구',['공동연구','joint research','공동 연구']],
+  ['회의·포럼',['회의','포럼','컨퍼런스','세미나','conference','forum','summit','seminar']],
+  ['협력',['협력','cooperation','collaboration','partnership','파트너']],
+];
+// 국가 사전(표시명 → 별칭). 발견 시 기존 네트워크 여부로 신규/기존 구분.
+const COUNTRIES=[
+  ['대한민국',['대한민국','한국','korea','seoul']],['일본',['일본','japan','tokyo','도쿄']],
+  ['중국',['중국','china','beijing','베이징','shanghai','상하이']],['싱가포르',['싱가포르','singapore']],
+  ['미국',['미국','united states','u.s.','usa','america','new york','뉴욕','san francisco']],
+  ['영국',['영국','united kingdom','britain','london','런던']],['프랑스',['프랑스','france','paris','파리']],
+  ['독일',['독일','germany','berlin','베를린']],['스페인',['스페인','spain','barcelona','바르셀로나']],
+  ['네덜란드',['네덜란드','netherlands','amsterdam','암스테르담']],['핀란드',['핀란드','finland','helsinki','헬싱키']],
+  ['스웨덴',['스웨덴','sweden','stockholm']],['덴마크',['덴마크','denmark','copenhagen']],
+  ['캐나다',['캐나다','canada','toronto','토론토','vancouver']],['호주',['호주','australia','sydney','melbourne']],
+  ['아랍에미리트',['아랍에미리트','uae','dubai','두바이','abu dhabi']],['사우디아라비아',['사우디','saudi','riyadh']],
+  ['인도',['인도','india','delhi','mumbai']],['인도네시아',['인도네시아','indonesia','jakarta','자카르타']],
+  ['베트남',['베트남','vietnam','hanoi','하노이','ho chi minh']],['태국',['태국','thailand','bangkok','방콕']],
+  ['대만',['대만','taiwan','taipei','타이베이']],['홍콩',['홍콩','hong kong']],['몽골',['몽골','mongolia','ulaanbaatar']],
+  ['브라질',['브라질','brazil','sao paulo']],['콜롬비아',['콜롬비아','colombia','medellin','bogota']],
+  ['멕시코',['멕시코','mexico']],['이탈리아',['이탈리아','italy','milan','rome']],['오스트리아',['오스트리아','austria','vienna','비엔나']],
+  ['스위스',['스위스','switzerland','zurich','geneva']],['터키',['터키','튀르키예','turkey','istanbul']],
+  ['케냐',['케냐','kenya','nairobi']],['남아프리카공화국',['남아공','south africa','cape town']],['르완다',['르완다','rwanda','kigali']],
+];
+
+function esc2(s){return esc(s);}
+function fmtSize(b){ if(b<1024)return b+' B'; if(b<1048576)return (b/1024).toFixed(1)+' KB'; return (b/1048576).toFixed(1)+' MB'; }
+function countOcc(hay,needle){ if(!needle)return 0; let n=0,i=0; while((i=hay.indexOf(needle,i))!==-1){n++;i+=needle.length;} return n; }
+
+// 기존 협력 네트워크에서 개체명 추출(org/city/country)
+function knownEntities(){
+  const out=new Map();   // 소문자명 → {name, kinds:Set}
+  const add=(name,kind)=>{ if(!name)return; const k=String(name).trim(); if(k.length<2)return;
+    const lk=k.toLowerCase(); const e=out.get(lk)||{name:k,kinds:new Set()}; e.kinds.add(kind); out.set(lk,e); };
+  (DATA.partners||[]).forEach(p=>{ add(p.org_kr,'org'); add(p.org_en,'org'); add(p.city,'city'); add(p.country,'country'); });
+  (DATA.trips||[]).forEach(t=>{ add(t.city,'city'); add(t.country,'country'); });
+  return out;
+}
+
+function analyzeFiles(files){
+  // files: [{name, path, ext, size, text}]
+  const corpusRaw=files.map(f=>(f.path||f.name)+'\n'+(f.text||'')).join('\n');
+  const corpus=corpusRaw.toLowerCase();
+  const totalChars=files.reduce((s,f)=>s+(f.text?f.text.length:0),0);
+  // 키워드 빈도
+  const keywords=COOP_LEX.map(([label,al])=>({label,count:al.reduce((s,a)=>s+countOcc(corpus,a.toLowerCase()),0)}))
+    .filter(k=>k.count>0).sort((a,b)=>b.count-a.count);
+  // 기존 네트워크 매칭
+  const known=knownEntities(); const matched=[];
+  known.forEach((e,lk)=>{ const c=countOcc(corpus,lk); if(c>0) matched.push({name:e.name,kinds:[...e.kinds],count:c}); });
+  matched.sort((a,b)=>b.count-a.count);
+  const knownCountrySet=new Set([...known.values()].filter(e=>e.kinds.has('country')).map(e=>e.name));
+  // 국가 감지(신규/기존)
+  const regions=COUNTRIES.map(([name,al])=>({name,count:al.reduce((s,a)=>s+countOcc(corpus,a.toLowerCase()),0)}))
+    .filter(r=>r.count>0).map(r=>({...r,isNew:!knownCountrySet.has(r.name)})).sort((a,b)=>b.count-a.count);
+  return {files,totalChars,keywords,matched,regions,
+    n_files:files.length, n_text:files.filter(f=>f.text).length};
+}
+
+function paintAnalysis(){
+  const box=$('#anRes'); if(!box) return; const a=ANALYSIS;
+  if(!a){ box.className='an-res'; box.innerHTML=''; return; }
+  const chips=arr=>arr.length?arr:null;
+  const matchHtml = a.matched.length
+    ? `<div class="an-chips">${a.matched.map(m=>`<span class="an-chip match">${esc2(m.name)}<span class="n">${m.count}</span></span>`).join('')}</div>`
+    : `<div class="an-empty">기존 협력 네트워크와 일치하는 기관·도시·국가가 발견되지 않았습니다.</div>`;
+  const regHtml = a.regions.length
+    ? `<div class="an-chips">${a.regions.map(r=>`<span class="an-chip ${r.isNew?'new':'match'}">${esc2(r.name)}${r.isNew?' ·신규':''}<span class="n">${r.count}</span></span>`).join('')}</div>`
+    : `<div class="an-empty">감지된 국가·지역이 없습니다.</div>`;
+  const maxK=a.keywords.length?a.keywords[0].count:1;
+  const kwHtml = a.keywords.length
+    ? `<div class="an-bars">${a.keywords.map(k=>`<div class="bar"><span class="bl">${esc2(k.label)}</span><span class="bt"><span class="bf" style="width:${Math.max(6,Math.round(k.count/maxK*100))}%"></span></span><span class="bn">${k.count}</span></div>`).join('')}</div>`
+    : `<div class="an-empty">협력 관련 키워드가 발견되지 않았습니다.</div>`;
+  const rows = a.files.map(f=>`<tr><td>${esc2(f.path||f.name)}</td><td><span class="ftype">${esc2(f.ext||'—')}</span></td><td class="r">${fmtSize(f.size)}</td><td class="r">${f.text?f.text.length.toLocaleString()+'자':'—'}</td></tr>`).join('');
+  box.className='an-res show';
+  box.innerHTML=`
+    <div class="an-cards">
+      <div class="an-stat"><b>${a.n_files}</b><span>분석 파일</span></div>
+      <div class="an-stat"><b>${a.matched.length}</b><span>기존 협력처 매칭</span></div>
+      <div class="an-stat"><b>${a.regions.length}</b><span>감지 국가·지역</span></div>
+      <div class="an-stat"><b>${a.keywords.length}</b><span>협력 키워드 유형</span></div>
+    </div>
+    <div class="an-block"><h3>🤝 기존 협력 네트워크 매칭</h3>${matchHtml}</div>
+    <div class="an-block"><h3>🌐 감지된 국가·지역 <span style="font-weight:600;text-transform:none;letter-spacing:0;color:var(--ink3)">(주황=네트워크 외 신규 후보)</span></h3>${regHtml}</div>
+    <div class="an-block"><h3>🔑 협력 키워드 빈도</h3>${kwHtml}</div>
+    <div class="an-block"><h3>📄 파일 인벤토리 <span style="font-weight:600;text-transform:none;letter-spacing:0;color:var(--ink3)">(텍스트 ${a.n_text}/${a.n_files}건 본문 분석)</span></h3>
+      <table class="an-table"><thead><tr><th>파일</th><th>형식</th><th>크기</th><th>추출량</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+}
+
+// File 객체 → 읽기(텍스트만 본문 추출, 그 외 메타데이터)
+function readOne(file,path){
+  return new Promise(res=>{
+    const name=file.name||'(이름없음)';
+    const ext=(name.split('.').pop()||'').toLowerCase();
+    const base={name,path:path||name,ext,size:file.size};
+    if(!TEXT_EXT.has(ext) || file.size>4*1024*1024){ res({...base,text:''}); return; }
+    const rd=new FileReader();
+    rd.onload=()=>res({...base,text:String(rd.result||'')});
+    rd.onerror=()=>res({...base,text:''});
+    rd.readAsText(file);
+  });
+}
+// 드래그앤드롭 폴더 재귀(webkitGetAsEntry)
+function readEntry(entry,prefix){
+  return new Promise(res=>{
+    if(entry.isFile){ entry.file(f=>readOne(f,(prefix||'')+entry.name).then(r=>res([r])),()=>res([])); }
+    else if(entry.isDirectory){
+      const rdr=entry.createReader(); const all=[];
+      const readBatch=()=>rdr.readEntries(ents=>{
+        if(!ents.length){ Promise.all(all).then(a=>res(a.flat())); return; }
+        ents.forEach(e=>all.push(readEntry(e,(prefix||'')+entry.name+'/'))); readBatch();
+      },()=>res([]));
+      readBatch();
+    } else res([]);
+  });
+}
+
+async function runAnalysis(fileObjs){
+  $('#anRes').className='an-res show';
+  $('#anRes').innerHTML='<div class="loading">로컬에서 분석 중…</div>';
+  const files=fileObjs.filter(Boolean);
+  ANALYSIS = files.length ? analyzeFiles(files) : null;
+  if(!files.length){ $('#anRes').innerHTML='<div class="an-empty" style="padding:18px">읽을 수 있는 파일이 없습니다.</div>'; return; }
+  paintAnalysis();
+}
+
+function renderAnalyzer(){
+  $('#list').className='';
+  $('#list').innerHTML=`
+    <p class="an-intro">국제협력 관련 문서(출장보고·MoU·회의록·파트너 목록 등)가 담긴 <b>파일 또는 폴더</b>를 끌어다 놓으면,
+      브라우저 안에서 곧바로 분석해 협력 네트워크 매칭·국가·키워드 요약을 보여줍니다.
+      <br><span class="priv">🔒 모든 분석은 이 브라우저에서만 수행되며, 파일은 서버로 전송·저장되지 않습니다.</span></p>
+    <div class="drop" id="drop">
+      <div class="ico">📂</div>
+      <div class="big">여기에 파일 또는 폴더를 끌어다 놓으세요</div>
+      <div class="sub">.txt · .md · .csv · .json · .html 등 텍스트 본문 분석 · 그 외 형식은 목록·메타데이터만</div>
+      <div class="btns">
+        <button id="pickFile">파일 선택</button>
+        <button id="pickDir" class="alt">폴더 선택</button>
+      </div>
+      <input type="file" id="inFile" multiple hidden>
+      <input type="file" id="inDir" webkitdirectory hidden>
+    </div>
+    <div class="an-res" id="anRes"></div>`;
+  const drop=$('#drop');
+  $('#pickFile').onclick=()=>$('#inFile').click();
+  $('#pickDir').onclick=()=>$('#inDir').click();
+  const fromInput=async list=>{
+    const arr=[...list]; const out=await Promise.all(arr.map(f=>readOne(f,f.webkitRelativePath||f.name)));
+    runAnalysis(out);
+  };
+  $('#inFile').onchange=e=>fromInput(e.target.files);
+  $('#inDir').onchange=e=>fromInput(e.target.files);
+  ['dragenter','dragover'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.add('over');}));
+  ['dragleave','drop'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();if(ev==='dragleave'&&drop.contains(e.relatedTarget))return;drop.classList.remove('over');}));
+  drop.addEventListener('drop',async e=>{
+    e.preventDefault(); drop.classList.remove('over');
+    const items=e.dataTransfer.items;
+    let out=[];
+    if(items&&items.length&&items[0].webkitGetAsEntry){
+      const entries=[...items].map(it=>it.webkitGetAsEntry&&it.webkitGetAsEntry()).filter(Boolean);
+      const groups=await Promise.all(entries.map(en=>readEntry(en,'')));
+      out=groups.flat();
+    } else {
+      out=await Promise.all([...e.dataTransfer.files].map(f=>readOne(f,f.name)));
+    }
+    runAnalysis(out);
+  });
+  if(ANALYSIS) paintAnalysis();
+}
+
 boot();
 </script>
 </body>
