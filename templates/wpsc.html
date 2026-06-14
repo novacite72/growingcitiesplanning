@@ -69,6 +69,11 @@ main{padding:30px 0 70px}
 .tab.active .c{background:rgba(255,255,255,.3)}
 /* cards */
 .list{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.grouped{display:block}
+.yr-group{margin-bottom:26px}
+.yr-h{display:flex;align-items:baseline;gap:10px;margin:4px 0 14px;padding-bottom:7px;border-bottom:2px solid var(--teal)}
+.yr-y{font-size:21px;font-weight:800;color:var(--teal-d)}
+.yr-n{font-size:12px;color:var(--ink3);font-weight:600}
 .card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 20px;box-shadow:var(--shadow);border-left:4px solid var(--teal);display:flex;flex-direction:column}
 .card .ch{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:6px}
 .card h3{margin:0;font-size:16px;font-weight:800;line-height:1.35}
@@ -206,10 +211,18 @@ function renderTabs(){
 }
 function render(){
   if(cur==='analyze'){ renderAnalyzer(); return; }
-  $('#list').className='list';
   const items=DATA[cur]||[];
-  if(!items.length){ $('#list').innerHTML='<div class="empty">항목이 없습니다.</div>'; return; }
-  $('#list').innerHTML=items.map(it=> cur==='partners'?partnerCard(it):cur==='visits'?visitCard(it):tripCard(it)).join('');
+  if(!items.length){ $('#list').className='list'; $('#list').innerHTML='<div class="empty">항목이 없습니다.</div>'; return; }
+  const cardFn = cur==='partners'?partnerCard:cur==='visits'?visitCard:tripCard;
+  if(cur==='partners'){ $('#list').className='list'; $('#list').innerHTML=items.map(cardFn).join(''); return; }
+  // 국외출장·내원: 연도별로 구분 표시
+  $('#list').className='grouped';
+  const yrOf=it=>(String(it.date||'').match(/\d{4}/)||['기타'])[0];
+  const years=[...new Set(items.map(yrOf))].sort((a,b)=>b.localeCompare(a));
+  $('#list').innerHTML=years.map(y=>{
+    const grp=items.filter(it=>yrOf(it)===y).slice().sort((a,b)=>String(b.date||'').localeCompare(String(a.date||'')));
+    return `<div class="yr-group"><div class="yr-h"><span class="yr-y">${esc(y)}</span><span class="yr-n">${grp.length}건</span></div><div class="list">${grp.map(cardFn).join('')}</div></div>`;
+  }).join('');
 }
 function tripCard(t){
   const wpsc = t.wpsc ? `<a class="wpsc-link" href="/wpsc/itinerary">📅 WPSC 출장 일정 보기 →</a>` : '';

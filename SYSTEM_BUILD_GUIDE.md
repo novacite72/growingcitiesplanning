@@ -2,7 +2,7 @@
 
 > 목적: 새 대화창에서도 이 플랫폼 구축을 **이어서** 진행하기 위한 자세한 컨텍스트.
 > 새 창에서 이 파일을 첨부하면 전체 구조·배포·운영을 바로 파악할 수 있다.
-> 운영자: 서울연구원 최준영 박사(junyoung.choi@si.re.kr). 마지막 갱신: 2026-06-14, 버전 **v0.27**.
+> 운영자: 서울연구원 최준영 박사(junyoung.choi@si.re.kr). 마지막 갱신: 2026-06-15, 버전 **v0.34**.
 
 ---
 
@@ -12,11 +12,13 @@
 
 ```
 이용자 → Cloudflare(DNS·TLS) → Render(Flask/gunicorn) → Neon(PostgreSQL)
-포털(/) ─┬─ 🌐 세계도시 연구 DB        /worldcities   (open)
+포털(/) ─┬─ 🌐 글로벌 도시 연구 DB      /worldcities   (open)  ─ 상단 바로가기 → 📖 단행본 ②
          ├─ 🤖 도시로봇·HRI 연구 DB     /urbanrobotics (open)
-         ├─ 🤝 세계대도시협력(게시판)    /wpsc          (superadmin) + /wpsc/itinerary
-         └─ 📘 영문단행본 감수 SPA       /book          (역할기반)
+         ├─ 🤝 세계대도시협력(게시판)    /wpsc          (superadmin) + /wpsc/itinerary(지도·동선)
+         └─ 📘 영문단행본 감수 SPA       /book   ①(역할기반) · /globalbook ②(동일 엔진)
 부가:  /architecture(+/about) 공개  ·  /graph 지식그래프(login)
+영문 단행본 2종: ① 「성장하는 도시를 위한 도시계획」(18장, /book)
+               ② 「Planning the Global City with AI」(14장, /globalbook, worldcities 상단 진입)
 지식기반(로컬): Zotero→Obsidian(vault)→kb_build→kb_publish(Import API)→Neon  / kb_extract(무키 LLM 추출)
 ```
 
@@ -75,13 +77,14 @@ for i in $(seq 1 40); do curl -s https://growingcitiesplanning.org/static/app.js
 | `wpscdata.py` | WPSC 게시판 데이터(`WPSC` dict: trips/visits/partners/progress, `CATEGORIES`). |
 | `extract.py` | 단행본 docx→data.json 추출(strip_cover·fignum_shift). 단행본 원고 갱신용. |
 | `templates/portal.html` | 포털 첫화면(UN-Habitat풍, 4서브시스템 카드, 로그인 모달, 아키텍처 배너). |
-| `templates/index.html` + `static/app.js` + `static/style.css` | 단행본 감수 SPA. |
+| `templates/index.html` + `static/app.js` + `static/style.css` | 단행본 감수 SPA(2종 공용). `index.html`에 `window.BOOK_KEY` 주입, app.js가 `GB`/`DATAURL`로 책 분기. |
+| `data.json` / `globalbook_data.json` | 단행본 ①(성장하는 도시)·②(글로벌 도시) 본문 데이터. ②는 장 `order` 1000~1013. |
 | `templates/worldcities.html` | 세계도시 DB SPA(vanilla JS). |
 | `templates/urbanrobotics.html` | 도시로봇·HRI DB SPA(+생성기 폼3). |
 | `templates/wpsc.html` | WPSC 게시판 SPA(3구분 탭+진행상황 타임라인). |
 | `templates/architecture.html` | 공개 아키텍처 페이지. |
 | `templates/graph.html` | 지식그래프(vis-network CDN). |
-| `wpsc_itinerary.html` | 기존 WPSC 출장 일정(367KB, send_file). `/wpsc/itinerary`. |
+| `wpsc_itinerary.html` | WPSC 출장 일정(~369KB, send_file). `/wpsc/itinerary`. 일정·**지도(Leaflet, 도로망 라우팅)**·가볼 곳·먹거리·프로그램검색·뉴스레터. |
 | `static/img/` | 단행본 이미지 169장. |
 | `requirements.txt` | Flask·Werkzeug·gunicorn·psycopg2-binary·Pillow. |
 | `render.yaml`·`runtime.txt`(py3.11) | Render 배포 설정. |
@@ -96,6 +99,7 @@ for i in $(seq 1 40); do curl -s https://growingcitiesplanning.org/static/app.js
 - **주요 API**: `/api/login`(system 선택 가능)·`/api/me`(isSuper·systems)·`/api/systems`·
   `/api/db/<sys>`·`/api/db/<sys>/<slug>`(교차참조 index)·`/api/generate/<tool>`·
   `/api/admin/import`(super, slug upsert, prune)·`/api/admin/export`(super)·`/api/wpsc`·`/api/graph`.
+- **멀티북(단행본 2종)**: `BOOK`(data.json)·`GBOOK`(globalbook_data.json), `BOOKS={'growing','global'}`, `book_by_key(k)`, `all_chapters()`, `find_chapter(ch)`. 새 책 장 `order`를 **1000번대 오프셋**(기존 0~17·용어사전 9000과 무충돌) → comments/overrides/editlog/chorder/images/assignments 인프라를 **스키마 변경 없이** 그대로 공유. `/api/data?book=global`(기본 growing) 분기, edit/comment/order/undo/image 엔드포인트는 `find_chapter`로 양 책 장을 해석. 라우트 `/book`(book_key='growing')·`/globalbook`(book_key='global'). app.js는 `window.BOOK_KEY`로 데이터 fetch에만 `?book=` 부착(다른 API는 장 id가 전역 유일).
 - **렌더 주의**: 템플릿은 `render_template`(Jinja2)이라 JS에서 `{{ }}`·`{% %}` 금지(JS는 `${...}` 사용). `Response`는 flask 최상위 import.
 
 ---
@@ -106,6 +110,7 @@ for i in $(seq 1 40); do curl -s https://growingcitiesplanning.org/static/app.js
 - kind: `city·case·policy·topic`. 현재 city 23 / case 5 / policy 4 / topic 20.
 - 검색·유형/지역 필터·카드그리드·상세(한국어 라벨)·교차참조 칩(xref-chip)·`?slug=` 딥링크·**서술형 위키 본문(body)** 렌더.
 - 2026-06-14 스마트도시론(2025/2026·UD캠프) 강의로 신규 도시13·토픽10 추가.
+- **히어로 상단 `.bookcta` 바로가기**(📖) → `/globalbook` 영문 단행본 ② 편집기. worldcities.html에 추가(CSS `.bookcta*`).
 
 ### 4-2. 도시로봇·HRI 연구 DB (`urbanrobotics`, purple `#6d4bb6`, 🤖)
 - kind: `robottype·robotcase·hri·studydesign·observation·experiment·instrument·policyissue`.
@@ -113,13 +118,26 @@ for i in $(seq 1 40); do curl -s https://growingcitiesplanning.org/static/app.js
 - 서울 항목은 최준영 실제 연구(성수동 ADR 보행자 관찰·전문가 AHP·perceived safety, 한-캐 서울-토론토 ADR 공동연구)와 연결. 참고문헌 4건(Choi2026·Macrorie2021·Saaty1980·Weinberg2023).
 
 ### 4-3. 세계대도시협력 WPSC (`wpsc`, teal `#138f8f`, 🤝) — **게시판**
-- `/wpsc` = 게시판 SPA(3구분 탭 **국외출장/연구원내원/글로벌협력기관** + 진행상황 타임라인), 데이터 `wpscdata.py`, API `/api/wpsc`.
-- 국외출장 카드 `wpsc=true` → "📅 WPSC 출장 일정 보기" → `/wpsc/itinerary`(기존 일정 페이지).
+- `/wpsc` = 게시판 SPA(3구분 탭 **국외출장(trips)/연구원내원(visits)/글로벌협력기관(partners)** + 진행상황 타임라인 + 협력자료 분석 탭), 데이터 `wpscdata.py`, API `/api/wpsc`.
+- **연도별 구분(v0.33)**: trips·visits 카드를 `date`(YYYY.MM)의 연도로 그룹핑해 연도 헤더(`.yr-h`) 아래 표시(최신연도 우선). partners는 평면. `render()`가 `cur` 분기.
+- **분류 기준**: trips=서울연 구성원이 해외로 나간 출장 / visits=서울연으로 들어온 내원·교류 / partners=상시 협력기관(조직). 같은 사안이라도 주체 방향으로 분류.
+  - 2026-06-15 재분류: **WUF13 MeTTA 세션 → partners(MeTTA 사무국 항목)**, **태국 PSAC → visits(방콕 출장 내용을 내원 세미나로 통합)**, **IPR 파리 MOU(2025.09) → visits**.
+- 국외출장 카드 `wpsc=true` → "📅 WPSC 출장 일정 보기" → `/wpsc/itinerary`.
 - 수퍼관리자 전용(can_access_system wpsc=superadmin). 내용=대외협력 폴더 정리.
 
-### 4-4. 영문단행본 (`book`, han `#1d6fb8`, 📘)
-- 18장 본문·그림·메모(스레드)·감수·직접편집(그림 교체 포함). 역할별 권한·장(章) 배정.
-- 단행본 원고 갱신: 로컬 `python3 extract.py` → git push → Render 재배포.
+#### 4-3b. WPSC 출장 일정 페이지 (`/wpsc/itinerary`, `wpsc_itinerary.html`)
+- 탭: 개요 / 나의 일정(SCHED) / **지도·동선** / **가볼 곳·먹거리** / 프로그램 / 협력방안 / 부록(뉴스레터 NEWS 등).
+- **지도(Leaflet)**: ① 전체 권역(헬싱키·탐페레·탈린+난탈리·라우마 마커) ② 헬싱키 수도권 ③ 헬싱키 도심 도보 ④ 탐페레.
+- **도로망 기반 동선(v0.33)**: `rt()` 헬퍼가 **OSRM**(`router.project-osrm.org`, driving)로 실제 경로 지오메트리 fetch→폴리라인. 실패 시 옅은 점선 직선 폴백. 해상(탈린·수오멘린나 페리)은 의도적 점선 `ln()`.
+- **가볼 곳·먹거리**: 보라색=가볼 곳, 빨강=먹거리 마커 + 카드(헬싱키/탐페레/난탈리·라우마). 신규 마커·식당은 `initGems()`에 좌표 추가.
+- 나의 일정에 **헬싱키 시청 환영 리셉션**(7/2 20:00–21:30 City Hall) 반영. NEWS 최상단=상세 프로그램·교통권·Visit Espoo.
+- ⚠️ 데이터는 코드 인라인(SCHED/NEWS/PROGRAM/initMaps/initGems). 거대 단일행이라 Read/Edit 불가 시 **체크된 Python `.replace()`**(count==1 assert)로 수정. JS 구문검증은 `osascript -l JavaScript`로 `new Function(src)` 파싱.
+
+### 4-4. 영문단행본 2종 (`book`/`globalbook`, han `#1d6fb8`, 📘)
+- **① 「성장하는 도시를 위한 도시계획」**(18장, `/book`, data.json): 역할별 권한·장 배정·감수.
+- **② 「Planning the Global City with AI — 서울의 데이터 기반 도시계획과 국제 도시협력」**(14장=서문+12장+맺음말, `/globalbook`, globalbook_data.json, 장 order 1000~1013): **글로벌 도시 연구(worldcities) 상단 바로가기로 진입**. 1부 AI·데이터 방법론 6장 + 2부 국제 도시협력 6장.
+- 두 책 모두 동일 엔진: 본문 열람·문단별 메모(스레드)·직접편집·블록이동·되돌리기·그림 교체·DOC/PDF. 권한·메모·편집 테이블은 장 id로 공유(②는 1000번대).
+- ① 원고 갱신: 로컬 `python3 extract.py` → push. ② 원고: `globalbook_data.json` 직접 수정 또는 편집기에서 편집(overrides는 Neon 저장).
 
 ### 4-5. 공개 아키텍처 (`/architecture`,`/about`) — 로그인 불필요
 - 4서브시스템 구조도·로컬 우선 KB 파이프라인·기술스택·권한모델·지식그래프 링크. 포털 상단/배너에서 진입.
@@ -186,6 +204,11 @@ python3 kb_extract.py --file paper.pdf --apply   # relatedExtracted 안전병합
 
 ## 7. 버전 이력(CHANGELOG, app.js)
 
+- v0.34 (2026-06-15) **WPSC 게시판 재분류(MeTTA→협력기관·PSAC/IPR→내원)·연도별 구분**, 출장 일정 **도로망 라우팅·가볼 곳/먹거리 지도·시청 리셉션·최신 뉴스레터**, 아키텍처·매뉴얼 갱신
+- v0.33 (2026-06-15) **두 번째 영문 단행본 「Planning the Global City with AI」(14장) + /globalbook 편집기**(worldcities 상단 바로가기, 1000번대 장 오프셋으로 기존 엔진 무손상 재사용)
+- v0.32 한영 용어 사전 신규 단어 추가 / v0.31 한영 용어 사전(가상 장 9000)
+- v0.30 플랫폼 전면 리디자인(Montserrat·크림 배경·플랫 도시 일러스트 포털)
+- v0.28~0.29 지식그래프 분리·WPSC 협력자료 로컬분석·일정 플랫폼 네비
 - v0.27 WPSC 게시판·통일 네비·지식그래프·세계도시 확장(스마트도시론)·무키 추출
 - v0.26 서브시스템 간 이동(수퍼관리자 무재로그인)
 - v0.25 공개 아키텍처 페이지 + 한-캐 ADR 연구 발행
@@ -221,7 +244,10 @@ python3 kb_extract.py --file paper.pdf --apply   # relatedExtracted 안전병합
 - [ ] kb_extract 실사용: 사용자 Mac에서 `claude -p`(무키) 또는 ollama로 링크/논문 추출 → relatedExtracted 보강 → 그래프 확장.
 - [ ] Zotero 실제 문헌 채우고 BBT 자동 export 연결.
 - [ ] (선택) WPSC 게시판을 dbrecords/관리UI로 전환(현재 wpscdata.py 정적).
-- [ ] (선택) 단행본 18장 콘텐츠 보강·영문 최종본.
+- [ ] (선택) 단행본 ① 18장·② 14장 콘텐츠 보강·그림 업로드·영문 최종본.
+- [x] 두 번째 영문 단행본 ② 「Planning the Global City with AI」 신설(v0.32).
+- [x] WPSC 출장 일정 도로망 라우팅·가볼 곳 지도·게시판 연도 구분(v0.33).
+- [ ] (선택) `/globalbook`도 관리자 장배정 UI에 노출됨(book='global' 태그). 집필자·감수자 배정 시 활용.
 
 ---
 
