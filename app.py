@@ -63,6 +63,10 @@ SYSTEMS = {
 # 연구 DB 서브시스템 ↔ 라우트/페이지 매핑
 DB_SUBSYSTEMS = {'worldcities', 'urbanrobotics'}
 BOOK = json.load(open(DATA, encoding='utf-8'))
+# 한영 용어 사전 — 가상의 '장(chapter)'으로 취급해 기존 메모(comments)·편집(overrides) 인프라 재사용.
+GLOSSARY_CH = 9000   # 본문 장(0~17)과 충돌하지 않는 센티넬 chapter id
+_GLOSS_PATH = os.path.join(HERE, 'glossary.json')
+GLOSSARY = json.load(open(_GLOSS_PATH, encoding='utf-8')) if os.path.exists(_GLOSS_PATH) else []
 
 # ---------------- DB (SQLite local / Postgres cloud) ----------------
 class DB:
@@ -278,11 +282,15 @@ def assigned_chapters(email):
     return {r[0] for r in db().execute('SELECT chapter FROM assignments WHERE email=?', (email,)).fetchall()}
 
 def can_view(u, ch):
+    # 한영 용어 사전: 권한(역할) 있는 모든 사용자 열람·메모 가능
+    if ch == GLOSSARY_CH: return True
     # 관리자급은 전체 열람, 집필자·감수자는 '배정된 장'만 열람
     if u['role'] in ADMIN_ROLES: return True
     return ch in assigned_chapters(u['email'])
 
 def can_edit(u, ch):
+    # 한영 용어 사전: 편집(수정)은 관리자만
+    if ch == GLOSSARY_CH: return u['role'] in ADMIN_ROLES
     # 관리자급은 전체 편집, 집필자는 배정 장만, 감수자는 편집 불가
     if u['role'] in ADMIN_ROLES: return True
     if u['role'] == 'author': return ch in assigned_chapters(u['email'])
@@ -744,6 +752,57 @@ def _set_override(con, ch, blk, val, editor):
     else:
         con.execute('INSERT OR REPLACE INTO overrides(chapter,blk,value,editor,ts) VALUES(?,?,?,?,?)',
                     (ch, blk, val, editor, now()))
+
+# ---------- 한영 용어 사전 (가상 장 GLOSSARY_CH, 메모=comments·수정=overrides 재사용) ----------
+@app.get('/api/glossary')
+@login_required
+def glossary_get():
+    u = current()
+    ov = load_overrides()
+    out = []
+    for t in GLOSSARY:
+        en, kr, edited = t['en'], t['kr'], False
+        e = ov.get((GLOSSARY_CH, t['id']))
+        if e:
+            try:
+                d = json.loads(e); en = d.get('en', en); kr = d.get('kr', kr); edited = True
+            except Exception:
+                pass
+        out.append({'id': t['id'], 'letter': t['letter'], 'en': en, 'kr': kr, 'edited': edited})
+    return jsonify(terms=out, canEdit=can_edit(u, GLOSSARY_CH), chapter=GLOSSARY_CH)
+
+@app.post('/api/glossary/edit')
+@login_required
+def glossary_edit():
+    u = current()
+    if not can_edit(u, GLOSSARY_CH):
+        return jsonify(error='용어 사전 수정은 관리자만 가능합니다.'), 403
+    j = request.get_json(force=True) or {}
+    try:
+        tid = int(j.get('id', -1))
+    except (TypeError, ValueError):
+        return jsonify(error='잘못된 요청입니다.'), 400
+    term = next((t for t in GLOSSARY if t['id'] == tid), None)
+    if not term:
+        return jsonify(error='대상 용어를 찾을 수 없습니다.'), 404
+    en = (j.get('en') or '').strip(); kr = (j.get('kr') or '').strip()
+    if not en and not kr:
+        return jsonify(error='영문·국문 중 하나 이상을 입력하세요.'), 400
+    oldd = {'en': term['en'], 'kr': term['kr']}
+    cur = load_overrides().get((GLOSSARY_CH, tid))
+    if cur:
+        try: oldd = json.loads(cur)
+        except Exception: pass
+    newd = {'en': en, 'kr': kr}
+    if newd == oldd:
+        return jsonify(ok=True, unchanged=True, en=en, kr=kr)
+    con = db()
+    _set_override(con, GLOSSARY_CH, tid, json.dumps(newd, ensure_ascii=False), u['email'])
+    con.execute('INSERT INTO editlog(chapter,blk,oldv,newv,editor,name,role,ts) VALUES(?,?,?,?,?,?,?,?)',
+                (GLOSSARY_CH, tid, f"{oldd.get('en','')} / {oldd.get('kr','')}",
+                 f"{en} / {kr}", u['email'], u['name'], u['role'], now()))
+    con.commit()
+    return jsonify(ok=True, en=en, kr=kr)
 
 @app.post('/api/upload-image')
 @login_required

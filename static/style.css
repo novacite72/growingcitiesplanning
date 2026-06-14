@@ -407,3 +407,26 @@ article.editing h2.read-h.blk:hover,article.editing h3.read-h.blk:hover,article.
 article.editing figure.figblk .imgedit-btn{display:block}
 article.editing figure.figblk{outline:1px dashed #cfd9e3;outline-offset:4px}
 figure.figblk.edited{outline:2px solid var(--green);outline-offset:3px}
+
+/* ---------- 한영 용어 사전 (Korean–English Glossary) ---------- */
+.gl-search{flex:1;min-width:120px;display:flex;align-items:center}
+.gl-search input{width:100%;max-width:340px;padding:7px 12px;border:1px solid var(--line);border-radius:9px;font-size:13.5px;font-family:inherit;background:#fff;color:var(--ink)}
+.gl-search input:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-l)}
+.gl-toc{font-variant-numeric:tabular-nums}
+.gl-toc a.t1{text-transform:uppercase;letter-spacing:.04em}
+h2.read-h.gl-letter{font-size:20px;color:var(--gold);border-bottom:2px solid var(--gold-l);padding-bottom:5px;margin:30px 0 8px;scroll-margin-top:128px}
+.gl-hint{background:var(--gold-l);border:1px solid #ecdcb8;color:#8a6418;font-size:13px;font-weight:600;border-radius:9px;padding:9px 13px;margin:8px 0 14px}
+.gl-term{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start;padding:9px 12px;border-bottom:1px solid var(--line2)}
+.gl-term:hover{background:#fafbfd}
+.gl-en{font-size:15px;font-weight:600;color:var(--ink)}
+.gl-kr{font-size:15px;color:var(--ink2)}
+.gl-term.edited{border-left:3px solid var(--green);padding-left:9px;background:#f3faf6}
+.gl-article.gl-editing .gl-term{cursor:pointer;outline:1px dashed transparent;border-radius:7px}
+.gl-article.gl-editing .gl-term:hover{outline-color:#d9c39a;background:#fffaf0}
+.gl-editor{grid-column:1 / -1;display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.gl-editor input{flex:1;min-width:160px;padding:9px 11px;border:1px solid var(--line);border-radius:8px;font-size:14px;font-family:inherit}
+.gl-editor input:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-l)}
+.gl-editor .ge-b{display:flex;gap:7px;width:100%;justify-content:flex-end}
+.gl-editor .ge-b button{font-size:13px;font-weight:700;border-radius:8px;padding:8px 16px;cursor:pointer;border:1px solid var(--line);background:#fff;color:var(--ink2)}
+.gl-editor .ge-b .ge-save{background:var(--gold);color:#fff;border-color:var(--gold)}
+@media(max-width:760px){.gl-term{grid-template-columns:1fr;gap:3px}.gl-en{font-size:14.5px}}

@@ -33,18 +33,22 @@ async function boot(){
   ME=r.user; ROLES=r.roles;
   const d=await api('/api/data'); BOOK=d; CH=d.chapters; M=d.meta; PARTS=[...new Set(CH.map(c=>c.partname))];
   $('#login').classList.add('hidden'); $('#app').classList.remove('hidden');
-  $('#h-pub').textContent='영문단행본 · 서울연구원 최준영 박사 개인 연구 플랫폼';
+  $('#h-pub').textContent='영문단행본 "성장하는 도시를 위한 도시계획" 감수시스템';
   $('#h-en').textContent=M.titleEN;   // 영문 제목 크게(위)
   $('#h-kr').textContent=M.titleKR;   // 국문 제목 작게(아래)
   $('#st-ch').textContent=CH.length;
   $('#st-case').textContent=CH.reduce((s,c)=>s+c.caseCount,0);
   $('#st-img').textContent=CH.reduce((s,c)=>s+(c.images||0),0);
-  $('#foot').innerHTML='서울연구원 최준영 박사 개인 연구 플랫폼 · 영문단행본 감수 &nbsp;|&nbsp; © 최준영';
+  $('#foot').innerHTML='영문단행본 "성장하는 도시를 위한 도시계획" 감수시스템 &nbsp;|&nbsp; © 최준영';
   renderUserChip(); buildFilters(); loadAllMemoCount(); render();
   $('#helpBtn').classList.remove('hidden'); $('#helpBtn').onclick=openHelp;
 }
 // ---------- 사용 매뉴얼 · 업데이트 내역 ----------
 const CHANGELOG=[
+  {v:'v0.31', date:'2026-06-14', items:[
+    '영문단행본 헤더·푸터 문구를 “영문단행본 \"성장하는 도시를 위한 도시계획\" 감수시스템”으로 변경',
+    '한영 용어 사전 추가(📚 탭) — 국·영문 용어집 660건. 집필자·감수자 모두 열람, 권한자 누구나 메모(다른 장과 동일), 수정은 관리자만',
+  ]},
   {v:'v0.30', date:'2026-06-14', items:[
     '플랫폼 전면 리디자인 — 영문 메인·국문 서브 표기, Montserrat 글꼴(글씨 크게), 따뜻한 플랫 일러스트 톤(크림 배경)으로 전 페이지 통일',
     '포털 첫화면 개편 — 개인 연구 플랫폼 문구 제거, 플랫 도시 일러스트 히어로, 아키텍처 링크를 서브시스템 아래로 이동, 하단 유튜브(@novacite) 링크·원형 로고 추가',
@@ -136,7 +140,7 @@ function openHelp(){
       <div class="help-tabs"><button class="ht active" data-h="man">📖 사용 매뉴얼</button><button class="ht" data-h="log">🆕 업데이트 내역</button></div>
       <div id="help-man">${man}</div>
       <div id="help-log" class="hidden">${log}</div>
-      <div class="tpart" style="margin-top:16px;border-top:1px solid var(--line2);padding-top:10px">서울연구원 최준영 박사 개인 연구 플랫폼 · 영문단행본 감수 · © 최준영</div>
+      <div class="tpart" style="margin-top:16px;border-top:1px solid var(--line2);padding-top:10px">영문단행본 "성장하는 도시를 위한 도시계획" 감수시스템 · © 최준영</div>
     </div>`);
   $$('.ht').forEach(b=>b.onclick=()=>{$$('.ht').forEach(x=>x.classList.toggle('active',x===b));
     $('#help-man').classList.toggle('hidden',b.dataset.h!=='man');$('#help-log').classList.toggle('hidden',b.dataset.h!=='log');});
@@ -180,7 +184,7 @@ function buildFilters(){
     buildFilters();render();window.scrollTo(0,0);
   });
 }
-$$('.tab').forEach(t=>t.onclick=()=>{$$('.tab').forEach(x=>x.classList.remove('active'));t.classList.add('active');view=t.dataset.view;closeReader();render();});
+$$('.tab').forEach(t=>t.onclick=()=>{$$('.tab').forEach(x=>x.classList.remove('active'));t.classList.add('active');view=t.dataset.view;closeReader();if(view==='glossary')openGlossary();else render();});
 $('#q').addEventListener('input',e=>{query=e.target.value.trim();$('#searchBox').classList.toggle('has',!!query);if(curRead===null)render();else if(query){closeReader();render();}});
 $('#clrBtn').onclick=()=>{query='';$('#q').value='';$('#searchBox').classList.remove('has');render();};
 
@@ -326,6 +330,87 @@ function gotoBlock(id){
   try{window.scrollTo({top:y,behavior:'smooth'});}catch(e){window.scrollTo(0,y);}
   setTimeout(()=>{if(Math.abs(window.pageYOffset-y0)<4)window.scrollTo(0,y);},130);  // smooth 미지원 폴백
   el.classList.add('hl');setTimeout(()=>el.classList.remove('hl'),1700);
+}
+
+// ---------- 한영 용어 사전 (가상 장: 메모·편집 인프라 재사용) ----------
+let GLOSS=[], glossCanEdit=false, glossEdit=false, glossQ='', glossCh=9000;
+async function openGlossary(){
+  try{const r=await api('/api/glossary');GLOSS=r.terms;glossCanEdit=r.canEdit;glossCh=r.chapter;}catch(e){GLOSS=[];glossCanEdit=false;}
+  curRead=glossCh;
+  try{const r=await api('/api/comments?chapter='+glossCh);comments=r.comments;canSeeAll=r.canSeeAll;}catch(e){comments=[];}
+  glossEdit=false; glossQ='';
+  renderGlossary();
+}
+function renderGlossary(){
+  const letters=[...new Set(GLOSS.map(t=>t.letter))];
+  let toc='',body='';
+  letters.forEach(L=>{
+    const items=GLOSS.filter(t=>t.letter===L); if(!items.length)return;
+    toc+=`<a href="#gl-${esc(L)}" class="t1" data-id="gl-${esc(L)}">${esc(L)}</a>`;
+    body+=`<h2 class="read-h gl-letter" id="gl-${esc(L)}">${esc(L)}</h2>`;
+    items.forEach(t=>{const id=`b${glossCh}_${t.id}`;
+      body+=`<div class="gl-term blk${t.edited?' edited':''}" id="${id}" data-bi="${t.id}" data-tid="${t.id}">
+        <div class="gl-en">${esc(t.en)}</div><div class="gl-kr">${esc(t.kr)}</div>${memoUI(id,t.en||t.kr)}</div>`;
+    });
+  });
+  if(!body)body='<div class="empty">용어가 없습니다.</div>';
+  const memoN=comments.length;
+  $('#reader').innerHTML=`<div class="rbar"><div class="wrap" style="padding:0"><div class="rbar-in">
+      <button class="back" onclick="closeReader()">‹ 목록</button>
+      <div class="rt">📚 한영 용어 사전<small>국·영문 용어집 ${GLOSS.length}건</small></div>
+      <div class="gl-search"><input id="glq" type="text" placeholder="용어 검색(영문·국문)…" value="${esc(glossQ)}"></div>
+      ${glossCanEdit?`<button class="rbtn ${glossEdit?'on':''}" id="glEditToggle" title="용어 수정(관리자)">${glossEdit?'✓ 편집 종료':'✏️ 편집'}</button>`:''}
+      <button class="memo-toggle ${memoMode?'on':''}" id="memoToggle">📝 ${memoN}</button>
+    </div></div></div>
+    <div class="read-layout"><nav class="toc gl-toc">${toc}</nav>
+      <article class="read gl-article${glossEdit?' gl-editing':''}"><div class="doc-h">한영 용어 사전 · Korean–English Glossary</div>
+        <h1>한영 용어 사전</h1><div class="den">Korean–English Glossary · 국영문 용어집</div>
+        ${glossEdit?'<div class="gl-hint">✏️ 편집 모드 — 용어 칸을 클릭하면 영문·국문을 수정할 수 있습니다(관리자 전용).</div>':''}${body}</article>
+      <div class="crail" id="crail"></div></div>`;
+  $('#listView').classList.add('off');$('#reader').classList.add('on');window.scrollTo(0,0);
+  // 메모 추가 버튼 → 기존 작성기(작성 권한=can_view, 서버에서 검증)
+  $$('.addmemo').forEach(btn=>btn.onclick=e=>{e.stopPropagation();openComposer(btn.dataset.id,btn.dataset.anchor,glossCh);});
+  // 알파벳 TOC
+  $$('.gl-toc a').forEach(a=>a.onclick=ev=>{ev.preventDefault();gotoBlock(a.dataset.id);});
+  // 검색(재렌더 없이 표시/숨김)
+  const gq=$('#glq');if(gq)gq.oninput=()=>{glossQ=gq.value.trim();applyGlossFilter();};
+  // 메모 표시 토글
+  $('#memoToggle').onclick=()=>{memoMode=!memoMode;$('#memoToggle').classList.toggle('on',memoMode);renderNotes();};
+  // 편집 토글(관리자)
+  if($('#glEditToggle'))$('#glEditToggle').onclick=()=>{glossEdit=!glossEdit;renderGlossary();};
+  if(glossEdit)wireGlossEdit();
+  if(glossQ)applyGlossFilter();
+  renderNotes();
+}
+function applyGlossFilter(){
+  const q=glossQ.toLowerCase();
+  $$('.gl-article .gl-term').forEach(el=>{const t=GLOSS.find(x=>x.id===+el.dataset.tid);
+    const show=!q||(t&&((t.en||'').toLowerCase().includes(q)||(t.kr||'').includes(glossQ)));
+    el.style.display=show?'':'none';});
+  $$('.gl-article .gl-letter').forEach(h=>{let n=h.nextElementSibling,any=false;
+    while(n&&!n.classList.contains('gl-letter')){if(n.classList.contains('gl-term')&&n.style.display!=='none'){any=true;break;}n=n.nextElementSibling;}
+    h.style.display=any?'':'none';});
+  positionComments();
+}
+function wireGlossEdit(){
+  $$('.gl-article.gl-editing .gl-term').forEach(el=>el.onclick=ev=>{
+    if(ev.target.closest('.addmemo,.gl-editor'))return;
+    if(el.querySelector('.gl-editor'))return;
+    openGlossEditor(el);
+  });
+}
+function openGlossEditor(el){
+  const tid=+el.dataset.tid, t=GLOSS.find(x=>x.id===tid); if(!t)return;
+  const ed=document.createElement('div');ed.className='gl-editor';
+  ed.innerHTML=`<input class="ge-en" value="${esc(t.en)}" placeholder="English"><input class="ge-kr" value="${esc(t.kr)}" placeholder="한국어"><div class="ge-b"><button class="ge-cancel" type="button">취소</button><button class="ge-save" type="button">저장</button></div>`;
+  el.appendChild(ed);
+  const en=ed.querySelector('.ge-en');en.focus();
+  ed.querySelector('.ge-cancel').onclick=ev=>{ev.stopPropagation();ed.remove();};
+  ed.querySelector('.ge-save').onclick=async ev=>{ev.stopPropagation();
+    try{const r=await api('/api/glossary/edit',{method:'POST',body:JSON.stringify({id:tid,en:en.value,kr:ed.querySelector('.ge-kr').value})});
+      t.en=r.en;t.kr=r.kr;t.edited=true;renderGlossary();toast('용어를 수정했습니다.');
+    }catch(e){alert(e.message);}
+  };
 }
 
 // ---------- export: .doc / .pdf ----------
