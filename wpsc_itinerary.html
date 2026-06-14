@@ -42,7 +42,31 @@ table.mini{width:100%;border-collapse:collapse;font-size:12.5px;margin:6px 0}tab
 .pill{display:inline-block;background:var(--soft);border:1px solid var(--line);border-radius:18px;padding:4px 11px;margin:3px;font-size:12.5px;color:var(--navy)}
 .axis{border-left:5px solid var(--teal);background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:9px 0}
 .foot{color:var(--muted);font-size:11px;text-align:center;padding:18px 0 6px}a{color:var(--teal)}
+.platbar{display:flex;align-items:center;justify-content:space-between;gap:10px;background:#0b1a2e;padding:8px 14px;position:relative;z-index:600}
+.platbar .pb-home{color:#cdddf0;font-size:12.5px;font-weight:700;text-decoration:none}
+.platbar .pb-home:hover{color:#fff}
+.pb-sw{position:relative}
+.pb-btn{font-size:12px;font-weight:800;color:#fff;background:var(--teal);border:0;padding:6px 12px;border-radius:8px;cursor:pointer;font-family:inherit}
+.pb-menu{position:absolute;top:calc(100% + 6px);right:0;background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:0 18px 50px rgba(15,40,70,.22);padding:6px;min-width:212px;display:none}
+.pb-menu.open{display:block}
+.pb-menu a{display:block;padding:9px 12px;font-size:13px;font-weight:700;color:var(--ink);border-radius:7px;text-decoration:none;white-space:nowrap}
+.pb-menu a:hover{background:var(--ice)}
+.pb-menu a.pb-h{border-top:1px solid var(--line);margin-top:4px;color:var(--muted)}
 </style></head><body>
+<div class="platbar">
+  <a class="pb-home" href="/">🏠 플랫폼 홈</a>
+  <div class="pb-sw" id="pbSw" style="display:none">
+    <button class="pb-btn" id="pbBtn">⇄ 서브시스템 이동 ▾</button>
+    <div class="pb-menu" id="pbMenu">
+      <a href="/worldcities">🌐 세계도시 연구 DB</a>
+      <a href="/urbanrobotics">🤖 도시로봇·HRI 연구 DB</a>
+      <a href="/wpsc">🤝 세계대도시협력</a>
+      <a href="/book">📘 영문단행본</a>
+      <a href="/graph">🕸 지식 그래프</a>
+      <a href="/" class="pb-h">🏠 플랫폼 홈</a>
+    </div>
+  </div>
+</div>
 <header><div class="kick">6th WORLD PLANNING SCHOOLS CONGRESS · HELSINKI 2026</div><h1>WPSC 2026 헬싱키 출장 관리</h1><div class="sub">2026. 6. 27.(토) ~ 7. 5.(일) · 7박 9일 · 서울연구원 최준영</div></header>
 <nav id="nav">
  <button data-s="overview" class="on">개요</button><button data-s="schedule">나의 일정</button>
@@ -180,4 +204,19 @@ function initMaps(){if(mDone||typeof L==='undefined')return;mDone=true;
  ln(m2,P.hotel,P.aalto,'#0E7C86');ln(m2,P.hotel,P.mw,'#E0A23B');ln(m2,P.hotel,P.uh,'#1E3A5F');
  setTimeout(()=>{m1.invalidateSize();m1.fitBounds([P.tampere,P.tallinn,P.aalto,P.hel],{padding:[26,26]});
    m2.invalidateSize();m2.fitBounds([P.aalto,P.hotel,P.mw,P.uh],{padding:[40,40]});},300);}
-</script></body></html>
+</script>
+<script>
+/* 플랫폼 네비: 로그인 사용자만 서브시스템 스위처 노출, 공개 사용자는 홈 링크만 */
+(async()=>{
+  try{
+    const me=(await (await fetch('/api/me')).json()).user;
+    if(me){
+      const sw=document.getElementById('pbSw'); sw.style.display='block';
+      const menu=document.getElementById('pbMenu');
+      document.getElementById('pbBtn').onclick=e=>{e.stopPropagation();menu.classList.toggle('open');};
+      document.addEventListener('click',()=>menu.classList.remove('open'));
+    }
+  }catch(e){}
+})();
+</script>
+</body></html>
