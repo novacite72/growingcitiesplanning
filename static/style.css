@@ -430,3 +430,21 @@ h2.read-h.gl-letter{font-size:20px;color:var(--gold);border-bottom:2px solid var
 .gl-editor .ge-b button{font-size:13px;font-weight:700;border-radius:8px;padding:8px 16px;cursor:pointer;border:1px solid var(--line);background:#fff;color:var(--ink2)}
 .gl-editor .ge-b .ge-save{background:var(--gold);color:#fff;border-color:var(--gold)}
 @media(max-width:760px){.gl-term{grid-template-columns:1fr;gap:3px}.gl-en{font-size:14.5px}}
+
+/* 용어 사전 — 사용자 추가/삭제 */
+.rbtn.gl-addbtn{background:var(--green-l);border-color:#bfe0cd;color:var(--green)}
+.rbtn.gl-addbtn:hover{background:#d8efe1}
+.gl-addbox{background:var(--green-l);border:1px solid #bfe0cd;border-radius:12px;padding:14px 16px;margin:6px 0 16px}
+.gl-addh{font-size:14px;font-weight:800;color:var(--green);margin-bottom:10px}
+.gl-addh span{font-size:12px;font-weight:600;color:var(--ink3);margin-left:7px}
+.gl-addrow{display:flex;flex-wrap:wrap;gap:8px}
+.gl-addrow input{flex:1;min-width:160px;padding:9px 12px;border:1px solid var(--line);border-radius:8px;font-size:14px;font-family:inherit}
+.gl-addrow input:focus{outline:none;border-color:var(--green);box-shadow:0 0 0 3px var(--green-l)}
+.gl-addbox .ge-b{display:flex;gap:7px;justify-content:flex-end;margin-top:10px}
+.gl-addbox .ge-b button{font-size:13px;font-weight:700;border-radius:8px;padding:8px 16px;cursor:pointer;border:1px solid var(--line);background:#fff;color:var(--ink2)}
+.gl-addbox .ge-b .ge-save{background:var(--green);color:#fff;border-color:var(--green)}
+.gl-badge{display:inline-block;vertical-align:middle;margin-left:8px;font-size:10.5px;font-weight:800;color:var(--green);background:var(--green-l);border:1px solid #bfe0cd;border-radius:11px;padding:1px 8px}
+.gl-term.gl-added{border-left:3px solid var(--green);padding-left:9px}
+.gl-del{margin-left:10px;border:1px solid var(--line);background:#fff;color:var(--red);border-radius:7px;font-size:12px;padding:2px 8px;cursor:pointer;opacity:.55;transition:.12s}
+.gl-term:hover .gl-del{opacity:1}
+.gl-del:hover{background:#fdecea;border-color:#f0c0ba}

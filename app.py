@@ -63,6 +63,18 @@ SYSTEMS = {
 # 연구 DB 서브시스템 ↔ 라우트/페이지 매핑
 DB_SUBSYSTEMS = {'worldcities', 'urbanrobotics'}
 BOOK = json.load(open(DATA, encoding='utf-8'))
+# 두 번째 단행본(글로벌 도시 연구) — 장 order를 1000번대로 오프셋해 기존 책(0~17)·용어사전(9000)과
+# 충돌 없이 comments/overrides/editlog/images/assignments 인프라를 그대로 재사용한다.
+GBOOK_PATH = os.path.join(HERE, 'globalbook_data.json')
+GBOOK = (json.load(open(GBOOK_PATH, encoding='utf-8'))
+         if os.path.exists(GBOOK_PATH) else {'chapters': [], 'meta': {}})
+BOOKS = {'growing': BOOK, 'global': GBOOK}
+def book_by_key(k):
+    return BOOKS.get(k or 'growing', BOOK)
+def all_chapters():
+    return BOOK['chapters'] + GBOOK['chapters']
+def find_chapter(ch):
+    return next((c for c in all_chapters() if c['order'] == ch), None)
 # 한영 용어 사전 — 가상의 '장(chapter)'으로 취급해 기존 메모(comments)·편집(overrides) 인프라 재사용.
 GLOSSARY_CH = 9000   # 본문 장(0~17)과 충돌하지 않는 센티넬 chapter id
 _GLOSS_PATH = os.path.join(HERE, 'glossary.json')
@@ -172,6 +184,9 @@ def init_db():
         con.execute('''CREATE TABLE IF NOT EXISTS dbrecords(
           id SERIAL PRIMARY KEY, subsystem TEXT, kind TEXT, slug TEXT, title TEXT, data TEXT,
           updated TEXT, UNIQUE(subsystem, slug))''')
+        con.execute('''CREATE TABLE IF NOT EXISTS glossary_terms(
+          id SERIAL PRIMARY KEY, en TEXT, kr TEXT, letter TEXT,
+          creator_email TEXT, creator_name TEXT, ts TEXT)''')
         try: con.execute('ALTER TABLE editlog ADD COLUMN IF NOT EXISTS undone INTEGER DEFAULT 0'); con.commit()
         except Exception: con.rollback()
     else:
@@ -183,7 +198,9 @@ def init_db():
           CREATE TABLE IF NOT EXISTS chorder(chapter INTEGER PRIMARY KEY, seq TEXT);
           CREATE TABLE IF NOT EXISTS images(id INTEGER PRIMARY KEY AUTOINCREMENT, chapter INTEGER, blk INTEGER, mime TEXT, data TEXT, editor TEXT, ts TEXT);
           CREATE TABLE IF NOT EXISTS dbrecords(id INTEGER PRIMARY KEY AUTOINCREMENT, subsystem TEXT, kind TEXT,
-            slug TEXT, title TEXT, data TEXT, updated TEXT, UNIQUE(subsystem, slug));''')
+            slug TEXT, title TEXT, data TEXT, updated TEXT, UNIQUE(subsystem, slug));
+          CREATE TABLE IF NOT EXISTS glossary_terms(id INTEGER PRIMARY KEY AUTOINCREMENT, en TEXT, kr TEXT,
+            letter TEXT, creator_email TEXT, creator_name TEXT, ts TEXT);''')
         if 'undone' not in [r[1] for r in con.execute('PRAGMA table_info(editlog)')]:
             con.execute('ALTER TABLE editlog ADD COLUMN undone INTEGER DEFAULT 0')
     # users.systems 컬럼(서브시스템 접근권한, 콤마구분 코드)
@@ -314,7 +331,13 @@ def architecture_page():
 
 @app.route('/book')
 def book_app():
-    return render_template('index.html')   # 영문단행본 감수 시스템 SPA
+    return render_template('index.html', book_key='growing')   # 영문단행본 「성장하는 도시」 SPA
+
+@app.route('/globalbook')
+@app.route('/global-book')
+def globalbook_app():
+    # 글로벌 도시 연구 단행본 「Planning the Global City with AI」 — 동일 SPA, 다른 책 데이터
+    return render_template('index.html', book_key='global')
 
 @app.route('/wpsc')
 def wpsc_page():
@@ -631,9 +654,10 @@ def load_order():
 @login_required
 def data():
     u = current()
+    bk = book_by_key(request.args.get('book'))             # 'growing'(기본) | 'global'
     ov = load_overrides(); orders = load_order()
     chs = []
-    for c in BOOK['chapters']:
+    for c in bk['chapters']:
         if not can_view(u, c['order']): continue          # 감수자: 배정 장만
         n = len(c['content'])
         seq = orders.get(c['order'])
@@ -650,7 +674,7 @@ def data():
             cc['content'].append(b)
         cc['canEdit'] = can_edit(u, c['order'])
         chs.append(cc)
-    return jsonify({'chapters': chs, 'meta': BOOK['meta']})
+    return jsonify({'chapters': chs, 'meta': bk['meta']})
 
 @app.post('/api/order')
 @login_required
@@ -658,7 +682,7 @@ def set_order():
     u = current(); j = request.get_json(force=True)
     ch = int(j.get('chapter', -1)); seq = [int(x) for x in j.get('order', [])]
     if not can_edit(u, ch): return jsonify(error='이 장을 편집할 권한이 없습니다.'), 403
-    chap = next((c for c in BOOK['chapters'] if c['order'] == ch), None)
+    chap = find_chapter(ch)
     if not chap: return jsonify(error='장을 찾을 수 없습니다.'), 404
     con = db()
     cur = con.execute('SELECT seq FROM chorder WHERE chapter=?', (ch,)).fetchone()
@@ -681,7 +705,7 @@ def undo_edit():
     con = db()
     e = con.execute('SELECT * FROM editlog WHERE chapter=? AND undone=0 ORDER BY id DESC LIMIT 1', (ch,)).fetchone()
     if not e: return jsonify(ok=True, nothing=True, remaining=0)
-    chap = next((c for c in BOOK['chapters'] if c['order'] == ch), None)
+    chap = find_chapter(ch)
     if e['blk'] == -1:        # 순서 이동 되돌리기 → 이전 seq 복원
         oldseq = json.loads(e['oldv']) if e['oldv'] else list(range(len(chap['content'])))
         if oldseq == list(range(len(chap['content']))):
@@ -723,7 +747,7 @@ def edit_block():
     val = (j.get('value') or '').strip()
     if not can_edit(u, ch):
         return jsonify(error='이 장을 편집할 권한이 없습니다.'), 403
-    chap = next((c for c in BOOK['chapters'] if c['order'] == ch), None)
+    chap = find_chapter(ch)
     if not chap or blk < 0 or blk >= len(chap['content']):
         return jsonify(error='대상 블록을 찾을 수 없습니다.'), 404
     b = chap['content'][blk]; f = block_field(b)
@@ -754,22 +778,83 @@ def _set_override(con, ch, blk, val, editor):
                     (ch, blk, val, editor, now()))
 
 # ---------- 한영 용어 사전 (가상 장 GLOSSARY_CH, 메모=comments·수정=overrides 재사용) ----------
+GLOSS_ADDED_OFFSET = 100000   # 사용자 추가 용어 id = OFFSET + DB row id (기본 660건 id와 충돌 방지)
+
+def _gloss_letter(en, kr):
+    for ch in (en or kr or ''):
+        if ch.isascii() and ch.isalpha():
+            return ch.upper()
+    return '#'
+
+def _load_added_terms():
+    return [dict(r) for r in db().execute(
+        'SELECT id,en,kr,letter,creator_name FROM glossary_terms ORDER BY id').fetchall()]
+
+def _find_term(tid):
+    """기본 용어(GLOSSARY) 또는 사용자 추가 용어를 통합 조회. {id,en,kr} 또는 None."""
+    if tid >= GLOSS_ADDED_OFFSET:
+        r = db().execute('SELECT en,kr FROM glossary_terms WHERE id=?',
+                         (tid - GLOSS_ADDED_OFFSET,)).fetchone()
+        return {'id': tid, 'en': r['en'], 'kr': r['kr']} if r else None
+    return next((t for t in GLOSSARY if t['id'] == tid), None)
+
 @app.get('/api/glossary')
 @login_required
 def glossary_get():
     u = current()
     ov = load_overrides()
     out = []
-    for t in GLOSSARY:
-        en, kr, edited = t['en'], t['kr'], False
-        e = ov.get((GLOSSARY_CH, t['id']))
+    def apply_ov(tid, en, kr):
+        e = ov.get((GLOSSARY_CH, tid))
         if e:
             try:
-                d = json.loads(e); en = d.get('en', en); kr = d.get('kr', kr); edited = True
+                d = json.loads(e); return d.get('en', en), d.get('kr', kr), True
             except Exception:
                 pass
-        out.append({'id': t['id'], 'letter': t['letter'], 'en': en, 'kr': kr, 'edited': edited})
-    return jsonify(terms=out, canEdit=can_edit(u, GLOSSARY_CH), chapter=GLOSSARY_CH)
+        return en, kr, False
+    for t in GLOSSARY:
+        en, kr, edited = apply_ov(t['id'], t['en'], t['kr'])
+        out.append({'id': t['id'], 'letter': t['letter'], 'en': en, 'kr': kr,
+                    'edited': edited, 'added': False})
+    for r in _load_added_terms():
+        tid = GLOSS_ADDED_OFFSET + r['id']
+        en, kr, edited = apply_ov(tid, r['en'], r['kr'])
+        out.append({'id': tid, 'letter': r['letter'] or _gloss_letter(en, kr), 'en': en, 'kr': kr,
+                    'edited': edited, 'added': True, 'by': r['creator_name']})
+    return jsonify(terms=out, canEdit=can_edit(u, GLOSSARY_CH), canAdd=True, chapter=GLOSSARY_CH)
+
+@app.post('/api/glossary/add')
+@login_required
+def glossary_add():
+    """새 용어 추가 — 모든 사용자 가능."""
+    u = current()
+    j = request.get_json(force=True) or {}
+    en = (j.get('en') or '').strip(); kr = (j.get('kr') or '').strip()
+    if not en and not kr:
+        return jsonify(error='영문·국문 중 하나 이상을 입력하세요.'), 400
+    letter = _gloss_letter(en, kr)
+    con = db()
+    nid = con.insert('INSERT INTO glossary_terms(en,kr,letter,creator_email,creator_name,ts) VALUES(?,?,?,?,?,?)',
+                     (en, kr, letter, u['email'], u['name'], now()))
+    con.commit()
+    return jsonify(ok=True, id=GLOSS_ADDED_OFFSET + nid, en=en, kr=kr, letter=letter,
+                   added=True, by=u['name'])
+
+@app.delete('/api/glossary/<int:tid>')
+@login_required
+def glossary_delete(tid):
+    """용어 삭제 — 모든 사용자 가능(사용자 추가 용어에 한함, 기본 660건은 보호)."""
+    if tid < GLOSS_ADDED_OFFSET:
+        return jsonify(error='기본 용어집 항목은 삭제할 수 없습니다.'), 400
+    con = db()
+    row = con.execute('SELECT id FROM glossary_terms WHERE id=?', (tid - GLOSS_ADDED_OFFSET,)).fetchone()
+    if not row:
+        return jsonify(error='대상 용어를 찾을 수 없습니다.'), 404
+    con.execute('DELETE FROM glossary_terms WHERE id=?', (tid - GLOSS_ADDED_OFFSET,))
+    con.execute('DELETE FROM comments WHERE chapter=? AND block=?', (GLOSSARY_CH, f'b{GLOSSARY_CH}_{tid}'))
+    con.execute('DELETE FROM overrides WHERE chapter=? AND blk=?', (GLOSSARY_CH, tid))
+    con.commit()
+    return jsonify(ok=True)
 
 @app.post('/api/glossary/edit')
 @login_required
@@ -782,7 +867,7 @@ def glossary_edit():
         tid = int(j.get('id', -1))
     except (TypeError, ValueError):
         return jsonify(error='잘못된 요청입니다.'), 400
-    term = next((t for t in GLOSSARY if t['id'] == tid), None)
+    term = _find_term(tid)
     if not term:
         return jsonify(error='대상 용어를 찾을 수 없습니다.'), 404
     en = (j.get('en') or '').strip(); kr = (j.get('kr') or '').strip()
@@ -814,7 +899,7 @@ def upload_image():
     except (TypeError, ValueError):
         return jsonify(error='잘못된 요청입니다.'), 400
     if not can_edit(u, ch): return jsonify(error='이 장을 편집할 권한이 없습니다.'), 403
-    chap = next((c for c in BOOK['chapters'] if c['order'] == ch), None)
+    chap = find_chapter(ch)
     if not chap or blk < 0 or blk >= len(chap['content']) or chap['content'][blk]['t'] != 'img':
         return jsonify(error='이미지 블록이 아닙니다.'), 400
     f = request.files.get('file')
@@ -859,7 +944,7 @@ def revert_block():
     u = current(); j = request.get_json(force=True)
     ch = int(j.get('chapter', -1)); blk = int(j.get('blk', -1))
     if not can_edit(u, ch): return jsonify(error='권한이 없습니다.'), 403
-    chap = next((c for c in BOOK['chapters'] if c['order'] == ch), None)
+    chap = find_chapter(ch)
     if not chap or blk < 0 or blk >= len(chap['content']): return jsonify(error='대상을 찾을 수 없습니다.'), 404
     con = db()
     cur = load_overrides().get((ch, blk))
@@ -879,7 +964,7 @@ def editlog():
     if ch is not None: q += ' WHERE chapter=?'; args.append(int(ch))
     q += ' ORDER BY id DESC LIMIT 300'
     rows = [dict(r) for r in db().execute(q, args).fetchall()]
-    label = {c['order']: c['label'] for c in BOOK['chapters']}
+    label = {c['order']: c['label'] for c in all_chapters()}
     for r in rows: r['chapterLabel'] = label.get(r['chapter'], str(r['chapter']))
     return jsonify(log=rows)
 
@@ -971,7 +1056,8 @@ def users():
         d['comments'] = db().execute('SELECT COUNT(*) FROM comments WHERE email=?', (r['email'],)).fetchone()[0]
         d['chapters'] = sorted(assigned_chapters(r['email']))
         out.append(d)
-    chapters = [{'order': c['order'], 'label': c['label'], 'titleKR': c['titleKR']} for c in BOOK['chapters']]
+    chapters = [{'order': c['order'], 'label': c['label'], 'titleKR': c['titleKR'],
+                 'book': ('global' if c['order'] >= 1000 else 'growing')} for c in all_chapters()]
     sysmeta = {k: {'kr': v[0], 'en': v[1]} for k, v in SYSTEMS.items()}
     return jsonify(users=out, roles=ROLES, chapters=chapters, systems=sysmeta, isSuper=(actor['role'] == 'superadmin'))
 

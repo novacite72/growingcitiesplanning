@@ -1,4 +1,7 @@
 'use strict';
+// ---------- book selector (기본=성장하는 도시 / global=글로벌 도시 연구 단행본) ----------
+const GB = (window.BOOK_KEY === 'global');
+const DATAURL = '/api/data' + (GB ? '?book=global' : '');
 // ---------- state ----------
 let ME=null, ROLES={}, BOOK=null, CH=[], M={}, PARTS=[];
 let view='chapters', query='', partFilter='all', curRead=null;
@@ -29,22 +32,28 @@ $('#regForm').addEventListener('submit',async e=>{
   }catch(err){$('#rg-err').textContent=err.message;}
 });
 async function boot(){
-  const r=await api('/api/me'); if(!r.user){location.replace('/?sys=book');return;}
+  const r=await api('/api/me'); if(!r.user){location.replace(GB?'/?sys=worldcities':'/?sys=book');return;}
   ME=r.user; ROLES=r.roles;
-  const d=await api('/api/data'); BOOK=d; CH=d.chapters; M=d.meta; PARTS=[...new Set(CH.map(c=>c.partname))];
+  const d=await api(DATAURL); BOOK=d; CH=d.chapters; M=d.meta; PARTS=[...new Set(CH.map(c=>c.partname))];
   $('#login').classList.add('hidden'); $('#app').classList.remove('hidden');
-  $('#h-pub').textContent='영문단행본 "성장하는 도시를 위한 도시계획" 감수시스템';
+  $('#h-pub').textContent=GB?'글로벌 도시 연구 단행본 · 편집/감수 시스템':'영문단행본 "성장하는 도시를 위한 도시계획" 감수시스템';
   $('#h-en').textContent=M.titleEN;   // 영문 제목 크게(위)
   $('#h-kr').textContent=M.titleKR;   // 국문 제목 작게(아래)
   $('#st-ch').textContent=CH.length;
   $('#st-case').textContent=CH.reduce((s,c)=>s+c.caseCount,0);
   $('#st-img').textContent=CH.reduce((s,c)=>s+(c.images||0),0);
-  $('#foot').innerHTML='영문단행본 "성장하는 도시를 위한 도시계획" 감수시스템 &nbsp;|&nbsp; © 최준영';
+  $('#foot').innerHTML=(GB?'글로벌 도시 연구 단행본 「Planning the Global City with AI」':'영문단행본 "성장하는 도시를 위한 도시계획" 감수시스템')+' &nbsp;|&nbsp; © 최준영';
   renderUserChip(); buildFilters(); loadAllMemoCount(); render();
   $('#helpBtn').classList.remove('hidden'); $('#helpBtn').onclick=openHelp;
 }
 // ---------- 사용 매뉴얼 · 업데이트 내역 ----------
 const CHANGELOG=[
+  {v:'v0.33', date:'2026-06-15', items:[
+    '두 번째 영문 단행본 「Planning the Global City with AI — 서울의 데이터 기반 도시계획과 국제 도시협력」 신설(서문+12장+맺음말, 14개 장). 「글로벌 도시 연구」 서브시스템 상단의 📖 바로가기로 진입하며, 본문 열람·문단 편집·드래그 이동·되돌리기·메모·그림 교체 등 본 편집기와 동일한 기능을 제공합니다.',
+  ]},
+  {v:'v0.32', date:'2026-06-14', items:[
+    '한영 용어 사전에 신규 단어 추가 기능 도입 — “＋ 단어 추가”. 추가·삭제는 모든 사용자가 가능(추가 용어에 한해 삭제, 기본 660건은 보호). 수정은 관리자만.',
+  ]},
   {v:'v0.31', date:'2026-06-14', items:[
     '영문단행본 헤더·푸터 문구를 “영문단행본 \"성장하는 도시를 위한 도시계획\" 감수시스템”으로 변경',
     '한영 용어 사전 추가(📚 탭) — 국·영문 용어집 660건. 집필자·감수자 모두 열람, 권한자 누구나 메모(다른 장과 동일), 수정은 관리자만',
@@ -349,8 +358,10 @@ function renderGlossary(){
     toc+=`<a href="#gl-${esc(L)}" class="t1" data-id="gl-${esc(L)}">${esc(L)}</a>`;
     body+=`<h2 class="read-h gl-letter" id="gl-${esc(L)}">${esc(L)}</h2>`;
     items.forEach(t=>{const id=`b${glossCh}_${t.id}`;
-      body+=`<div class="gl-term blk${t.edited?' edited':''}" id="${id}" data-bi="${t.id}" data-tid="${t.id}">
-        <div class="gl-en">${esc(t.en)}</div><div class="gl-kr">${esc(t.kr)}</div>${memoUI(id,t.en||t.kr)}</div>`;
+      const badge=t.added?`<span class="gl-badge" title="사용자 추가 용어${t.by?(' · '+esc(t.by)):''}">추가</span>`:'';
+      const del=t.added?`<button class="gl-del" data-del="${t.id}" title="이 용어 삭제(모든 사용자)">🗑</button>`:'';
+      body+=`<div class="gl-term blk${t.edited?' edited':''}${t.added?' gl-added':''}" id="${id}" data-bi="${t.id}" data-tid="${t.id}">
+        <div class="gl-en">${esc(t.en)}${badge}</div><div class="gl-kr">${esc(t.kr)}${del}</div>${memoUI(id,t.en||t.kr)}</div>`;
     });
   });
   if(!body)body='<div class="empty">용어가 없습니다.</div>';
@@ -359,6 +370,7 @@ function renderGlossary(){
       <button class="back" onclick="closeReader()">‹ 목록</button>
       <div class="rt">📚 한영 용어 사전<small>국·영문 용어집 ${GLOSS.length}건</small></div>
       <div class="gl-search"><input id="glq" type="text" placeholder="용어 검색(영문·국문)…" value="${esc(glossQ)}"></div>
+      <button class="rbtn gl-addbtn" id="glAddBtn" title="새 용어 추가(모든 사용자)">＋ 단어 추가</button>
       ${glossCanEdit?`<button class="rbtn ${glossEdit?'on':''}" id="glEditToggle" title="용어 수정(관리자)">${glossEdit?'✓ 편집 종료':'✏️ 편집'}</button>`:''}
       <button class="memo-toggle ${memoMode?'on':''}" id="memoToggle">📝 ${memoN}</button>
     </div></div></div>
@@ -372,6 +384,10 @@ function renderGlossary(){
   $$('.addmemo').forEach(btn=>btn.onclick=e=>{e.stopPropagation();openComposer(btn.dataset.id,btn.dataset.anchor,glossCh);});
   // 알파벳 TOC
   $$('.gl-toc a').forEach(a=>a.onclick=ev=>{ev.preventDefault();gotoBlock(a.dataset.id);});
+  // 단어 추가(모든 사용자)
+  if($('#glAddBtn'))$('#glAddBtn').onclick=openGlossAdd;
+  // 단어 삭제(모든 사용자 · 추가 용어)
+  $$('.gl-del').forEach(b=>b.onclick=e=>{e.stopPropagation();glossDelete(+b.dataset.del);});
   // 검색(재렌더 없이 표시/숨김)
   const gq=$('#glq');if(gq)gq.oninput=()=>{glossQ=gq.value.trim();applyGlossFilter();};
   // 메모 표시 토글
@@ -394,7 +410,7 @@ function applyGlossFilter(){
 }
 function wireGlossEdit(){
   $$('.gl-article.gl-editing .gl-term').forEach(el=>el.onclick=ev=>{
-    if(ev.target.closest('.addmemo,.gl-editor'))return;
+    if(ev.target.closest('.addmemo,.gl-editor,.gl-del'))return;
     if(el.querySelector('.gl-editor'))return;
     openGlossEditor(el);
   });
@@ -411,6 +427,35 @@ function openGlossEditor(el){
       t.en=r.en;t.kr=r.kr;t.edited=true;renderGlossary();toast('용어를 수정했습니다.');
     }catch(e){alert(e.message);}
   };
+}
+// 새 용어 추가(모든 사용자) — 본문 상단에 입력 패널
+function openGlossAdd(){
+  const art=$('.gl-article'); if(!art||$('.gl-addbox'))return;
+  const box=document.createElement('div'); box.className='gl-addbox';
+  box.innerHTML=`<div class="gl-addh">＋ 새 용어 추가 <span>모든 사용자가 추가할 수 있습니다</span></div>
+    <div class="gl-addrow"><input class="ga-en" placeholder="English"><input class="ga-kr" placeholder="한국어"></div>
+    <div class="ge-b"><button class="ge-cancel" type="button">취소</button><button class="ge-save" type="button">추가</button></div>`;
+  const first=art.querySelector('.gl-letter');
+  if(first)art.insertBefore(box,first); else art.appendChild(box);
+  const en=box.querySelector('.ga-en'),kr=box.querySelector('.ga-kr'); en.focus();
+  box.scrollIntoView({block:'center'});
+  box.querySelector('.ge-cancel').onclick=()=>box.remove();
+  const save=async()=>{
+    if(!en.value.trim()&&!kr.value.trim()){en.focus();return;}
+    try{const r=await api('/api/glossary/add',{method:'POST',body:JSON.stringify({en:en.value,kr:kr.value})});
+      await openGlossary();
+      const el=$('#b'+glossCh+'_'+r.id); if(el){el.scrollIntoView({block:'center'});el.classList.add('hl');setTimeout(()=>el.classList.remove('hl'),1700);}
+      toast('용어를 추가했습니다.');
+    }catch(e){alert(e.message);}
+  };
+  box.querySelector('.ge-save').onclick=save;
+  kr.addEventListener('keydown',e=>{if(e.key==='Enter')save();});
+}
+// 용어 삭제(모든 사용자 · 추가 용어만)
+async function glossDelete(tid){
+  if(!confirm('이 용어를 삭제할까요?\n이 용어에 달린 메모도 함께 삭제됩니다.'))return;
+  try{await api('/api/glossary/'+tid,{method:'DELETE'});await openGlossary();toast('용어를 삭제했습니다.');}
+  catch(e){alert(e.message);}
 }
 
 // ---------- export: .doc / .pdf ----------
@@ -554,7 +599,7 @@ function openImageEditor(order,el){
     try{await api('/api/revert-block',{method:'POST',body:JSON.stringify({chapter:order,blk:oi})});closeModal();toast('원본 그림으로 복원했습니다.');await reopenInEdit(order,oi);}catch(e){alert(e.message);}
   };
 }
-async function reloadData(){const d=await api('/api/data');CH=d.chapters;}
+async function reloadData(){const d=await api(DATAURL);CH=d.chapters;}
 async function reopenInEdit(order,scrollOi){
   await reloadData();await openReader(order);toggleEdit(order);
   if(scrollOi!=null)setTimeout(()=>gotoBlock('b'+order+'_'+scrollOi),180);
