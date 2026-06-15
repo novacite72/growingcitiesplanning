@@ -1,0 +1,6302 @@
+[
+ {
+  "name": "Additional Protocol to the Convention Concerning Customs Facilities for Touring, Relating to the Importation of Tourist Publicity Documents and Material",
+  "acronym": "",
+  "founded": "1954",
+  "city": "",
+  "country": "",
+  "type1": "T",
+  "type2": "g",
+  "uiaid": "XT5415"
+ },
+ {
+  "name": "Advance Care Planning International",
+  "acronym": "ACP-i",
+  "founded": "2010",
+  "city": "Frankfurt-Main",
+  "country": "Germany",
+  "type1": "C",
+  "type2": "",
+  "uiaid": "XJ2320"
+ },
+ {
+  "name": "Advanced Networked Cities and Regions Association",
+  "acronym": "ANCARA",
+  "founded": "1996",
+  "city": "",
+  "country": "",
+  "type1": "H",
+  "type2": "x",
+  "uiaid": "XD6913"
+ },
+ {
+  "name": "Africa Atrocities Watch",
+  "acronym": "",
+  "founded": "",
+  "city": "Kampala",
+  "country": "Uganda",
+  "type1": "D",
+  "type2": "",
+  "uiaid": "XM5095"
+ },
+ {
+  "name": "Africa Capacity Alliance",
+  "acronym": "ACA",
+  "founded": "1997",
+  "city": "Nairobi",
+  "country": "Kenya",
+  "type1": "F",
+  "type2": "y",
+  "uiaid": "XF6850"
+ },
+ {
+  "name": "African Association for Education in Architecture and Planning",
+  "acronym": "",
+  "founded": "1995",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "px",
+  "uiaid": "XJ6430"
+ },
+ {
+  "name": "African Conference on the Integrated Family Planning, Nutrition and Parasite Control Project",
+  "acronym": "PANFRICO",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "S",
+  "type2": "c",
+  "uiaid": "XS0416"
+ },
+ {
+  "name": "African Forum for Urban Security",
+  "acronym": "AFUS",
+  "founded": "1998",
+  "city": "",
+  "country": "",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "XF4817"
+ },
+ {
+  "name": "African Foundation for Urban Management",
+  "acronym": "",
+  "founded": "",
+  "city": "Dakar",
+  "country": "Senegal",
+  "type1": "G",
+  "type2": "f",
+  "uiaid": "XG8961"
+ },
+ {
+  "name": "African Institute for Capacity Development",
+  "acronym": "AICAD",
+  "founded": "2000",
+  "city": "Nairobi",
+  "country": "Kenya",
+  "type1": "G",
+  "type2": "j",
+  "uiaid": "XQ0285"
+ },
+ {
+  "name": "African NGO Habitat Caucus",
+  "acronym": "Africaucus",
+  "founded": "1995",
+  "city": "Dakar",
+  "country": "Senegal",
+  "type1": "U",
+  "type2": "x",
+  "uiaid": "XF6607"
+ },
+ {
+  "name": "African Planning Association",
+  "acronym": "",
+  "founded": "2006",
+  "city": "",
+  "country": "",
+  "type1": "H",
+  "type2": "x",
+  "uiaid": "XM2390"
+ },
+ {
+  "name": "African Risk Capacity Agency",
+  "acronym": "ARC",
+  "founded": "",
+  "city": "Johannesburg",
+  "country": "South Africa",
+  "type1": "E",
+  "type2": "g",
+  "uiaid": "XM6954"
+ },
+ {
+  "name": "African School of Architecture and Town Planning",
+  "acronym": "",
+  "founded": "1975",
+  "city": "Lomé",
+  "country": "Togo",
+  "type1": "F",
+  "type2": "g",
+  "uiaid": "XF7849"
+ },
+ {
+  "name": "African Smart Cities Innovation Foundation",
+  "acronym": "ASCIF",
+  "founded": "",
+  "city": "Abuja",
+  "country": "Nigeria",
+  "type1": "J",
+  "type2": "",
+  "uiaid": "AA3602"
+ },
+ {
+  "name": "African Sustainable Cities Network",
+  "acronym": "ASCN",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "d",
+  "uiaid": "XK2185"
+ },
+ {
+  "name": "Agreement Concerning Cooperation at Local Government Levels Across Inter-Nordic National Borders",
+  "acronym": "",
+  "founded": "1977",
+  "city": "",
+  "country": "",
+  "type1": "T",
+  "type2": "g",
+  "uiaid": "XT7759"
+ },
+ {
+  "name": "Agreement Concerning Cooperation Over the Nordic National Frontiers between Local Authorities",
+  "acronym": "",
+  "founded": "1977",
+  "city": "",
+  "country": "",
+  "type1": "T",
+  "type2": "g",
+  "uiaid": "XT7789"
+ },
+ {
+  "name": "Agreement on the Conservation of Gorillas and Their Habitats",
+  "acronym": "",
+  "founded": "2007",
+  "city": "Bonn",
+  "country": "Germany",
+  "type1": "T",
+  "type2": "g",
+  "uiaid": "XT0880"
+ },
+ {
+  "name": "Alliance for Healthy Cities",
+  "acronym": "",
+  "founded": "2003",
+  "city": "Tokyo",
+  "country": "Japan",
+  "type1": "D",
+  "type2": "",
+  "uiaid": "XM6256"
+ },
+ {
+  "name": "Alliance of Mayors and Municipal Leaders on HIV/AIDS in Africa",
+  "acronym": "AMICAALL",
+  "founded": "1998",
+  "city": "Windhoek",
+  "country": "Namibia",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "XF7158"
+ },
+ {
+  "name": "Amicale internationale des élues municipales",
+  "acronym": "",
+  "founded": "1962",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "d",
+  "uiaid": "XF0851"
+ },
+ {
+  "name": "Amsterdam Institute for Metropolitan and International Development Studies",
+  "acronym": "AMIDSt",
+  "founded": "2004",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "dj",
+  "uiaid": "XM0763"
+ },
+ {
+  "name": "APEC Sustainable Cities Initiative",
+  "acronym": "",
+  "founded": "1997",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "dg",
+  "uiaid": "XJ0283"
+ },
+ {
+  "name": "Arab Federation of Municipality Workers",
+  "acronym": "",
+  "founded": "1988",
+  "city": "",
+  "country": "",
+  "type1": "H",
+  "type2": "d",
+  "uiaid": "XD1853"
+ },
+ {
+  "name": "Arab Planning Institute",
+  "acronym": "API",
+  "founded": "1972",
+  "city": "Safat",
+  "country": "Kuwait",
+  "type1": "E",
+  "type2": "gj",
+  "uiaid": "XE7392"
+ },
+ {
+  "name": "Arab Towns Development Fund",
+  "acronym": "ATDF",
+  "founded": "1979",
+  "city": "Kaifan",
+  "country": "Kuwait",
+  "type1": "F",
+  "type2": "f",
+  "uiaid": "XF0219"
+ },
+ {
+  "name": "Arab Towns Organization",
+  "acronym": "ATO",
+  "founded": "1967",
+  "city": "Kaifan",
+  "country": "Kuwait",
+  "type1": "D",
+  "type2": "",
+  "uiaid": "XD2765"
+ },
+ {
+  "name": "Arab Union of Electricity",
+  "acronym": "AUE",
+  "founded": "1987",
+  "city": "Amman",
+  "country": "Jordan",
+  "type1": "D",
+  "type2": "t",
+  "uiaid": "XD1838"
+ },
+ {
+  "name": "Arab Urban Development Institute",
+  "acronym": "AUDI",
+  "founded": "1979",
+  "city": "Riyadh",
+  "country": "Saudi Arabia",
+  "type1": "E",
+  "type2": "j",
+  "uiaid": "XE2780"
+ },
+ {
+  "name": "Arab Water Network for Capacity Building",
+  "acronym": "Awarenet",
+  "founded": "",
+  "city": "Beirut",
+  "country": "Lebanon",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "XJ2392"
+ },
+ {
+  "name": "Arab Women's Habitat Network",
+  "acronym": "",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "d",
+  "uiaid": "XM2335"
+ },
+ {
+  "name": "Architecture, Archaeology and Contemporary City Planning",
+  "acronym": "AACCP",
+  "founded": "2014",
+  "city": "",
+  "country": "",
+  "type1": "F",
+  "type2": "c",
+  "uiaid": "AA7329"
+ },
+ {
+  "name": "Art Cities in Europe",
+  "acronym": "",
+  "founded": "1994",
+  "city": "Konstanz",
+  "country": "Germany",
+  "type1": "G",
+  "type2": "",
+  "uiaid": "XN8242"
+ },
+ {
+  "name": "ASEAN Agricultural Development Planning Centre, Bangkok",
+  "acronym": "ADPC",
+  "founded": "1980",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "dg",
+  "uiaid": "XE2223"
+ },
+ {
+  "name": "ASEAN Association for Planning and Housing",
+  "acronym": "AAPH",
+  "founded": "1979",
+  "city": "Kajang",
+  "country": "Malaysia",
+  "type1": "U",
+  "type2": "x",
+  "uiaid": "XE0260"
+ },
+ {
+  "name": "ASEAN Development Planning Centre, Bangkok",
+  "acronym": "ADPC",
+  "founded": "",
+  "city": "Bangkok",
+  "country": "Thailand",
+  "type1": "U",
+  "type2": "x",
+  "uiaid": "XG2282"
+ },
+ {
+  "name": "ASEAN Governors and Mayors Forum",
+  "acronym": "AGMF",
+  "founded": "2011",
+  "city": "Jakarta",
+  "country": "Indonesia",
+  "type1": "E",
+  "type2": "",
+  "uiaid": "AA5350"
+ },
+ {
+  "name": "ASEAN Regional Development Centre in Mineral Resources, Bandung",
+  "acronym": "ARDCMR",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "px",
+  "uiaid": "XJ2135"
+ },
+ {
+  "name": "Asia Institute of Urban Environment",
+  "acronym": "AIUE",
+  "founded": "",
+  "city": "Fukuoka",
+  "country": "Japan",
+  "type1": "G",
+  "type2": "",
+  "uiaid": "XM8293"
+ },
+ {
+  "name": "Asia Pacific Urban Energy Association",
+  "acronym": "APUEA",
+  "founded": "2017",
+  "city": "Bangkok",
+  "country": "Thailand",
+  "type1": "D",
+  "type2": "yt",
+  "uiaid": "AA3200"
+ },
+ {
+  "name": "Asia-Pacific Symposium on Engineering Plasticity and its Applications",
+  "acronym": "AEPA",
+  "founded": "1992",
+  "city": "",
+  "country": "",
+  "type1": "S",
+  "type2": "c",
+  "uiaid": "XS0636"
+ },
+ {
+  "name": "Asian and Pacific Energy-Environment Planning Network",
+  "acronym": "APENPLAN",
+  "founded": "1985",
+  "city": "Kuala Lumpur",
+  "country": "Malaysia",
+  "type1": "U",
+  "type2": "xy",
+  "uiaid": "XF2098"
+ },
+ {
+  "name": "Asian Cities Against Drugs",
+  "acronym": "ASCAD",
+  "founded": "",
+  "city": "Melaka",
+  "country": "Malaysia",
+  "type1": "J",
+  "type2": "",
+  "uiaid": "XM6342"
+ },
+ {
+  "name": "Asian Human Settlements Bank",
+  "acronym": "",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "px",
+  "uiaid": "XU9515"
+ },
+ {
+  "name": "Asian Institute of Educational Planning and Administration",
+  "acronym": "",
+  "founded": "1962",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "jn",
+  "uiaid": "XE0452"
+ },
+ {
+  "name": "Asian Mayors Forum",
+  "acronym": "AMF",
+  "founded": "2007",
+  "city": "Teheran",
+  "country": "Iran Islamic Rep",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "XJ9961"
+ },
+ {
+  "name": "Asian Network of Human Resource Development Planning Institutes",
+  "acronym": "",
+  "founded": "1986",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "dj",
+  "uiaid": "XF0618"
+ },
+ {
+  "name": "Asian Network of Major Cities 21",
+  "acronym": "ANMC 21",
+  "founded": "2001",
+  "city": "Tokyo",
+  "country": "Japan",
+  "type1": "F",
+  "type2": "d",
+  "uiaid": "XF6214"
+ },
+ {
+  "name": "Asian Network of Training and Research Institutions in Educational Planning",
+  "acronym": "ANTRIEP",
+  "founded": "1995",
+  "city": "Delhi",
+  "country": "India",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "XF6000"
+ },
+ {
+  "name": "Asian Planning Schools Association",
+  "acronym": "APSA",
+  "founded": "1993",
+  "city": "Tokyo",
+  "country": "Japan",
+  "type1": "D",
+  "type2": "",
+  "uiaid": "XD4304"
+ },
+ {
+  "name": "Asian Urban Information Center of Kobe",
+  "acronym": "AUICK",
+  "founded": "1989",
+  "city": "Kobe",
+  "country": "Japan",
+  "type1": "G",
+  "type2": "",
+  "uiaid": "XG3986"
+ },
+ {
+  "name": "Asian Urban Research Association",
+  "acronym": "AURA",
+  "founded": "1986",
+  "city": "Shippensburg PA",
+  "country": "USA",
+  "type1": "E",
+  "type2": "",
+  "uiaid": "XJ7637"
+ },
+ {
+  "name": "Asian Urban Research Group",
+  "acronym": "AURG",
+  "founded": "1989",
+  "city": "",
+  "country": "",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "AA0218"
+ },
+ {
+  "name": "Asian-Pacific City Summit",
+  "acronym": "",
+  "founded": "",
+  "city": "Fukuoka",
+  "country": "Japan",
+  "type1": "S",
+  "type2": "cg",
+  "uiaid": "XS0263"
+ },
+ {
+  "name": "Asociación de Técnicos Municipales de América Latina",
+  "acronym": "",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "H",
+  "type2": "d",
+  "uiaid": "XD4747"
+ },
+ {
+  "name": "Asociación Habitat Pro",
+  "acronym": "AHAPRO",
+  "founded": "2002",
+  "city": "Lima",
+  "country": "Peru",
+  "type1": "G",
+  "type2": "",
+  "uiaid": "XJ2523"
+ },
+ {
+  "name": "Asociación Iberoamericana de Historia Urbana",
+  "acronym": "AIHU",
+  "founded": "2013",
+  "city": "",
+  "country": "",
+  "type1": "J",
+  "type2": "c",
+  "uiaid": "AA7427"
+ },
+ {
+  "name": "Asociación Latinoamericana de Escuelas de Urbanismo y Planeación",
+  "acronym": "ALEUP",
+  "founded": "1999",
+  "city": "",
+  "country": "",
+  "type1": "D",
+  "type2": "",
+  "uiaid": "XD9306"
+ },
+ {
+  "name": "Asociación Latinoamericana para la Promoción del Habitat, del Urbanismo y de la Arquitectura",
+  "acronym": "ALAHUA",
+  "founded": "1980",
+  "city": "",
+  "country": "",
+  "type1": "H",
+  "type2": "d",
+  "uiaid": "XD6020"
+ },
+ {
+  "name": "Association for Literary Urban Studies",
+  "acronym": "ALUS",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "G",
+  "type2": "v",
+  "uiaid": "AA1928"
+ },
+ {
+  "name": "Association for Population / Family Planning Libraries and Information Centers - International",
+  "acronym": "APLIC International",
+  "founded": "1968",
+  "city": "Research Triangle Park NC",
+  "country": "USA",
+  "type1": "G",
+  "type2": "v",
+  "uiaid": "XG0665"
+ },
+ {
+  "name": "Association for Smart Learning Ecosystem and Regional Development",
+  "acronym": "ASLERD",
+  "founded": "2016",
+  "city": "",
+  "country": "",
+  "type1": "D",
+  "type2": "",
+  "uiaid": "XM5557"
+ },
+ {
+  "name": "Association for the Study of Ethnicity and Nationalism",
+  "acronym": "ASEN",
+  "founded": "1990",
+  "city": "London",
+  "country": "UK",
+  "type1": "G",
+  "type2": "",
+  "uiaid": "XJ6851"
+ },
+ {
+  "name": "Association of African Planning Schools",
+  "acronym": "AAPS",
+  "founded": "2002",
+  "city": "Rondebosch",
+  "country": "South Africa",
+  "type1": "D",
+  "type2": "",
+  "uiaid": "XD9305"
+ },
+ {
+  "name": "Association of Cities and Regions for Sustainable Resource Management",
+  "acronym": "ACR+",
+  "founded": "1994",
+  "city": "Brussels",
+  "country": "Belgium",
+  "type1": "D",
+  "type2": "y",
+  "uiaid": "XD3584"
+ },
+ {
+  "name": "Association of European Electricity Meter Manufacturers",
+  "acronym": "",
+  "founded": "2001",
+  "city": "",
+  "country": "",
+  "type1": "H",
+  "type2": "d",
+  "uiaid": "XD7955"
+ },
+ {
+  "name": "Association of European Schools of Planning",
+  "acronym": "AESOP",
+  "founded": "1987",
+  "city": "Reading",
+  "country": "UK",
+  "type1": "D",
+  "type2": "",
+  "uiaid": "XD0974"
+ },
+ {
+  "name": "Association of Multiethnic Cities of Southeast Europe",
+  "acronym": "PHILIA",
+  "founded": "2004",
+  "city": "",
+  "country": "",
+  "type1": "H",
+  "type2": "x",
+  "uiaid": "XJ0977"
+ },
+ {
+  "name": "Association of Regional and Sub-regional Development Finance Institutions in West Africa",
+  "acronym": "",
+  "founded": "1981",
+  "city": "Lomé",
+  "country": "Togo",
+  "type1": "H",
+  "type2": "gxy",
+  "uiaid": "XD6435"
+ },
+ {
+  "name": "Association of the Electricity Supply Industry of East Asia and the Western Pacific",
+  "acronym": "AESIEAP",
+  "founded": "1975",
+  "city": "",
+  "country": "",
+  "type1": "D",
+  "type2": "t",
+  "uiaid": "XD1842"
+ },
+ {
+  "name": "Association pour la promotion de l'enseignement et de la recherche en aménagement et urbanisme",
+  "acronym": "APERAU",
+  "founded": "1984",
+  "city": "",
+  "country": "",
+  "type1": "D",
+  "type2": "",
+  "uiaid": "XD9439"
+ },
+ {
+  "name": "Association pour le développement d'un urbanisme traditionnel africain",
+  "acronym": "",
+  "founded": "1975",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "d",
+  "uiaid": "XG6405"
+ },
+ {
+  "name": "Association pour le développement naturel d'une architecture et d'un urbanisme africain",
+  "acronym": "ADAUA",
+  "founded": "",
+  "city": "Thiès",
+  "country": "Senegal",
+  "type1": "U",
+  "type2": "x",
+  "uiaid": "XG4567"
+ },
+ {
+  "name": "Atlantic Cities",
+  "acronym": "",
+  "founded": "2000",
+  "city": "Rennes",
+  "country": "France",
+  "type1": "D",
+  "type2": "",
+  "uiaid": "XD9417"
+ },
+ {
+  "name": "Auschwitz Institute for the Prevention of Genocide and Mass Atrocities",
+  "acronym": "",
+  "founded": "2004",
+  "city": "New York NY",
+  "country": "USA",
+  "type1": "G",
+  "type2": "",
+  "uiaid": "XM4972"
+ },
+ {
+  "name": "Balkan Centre for Regional Development",
+  "acronym": "BCRD",
+  "founded": "",
+  "city": "Plovdiv",
+  "country": "Bulgaria",
+  "type1": "G",
+  "type2": "",
+  "uiaid": "XM0580"
+ },
+ {
+  "name": "Balkan Cities Association of Nephrology, Dialysis, Transplantation and Artificial Organs",
+  "acronym": "BANTAO",
+  "founded": "1995",
+  "city": "",
+  "country": "",
+  "type1": "D",
+  "type2": "v",
+  "uiaid": "XD7586"
+ },
+ {
+  "name": "Baltic Alliance of Regional Development Institutions",
+  "acronym": "BARDI",
+  "founded": "2001",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "x",
+  "uiaid": "XF7153"
+ },
+ {
+  "name": "Baltic Region Healthy Cities Association",
+  "acronym": "",
+  "founded": "1998",
+  "city": "Turku",
+  "country": "Finland",
+  "type1": "G",
+  "type2": "",
+  "uiaid": "XM3082"
+ },
+ {
+  "name": "Banco Intermunicipal Andino",
+  "acronym": "",
+  "founded": "1988",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "gx",
+  "uiaid": "XU0808"
+ },
+ {
+  "name": "Bartlett Development Planning Unit",
+  "acronym": "DPU",
+  "founded": "1971",
+  "city": "London",
+  "country": "UK",
+  "type1": "G",
+  "type2": "",
+  "uiaid": "XN5388"
+ },
+ {
+  "name": "Benin Electricity Community",
+  "acronym": "",
+  "founded": "1968",
+  "city": "Lomé",
+  "country": "Togo",
+  "type1": "G",
+  "type2": "bg",
+  "uiaid": "XG9243"
+ },
+ {
+  "name": "BestCities Global Alliance",
+  "acronym": "",
+  "founded": "2000",
+  "city": "Singapore",
+  "country": "Singapore",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "XM3058"
+ },
+ {
+  "name": "Bienal Iberoamericana de Arquitectura y Urbanismo",
+  "acronym": "BIAU",
+  "founded": "",
+  "city": "Madrid",
+  "country": "Spain",
+  "type1": "E",
+  "type2": "c",
+  "uiaid": "XJ6975"
+ },
+ {
+  "name": "Budapest Centre for the International Prevention of Genocide and Mass Atrocities",
+  "acronym": "",
+  "founded": "",
+  "city": "Budapest",
+  "country": "Hungary",
+  "type1": "J",
+  "type2": "",
+  "uiaid": "XJ9827"
+ },
+ {
+  "name": "Building Habitat and Urban Management International",
+  "acronym": "",
+  "founded": "",
+  "city": "Eindhoven",
+  "country": "Netherlands",
+  "type1": "U",
+  "type2": "x",
+  "uiaid": "XN2406"
+ },
+ {
+  "name": "Busan Global City Foundation",
+  "acronym": "",
+  "founded": "2005",
+  "city": "Busan",
+  "country": "Korea Rep",
+  "type1": "N",
+  "type2": "",
+  "uiaid": "AA1838"
+ },
+ {
+  "name": "Business European Capital Cities",
+  "acronym": "BECC",
+  "founded": "1989",
+  "city": "Paris",
+  "country": "France",
+  "type1": "D",
+  "type2": "t",
+  "uiaid": "XD7549"
+ },
+ {
+  "name": "Capacity Africa",
+  "acronym": "",
+  "founded": "1999",
+  "city": "Nairobi",
+  "country": "Kenya",
+  "type1": "N",
+  "type2": "j",
+  "uiaid": "XJ9032"
+ },
+ {
+  "name": "Capacity Development Network in Nutrition in Central and Eastern Europe",
+  "acronym": "CAPNUTRA",
+  "founded": "2005",
+  "city": "Belgrade",
+  "country": "Serbia",
+  "type1": "E",
+  "type2": "",
+  "uiaid": "XJ5086"
+ },
+ {
+  "name": "Carbon Neutral Cities Alliance",
+  "acronym": "CNCA",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "C",
+  "type2": "",
+  "uiaid": "AA0503"
+ },
+ {
+  "name": "Caribbean Association of Local Government Authorities",
+  "acronym": "CALGA",
+  "founded": "1992",
+  "city": "Chaguanas",
+  "country": "Trinidad-Tobago",
+  "type1": "D",
+  "type2": "",
+  "uiaid": "XD5695"
+ },
+ {
+  "name": "Caribbean Family Planning Affiliation",
+  "acronym": "CFPA",
+  "founded": "1971",
+  "city": "",
+  "country": "",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "XE0866"
+ },
+ {
+  "name": "Caribbean Forum of Local Government Ministers",
+  "acronym": "CFLGM",
+  "founded": "2004",
+  "city": "Kingston",
+  "country": "Jamaica",
+  "type1": "F",
+  "type2": "g",
+  "uiaid": "XM2996"
+ },
+ {
+  "name": "Caribbean Information System for Economic and Social Planning",
+  "acronym": "CARISPLAN",
+  "founded": "1979",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "dg",
+  "uiaid": "XF9816"
+ },
+ {
+  "name": "Center for Urban History of East Central Europe",
+  "acronym": "",
+  "founded": "2004",
+  "city": "Lviv",
+  "country": "Ukraine",
+  "type1": "G",
+  "type2": "",
+  "uiaid": "XM4123"
+ },
+ {
+  "name": "Center of Asian and Pacific Studies, Iowa City",
+  "acronym": "CAPS",
+  "founded": "1986",
+  "city": "Iowa City IA",
+  "country": "USA",
+  "type1": "G",
+  "type2": "",
+  "uiaid": "XG8105"
+ },
+ {
+  "name": "Central American Alliance for the Participative Management of Human Settlements",
+  "acronym": "",
+  "founded": "1996",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "dy",
+  "uiaid": "XF4617"
+ },
+ {
+  "name": "Central American Council on Housing and Human Settlements",
+  "acronym": "",
+  "founded": "1992",
+  "city": "La Libertad",
+  "country": "El Salvador",
+  "type1": "H",
+  "type2": "dg",
+  "uiaid": "XE3305"
+ },
+ {
+  "name": "Central American Meeting of Directors of Planning Bodies",
+  "acronym": "",
+  "founded": "",
+  "city": "Guatemala",
+  "country": "Guatemala",
+  "type1": "U",
+  "type2": "gx",
+  "uiaid": "XF9660"
+ },
+ {
+  "name": "Centre d'études et de recherches sur l'urbanisation du monde arabe - Equipe monde arabe et méditerranée",
+  "acronym": "CITERES-EMAM",
+  "founded": "1977",
+  "city": "Tours",
+  "country": "France",
+  "type1": "G",
+  "type2": "",
+  "uiaid": "XG5247"
+ },
+ {
+  "name": "Centre for Development Planning, Louvain",
+  "acronym": "",
+  "founded": "",
+  "city": "Leuven",
+  "country": "Belgium",
+  "type1": "U",
+  "type2": "x",
+  "uiaid": "XG3282"
+ },
+ {
+  "name": "Centre for Development Planning, Rotterdam",
+  "acronym": "",
+  "founded": "1968",
+  "city": "Rotterdam",
+  "country": "Netherlands",
+  "type1": "U",
+  "type2": "x",
+  "uiaid": "XG6965"
+ },
+ {
+  "name": "Centre for Economic Research and Industrial Planning",
+  "acronym": "Ecoplan International",
+  "founded": "1975",
+  "city": "Paris",
+  "country": "France",
+  "type1": "U",
+  "type2": "tx",
+  "uiaid": "XN3133"
+ },
+ {
+  "name": "Centre for Environmental Management and Planning",
+  "acronym": "CEMP",
+  "founded": "1972",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "d",
+  "uiaid": "XG3365"
+ },
+ {
+  "name": "Centre for Integrated Regional Development Bwamanda-Belgium",
+  "acronym": "Congodorpen",
+  "founded": "1969",
+  "city": "Heverlee",
+  "country": "Belgium",
+  "type1": "G",
+  "type2": "",
+  "uiaid": "XN7834"
+ },
+ {
+  "name": "Centre for Islamic, Middle Eastern and Asian Studies, Planning and Publications, Durban",
+  "acronym": "ACADEMIA",
+  "founded": "1964",
+  "city": "Durban",
+  "country": "South Africa",
+  "type1": "U",
+  "type2": "x",
+  "uiaid": "XG4607"
+ },
+ {
+  "name": "Centre for Liveable Cities",
+  "acronym": "CLC",
+  "founded": "2008",
+  "city": "Singapore",
+  "country": "Singapore",
+  "type1": "G",
+  "type2": "j",
+  "uiaid": "AA3721"
+ },
+ {
+  "name": "Centre for Pacific Studies, Townsville",
+  "acronym": "",
+  "founded": "",
+  "city": "Townsville QLD",
+  "country": "Australia",
+  "type1": "U",
+  "type2": "x",
+  "uiaid": "XG7986"
+ },
+ {
+  "name": "Centre mondial d'informations techniques et d'urbanisme",
+  "acronym": "CMITU",
+  "founded": "1970",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "d",
+  "uiaid": "XE0767"
+ },
+ {
+  "name": "Centro de Estudios de la Arquitectura y el Urbanismo en Centro América",
+  "acronym": "CARUCA",
+  "founded": "1989",
+  "city": "Managua",
+  "country": "Nicaragua",
+  "type1": "U",
+  "type2": "x",
+  "uiaid": "XN4711"
+ },
+ {
+  "name": "Centro de Estudios Municipales y de Cooperación Internacional",
+  "acronym": "CEMCI",
+  "founded": "1995",
+  "city": "Granada",
+  "country": "Spain",
+  "type1": "G",
+  "type2": "",
+  "uiaid": "XG7719"
+ },
+ {
+  "name": "Centro de Estudios Urbanos y Regionales",
+  "acronym": "CEUR",
+  "founded": "",
+  "city": "Buenos Aires",
+  "country": "Argentina",
+  "type1": "G",
+  "type2": "",
+  "uiaid": "XG7133"
+ },
+ {
+  "name": "Centro Iberoamericano de Desarrollo Estratégico Urbano",
+  "acronym": "CIDEU",
+  "founded": "1993",
+  "city": "Barcelona",
+  "country": "Spain",
+  "type1": "E",
+  "type2": "",
+  "uiaid": "XE4409"
+ },
+ {
+  "name": "Centro Interamericano de Cooperación Municipal",
+  "acronym": "CENICOM",
+  "founded": "1983",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "d",
+  "uiaid": "XE0059"
+ },
+ {
+  "name": "Charter on the Participation of Young People in Municipal and Regional Affairs",
+  "acronym": "",
+  "founded": "1992",
+  "city": "",
+  "country": "",
+  "type1": "T",
+  "type2": "g",
+  "uiaid": "XT9264"
+ },
+ {
+  "name": "Child in the City Foundation",
+  "acronym": "",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "F",
+  "type2": "f",
+  "uiaid": "XM7363"
+ },
+ {
+  "name": "Cities after Transition",
+  "acronym": "CAT",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "J",
+  "type2": "v",
+  "uiaid": "AA2517"
+ },
+ {
+  "name": "Cities Alliance",
+  "acronym": "",
+  "founded": "1999",
+  "city": "Brussels",
+  "country": "Belgium",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "XF5597"
+ },
+ {
+  "name": "Cities Climate Finance Leadership Alliance",
+  "acronym": "CCFLA",
+  "founded": "2014",
+  "city": "",
+  "country": "",
+  "type1": "C",
+  "type2": "",
+  "uiaid": "XM6288"
+ },
+ {
+  "name": "Cities Coalition for Digital Rights",
+  "acronym": "",
+  "founded": "2018",
+  "city": "",
+  "country": "",
+  "type1": "C",
+  "type2": "",
+  "uiaid": "AA7241"
+ },
+ {
+  "name": "Cities Development Initiative for Asia",
+  "acronym": "CDIA",
+  "founded": "2007",
+  "city": "Manila",
+  "country": "Philippines",
+  "type1": "E",
+  "type2": "",
+  "uiaid": "XJ9618"
+ },
+ {
+  "name": "Cities for Children",
+  "acronym": "",
+  "founded": "2007",
+  "city": "Stuttgart",
+  "country": "Germany",
+  "type1": "E",
+  "type2": "",
+  "uiaid": "XJ1406"
+ },
+ {
+  "name": "Cities Investment Facility",
+  "acronym": "CIF",
+  "founded": "2020",
+  "city": "George Town",
+  "country": "Malaysia",
+  "type1": "J",
+  "type2": "",
+  "uiaid": "AA6684"
+ },
+ {
+  "name": "City Destinations Alliance",
+  "acronym": "CityDNA",
+  "founded": "2007",
+  "city": "Dijon",
+  "country": "France",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "XM2496"
+ },
+ {
+  "name": "City to City Europe",
+  "acronym": "",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "XJ9165"
+ },
+ {
+  "name": "City2000 Youth Action International",
+  "acronym": "",
+  "founded": "1997",
+  "city": "Accra",
+  "country": "Ghana",
+  "type1": "G",
+  "type2": "",
+  "uiaid": "XM7159"
+ },
+ {
+  "name": "Clean Air Initiative for Cities Around the World",
+  "acronym": "CAI",
+  "founded": "1998",
+  "city": "Washington DC",
+  "country": "USA",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "XM1524"
+ },
+ {
+  "name": "Collaboration for Ecumenical Planning and Action in the Caribbean and South America",
+  "acronym": "CEPACASA-Network",
+  "founded": "1982",
+  "city": "Kingston",
+  "country": "Jamaica",
+  "type1": "U",
+  "type2": "x",
+  "uiaid": "XF1709"
+ },
+ {
+  "name": "ComHabitat",
+  "acronym": "",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "d",
+  "uiaid": "XM3696"
+ },
+ {
+  "name": "Commission internationale pour préparer les congrès internationaux d'assainissement et de salubrité de l'habitation",
+  "acronym": "",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "d",
+  "uiaid": "XU2632"
+ },
+ {
+  "name": "Committee on Urban Development, Housing and Land Management",
+  "acronym": "CUDHLM",
+  "founded": "1947",
+  "city": "Geneva",
+  "country": "Switzerland",
+  "type1": "E",
+  "type2": "g",
+  "uiaid": "XE3247"
+ },
+ {
+  "name": "Commonwealth Local Government Forum",
+  "acronym": "CLGF",
+  "founded": "1994",
+  "city": "London",
+  "country": "UK",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "XF3085"
+ },
+ {
+  "name": "Company for Habitat and Housing in Africa",
+  "acronym": "Shelter-Afrique",
+  "founded": "1982",
+  "city": "Nairobi",
+  "country": "Kenya",
+  "type1": "F",
+  "type2": "eg",
+  "uiaid": "XM1024"
+ },
+ {
+  "name": "Competence Center of Urban and Regional Planning",
+  "acronym": "CORP",
+  "founded": "",
+  "city": "Vienna",
+  "country": "Austria",
+  "type1": "N",
+  "type2": "",
+  "uiaid": "XM7987"
+ },
+ {
+  "name": "Conference of African Ministers of Finance, Planning and Economic Development of the Economic Commission for Africa",
+  "acronym": "",
+  "founded": "2001",
+  "city": "Addis Ababa",
+  "country": "Ethiopia",
+  "type1": "U",
+  "type2": "cdg",
+  "uiaid": "XK2221"
+ },
+ {
+  "name": "Conference of African Ministers of Human Resources Planning, Utilization and Management",
+  "acronym": "",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "cdg",
+  "uiaid": "XS0103"
+ },
+ {
+  "name": "Conference of African Ministers of Transport, Communications and Planning",
+  "acronym": "",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "S",
+  "type2": "cg",
+  "uiaid": "XS0017"
+ },
+ {
+  "name": "Conference of African Ministers Responsible for Economic and Social Development and Planning",
+  "acronym": "",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "cdg",
+  "uiaid": "XS0166"
+ },
+ {
+  "name": "Conference of European Cross-border and Interregional Cities Network",
+  "acronym": "CECICN",
+  "founded": "2010",
+  "city": "",
+  "country": "",
+  "type1": "F",
+  "type2": "y",
+  "uiaid": "XJ2077"
+ },
+ {
+  "name": "Conference of Ministers and Heads of Planning of Latin America and the Caribbean",
+  "acronym": "",
+  "founded": "1977",
+  "city": "Santiago",
+  "country": "Chile",
+  "type1": "K",
+  "type2": "g",
+  "uiaid": "XF1020"
+ },
+ {
+  "name": "Conference of Ministers of Education and Those Responsible for Economic Planning in Arab States",
+  "acronym": "MINEDARAB",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "S",
+  "type2": "cg",
+  "uiaid": "XS8327"
+ },
+ {
+  "name": "Conference of Ministers of Education and Those Responsible for Economic Planning in Latin America and Caribbean",
+  "acronym": "MINEDLAC",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "S",
+  "type2": "cg",
+  "uiaid": "XS0426"
+ },
+ {
+  "name": "Conference of the Regional and Local Authorities for the Eastern Partnership",
+  "acronym": "CORLEAP",
+  "founded": "2011",
+  "city": "Brussels",
+  "country": "Belgium",
+  "type1": "E",
+  "type2": "g",
+  "uiaid": "XM7076"
+ },
+ {
+  "name": "Conference on Central and Eastern Europe Local Government Studies",
+  "acronym": "CEE-LOC",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "S",
+  "type2": "c",
+  "uiaid": "AA7312"
+ },
+ {
+  "name": "Conference on Metal Toxicity and Carcinogenesis",
+  "acronym": "",
+  "founded": "2000",
+  "city": "",
+  "country": "",
+  "type1": "S",
+  "type2": "c",
+  "uiaid": "AA1681"
+ },
+ {
+  "name": "Congreso Iberoamericano de Áreas Metropolitanas",
+  "acronym": "",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "S",
+  "type2": "c",
+  "uiaid": "AA7465"
+ },
+ {
+  "name": "Congrès international des habitations ouvrières",
+  "acronym": "",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "d",
+  "uiaid": "XU0760"
+ },
+ {
+  "name": "Convention Concerning Facilities for Educational and Publicity Films",
+  "acronym": "",
+  "founded": "1936",
+  "city": "",
+  "country": "",
+  "type1": "T",
+  "type2": "g",
+  "uiaid": "XT3623"
+ },
+ {
+  "name": "Convention Concerning Labour Inspectorates in Non-metropolitan Territories",
+  "acronym": "",
+  "founded": "1947",
+  "city": "Geneva",
+  "country": "Switzerland",
+  "type1": "T",
+  "type2": "g",
+  "uiaid": "XT4709"
+ },
+ {
+  "name": "Convention Concerning Labour Standards in Non-metropolitan Territories",
+  "acronym": "",
+  "founded": "1947",
+  "city": "Geneva",
+  "country": "Switzerland",
+  "type1": "T",
+  "type2": "g",
+  "uiaid": "XT4707"
+ },
+ {
+  "name": "Convention Concerning Social Policy in Non-metropolitan Territories",
+  "acronym": "",
+  "founded": "1947",
+  "city": "Geneva",
+  "country": "Switzerland",
+  "type1": "T",
+  "type2": "g",
+  "uiaid": "XT4706"
+ },
+ {
+  "name": "Convention Concerning the Right of Association and the Settlement of Labour Disputes in Non-metropolitan Territories",
+  "acronym": "",
+  "founded": "1947",
+  "city": "Geneva",
+  "country": "Switzerland",
+  "type1": "T",
+  "type2": "g",
+  "uiaid": "XT4708"
+ },
+ {
+  "name": "Convention on the Conservation of European Wildlife and Natural Habitats",
+  "acronym": "Bern convention",
+  "founded": "1979",
+  "city": "Strasbourg",
+  "country": "France",
+  "type1": "T",
+  "type2": "g",
+  "uiaid": "XT7980"
+ },
+ {
+  "name": "Convention on Wetlands of International Importance Especially as Waterfowl Habitat",
+  "acronym": "Convention on Wetlands",
+  "founded": "1971",
+  "city": "Paris",
+  "country": "France",
+  "type1": "T",
+  "type2": "g",
+  "uiaid": "XT7109"
+ },
+ {
+  "name": "Cooperation for the Continuing Development of Urban and Suburban Transportation",
+  "acronym": "",
+  "founded": "1980",
+  "city": "Villeurbanne",
+  "country": "France",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "XE0208"
+ },
+ {
+  "name": "Coordinated Action for Seaside Towns",
+  "acronym": "COAST",
+  "founded": "1991",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "d",
+  "uiaid": "XK0467"
+ },
+ {
+  "name": "Council for European Urbanism",
+  "acronym": "CEU",
+  "founded": "2003",
+  "city": "",
+  "country": "",
+  "type1": "D",
+  "type2": "",
+  "uiaid": "XM0373"
+ },
+ {
+  "name": "Council of Commonwealth Municipalities",
+  "acronym": "",
+  "founded": "1964",
+  "city": "",
+  "country": "",
+  "type1": "H",
+  "type2": "d",
+  "uiaid": "XH0434"
+ },
+ {
+  "name": "Council of European Municipalities and Regions",
+  "acronym": "CEMR",
+  "founded": "1951",
+  "city": "Brussels",
+  "country": "Belgium",
+  "type1": "D",
+  "type2": "y",
+  "uiaid": "XD0448"
+ },
+ {
+  "name": "Council of Local Authorities for International Relations",
+  "acronym": "CLAIR",
+  "founded": "1988",
+  "city": "Tokyo",
+  "country": "Japan",
+  "type1": "G",
+  "type2": "",
+  "uiaid": "XG6768"
+ },
+ {
+  "name": "Council on Tall Buildings and Urban Habitat",
+  "acronym": "CTBUH",
+  "founded": "1969",
+  "city": "Chicago IL",
+  "country": "USA",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "XF0776"
+ },
+ {
+  "name": "Covenant of Mayors for Climate and Energy",
+  "acronym": "",
+  "founded": "2008",
+  "city": "Brussels",
+  "country": "Belgium",
+  "type1": "E",
+  "type2": "",
+  "uiaid": "XJ7598"
+ },
+ {
+  "name": "Decent Work City Network",
+  "acronym": "DWCN",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "J",
+  "type2": "",
+  "uiaid": "XM7336"
+ },
+ {
+  "name": "Earthquakes and Megacities Initiative",
+  "acronym": "EMI",
+  "founded": "1998",
+  "city": "Quezon City",
+  "country": "Philippines",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "XJ9766"
+ },
+ {
+  "name": "East African County and Local Governments Association",
+  "acronym": "EACLGA",
+  "founded": "2005",
+  "city": "Arusha",
+  "country": "Tanzania UR",
+  "type1": "D",
+  "type2": "",
+  "uiaid": "XM2986"
+ },
+ {
+  "name": "East African Economic and Consultative Planning Council",
+  "acronym": "",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "dg",
+  "uiaid": "XU1951"
+ },
+ {
+  "name": "East and Southeast Asia Network for Better Local Governments",
+  "acronym": "",
+  "founded": "",
+  "city": "Makati",
+  "country": "Philippines",
+  "type1": "G",
+  "type2": "",
+  "uiaid": "XG7445"
+ },
+ {
+  "name": "Eastern Regional Organization for Planning and Human Settlements",
+  "acronym": "EAROPH",
+  "founded": "1958",
+  "city": "Putrajaya",
+  "country": "Malaysia",
+  "type1": "D",
+  "type2": "",
+  "uiaid": "XD0479"
+ },
+ {
+  "name": "Ecocity Builders",
+  "acronym": "",
+  "founded": "1992",
+  "city": "Oakland CA",
+  "country": "USA",
+  "type1": "G",
+  "type2": "",
+  "uiaid": "XJ9179"
+ },
+ {
+  "name": "ECOWAS Regional Development Fund",
+  "acronym": "ERDF",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "dfg",
+  "uiaid": "XK2364"
+ },
+ {
+  "name": "ECOWAS Regional Electricity Regulatory Authority",
+  "acronym": "ERERA",
+  "founded": "2008",
+  "city": "Accra",
+  "country": "Ghana",
+  "type1": "E",
+  "type2": "g",
+  "uiaid": "XJ4542"
+ },
+ {
+  "name": "Educational Policy-Making, Planning, Management and Statistics Network",
+  "acronym": "EMPS",
+  "founded": "",
+  "city": "Bangkok",
+  "country": "Thailand",
+  "type1": "U",
+  "type2": "x",
+  "uiaid": "XK0625"
+ },
+ {
+  "name": "EIT Urban Mobility",
+  "acronym": "EIT UM",
+  "founded": "2019",
+  "city": "Barcelona",
+  "country": "Spain",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "AA1343"
+ },
+ {
+  "name": "ELECTRI-CITY.MOBI",
+  "acronym": "",
+  "founded": "",
+  "city": "Collobrières",
+  "country": "France",
+  "type1": "J",
+  "type2": "",
+  "uiaid": "XM8031"
+ },
+ {
+  "name": "Energy Cities",
+  "acronym": "",
+  "founded": "",
+  "city": "Besançon",
+  "country": "France",
+  "type1": "E",
+  "type2": "",
+  "uiaid": "XE3526"
+ },
+ {
+  "name": "Entente municipale internationale",
+  "acronym": "",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "x",
+  "uiaid": "XU0971"
+ },
+ {
+  "name": "ESCAP/UNCHS Joint Unit on Human Settlements",
+  "acronym": "",
+  "founded": "1985",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "dg",
+  "uiaid": "XE1605"
+ },
+ {
+  "name": "EUniverCities Network",
+  "acronym": "EUniverCities",
+  "founded": "2012",
+  "city": "",
+  "country": "",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "XM8039"
+ },
+ {
+  "name": "Euro-Asian Municipal Environment Cooperation Programme",
+  "acronym": "MECP",
+  "founded": "1993",
+  "city": "Levallois-Perret",
+  "country": "France",
+  "type1": "U",
+  "type2": "x",
+  "uiaid": "XF2794"
+ },
+ {
+  "name": "Eurocities",
+  "acronym": "",
+  "founded": "1986",
+  "city": "Brussels",
+  "country": "Belgium",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "XF5216"
+ },
+ {
+  "name": "EuroFEM - Gender and Human Settlements",
+  "acronym": "",
+  "founded": "1994",
+  "city": "Helsinki",
+  "country": "Finland",
+  "type1": "U",
+  "type2": "x",
+  "uiaid": "XF4344"
+ },
+ {
+  "name": "European Academy of Financial Planning",
+  "acronym": "EAFP",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "x",
+  "uiaid": "XJ7027"
+ },
+ {
+  "name": "European Academy of the Urban Environment, Berlin",
+  "acronym": "EA-UE",
+  "founded": "1991",
+  "city": "Berlin",
+  "country": "Germany",
+  "type1": "G",
+  "type2": "",
+  "uiaid": "XG5177"
+ },
+ {
+  "name": "European Action Coalition for the Right to Housing and to the City",
+  "acronym": "",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "J",
+  "type2": "",
+  "uiaid": "AA5369"
+ },
+ {
+  "name": "European Association for Urban History",
+  "acronym": "EAUH",
+  "founded": "1989",
+  "city": "",
+  "country": "",
+  "type1": "D",
+  "type2": "",
+  "uiaid": "XD8791"
+ },
+ {
+  "name": "European Association of Cities Interested in the Use of Electric Vehicles",
+  "acronym": "",
+  "founded": "1990",
+  "city": "Mons",
+  "country": "Belgium",
+  "type1": "H",
+  "type2": "x",
+  "uiaid": "XD2337"
+ },
+ {
+  "name": "European Association of Historic Towns and Regions",
+  "acronym": "Heritage Europe",
+  "founded": "1999",
+  "city": "Norwich",
+  "country": "UK",
+  "type1": "D",
+  "type2": "",
+  "uiaid": "XD7708"
+ },
+ {
+  "name": "European Association of Regional and Local Authorities for Lifelong Learning",
+  "acronym": "EARLALL",
+  "founded": "2001",
+  "city": "Brussels",
+  "country": "Belgium",
+  "type1": "D",
+  "type2": "y",
+  "uiaid": "XD9024"
+ },
+ {
+  "name": "European Association of Regional Development Agencies",
+  "acronym": "EURADA",
+  "founded": "1991",
+  "city": "Brussels",
+  "country": "Belgium",
+  "type1": "D",
+  "type2": "",
+  "uiaid": "XF2353"
+ },
+ {
+  "name": "European Association of the Electricity Transmission and Distribution Equipment and Services Industry",
+  "acronym": "T and D EUROPE",
+  "founded": "2008",
+  "city": "Brussels",
+  "country": "Belgium",
+  "type1": "E",
+  "type2": "t",
+  "uiaid": "XM1288"
+ },
+ {
+  "name": "European Association of Urban Missions",
+  "acronym": "EAUM",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "D",
+  "type2": "c",
+  "uiaid": "XJ1970"
+ },
+ {
+  "name": "European Capitals and Cities of Sport Federation",
+  "acronym": "ACES Europe",
+  "founded": "2001",
+  "city": "Brussels",
+  "country": "Belgium",
+  "type1": "D",
+  "type2": "",
+  "uiaid": "XM5106"
+ },
+ {
+  "name": "European Centre for Regional Development",
+  "acronym": "",
+  "founded": "1985",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "d",
+  "uiaid": "XE3040"
+ },
+ {
+  "name": "European Centre of Documentation on Nature Park Planning, Turin",
+  "acronym": "",
+  "founded": "1994",
+  "city": "Turin",
+  "country": "Italy",
+  "type1": "U",
+  "type2": "x",
+  "uiaid": "XN7740"
+ },
+ {
+  "name": "European Centre on Urban Risks",
+  "acronym": "CERU",
+  "founded": "1998",
+  "city": "Lisbon",
+  "country": "Portugal",
+  "type1": "G",
+  "type2": "g",
+  "uiaid": "XG1066"
+ },
+ {
+  "name": "European Cities Against Drugs",
+  "acronym": "ECAD",
+  "founded": "1994",
+  "city": "Stockholm",
+  "country": "Sweden",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "XF3540"
+ },
+ {
+  "name": "European Cities and Regions for Culture",
+  "acronym": "LIKE",
+  "founded": "1994",
+  "city": "Lille",
+  "country": "France",
+  "type1": "D",
+  "type2": "",
+  "uiaid": "XD6067"
+ },
+ {
+  "name": "European Cities on Drug Policy",
+  "acronym": "ECDP",
+  "founded": "1990",
+  "city": "",
+  "country": "",
+  "type1": "H",
+  "type2": "d",
+  "uiaid": "XD4518"
+ },
+ {
+  "name": "European Committee for the Protection of the Population Against the Hazards of Chronic Toxicity",
+  "acronym": "EUROTOX",
+  "founded": "1957",
+  "city": "",
+  "country": "",
+  "type1": "H",
+  "type2": "d",
+  "uiaid": "XD0636"
+ },
+ {
+  "name": "European Engineering and Planning Group",
+  "acronym": "EEPG",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "d",
+  "uiaid": "XU1541"
+ },
+ {
+  "name": "European Federation of City Farms",
+  "acronym": "EFCF",
+  "founded": "1990",
+  "city": "",
+  "country": "",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "XF1689"
+ },
+ {
+  "name": "European Federation of Conference Towns",
+  "acronym": "EFCT",
+  "founded": "1964",
+  "city": "",
+  "country": "",
+  "type1": "H",
+  "type2": "d",
+  "uiaid": "XD0727"
+ },
+ {
+  "name": "European Federation of Mayors",
+  "acronym": "",
+  "founded": "1977",
+  "city": "",
+  "country": "",
+  "type1": "H",
+  "type2": "d",
+  "uiaid": "XD0697"
+ },
+ {
+  "name": "European Financial Planning Association",
+  "acronym": "EFPA",
+  "founded": "2000",
+  "city": "Brussels",
+  "country": "Belgium",
+  "type1": "D",
+  "type2": "",
+  "uiaid": "XD9469"
+ },
+ {
+  "name": "European Forum for Urban Security",
+  "acronym": "Efus",
+  "founded": "1987",
+  "city": "Saint-Ouen",
+  "country": "France",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "XF1808"
+ },
+ {
+  "name": "European Forum of Psychomotricity",
+  "acronym": "",
+  "founded": "1996",
+  "city": "Strasbourg",
+  "country": "France",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "XF5804"
+ },
+ {
+  "name": "European Forum on Urban Forestry",
+  "acronym": "EFUF",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "XM7924"
+ },
+ {
+  "name": "European Foundation for Town Planning and Architecture",
+  "acronym": "",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "fpx",
+  "uiaid": "XJ8535"
+ },
+ {
+  "name": "European Grouping of Territorial Cooperation - Twinned Cities and Areas in the Mediterranean",
+  "acronym": "EGTC - AMPHICTYONY",
+  "founded": "1986",
+  "city": "Athens",
+  "country": "Greece",
+  "type1": "G",
+  "type2": "",
+  "uiaid": "XM2961"
+ },
+ {
+  "name": "European Habitats Forum",
+  "acronym": "EHF",
+  "founded": "1993",
+  "city": "Brussels",
+  "country": "Belgium",
+  "type1": "F",
+  "type2": "y",
+  "uiaid": "XF3289"
+ },
+ {
+  "name": "European Historic Thermal Towns Association",
+  "acronym": "EHTTA",
+  "founded": "2009",
+  "city": "Spa",
+  "country": "Belgium",
+  "type1": "D",
+  "type2": "",
+  "uiaid": "XJ5963"
+ },
+ {
+  "name": "European Immunogenicity Platform",
+  "acronym": "EIP",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "XM6438"
+ },
+ {
+  "name": "European Institute for Training Managers of Municipal and Integration Schemes",
+  "acronym": "",
+  "founded": "1992",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "dj",
+  "uiaid": "XG1757"
+ },
+ {
+  "name": "European Institute of Architecture and Planning",
+  "acronym": "IEAA",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "jx",
+  "uiaid": "XD2403"
+ },
+ {
+  "name": "European Institute of Local Development and Decentralized Planning",
+  "acronym": "",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "dj",
+  "uiaid": "XU9271"
+ },
+ {
+  "name": "European Institute of Urban Affairs, Liverpool",
+  "acronym": "EIUA",
+  "founded": "",
+  "city": "Liverpool",
+  "country": "UK",
+  "type1": "G",
+  "type2": "j",
+  "uiaid": "XN5433"
+ },
+ {
+  "name": "European Local Authorities Interactive Network on Ethnic Minorities Policies",
+  "acronym": "ELAINE",
+  "founded": "1990",
+  "city": "Maastricht",
+  "country": "Netherlands",
+  "type1": "U",
+  "type2": "x",
+  "uiaid": "XF3478"
+ },
+ {
+  "name": "European Local Authorities Telematic Network",
+  "acronym": "ELANET",
+  "founded": "1996",
+  "city": "Brussels",
+  "country": "Belgium",
+  "type1": "H",
+  "type2": "x",
+  "uiaid": "XD8512"
+ },
+ {
+  "name": "European Mediterranean Commission on Water Planning",
+  "acronym": "EMCWP",
+  "founded": "1970",
+  "city": "Catania",
+  "country": "Italy",
+  "type1": "H",
+  "type2": "x",
+  "uiaid": "XD6092"
+ },
+ {
+  "name": "European Meeting on Ferroelectricity",
+  "acronym": "EMF",
+  "founded": "1969",
+  "city": "",
+  "country": "",
+  "type1": "S",
+  "type2": "c",
+  "uiaid": "AA6330"
+ },
+ {
+  "name": "European Metropolitan Transport Authorities",
+  "acronym": "EMTA",
+  "founded": "1998",
+  "city": "Paris",
+  "country": "France",
+  "type1": "D",
+  "type2": "",
+  "uiaid": "XD9353"
+ },
+ {
+  "name": "European Municipal Credit Community",
+  "acronym": "EMCC",
+  "founded": "1954",
+  "city": "",
+  "country": "",
+  "type1": "H",
+  "type2": "d",
+  "uiaid": "XH0815"
+ },
+ {
+  "name": "European Network Child Friendly Cities",
+  "acronym": "ENCFC",
+  "founded": "2000",
+  "city": "Mechelen",
+  "country": "Belgium",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "XN9751"
+ },
+ {
+  "name": "European Network for Housing and Urban Development",
+  "acronym": "ENH",
+  "founded": "2016",
+  "city": "",
+  "country": "",
+  "type1": "J",
+  "type2": "",
+  "uiaid": "XM6034"
+ },
+ {
+  "name": "European network of cities for local integration policies for migrants",
+  "acronym": "CLIP",
+  "founded": "2006",
+  "city": "",
+  "country": "",
+  "type1": "H",
+  "type2": "dg",
+  "uiaid": "XJ6288"
+ },
+ {
+  "name": "European Network of Digital Cities",
+  "acronym": "",
+  "founded": "1997",
+  "city": "Paris",
+  "country": "France",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "XM0651"
+ },
+ {
+  "name": "European Network of Local Authorities",
+  "acronym": "ENOLA",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "d",
+  "uiaid": "XJ0094"
+ },
+ {
+  "name": "European Network of Local Authorities Against Discrimination",
+  "acronym": "",
+  "founded": "",
+  "city": "Saint-Denis",
+  "country": "France",
+  "type1": "U",
+  "type2": "x",
+  "uiaid": "XF6329"
+ },
+ {
+  "name": "European Network of Transmission System Operators for Electricity",
+  "acronym": "ENTSO-E",
+  "founded": "1999",
+  "city": "Brussels",
+  "country": "Belgium",
+  "type1": "D",
+  "type2": "y",
+  "uiaid": "XD7234"
+ },
+ {
+  "name": "European Regional Development Fund",
+  "acronym": "ERDF",
+  "founded": "1975",
+  "city": "Brussels",
+  "country": "Belgium",
+  "type1": "F",
+  "type2": "fg",
+  "uiaid": "XF5543"
+ },
+ {
+  "name": "European Regional/spatial Planning Charter",
+  "acronym": "Torremolinos charter",
+  "founded": "1983",
+  "city": "",
+  "country": "",
+  "type1": "T",
+  "type2": "g",
+  "uiaid": "XT8345"
+ },
+ {
+  "name": "European Research Foundation and Institute for Industrial Location and Regional Development",
+  "acronym": "ERFI",
+  "founded": "1992",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "fjtx",
+  "uiaid": "XF1712"
+ },
+ {
+  "name": "European Research Institute for Regional and Urban Planning",
+  "acronym": "ERIPLAN",
+  "founded": "1972",
+  "city": "",
+  "country": "",
+  "type1": "H",
+  "type2": "dj",
+  "uiaid": "XD4051"
+ },
+ {
+  "name": "European Smart Cities Association",
+  "acronym": "ESCA",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "J",
+  "type2": "",
+  "uiaid": "AA5170"
+ },
+ {
+  "name": "European Solar Thermal Electricity Association",
+  "acronym": "ESTELA",
+  "founded": "2007",
+  "city": "Brussels",
+  "country": "Belgium",
+  "type1": "D",
+  "type2": "t",
+  "uiaid": "XM3430"
+ },
+ {
+  "name": "European Strategic Planning Federation",
+  "acronym": "ESPLAF",
+  "founded": "1976",
+  "city": "London",
+  "country": "UK",
+  "type1": "H",
+  "type2": "x",
+  "uiaid": "XD8463"
+ },
+ {
+  "name": "European Sustainable Cities and Towns Campaign",
+  "acronym": "",
+  "founded": "1994",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "x",
+  "uiaid": "XK0950"
+ },
+ {
+  "name": "European Urban Knowledge Network",
+  "acronym": "EUKN",
+  "founded": "2005",
+  "city": "The Hague",
+  "country": "Netherlands",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "XJ0318"
+ },
+ {
+  "name": "European Urban Research Association",
+  "acronym": "EURA",
+  "founded": "1997",
+  "city": "Dortmund",
+  "country": "Germany",
+  "type1": "D",
+  "type2": "",
+  "uiaid": "XD8789"
+ },
+ {
+  "name": "European Walled Towns",
+  "acronym": "EWT",
+  "founded": "1989",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "d",
+  "uiaid": "XF6534"
+ },
+ {
+  "name": "European Working Group on Integrated Management Planning",
+  "acronym": "",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "x",
+  "uiaid": "XU3750"
+ },
+ {
+  "name": "Fair Trade Towns International",
+  "acronym": "International FTTs",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "E",
+  "type2": "",
+  "uiaid": "XM7695"
+ },
+ {
+  "name": "Family Planning 2020",
+  "acronym": "FP2020",
+  "founded": "2012",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "dy",
+  "uiaid": "XJ7480"
+ },
+ {
+  "name": "Family Planning 2030",
+  "acronym": "FP2030",
+  "founded": "2020",
+  "city": "Washington DC",
+  "country": "USA",
+  "type1": "F",
+  "type2": "y",
+  "uiaid": "AA2815"
+ },
+ {
+  "name": "Family Planning International Assistance",
+  "acronym": "FPIA",
+  "founded": "1971",
+  "city": "New York NY",
+  "country": "USA",
+  "type1": "U",
+  "type2": "x",
+  "uiaid": "XG6567"
+ },
+ {
+  "name": "Fast-Track Cities",
+  "acronym": "",
+  "founded": "2014",
+  "city": "",
+  "country": "",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "AA2287"
+ },
+ {
+  "name": "Federación de Municipalidades de Centroamérica y Panama",
+  "acronym": "FERMUCAP",
+  "founded": "1977",
+  "city": "",
+  "country": "",
+  "type1": "H",
+  "type2": "d",
+  "uiaid": "XD8599"
+ },
+ {
+  "name": "Federación Iberoamericana Urbanistas",
+  "acronym": "FIU",
+  "founded": "2010",
+  "city": "Barcelona",
+  "country": "Spain",
+  "type1": "D",
+  "type2": "",
+  "uiaid": "XM4194"
+ },
+ {
+  "name": "Federación Interamericana de Instituciones de Crédito y Asesoria Municipal",
+  "acronym": "FINICAM",
+  "founded": "1971",
+  "city": "",
+  "country": "",
+  "type1": "H",
+  "type2": "d",
+  "uiaid": "XD7645"
+ },
+ {
+  "name": "Federation of European Carnival Cities",
+  "acronym": "FECC",
+  "founded": "1980",
+  "city": "Sigtuna",
+  "country": "Sweden",
+  "type1": "F",
+  "type2": "f",
+  "uiaid": "XF1442"
+ },
+ {
+  "name": "Financial Planning Standards Board",
+  "acronym": "FPSB",
+  "founded": "1990",
+  "city": "Denver CO",
+  "country": "USA",
+  "type1": "D",
+  "type2": "",
+  "uiaid": "XD8394"
+ },
+ {
+  "name": "Foro Latinoamericano para la Seguridad Urbana y la Democracia",
+  "acronym": "FLASUD",
+  "founded": "2001",
+  "city": "",
+  "country": "",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "XM3973"
+ },
+ {
+  "name": "Forum of Adriatic and Ionian Cities",
+  "acronym": "FAIC",
+  "founded": "1999",
+  "city": "Ancona",
+  "country": "Italy",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "XJ2079"
+ },
+ {
+  "name": "Forum of Ministers and High-Level Authorities of Housing and Urban Planning of Latin America and the Caribbean",
+  "acronym": "",
+  "founded": "1992",
+  "city": "",
+  "country": "",
+  "type1": "F",
+  "type2": "g",
+  "uiaid": "AA5858"
+ },
+ {
+  "name": "Forum of Researchers on Human Settlements",
+  "acronym": "",
+  "founded": "",
+  "city": "Rome",
+  "country": "Italy",
+  "type1": "U",
+  "type2": "x",
+  "uiaid": "XG5940"
+ },
+ {
+  "name": "Foundation for Regional Development",
+  "acronym": "",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "G",
+  "type2": "f",
+  "uiaid": "XG7352"
+ },
+ {
+  "name": "From the Sea to the City",
+  "acronym": "",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "J",
+  "type2": "y",
+  "uiaid": "AA3175"
+ },
+ {
+  "name": "Fundación Latinoamericana de Transporte Público y Urbano",
+  "acronym": "ALATPU",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "J",
+  "type2": "f",
+  "uiaid": "XJ6702"
+ },
+ {
+  "name": "Fundación para la Conservación de la Biodiversidad y su Habitat",
+  "acronym": "CBD-Habitat",
+  "founded": "",
+  "city": "Madrid",
+  "country": "Spain",
+  "type1": "G",
+  "type2": "f",
+  "uiaid": "XJ8909"
+ },
+ {
+  "name": "Future Convention Cities Initiative",
+  "acronym": "FCCI",
+  "founded": "2010",
+  "city": "Seoul",
+  "country": "Korea Rep",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "XM4229"
+ },
+ {
+  "name": "Fédération euroméditerranéenne des municipalités oléicoles",
+  "acronym": "FEMO",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "H",
+  "type2": "d",
+  "uiaid": "XD8211"
+ },
+ {
+  "name": "G20 Global Smart Cities Alliance on Technology Governance",
+  "acronym": "",
+  "founded": "2019",
+  "city": "",
+  "country": "",
+  "type1": "E",
+  "type2": "",
+  "uiaid": "AA0153"
+ },
+ {
+  "name": "Gender Research on Urbanization, Planning, Housing and Everyday Life",
+  "acronym": "GRUPHEL",
+  "founded": "1991",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "d",
+  "uiaid": "XF3773"
+ },
+ {
+  "name": "Global Action Against Mass Atrocity Crimes",
+  "acronym": "GAAMAC",
+  "founded": "2013",
+  "city": "Geneva",
+  "country": "Switzerland",
+  "type1": "C",
+  "type2": "",
+  "uiaid": "AA0971"
+ },
+ {
+  "name": "Global Alliance for Smart Cities in Africa",
+  "acronym": "GASCA",
+  "founded": "2019",
+  "city": "",
+  "country": "",
+  "type1": "J",
+  "type2": "",
+  "uiaid": "XM8595"
+ },
+ {
+  "name": "Global Covenant of Mayors for Climate and Energy",
+  "acronym": "GCoM",
+  "founded": "2016",
+  "city": "Brussels",
+  "country": "Belgium",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "XM5346"
+ },
+ {
+  "name": "Global Cyber Security Capacity Centre",
+  "acronym": "GCSCC",
+  "founded": "",
+  "city": "Oxford",
+  "country": "UK",
+  "type1": "G",
+  "type2": "j",
+  "uiaid": "XM7844"
+ },
+ {
+  "name": "Global Forum on Human Settlements",
+  "acronym": "GFHS",
+  "founded": "",
+  "city": "New York NY",
+  "country": "USA",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "XM4193"
+ },
+ {
+  "name": "Global Mayors' Forum",
+  "acronym": "GMF",
+  "founded": "2005",
+  "city": "Shenzhen",
+  "country": "China",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "XM7239"
+ },
+ {
+  "name": "Global Parliament of Mayors",
+  "acronym": "GPM",
+  "founded": "2016",
+  "city": "The Hague",
+  "country": "Netherlands",
+  "type1": "F",
+  "type2": "v",
+  "uiaid": "XM8604"
+ },
+ {
+  "name": "Global Parliamentarians on Habitat",
+  "acronym": "GPH",
+  "founded": "1987",
+  "city": "",
+  "country": "",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "XF4480"
+ },
+ {
+  "name": "Global Parliamentary Alliance Against Atrocity Crimes",
+  "acronym": "GPAAAC",
+  "founded": "2022",
+  "city": "",
+  "country": "",
+  "type1": "J",
+  "type2": "",
+  "uiaid": "AA2863"
+ },
+ {
+  "name": "Global Planning Education Association Network",
+  "acronym": "GPEAN",
+  "founded": "2001",
+  "city": "",
+  "country": "",
+  "type1": "F",
+  "type2": "y",
+  "uiaid": "XF7073"
+ },
+ {
+  "name": "Global Society on Migration, Ethnicity, Race and Health",
+  "acronym": "GSMERH",
+  "founded": "2020",
+  "city": "Edinburgh",
+  "country": "UK",
+  "type1": "E",
+  "type2": "",
+  "uiaid": "AA5496"
+ },
+ {
+  "name": "Global Sustainable Electricity Partnership",
+  "acronym": "GSEP",
+  "founded": "1992",
+  "city": "Montréal QC",
+  "country": "Canada",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "XF5644"
+ },
+ {
+  "name": "Global Urban Competitiveness Project",
+  "acronym": "GUCP",
+  "founded": "",
+  "city": "Beijing",
+  "country": "China",
+  "type1": "F",
+  "type2": "v",
+  "uiaid": "AA0252"
+ },
+ {
+  "name": "Global Urban Development",
+  "acronym": "GUD",
+  "founded": "2001",
+  "city": "Rehoboth Beach DE",
+  "country": "USA",
+  "type1": "E",
+  "type2": "",
+  "uiaid": "XM2824"
+ },
+ {
+  "name": "Global Urban Development Network",
+  "acronym": "GUDNet",
+  "founded": "",
+  "city": "Forest Hills NY",
+  "country": "USA",
+  "type1": "U",
+  "type2": "x",
+  "uiaid": "XN7807"
+ },
+ {
+  "name": "Global Urban Studies Institute",
+  "acronym": "GLOBUS",
+  "founded": "2004",
+  "city": "Berlin",
+  "country": "Germany",
+  "type1": "G",
+  "type2": "j",
+  "uiaid": "AA5211"
+ },
+ {
+  "name": "Globalization and World Cities research network",
+  "acronym": "GaWC",
+  "founded": "1998",
+  "city": "Loughborough",
+  "country": "UK",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "XM2186"
+ },
+ {
+  "name": "Green World City Organisation",
+  "acronym": "GWC",
+  "founded": "",
+  "city": "Sydney NSW",
+  "country": "Australia",
+  "type1": "J",
+  "type2": "",
+  "uiaid": "XM4195"
+ },
+ {
+  "name": "Group Action Planning for International Philanthropy, Japan",
+  "acronym": "GAP",
+  "founded": "1993",
+  "city": "Tokyo",
+  "country": "Japan",
+  "type1": "U",
+  "type2": "xy",
+  "uiaid": "XE2987"
+ },
+ {
+  "name": "Group of European Municipalities with Nuclear Facilities",
+  "acronym": "GMF",
+  "founded": "1993",
+  "city": "Madrid",
+  "country": "Spain",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "XF6671"
+ },
+ {
+  "name": "Groupe international d'études de climatologie appliquée à l'urbanisme et aux bâtiments",
+  "acronym": "",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "s",
+  "uiaid": "XU8378"
+ },
+ {
+  "name": "Groupe international de coopération et de recherche en documentation: planification territoriale - habitat - information",
+  "acronym": "GICRD",
+  "founded": "1966",
+  "city": "",
+  "country": "",
+  "type1": "H",
+  "type2": "d",
+  "uiaid": "XH2087"
+ },
+ {
+  "name": "Habitat et participation",
+  "acronym": "",
+  "founded": "1982",
+  "city": "Louvain-la-Neuve",
+  "country": "Belgium",
+  "type1": "G",
+  "type2": "",
+  "uiaid": "XG1428"
+ },
+ {
+  "name": "Habitat for Humanity International",
+  "acronym": "HFHI",
+  "founded": "1976",
+  "city": "Atlanta GA",
+  "country": "USA",
+  "type1": "G",
+  "type2": "",
+  "uiaid": "XN1022"
+ },
+ {
+  "name": "Habitat International Coalition",
+  "acronym": "HIC",
+  "founded": "1976",
+  "city": "Cape Town",
+  "country": "South Africa",
+  "type1": "F",
+  "type2": "y",
+  "uiaid": "XE7548"
+ },
+ {
+  "name": "Higher Institute of Emergency Planning - European Centre Florival",
+  "acronym": "",
+  "founded": "1991",
+  "city": "Brussels",
+  "country": "Belgium",
+  "type1": "G",
+  "type2": "gjn",
+  "uiaid": "XG2659"
+ },
+ {
+  "name": "Histocity Network",
+  "acronym": "",
+  "founded": "1997",
+  "city": "Florence",
+  "country": "Italy",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "XF4780"
+ },
+ {
+  "name": "Historic Towns Forum",
+  "acronym": "",
+  "founded": "",
+  "city": "London",
+  "country": "UK",
+  "type1": "U",
+  "type2": "x",
+  "uiaid": "XG5661"
+ },
+ {
+  "name": "Hypervelocity Impact Society",
+  "acronym": "HVIS",
+  "founded": "1989",
+  "city": "",
+  "country": "",
+  "type1": "C",
+  "type2": "",
+  "uiaid": "AA6066"
+ },
+ {
+  "name": "IAPSO Commission on Programme and Assembly Planning",
+  "acronym": "",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "d",
+  "uiaid": "XK0696"
+ },
+ {
+  "name": "Ibero-American Municipal Secretariat",
+  "acronym": "",
+  "founded": "1955",
+  "city": "Madrid",
+  "country": "Spain",
+  "type1": "H",
+  "type2": "x",
+  "uiaid": "XD1016"
+ },
+ {
+  "name": "Ibero-American Union of Municipalists",
+  "acronym": "",
+  "founded": "1990",
+  "city": "Granada",
+  "country": "Spain",
+  "type1": "D",
+  "type2": "",
+  "uiaid": "XD6989"
+ },
+ {
+  "name": "ICOM International Committee for the Collections and Activities of Museums of Cities",
+  "acronym": "CAMOC",
+  "founded": "2005",
+  "city": "Greensboro NC",
+  "country": "USA",
+  "type1": "E",
+  "type2": "",
+  "uiaid": "XJ0228"
+ },
+ {
+  "name": "ICOMOS International Committee on Historic Cities, Towns and Villages",
+  "acronym": "ICOMOS CIVVIH",
+  "founded": "1982",
+  "city": "Brussels",
+  "country": "Belgium",
+  "type1": "E",
+  "type2": "v",
+  "uiaid": "XE7798"
+ },
+ {
+  "name": "IGU Commission on International Division of Labour and Regional Development",
+  "acronym": "",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "d",
+  "uiaid": "XE2060"
+ },
+ {
+  "name": "Information and Documentation Centre for Environment and Local Authorities",
+  "acronym": "",
+  "founded": "1967",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "dg",
+  "uiaid": "XE3887"
+ },
+ {
+  "name": "Institut européen de droit et d'économie de l'habitat",
+  "acronym": "",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "jx",
+  "uiaid": "XU3690"
+ },
+ {
+  "name": "Institut mondial des Cités unies pour l'environnement et l'urbanisme",
+  "acronym": "IMENUR",
+  "founded": "1957",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "dj",
+  "uiaid": "XE2984"
+ },
+ {
+  "name": "Institute for Housing and Urban Development Studies",
+  "acronym": "IHS",
+  "founded": "1948",
+  "city": "Rotterdam",
+  "country": "Netherlands",
+  "type1": "G",
+  "type2": "j",
+  "uiaid": "XG0905"
+ },
+ {
+  "name": "Institute for International Urban Development",
+  "acronym": "I2UD",
+  "founded": "2005",
+  "city": "Cambridge MA",
+  "country": "USA",
+  "type1": "G",
+  "type2": "j",
+  "uiaid": "XM3521"
+ },
+ {
+  "name": "Institute for Strategic and Development Studies, Quezon City",
+  "acronym": "ISDS",
+  "founded": "1991",
+  "city": "Quezon City",
+  "country": "Philippines",
+  "type1": "G",
+  "type2": "j",
+  "uiaid": "XG1881"
+ },
+ {
+  "name": "Institute of International Legal Studies, Quezon City",
+  "acronym": "IILS",
+  "founded": "1989",
+  "city": "Quezon City",
+  "country": "Philippines",
+  "type1": "G",
+  "type2": "j",
+  "uiaid": "XG8092"
+ },
+ {
+  "name": "Institute of Islamic Studies, Quézon City",
+  "acronym": "IIS UP",
+  "founded": "1973",
+  "city": "Quezon City",
+  "country": "Philippines",
+  "type1": "N",
+  "type2": "j",
+  "uiaid": "XG2424"
+ },
+ {
+  "name": "Institute of Municipal Engineering of Southern Africa",
+  "acronym": "IMESA",
+  "founded": "1961",
+  "city": "Westville",
+  "country": "South Africa",
+  "type1": "G",
+  "type2": "j",
+  "uiaid": "XN5136"
+ },
+ {
+  "name": "Inter-American Center for Administration, Planning, Supervision and Curriculum",
+  "acronym": "",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "s",
+  "uiaid": "XU1490"
+ },
+ {
+  "name": "Inter-American Center for Research and Studies in Educational Planning",
+  "acronym": "",
+  "founded": "1976",
+  "city": "Caracas",
+  "country": "Venezuela",
+  "type1": "H",
+  "type2": "gx",
+  "uiaid": "XE7216"
+ },
+ {
+  "name": "Inter-American Institute of Municipal and Institutional History",
+  "acronym": "",
+  "founded": "1943",
+  "city": "",
+  "country": "",
+  "type1": "H",
+  "type2": "dj",
+  "uiaid": "XH1084"
+ },
+ {
+  "name": "Inter-American Planning Society",
+  "acronym": "",
+  "founded": "1956",
+  "city": "Cuenca",
+  "country": "Ecuador",
+  "type1": "H",
+  "type2": "d",
+  "uiaid": "XD1093"
+ },
+ {
+  "name": "InterCity Youth Network",
+  "acronym": "ICY",
+  "founded": "2014",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "d",
+  "uiaid": "AA0510"
+ },
+ {
+  "name": "Intergovernmental Coordinating Committee for Population and Family Planning in Southeast Asia",
+  "acronym": "IGCC",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "dg",
+  "uiaid": "XE0641"
+ },
+ {
+  "name": "International Academic Association on Planning, Law and Property Rights",
+  "acronym": "PLPR",
+  "founded": "2007",
+  "city": "Dortmund",
+  "country": "Germany",
+  "type1": "C",
+  "type2": "",
+  "uiaid": "XJ7651"
+ },
+ {
+  "name": "International Academic Consortium for Sustainable Cities",
+  "acronym": "IACSC",
+  "founded": "2009",
+  "city": "Yokohama",
+  "country": "Japan",
+  "type1": "D",
+  "type2": "",
+  "uiaid": "XM4692"
+ },
+ {
+  "name": "International Agency of the Association of Netherlands Municipalities",
+  "acronym": "VNG International",
+  "founded": "",
+  "city": "The Hague",
+  "country": "Netherlands",
+  "type1": "G",
+  "type2": "",
+  "uiaid": "XM4775"
+ },
+ {
+  "name": "International Assembly of Capitals and Cities",
+  "acronym": "IACC",
+  "founded": "1998",
+  "city": "",
+  "country": "",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "XF6975"
+ },
+ {
+  "name": "International Association for Housing and Urbanism",
+  "acronym": "",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "d",
+  "uiaid": "XU9388"
+ },
+ {
+  "name": "International Association for Humane Habitat",
+  "acronym": "IAHH",
+  "founded": "2000",
+  "city": "Mumbai",
+  "country": "India",
+  "type1": "G",
+  "type2": "",
+  "uiaid": "XQ0166"
+ },
+ {
+  "name": "International Association for Metropolitan Research and Development",
+  "acronym": "INTERMET",
+  "founded": "1969",
+  "city": "",
+  "country": "",
+  "type1": "H",
+  "type2": "d",
+  "uiaid": "XD6339"
+ },
+ {
+  "name": "International Association for Regional and Urban Statistics",
+  "acronym": "IARUS",
+  "founded": "1958",
+  "city": "",
+  "country": "",
+  "type1": "H",
+  "type2": "d",
+  "uiaid": "XD1316"
+ },
+ {
+  "name": "International Association for the Promotion of Integrated Architecture and Urbanism",
+  "acronym": "APAUI",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "d",
+  "uiaid": "XU2572"
+ },
+ {
+  "name": "International Association for Urban and Regional Research and Education",
+  "acronym": "IAURRE",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "H",
+  "type2": "dt",
+  "uiaid": "XD6609"
+ },
+ {
+  "name": "International Association for Urban Climate",
+  "acronym": "IAUC",
+  "founded": "2000",
+  "city": "",
+  "country": "",
+  "type1": "D",
+  "type2": "",
+  "uiaid": "XD9331"
+ },
+ {
+  "name": "International Association of City Museums",
+  "acronym": "",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "H",
+  "type2": "x",
+  "uiaid": "XM2259"
+ },
+ {
+  "name": "International Association of Construction, Urbanism, and Environment and Life Style",
+  "acronym": "COBATY International",
+  "founded": "1957",
+  "city": "Brussels",
+  "country": "Belgium",
+  "type1": "D",
+  "type2": "",
+  "uiaid": "XD9047"
+ },
+ {
+  "name": "International Association of Educating Cities",
+  "acronym": "IAEC",
+  "founded": "1990",
+  "city": "Barcelona",
+  "country": "Spain",
+  "type1": "D",
+  "type2": "",
+  "uiaid": "XD7821"
+ },
+ {
+  "name": "International Association of Environmental Planning and Management",
+  "acronym": "",
+  "founded": "2005",
+  "city": "",
+  "country": "",
+  "type1": "J",
+  "type2": "p",
+  "uiaid": "XM0088"
+ },
+ {
+  "name": "International Association of Linear Garden Cities",
+  "acronym": "",
+  "founded": "1928",
+  "city": "",
+  "country": "",
+  "type1": "H",
+  "type2": "d",
+  "uiaid": "XH1304"
+ },
+ {
+  "name": "International Association of Metropolitan City Libraries",
+  "acronym": "INTAMEL",
+  "founded": "1967",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "d",
+  "uiaid": "XE1313"
+ },
+ {
+  "name": "International Association of Peace Messenger Cities",
+  "acronym": "IAPMC",
+  "founded": "1988",
+  "city": "Slovenj Gradec",
+  "country": "Slovenia",
+  "type1": "C",
+  "type2": "",
+  "uiaid": "XD3733"
+ },
+ {
+  "name": "International Association of Sustainable Cities",
+  "acronym": "IASC",
+  "founded": "1992",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "x",
+  "uiaid": "XU1890"
+ },
+ {
+  "name": "International Association of the Cities Against Drugs",
+  "acronym": "",
+  "founded": "1992",
+  "city": "",
+  "country": "",
+  "type1": "H",
+  "type2": "d",
+  "uiaid": "XD3287"
+ },
+ {
+  "name": "International Association of the Organizations and Congress Cities of the States Interested in the Mediterranean",
+  "acronym": "MEDITERCONGRESS",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "H",
+  "type2": "d",
+  "uiaid": "XD3898"
+ },
+ {
+  "name": "International Association of Towns of the Future",
+  "acronym": "",
+  "founded": "1985",
+  "city": "",
+  "country": "",
+  "type1": "H",
+  "type2": "d",
+  "uiaid": "XD7355"
+ },
+ {
+  "name": "International Association on Electricity Generation, Transmission and Distribution - Afro-Asian Region",
+  "acronym": "IAEGTD - Afro-Asian Region",
+  "founded": "1990",
+  "city": "Delhi",
+  "country": "India",
+  "type1": "H",
+  "type2": "x",
+  "uiaid": "XD4121"
+ },
+ {
+  "name": "International Association Town Planning and Distribution",
+  "acronym": "URBANICOM",
+  "founded": "1966",
+  "city": "Brussels",
+  "country": "Belgium",
+  "type1": "D",
+  "type2": "",
+  "uiaid": "XD4521"
+ },
+ {
+  "name": "International Center for Urban Water Hydroinformatics Research and Innovation",
+  "acronym": "ICUH",
+  "founded": "2008",
+  "city": "Incheon",
+  "country": "Korea Rep",
+  "type1": "G",
+  "type2": "",
+  "uiaid": "XJ2157"
+ },
+ {
+  "name": "International Centre for Innovation and Knowledge Transfer on the Social and Solidarity Economy",
+  "acronym": "",
+  "founded": "2016",
+  "city": "Montréal QC",
+  "country": "Canada",
+  "type1": "E",
+  "type2": "",
+  "uiaid": "XM5096"
+ },
+ {
+  "name": "International Centre for Regional Planning and Development",
+  "acronym": "",
+  "founded": "1955",
+  "city": "",
+  "country": "",
+  "type1": "H",
+  "type2": "d",
+  "uiaid": "XH1469"
+ },
+ {
+  "name": "International Centre for Studies on Urban Design",
+  "acronym": "ICSUD",
+  "founded": "1986",
+  "city": "Florence",
+  "country": "Italy",
+  "type1": "E",
+  "type2": "",
+  "uiaid": "XE2493"
+ },
+ {
+  "name": "International Centre for Sustainable Cities, Vancouver",
+  "acronym": "ICSC",
+  "founded": "1993",
+  "city": "Vancouver BC",
+  "country": "Canada",
+  "type1": "G",
+  "type2": "",
+  "uiaid": "XG3189"
+ },
+ {
+  "name": "International Centre for Urban Safety Engineering",
+  "acronym": "ICUS",
+  "founded": "2001",
+  "city": "Tokyo",
+  "country": "Japan",
+  "type1": "G",
+  "type2": "",
+  "uiaid": "XG9705"
+ },
+ {
+  "name": "International Cities of Peace",
+  "acronym": "ICP",
+  "founded": "2009",
+  "city": "Dayton OH",
+  "country": "USA",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "XJ5447"
+ },
+ {
+  "name": "International Cities of Refuge Network",
+  "acronym": "ICORN",
+  "founded": "",
+  "city": "Stavanger",
+  "country": "Norway",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "XJ2622"
+ },
+ {
+  "name": "International City / County Management Association",
+  "acronym": "ICMA",
+  "founded": "1914",
+  "city": "Washington DC",
+  "country": "USA",
+  "type1": "F",
+  "type2": "v",
+  "uiaid": "XD0641"
+ },
+ {
+  "name": "International City Leaders",
+  "acronym": "",
+  "founded": "",
+  "city": "Toronto ON",
+  "country": "Canada",
+  "type1": "J",
+  "type2": "",
+  "uiaid": "XM5191"
+ },
+ {
+  "name": "International Coalition of Cities against Racism",
+  "acronym": "",
+  "founded": "2004",
+  "city": "Paris",
+  "country": "France",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "XM1797"
+ },
+ {
+  "name": "International Commission for the History of Towns",
+  "acronym": "",
+  "founded": "1955",
+  "city": "Torun",
+  "country": "Poland",
+  "type1": "E",
+  "type2": "v",
+  "uiaid": "XE7281"
+ },
+ {
+  "name": "International Commission on Atmospheric Electricity",
+  "acronym": "ICAE",
+  "founded": "",
+  "city": "Gifu",
+  "country": "Japan",
+  "type1": "E",
+  "type2": "v",
+  "uiaid": "XE3842"
+ },
+ {
+  "name": "International Committee on Radio-Electricity",
+  "acronym": "",
+  "founded": "1922",
+  "city": "",
+  "country": "",
+  "type1": "H",
+  "type2": "d",
+  "uiaid": "XH1636"
+ },
+ {
+  "name": "International Community on Spatial Planning and Sustainable Development",
+  "acronym": "SPSD",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "J",
+  "type2": "c",
+  "uiaid": "AA7392"
+ },
+ {
+  "name": "International Conference of Asian-Pacific Planning Societies",
+  "acronym": "ICAPPS",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "S",
+  "type2": "c",
+  "uiaid": "AA0226"
+ },
+ {
+  "name": "International Conference on Artificial Reefs and Related Aquatic Habitats",
+  "acronym": "CARAH",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "S",
+  "type2": "c",
+  "uiaid": "XS0331"
+ },
+ {
+  "name": "International Conference on Canadian, Chinese and African Sustainable Urbanization",
+  "acronym": "ICCCASU",
+  "founded": "2014",
+  "city": "Ottawa ON",
+  "country": "Canada",
+  "type1": "F",
+  "type2": "c",
+  "uiaid": "AA2592"
+ },
+ {
+  "name": "International Conference on Computers in Urban Planning and Urban Management",
+  "acronym": "CUPUM",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "S",
+  "type2": "c",
+  "uiaid": "XS1312"
+ },
+ {
+  "name": "International Conference on Electricity Distribution",
+  "acronym": "",
+  "founded": "1971",
+  "city": "Liège",
+  "country": "Belgium",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "XD8266"
+ },
+ {
+  "name": "International Conference on Hydroelasticity in Marine Technology",
+  "acronym": "HYEL",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "S",
+  "type2": "c",
+  "uiaid": "XS0528"
+ },
+ {
+  "name": "International Conference on Lightning and Static Electricity",
+  "acronym": "ICOLSE",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "S",
+  "type2": "c",
+  "uiaid": "AA3579"
+ },
+ {
+  "name": "International Conference on Local Government",
+  "acronym": "ICLG",
+  "founded": "2010",
+  "city": "",
+  "country": "",
+  "type1": "S",
+  "type2": "c",
+  "uiaid": "AA2279"
+ },
+ {
+  "name": "International Conference on Superplasticity in Advanced Materials",
+  "acronym": "ICSAM",
+  "founded": "1982",
+  "city": "",
+  "country": "",
+  "type1": "S",
+  "type2": "c",
+  "uiaid": "AA4611"
+ },
+ {
+  "name": "International Conference on the Bearing Capacity of Roads, Railways and Airfields",
+  "acronym": "BCRRA",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "S",
+  "type2": "c",
+  "uiaid": "AA2817"
+ },
+ {
+  "name": "International Conference on the Technology of Plasticity",
+  "acronym": "ICTP",
+  "founded": "1984",
+  "city": "",
+  "country": "",
+  "type1": "S",
+  "type2": "c",
+  "uiaid": "AA4969"
+ },
+ {
+  "name": "International Congress on Prospective Analysis, Forecasting and Planning in Public Services",
+  "acronym": "",
+  "founded": "",
+  "city": "Paris",
+  "country": "France",
+  "type1": "S",
+  "type2": "c",
+  "uiaid": "XS5779"
+ },
+ {
+  "name": "International Congress Virtual City and Territory",
+  "acronym": "CTV",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "S",
+  "type2": "c",
+  "uiaid": "AA7660"
+ },
+ {
+  "name": "International Federation for Housing and Planning",
+  "acronym": "IFHP",
+  "founded": "1913",
+  "city": "Copenhagen",
+  "country": "Denmark",
+  "type1": "B",
+  "type2": "y",
+  "uiaid": "XB1826"
+ },
+ {
+  "name": "International Federation of Municipal Engineering",
+  "acronym": "IFME",
+  "founded": "1960",
+  "city": "Sydney NSW",
+  "country": "Australia",
+  "type1": "D",
+  "type2": "",
+  "uiaid": "XC1961"
+ },
+ {
+  "name": "International Food Authenticity Assurance Organization",
+  "acronym": "IFAAO",
+  "founded": "",
+  "city": "New York NY",
+  "country": "USA",
+  "type1": "J",
+  "type2": "",
+  "uiaid": "XM7044"
+ },
+ {
+  "name": "International Forum of Towns and Villages in Graz",
+  "acronym": "",
+  "founded": "1976",
+  "city": "Graz",
+  "country": "Austria",
+  "type1": "G",
+  "type2": "",
+  "uiaid": "XN1010"
+ },
+ {
+  "name": "International Forum on Aeroelasticity and Structural Dynamics",
+  "acronym": "IFASD",
+  "founded": "1981",
+  "city": "",
+  "country": "",
+  "type1": "S",
+  "type2": "c",
+  "uiaid": "AA3555"
+ },
+ {
+  "name": "International Forum on Urbanism",
+  "acronym": "IFoU",
+  "founded": "",
+  "city": "Delft",
+  "country": "Netherlands",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "XJ5073"
+ },
+ {
+  "name": "International Human Motricity Network",
+  "acronym": "IHMN",
+  "founded": "2006",
+  "city": "Elche",
+  "country": "Spain",
+  "type1": "J",
+  "type2": "",
+  "uiaid": "AA2903"
+ },
+ {
+  "name": "International Institute for Educational Planning",
+  "acronym": "IIEP",
+  "founded": "1963",
+  "city": "Paris",
+  "country": "France",
+  "type1": "E",
+  "type2": "gj",
+  "uiaid": "XE3384"
+ },
+ {
+  "name": "International Institute for Municipal Development Henri Jaquet",
+  "acronym": "",
+  "founded": "",
+  "city": "Créteil",
+  "country": "France",
+  "type1": "U",
+  "type2": "jx",
+  "uiaid": "XG2668"
+ },
+ {
+  "name": "International Institute for Municipal Sciences",
+  "acronym": "",
+  "founded": "1968",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "dj",
+  "uiaid": "XE6333"
+ },
+ {
+  "name": "International Institute for the Urban Environment",
+  "acronym": "IIUE",
+  "founded": "1989",
+  "city": "Delft",
+  "country": "Netherlands",
+  "type1": "G",
+  "type2": "j",
+  "uiaid": "XN1341"
+ },
+ {
+  "name": "International Institute of Municipal Clerks",
+  "acronym": "IIMC",
+  "founded": "1947",
+  "city": "Rancho Cucamonga CA",
+  "country": "USA",
+  "type1": "G",
+  "type2": "j",
+  "uiaid": "XG0406"
+ },
+ {
+  "name": "International Making Cities Livable Council",
+  "acronym": "IMCL Council",
+  "founded": "1985",
+  "city": "Portland OR",
+  "country": "USA",
+  "type1": "E",
+  "type2": "",
+  "uiaid": "XE3918"
+ },
+ {
+  "name": "International Microgravity Strategic Planning Group",
+  "acronym": "IMSPG",
+  "founded": "1995",
+  "city": "Longueuil QC",
+  "country": "Canada",
+  "type1": "E",
+  "type2": "",
+  "uiaid": "XM3241"
+ },
+ {
+  "name": "International Municipal Lawyers Association",
+  "acronym": "IMLA",
+  "founded": "1935",
+  "city": "Rockville MD",
+  "country": "USA",
+  "type1": "N",
+  "type2": "",
+  "uiaid": "XN8854"
+ },
+ {
+  "name": "International Municipal Signal Association",
+  "acronym": "IMSA",
+  "founded": "1896",
+  "city": "Rockledge FL",
+  "country": "USA",
+  "type1": "N",
+  "type2": "",
+  "uiaid": "XN0096"
+ },
+ {
+  "name": "International Network for Planning and Improving Quality and Safety in Health Systems in Africa",
+  "acronym": "INPIQS",
+  "founded": "2006",
+  "city": "Bordeaux",
+  "country": "France",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "XJ5633"
+ },
+ {
+  "name": "International Network for Traditional Building, Architecture and Urbanism",
+  "acronym": "INTBAU",
+  "founded": "2001",
+  "city": "London",
+  "country": "UK",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "XM1684"
+ },
+ {
+  "name": "International Network for Urban Research and Action",
+  "acronym": "INURA",
+  "founded": "1991",
+  "city": "Zurich",
+  "country": "Switzerland",
+  "type1": "F",
+  "type2": "v",
+  "uiaid": "XF6020"
+ },
+ {
+  "name": "International Network of Resource Centers on Urban Agriculture and Food Security",
+  "acronym": "RUAF Foundation",
+  "founded": "1999",
+  "city": "The Hague",
+  "country": "Netherlands",
+  "type1": "E",
+  "type2": "y",
+  "uiaid": "XG9829"
+ },
+ {
+  "name": "International NGO/CSO Planning Committee for Food Sovereignty",
+  "acronym": "IPC",
+  "founded": "",
+  "city": "Rome",
+  "country": "Italy",
+  "type1": "E",
+  "type2": "y",
+  "uiaid": "XJ3950"
+ },
+ {
+  "name": "International Organization of Psychomotricity and Relaxation",
+  "acronym": "",
+  "founded": "1979",
+  "city": "Boulogne-Billancourt",
+  "country": "France",
+  "type1": "C",
+  "type2": "v",
+  "uiaid": "XF5653"
+ },
+ {
+  "name": "International Permanent Secretariat Human Rights and Local Governments",
+  "acronym": "SPIDH",
+  "founded": "2006",
+  "city": "Nantes",
+  "country": "France",
+  "type1": "G",
+  "type2": "",
+  "uiaid": "XM0587"
+ },
+ {
+  "name": "International Planning History Society",
+  "acronym": "",
+  "founded": "1993",
+  "city": "Adelaide SA",
+  "country": "Australia",
+  "type1": "D",
+  "type2": "",
+  "uiaid": "XD6475"
+ },
+ {
+  "name": "International Press Association for Development of Habitat",
+  "acronym": "",
+  "founded": "1956",
+  "city": "",
+  "country": "",
+  "type1": "H",
+  "type2": "d",
+  "uiaid": "XH2374"
+ },
+ {
+  "name": "International Research Group on Law and Urban Space",
+  "acronym": "IRGLUS",
+  "founded": "1996",
+  "city": "Mexico City",
+  "country": "Mexico",
+  "type1": "E",
+  "type2": "",
+  "uiaid": "XE3846"
+ },
+ {
+  "name": "International Research Network on Urbanism",
+  "acronym": "",
+  "founded": "",
+  "city": "Delft",
+  "country": "Netherlands",
+  "type1": "N",
+  "type2": "",
+  "uiaid": "XM3598"
+ },
+ {
+  "name": "International Screen Publicity Association",
+  "acronym": "",
+  "founded": "1955",
+  "city": "",
+  "country": "",
+  "type1": "H",
+  "type2": "d",
+  "uiaid": "XH4861"
+ },
+ {
+  "name": "International Secretariat Committee of Nuclear Free Zone Local Authorities",
+  "acronym": "",
+  "founded": "",
+  "city": "Manchester",
+  "country": "UK",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "XF0663"
+ },
+ {
+  "name": "International Seminar on Urban Form",
+  "acronym": "ISUF",
+  "founded": "1996",
+  "city": "Auckland",
+  "country": "New Zealand",
+  "type1": "F",
+  "type2": "c",
+  "uiaid": "XM1849"
+ },
+ {
+  "name": "International Society for Educational Planning",
+  "acronym": "ISEP",
+  "founded": "1970",
+  "city": "Henrico VA",
+  "country": "USA",
+  "type1": "G",
+  "type2": "",
+  "uiaid": "XD0253"
+ },
+ {
+  "name": "International Society for Urban Health",
+  "acronym": "ISUH",
+  "founded": "2003",
+  "city": "New York NY",
+  "country": "USA",
+  "type1": "G",
+  "type2": "",
+  "uiaid": "XQ2883"
+ },
+ {
+  "name": "International Society of City and Regional Planners",
+  "acronym": "ISOCARP",
+  "founded": "1965",
+  "city": "The Hague",
+  "country": "Netherlands",
+  "type1": "B",
+  "type2": "",
+  "uiaid": "XC2534"
+ },
+ {
+  "name": "International Study, Research and Documentation Centre on Human Settlements",
+  "acronym": "",
+  "founded": "",
+  "city": "Bologna",
+  "country": "Italy",
+  "type1": "U",
+  "type2": "x",
+  "uiaid": "XG1262"
+ },
+ {
+  "name": "International Suburban Rail Benchmarking Group",
+  "acronym": "ISBeRG",
+  "founded": "2009",
+  "city": "London",
+  "country": "UK",
+  "type1": "F",
+  "type2": "j",
+  "uiaid": "AA4171"
+ },
+ {
+  "name": "International Symposium on Highway Capacity and Quality of Service",
+  "acronym": "",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "S",
+  "type2": "c",
+  "uiaid": "AA4480"
+ },
+ {
+  "name": "International Symposium on Unsteady Aerodynamics, Aeroacoustics and Aeroelasticity of Turbomachines",
+  "acronym": "ISUAAAT",
+  "founded": "1976",
+  "city": "",
+  "country": "",
+  "type1": "S",
+  "type2": "c",
+  "uiaid": "AA3556"
+ },
+ {
+  "name": "International Symposium Use of Public Transit Automated Data for Planning and Operations",
+  "acronym": "TransitData",
+  "founded": "2014",
+  "city": "",
+  "country": "",
+  "type1": "S",
+  "type2": "c",
+  "uiaid": "AA0869"
+ },
+ {
+  "name": "International Tax Planning Association",
+  "acronym": "ITPA",
+  "founded": "1975",
+  "city": "London",
+  "country": "UK",
+  "type1": "C",
+  "type2": "v",
+  "uiaid": "XD1306"
+ },
+ {
+  "name": "International Union for Electricity Applications",
+  "acronym": "",
+  "founded": "1953",
+  "city": "Leuven",
+  "country": "Belgium",
+  "type1": "D",
+  "type2": "",
+  "uiaid": "XD2658"
+ },
+ {
+  "name": "International Union of Cities THE HANSA",
+  "acronym": "",
+  "founded": "1980",
+  "city": "Lübeck",
+  "country": "Germany",
+  "type1": "D",
+  "type2": "",
+  "uiaid": "XU8718"
+ },
+ {
+  "name": "International Union of Electricity Stations",
+  "acronym": "",
+  "founded": "1892",
+  "city": "",
+  "country": "",
+  "type1": "H",
+  "type2": "d",
+  "uiaid": "XH2714"
+ },
+ {
+  "name": "International Union of Local Authorities",
+  "acronym": "IULA",
+  "founded": "1913",
+  "city": "",
+  "country": "",
+  "type1": "H",
+  "type2": "d",
+  "uiaid": "XB2736"
+ },
+ {
+  "name": "International Union of Local Authorities - Asian and Pacific Section",
+  "acronym": "IULA-ASPAC",
+  "founded": "1989",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "d",
+  "uiaid": "XK0412"
+ },
+ {
+  "name": "International Union of Mayors",
+  "acronym": "",
+  "founded": "1948",
+  "city": "Düsseldorf",
+  "country": "Germany",
+  "type1": "U",
+  "type2": "bx",
+  "uiaid": "XG0275"
+ },
+ {
+  "name": "International Urban Development Association",
+  "acronym": "INTA",
+  "founded": "1975",
+  "city": "Paris",
+  "country": "France",
+  "type1": "C",
+  "type2": "",
+  "uiaid": "XC7282"
+ },
+ {
+  "name": "International Urban Food Network",
+  "acronym": "IUFN",
+  "founded": "2012",
+  "city": "Paris",
+  "country": "France",
+  "type1": "G",
+  "type2": "",
+  "uiaid": "XJ9140"
+ },
+ {
+  "name": "International Urban Planning and Environment Association",
+  "acronym": "IUPEA",
+  "founded": "1952",
+  "city": "Seattle WA",
+  "country": "USA",
+  "type1": "E",
+  "type2": "",
+  "uiaid": "XJ0069"
+ },
+ {
+  "name": "International Urban Symposium",
+  "acronym": "IUS",
+  "founded": "2015",
+  "city": "Canterbury",
+  "country": "UK",
+  "type1": "C",
+  "type2": "v",
+  "uiaid": "XM4991"
+ },
+ {
+  "name": "International Youth Alliance for Family Planning",
+  "acronym": "IYAFP",
+  "founded": "2013",
+  "city": "Washington DC",
+  "country": "USA",
+  "type1": "C",
+  "type2": "v",
+  "uiaid": "XM7018"
+ },
+ {
+  "name": "Intrinsic Capacity, Frailty and Sarcopenia Research Conference for Healthy Longevity",
+  "acronym": "",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "S",
+  "type2": "c",
+  "uiaid": "AA6848"
+ },
+ {
+  "name": "ISMU Foundation - Foundation for Initiatives and Studies on Multi-ethnicity",
+  "acronym": "",
+  "founded": "1991",
+  "city": "Milan",
+  "country": "Italy",
+  "type1": "G",
+  "type2": "f",
+  "uiaid": "XN7469"
+ },
+ {
+  "name": "IULA African Union of Local Authorities",
+  "acronym": "IULA-AULA",
+  "founded": "1984",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "d",
+  "uiaid": "XK0413"
+ },
+ {
+  "name": "IULA-EMME Centre for Local Government Training and Development in the Eastern Mediterranean and the Middle East",
+  "acronym": "",
+  "founded": "1986",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "dy",
+  "uiaid": "XK0342"
+ },
+ {
+  "name": "Japanese Organization for International Cooperation in Family Planning",
+  "acronym": "JOICFP",
+  "founded": "1968",
+  "city": "Tokyo",
+  "country": "Japan",
+  "type1": "G",
+  "type2": "",
+  "uiaid": "XG7595"
+ },
+ {
+  "name": "Joint Committee of IAHR and IAW on Urban Drainage",
+  "acronym": "JCUD",
+  "founded": "1982",
+  "city": "Burlington ON",
+  "country": "Canada",
+  "type1": "E",
+  "type2": "v",
+  "uiaid": "XE4054"
+ },
+ {
+  "name": "Joint Intergovernmental Regional Committee on Human Settlements and Environment",
+  "acronym": "",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "dg",
+  "uiaid": "XE0140"
+ },
+ {
+  "name": "Latin America Human Settlements Information Network",
+  "acronym": "LATINAH",
+  "founded": "1979",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "d",
+  "uiaid": "XF0860"
+ },
+ {
+  "name": "Latin American and Caribbean Institute for Economic and Social Planning",
+  "acronym": "",
+  "founded": "1962",
+  "city": "Santiago",
+  "country": "Chile",
+  "type1": "E",
+  "type2": "gj",
+  "uiaid": "XD2881"
+ },
+ {
+  "name": "Latin American Centre for Local Government Training and Development",
+  "acronym": "",
+  "founded": "1983",
+  "city": "Quito",
+  "country": "Ecuador",
+  "type1": "U",
+  "type2": "d",
+  "uiaid": "XE4293"
+ },
+ {
+  "name": "Latin American Housing and Human Settlements Development Organization",
+  "acronym": "",
+  "founded": "1984",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "dg",
+  "uiaid": "XE0147"
+ },
+ {
+  "name": "League of Canaanite, Phoenician and Punic Cities",
+  "acronym": "LCPPC",
+  "founded": "",
+  "city": "Paris",
+  "country": "France",
+  "type1": "E",
+  "type2": "",
+  "uiaid": "XJ8578"
+ },
+ {
+  "name": "Learning Network on Capacity Development",
+  "acronym": "LenCD",
+  "founded": "2004",
+  "city": "",
+  "country": "",
+  "type1": "J",
+  "type2": "",
+  "uiaid": "XJ9646"
+ },
+ {
+  "name": "Liaison Committee of Historic Towns Forum",
+  "acronym": "",
+  "founded": "",
+  "city": "London",
+  "country": "UK",
+  "type1": "U",
+  "type2": "x",
+  "uiaid": "XG5090"
+ },
+ {
+  "name": "Local Authorities Confronting Disasters and Emergencies",
+  "acronym": "LACDE",
+  "founded": "1994",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "d",
+  "uiaid": "XF6546"
+ },
+ {
+  "name": "Local Government International Bureau",
+  "acronym": "LGIB",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "d",
+  "uiaid": "XG0385"
+ },
+ {
+  "name": "Local Governments for Sustainability",
+  "acronym": "ICLEI",
+  "founded": "1990",
+  "city": "Bonn",
+  "country": "Germany",
+  "type1": "B",
+  "type2": "y",
+  "uiaid": "XF2316"
+ },
+ {
+  "name": "Local Urban Development European Network",
+  "acronym": "LUDEN",
+  "founded": "1989",
+  "city": "Brussels",
+  "country": "Belgium",
+  "type1": "H",
+  "type2": "d",
+  "uiaid": "XF2775"
+ },
+ {
+  "name": "LUCI - Lighting Urban Community International",
+  "acronym": "",
+  "founded": "2002",
+  "city": "Lyon",
+  "country": "France",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "XM3735"
+ },
+ {
+  "name": "Lund Centre for Habitat Studies",
+  "acronym": "LCHS",
+  "founded": "1979",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "d",
+  "uiaid": "XN1039"
+ },
+ {
+  "name": "Major Cities of Europe IT Users Group",
+  "acronym": "MCE",
+  "founded": "1982",
+  "city": "Bremerhaven",
+  "country": "Germany",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "XF5925"
+ },
+ {
+  "name": "Major Local Government Associations of North America",
+  "acronym": "",
+  "founded": "",
+  "city": "Washington DC",
+  "country": "USA",
+  "type1": "U",
+  "type2": "x",
+  "uiaid": "XG6408"
+ },
+ {
+  "name": "Marine Geological and Biological Habitat Mapping",
+  "acronym": "GeoHab",
+  "founded": "",
+  "city": "Eastsound WA",
+  "country": "USA",
+  "type1": "F",
+  "type2": "c",
+  "uiaid": "XM8735"
+ },
+ {
+  "name": "Mayors for Peace",
+  "acronym": "",
+  "founded": "1982",
+  "city": "Hiroshima",
+  "country": "Japan",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "XF5471"
+ },
+ {
+  "name": "Mayors Migration Council",
+  "acronym": "MMC",
+  "founded": "2018",
+  "city": "",
+  "country": "",
+  "type1": "E",
+  "type2": "",
+  "uiaid": "AA7169"
+ },
+ {
+  "name": "Mayors' Asia-Pacific Environmental Summit",
+  "acronym": "MAPES",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "S",
+  "type2": "c",
+  "uiaid": "AA4256"
+ },
+ {
+  "name": "MEDCITIES Network",
+  "acronym": "",
+  "founded": "1991",
+  "city": "Barcelona",
+  "country": "Spain",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "XF3301"
+ },
+ {
+  "name": "Mediterranean Towns and Territories Association",
+  "acronym": "",
+  "founded": "1992",
+  "city": "",
+  "country": "",
+  "type1": "H",
+  "type2": "x",
+  "uiaid": "XD6377"
+ },
+ {
+  "name": "Meeting of Directors of United Nations Training, Research and Planning Institutes",
+  "acronym": "",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "S",
+  "type2": "c",
+  "uiaid": "XS9523"
+ },
+ {
+  "name": "Mega-Cities Project",
+  "acronym": "",
+  "founded": "1986",
+  "city": "Nyack NY",
+  "country": "USA",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "XF1589"
+ },
+ {
+  "name": "Megacities Alliance for Water and Climate",
+  "acronym": "MAWAC",
+  "founded": "",
+  "city": "Paris",
+  "country": "France",
+  "type1": "C",
+  "type2": "",
+  "uiaid": "XM5940"
+ },
+ {
+  "name": "Memorandum of Understanding for the Conservation of Cetaceans and Their Habitats in the Pacific Islands Region",
+  "acronym": "",
+  "founded": "2006",
+  "city": "Bonn",
+  "country": "Germany",
+  "type1": "T",
+  "type2": "g",
+  "uiaid": "XT0680"
+ },
+ {
+  "name": "Memorandum of Understanding on the Conservation and Management of Dugongs - Dugong Dugon - and Their Habitats Throughout Their Range",
+  "acronym": "UNEP/CMS Dugong MoU",
+  "founded": "2007",
+  "city": "",
+  "country": "",
+  "type1": "T",
+  "type2": "g",
+  "uiaid": "XT0780"
+ },
+ {
+  "name": "Memorandum of Understanding on the Conservation and Management of Marine Turtles and Their Habitats of the Indian Ocean and South-East Asia",
+  "acronym": "",
+  "founded": "2001",
+  "city": "Bangkok",
+  "country": "Thailand",
+  "type1": "T",
+  "type2": "g",
+  "uiaid": "XT0109"
+ },
+ {
+  "name": "Memorandum of Understanding on the Conservation of High Andean Flamingos and Their Habitats",
+  "acronym": "",
+  "founded": "2008",
+  "city": "Bonn",
+  "country": "Germany",
+  "type1": "T",
+  "type2": "g",
+  "uiaid": "XT0782"
+ },
+ {
+  "name": "Memorandum of Understanding on the Conservation of Southern South American Migratory Grassland Bird Species and Their Habitats",
+  "acronym": "",
+  "founded": "2007",
+  "city": "Bonn",
+  "country": "Germany",
+  "type1": "T",
+  "type2": "g",
+  "uiaid": "XT0781"
+ },
+ {
+  "name": "Metagenomics and Metadesign of the Subways and Urban Biomes International Consortium",
+  "acronym": "MetaSUB",
+  "founded": "2015",
+  "city": "New York NY",
+  "country": "USA",
+  "type1": "G",
+  "type2": "",
+  "uiaid": "AA6040"
+ },
+ {
+  "name": "Metropolis International",
+  "acronym": "",
+  "founded": "1995",
+  "city": "Ottawa ON",
+  "country": "Canada",
+  "type1": "F",
+  "type2": "y",
+  "uiaid": "XF6230"
+ },
+ {
+  "name": "Metropolitan Environment Improvement Programme",
+  "acronym": "MEIP",
+  "founded": "1989",
+  "city": "Washington DC",
+  "country": "USA",
+  "type1": "H",
+  "type2": "gx",
+  "uiaid": "XK0993"
+ },
+ {
+  "name": "Microenergia - Micro Business Habitat",
+  "acronym": "",
+  "founded": "2001",
+  "city": "Buenos Aires",
+  "country": "Argentina",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "XF6614"
+ },
+ {
+  "name": "Milan Urban Food Policy Pact",
+  "acronym": "MUFPP",
+  "founded": "2015",
+  "city": "Milan",
+  "country": "Italy",
+  "type1": "E",
+  "type2": "",
+  "uiaid": "AA1750"
+ },
+ {
+  "name": "Ministers of Education and Those Responsible for Economic Planning in African Member States",
+  "acronym": "MINEDAF",
+  "founded": "1961",
+  "city": "",
+  "country": "",
+  "type1": "S",
+  "type2": "cg",
+  "uiaid": "XS2318"
+ },
+ {
+  "name": "Movimiento de Participación Regional, Municipal y Comunitaria Demócrata-Cristiana de América",
+  "acronym": "",
+  "founded": "",
+  "city": "Caracas",
+  "country": "Venezuela",
+  "type1": "U",
+  "type2": "x",
+  "uiaid": "XF3205"
+ },
+ {
+  "name": "Municipal Development Partnership for West and Central Africa",
+  "acronym": "MDP",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "d",
+  "uiaid": "XF3709"
+ },
+ {
+  "name": "Municipal Waste Europe",
+  "acronym": "MWE",
+  "founded": "2008",
+  "city": "Brussels",
+  "country": "Belgium",
+  "type1": "D",
+  "type2": "",
+  "uiaid": "XJ4778"
+ },
+ {
+  "name": "Namesake Towns Association",
+  "acronym": "",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "x",
+  "uiaid": "XU1695"
+ },
+ {
+  "name": "Network for an Economical and Ecological Habitat",
+  "acronym": "EcoSouth Network",
+  "founded": "1991",
+  "city": "Jinotepe",
+  "country": "Nicaragua",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "XF6496"
+ },
+ {
+  "name": "Network of Associations of Local Authorities of South-East Europe",
+  "acronym": "NALAS",
+  "founded": "2001",
+  "city": "Skopje",
+  "country": "North Macedonia",
+  "type1": "E",
+  "type2": "y",
+  "uiaid": "XM2969"
+ },
+ {
+  "name": "Network of European Metropolitan Regions and Areas",
+  "acronym": "METREX",
+  "founded": "1996",
+  "city": "Lyon",
+  "country": "France",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "XF6268"
+ },
+ {
+  "name": "Network of Local Government Associations in Latin America",
+  "acronym": "",
+  "founded": "",
+  "city": "Cochabamba",
+  "country": "Bolivia",
+  "type1": "U",
+  "type2": "x",
+  "uiaid": "XF4352"
+ },
+ {
+  "name": "Network of Research, Training and Information Institutes on Human Settlements in Asia and the Pacific",
+  "acronym": "TRISHNET",
+  "founded": "1993",
+  "city": "Bangkok",
+  "country": "Thailand",
+  "type1": "U",
+  "type2": "x",
+  "uiaid": "XF3271"
+ },
+ {
+  "name": "Network on Urban Research in the European Union",
+  "acronym": "NUREC",
+  "founded": "1989",
+  "city": "Duisburg",
+  "country": "Germany",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "XF3982"
+ },
+ {
+  "name": "Network-Association of European Researchers in Urbanisation in the South",
+  "acronym": "N-AERUS",
+  "founded": "1996",
+  "city": "",
+  "country": "",
+  "type1": "F",
+  "type2": "v",
+  "uiaid": "XF4227"
+ },
+ {
+  "name": "Neurotoxicity Society",
+  "acronym": "NTS",
+  "founded": "2001",
+  "city": "Chapel Hill NC",
+  "country": "USA",
+  "type1": "C",
+  "type2": "",
+  "uiaid": "AA3184"
+ },
+ {
+  "name": "NewCities",
+  "acronym": "",
+  "founded": "2010",
+  "city": "Montréal QC",
+  "country": "Canada",
+  "type1": "F",
+  "type2": "f",
+  "uiaid": "XJ7464"
+ },
+ {
+  "name": "NGO Committee on Sustainable Human Settlements",
+  "acronym": "",
+  "founded": "1985",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "d",
+  "uiaid": "XE1644"
+ },
+ {
+  "name": "Nile Basin Capacity Building Network for River Engineering",
+  "acronym": "NBCBN-RE",
+  "founded": "2002",
+  "city": "Cairo",
+  "country": "Egypt",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "XJ2384"
+ },
+ {
+  "name": "Nile Capacity Building Network in Integrated Water Resources Management",
+  "acronym": "Nile-IWRM Net",
+  "founded": "2005",
+  "city": "Khartoum",
+  "country": "Sudan",
+  "type1": "E",
+  "type2": "",
+  "uiaid": "XJ2383"
+ },
+ {
+  "name": "Nordic Network for Environmental Impact Assessment, Strategic Environmental Assessment and Regional Development",
+  "acronym": "Nordic EIA Network",
+  "founded": "1999",
+  "city": "Stockholm",
+  "country": "Sweden",
+  "type1": "U",
+  "type2": "x",
+  "uiaid": "XF5977"
+ },
+ {
+  "name": "Nordic Safe Cities",
+  "acronym": "",
+  "founded": "2016",
+  "city": "Copenhagen",
+  "country": "Denmark",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "XM7927"
+ },
+ {
+  "name": "Nordic Urban Design Agency",
+  "acronym": "",
+  "founded": "2006",
+  "city": "Bergen",
+  "country": "Norway",
+  "type1": "D",
+  "type2": "",
+  "uiaid": "XM3605"
+ },
+ {
+  "name": "Nordregio - an international research centre for regional development and planning",
+  "acronym": "Nordregio",
+  "founded": "1997",
+  "city": "Stockholm",
+  "country": "Sweden",
+  "type1": "E",
+  "type2": "g",
+  "uiaid": "XE2795"
+ },
+ {
+  "name": "Open & Agile Smart Cities & Communities",
+  "acronym": "OASC",
+  "founded": "2015",
+  "city": "Brussels",
+  "country": "Belgium",
+  "type1": "C",
+  "type2": "",
+  "uiaid": "AA7151"
+ },
+ {
+  "name": "Open & Agile Smart Cities & Communities",
+  "acronym": "OASC",
+  "founded": "2015",
+  "city": "Brussels",
+  "country": "Belgium",
+  "type1": "J",
+  "type2": "",
+  "uiaid": "AA7158"
+ },
+ {
+  "name": "Open City International Foundation",
+  "acronym": "FOCA International",
+  "founded": "",
+  "city": "Matawan NJ",
+  "country": "USA",
+  "type1": "F",
+  "type2": "f",
+  "uiaid": "XJ1160"
+ },
+ {
+  "name": "Organización Iberoamericana de Cooperación Intermunicipal",
+  "acronym": "OICI",
+  "founded": "1938",
+  "city": "Madrid",
+  "country": "Spain",
+  "type1": "D",
+  "type2": "",
+  "uiaid": "XD1087"
+ },
+ {
+  "name": "Organization of Islamic Capitals and Cities",
+  "acronym": "OICC",
+  "founded": "1978",
+  "city": "Makkah",
+  "country": "Saudi Arabia",
+  "type1": "E",
+  "type2": "",
+  "uiaid": "XE1395"
+ },
+ {
+  "name": "Organization of World Heritage Cities",
+  "acronym": "OWHC",
+  "founded": "1993",
+  "city": "Québec QC",
+  "country": "Canada",
+  "type1": "C",
+  "type2": "",
+  "uiaid": "XD4589"
+ },
+ {
+  "name": "Pacific Asian Congress of Municipalities",
+  "acronym": "PACOM",
+  "founded": "",
+  "city": "Kuala Lumpur",
+  "country": "Malaysia",
+  "type1": "S",
+  "type2": "c",
+  "uiaid": "XF1223"
+ },
+ {
+  "name": "Pacific Rim Council on Urban Development",
+  "acronym": "PRCUD",
+  "founded": "1989",
+  "city": "Los Angeles CA",
+  "country": "USA",
+  "type1": "D",
+  "type2": "",
+  "uiaid": "XD4854"
+ },
+ {
+  "name": "Pan African Association on Human Settlements",
+  "acronym": "PAAHS",
+  "founded": "1979",
+  "city": "",
+  "country": "",
+  "type1": "H",
+  "type2": "d",
+  "uiaid": "XH8997"
+ },
+ {
+  "name": "Pan African Federation of Local Government Trade Unions",
+  "acronym": "",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "H",
+  "type2": "dt",
+  "uiaid": "XD2885"
+ },
+ {
+  "name": "Peri-Urban Regions Platform Europe",
+  "acronym": "PURPLE",
+  "founded": "2004",
+  "city": "Brussels",
+  "country": "Belgium",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "XM0643"
+ },
+ {
+  "name": "Permanent and International Committee of Underground and Spatial Town Planning and Construction",
+  "acronym": "",
+  "founded": "1937",
+  "city": "",
+  "country": "",
+  "type1": "H",
+  "type2": "d",
+  "uiaid": "XD3089"
+ },
+ {
+  "name": "Permanent Committee of Housing and Urban Development for Central America and Panama",
+  "acronym": "",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "x",
+  "uiaid": "XU7935"
+ },
+ {
+  "name": "Planning Africa",
+  "acronym": "",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "S",
+  "type2": "c",
+  "uiaid": "AA5087"
+ },
+ {
+  "name": "Plasticity Forum",
+  "acronym": "Plasticity",
+  "founded": "2012",
+  "city": "",
+  "country": "",
+  "type1": "S",
+  "type2": "c",
+  "uiaid": "XS0555"
+ },
+ {
+  "name": "Pontificia Universitas Urbaniana",
+  "acronym": "PUU",
+  "founded": "1627",
+  "city": "Rome",
+  "country": "Italy",
+  "type1": "F",
+  "type2": "y",
+  "uiaid": "XM2039"
+ },
+ {
+  "name": "Protocol for the Implementation of the Alpine Convention in the Field of Town and Country Planning and Sustainable Development",
+  "acronym": "",
+  "founded": "1994",
+  "city": "",
+  "country": "",
+  "type1": "T",
+  "type2": "g",
+  "uiaid": "XT9403"
+ },
+ {
+  "name": "Protocol to Amend the Convention on Wetlands of International Importance Especially as Waterfowl Habitat",
+  "acronym": "",
+  "founded": "1982",
+  "city": "Paris",
+  "country": "France",
+  "type1": "T",
+  "type2": "g",
+  "uiaid": "XT8212"
+ },
+ {
+  "name": "Rainbow Cities Network",
+  "acronym": "RCN",
+  "founded": "",
+  "city": "Hannover",
+  "country": "Germany",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "AA2061"
+ },
+ {
+  "name": "Raymond Lemaire International Centre for the Conservation of Historic Towns and Buildings",
+  "acronym": "RLICC",
+  "founded": "1976",
+  "city": "Leuven",
+  "country": "Belgium",
+  "type1": "G",
+  "type2": "",
+  "uiaid": "XM0968"
+ },
+ {
+  "name": "Red Centroamericana de Legisladores por el Fortalecimiento y la Descentralización Municipal",
+  "acronym": "",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "x",
+  "uiaid": "XF4304"
+ },
+ {
+  "name": "Red de Asociaciones Municipales de América Latina",
+  "acronym": "",
+  "founded": "1993",
+  "city": "Cochabamba",
+  "country": "Bolivia",
+  "type1": "U",
+  "type2": "d",
+  "uiaid": "XF2859"
+ },
+ {
+  "name": "Regional Center for Educational Planning",
+  "acronym": "RCEP",
+  "founded": "",
+  "city": "Sharjah",
+  "country": "United Arab Emirates",
+  "type1": "E",
+  "type2": "g",
+  "uiaid": "XJ5116"
+ },
+ {
+  "name": "Regional Centre on Urban Water Management",
+  "acronym": "",
+  "founded": "",
+  "city": "Cali",
+  "country": "Colombia",
+  "type1": "G",
+  "type2": "g",
+  "uiaid": "XM1323"
+ },
+ {
+  "name": "Regional Centre on Urban Water Management, Teheran",
+  "acronym": "RCUWM",
+  "founded": "2002",
+  "city": "Teheran",
+  "country": "Iran Islamic Rep",
+  "type1": "E",
+  "type2": "gy",
+  "uiaid": "XM1324"
+ },
+ {
+  "name": "Regional Conference of Ministers of Education and Those Responsible for Economic Planning in Asia and the Pacific",
+  "acronym": "MINEDAP",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "S",
+  "type2": "cg",
+  "uiaid": "XS8326"
+ },
+ {
+  "name": "Regional Electricity Regulators Association of Southern Africa",
+  "acronym": "RERA",
+  "founded": "2002",
+  "city": "Windhoek",
+  "country": "Namibia",
+  "type1": "E",
+  "type2": "",
+  "uiaid": "XJ2864"
+ },
+ {
+  "name": "Regional Network of Local Authorities for the Management of Human Settlements",
+  "acronym": "CITYNET",
+  "founded": "1987",
+  "city": "Seoul",
+  "country": "Korea Rep",
+  "type1": "F",
+  "type2": "y",
+  "uiaid": "XF1792"
+ },
+ {
+  "name": "Regional Network Office for Urban Safety",
+  "acronym": "RNUS",
+  "founded": "2002",
+  "city": "Pathum Thani",
+  "country": "Thailand",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "XM0048"
+ },
+ {
+  "name": "Regional Universities Forum for Capacity Building in Agriculture",
+  "acronym": "RUFORUM",
+  "founded": "2004",
+  "city": "Kampala",
+  "country": "Uganda",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "XM3266"
+ },
+ {
+  "name": "Research and Training Institute for International Cooperation in the field of Habitat and Human Settlements",
+  "acronym": "",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "js",
+  "uiaid": "XU7049"
+ },
+ {
+  "name": "Resilient Cities Catalyst",
+  "acronym": "RCC",
+  "founded": "2020",
+  "city": "Brooklyn NY",
+  "country": "USA",
+  "type1": "G",
+  "type2": "",
+  "uiaid": "AA6682"
+ },
+ {
+  "name": "Resilient Cities Network",
+  "acronym": "",
+  "founded": "2019",
+  "city": "Mexico City",
+  "country": "Mexico",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "AA0533"
+ },
+ {
+  "name": "Rural and Urban Resources - Counselling, Outreach and Networking",
+  "acronym": "RURCON",
+  "founded": "1971",
+  "city": "Jos",
+  "country": "Nigeria",
+  "type1": "G",
+  "type2": "",
+  "uiaid": "XG0551"
+ },
+ {
+  "name": "Réseau de systèmes d'information géographique pour les municipalités et les régions",
+  "acronym": "RESIGMUR",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "d",
+  "uiaid": "XK0485"
+ },
+ {
+  "name": "Réseau européen de chercheurs sur l'habitat, l'intégration et l'exclusion sociales",
+  "acronym": "Réseau européen chercheurs",
+  "founded": "",
+  "city": "Nancy",
+  "country": "France",
+  "type1": "U",
+  "type2": "x",
+  "uiaid": "XF3625"
+ },
+ {
+  "name": "Réseau habitat et francophonie",
+  "acronym": "RHF",
+  "founded": "1987",
+  "city": "Paris",
+  "country": "France",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "XF5778"
+ },
+ {
+  "name": "Réseau VERTECH CITY",
+  "acronym": "",
+  "founded": "1992",
+  "city": "Namur",
+  "country": "Belgium",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "XF5281"
+ },
+ {
+  "name": "Salzburg Congress on Urban Planning and Development",
+  "acronym": "SCUPAD",
+  "founded": "1965",
+  "city": "The Hague",
+  "country": "Netherlands",
+  "type1": "F",
+  "type2": "v",
+  "uiaid": "XF5756"
+ },
+ {
+  "name": "School for International Regional Development Studies",
+  "acronym": "SIRIUS",
+  "founded": "",
+  "city": "Glasgow",
+  "country": "UK",
+  "type1": "U",
+  "type2": "d",
+  "uiaid": "XG5097"
+ },
+ {
+  "name": "SEAMEO Regional Training Centre, Ho Chi Minh City",
+  "acronym": "RETRAC",
+  "founded": "1996",
+  "city": "Ho Chi Minh City",
+  "country": "Vietnam",
+  "type1": "E",
+  "type2": "g",
+  "uiaid": "XK1435"
+ },
+ {
+  "name": "Seminario Internacional de Investigación en Urbanismo",
+  "acronym": "SIIU",
+  "founded": "2007",
+  "city": "",
+  "country": "",
+  "type1": "S",
+  "type2": "c",
+  "uiaid": "AA3671"
+ },
+ {
+  "name": "Servants to Asia's Urban Poor",
+  "acronym": "",
+  "founded": "1983",
+  "city": "Vancouver BC",
+  "country": "Canada",
+  "type1": "G",
+  "type2": "",
+  "uiaid": "XG6134"
+ },
+ {
+  "name": "Serve the City International",
+  "acronym": "",
+  "founded": "2005",
+  "city": "Brussels",
+  "country": "Belgium",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "XM4990"
+ },
+ {
+  "name": "Silk Cities",
+  "acronym": "",
+  "founded": "2014",
+  "city": "",
+  "country": "",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "AA4146"
+ },
+ {
+  "name": "Silk Road Cities Alliance",
+  "acronym": "SRCA",
+  "founded": "2014",
+  "city": "Beijing",
+  "country": "China",
+  "type1": "E",
+  "type2": "",
+  "uiaid": "AA4149"
+ },
+ {
+  "name": "Sistema Regional de Capacitación para el Mejoramiento de la Administración Municipal en América Latina",
+  "acronym": "SACDEL",
+  "founded": "1989",
+  "city": "Quito",
+  "country": "Ecuador",
+  "type1": "U",
+  "type2": "d",
+  "uiaid": "XF2861"
+ },
+ {
+  "name": "Sister Cities International",
+  "acronym": "SCI",
+  "founded": "1956",
+  "city": "Washington DC",
+  "country": "USA",
+  "type1": "G",
+  "type2": "",
+  "uiaid": "XG0121"
+ },
+ {
+  "name": "Small Coastal Towns Network",
+  "acronym": "",
+  "founded": "",
+  "city": "Paris",
+  "country": "France",
+  "type1": "U",
+  "type2": "x",
+  "uiaid": "XF4873"
+ },
+ {
+  "name": "Smart Buildings Alliance for Smart Cities",
+  "acronym": "SBA",
+  "founded": "2012",
+  "city": "Saint-Didier-au-Mont-d'Or",
+  "country": "France",
+  "type1": "N",
+  "type2": "",
+  "uiaid": "XJ9511"
+ },
+ {
+  "name": "Smart Cities Initiative for North Africa",
+  "acronym": "SCI-NA",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "x",
+  "uiaid": "XM4196"
+ },
+ {
+  "name": "Smart City Business America Institute",
+  "acronym": "SCBA",
+  "founded": "2013",
+  "city": "Sao Paulo",
+  "country": "Brazil",
+  "type1": "D",
+  "type2": "j",
+  "uiaid": "XM6397"
+ },
+ {
+  "name": "Smart City Expo World Congress",
+  "acronym": "SCEWC",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "S",
+  "type2": "c",
+  "uiaid": "AA2726"
+ },
+ {
+  "name": "smartcities & sport",
+  "acronym": "",
+  "founded": "2014",
+  "city": "Lausanne",
+  "country": "Switzerland",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "AA2535"
+ },
+ {
+  "name": "Society for Urban Development in East Africa",
+  "acronym": "SUDEA",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "H",
+  "type2": "d",
+  "uiaid": "XM0981"
+ },
+ {
+  "name": "Society for Urban Ecology",
+  "acronym": "SURE",
+  "founded": "2009",
+  "city": "Salzburg",
+  "country": "Austria",
+  "type1": "C",
+  "type2": "",
+  "uiaid": "XJ8676"
+ },
+ {
+  "name": "Solidarité internationale pour la promotion de l'habitat social",
+  "acronym": "SIPHASO",
+  "founded": "",
+  "city": "Conakry",
+  "country": "Guinea",
+  "type1": "U",
+  "type2": "x",
+  "uiaid": "XG1444"
+ },
+ {
+  "name": "South East Asia Regional Network for Capacity Building in IWRM",
+  "acronym": "AguaJaring",
+  "founded": "",
+  "city": "Jakarta",
+  "country": "Indonesia",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "XJ2386"
+ },
+ {
+  "name": "South Pacific Regional Development Bank",
+  "acronym": "",
+  "founded": "1972",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "gpx",
+  "uiaid": "XU5587"
+ },
+ {
+  "name": "Special Telecommunications Action for Regional Development",
+  "acronym": "STAR",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "dg",
+  "uiaid": "XK0119"
+ },
+ {
+  "name": "Standing Committee to the Bern Convention on the Conservation of European Wildlife and Natural Habitats",
+  "acronym": "",
+  "founded": "1982",
+  "city": "Strasbourg",
+  "country": "France",
+  "type1": "E",
+  "type2": "gy",
+  "uiaid": "XE3253"
+ },
+ {
+  "name": "Standing Technological Conference of European Local Authorities",
+  "acronym": "STECLA",
+  "founded": "1983",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "d",
+  "uiaid": "XF0307"
+ },
+ {
+  "name": "Steering Committee for Regional and Municipal Matters",
+  "acronym": "",
+  "founded": "1970",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "dg",
+  "uiaid": "XE0739"
+ },
+ {
+  "name": "Steering Committee on Trade Capacity and Standards",
+  "acronym": "CTCS",
+  "founded": "",
+  "city": "Geneva",
+  "country": "Switzerland",
+  "type1": "E",
+  "type2": "g",
+  "uiaid": "XE3245"
+ },
+ {
+  "name": "Student Planning Network",
+  "acronym": "PlaNet",
+  "founded": "1998",
+  "city": "",
+  "country": "",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "XF4674"
+ },
+ {
+  "name": "Sustainable Cities Project",
+  "acronym": "",
+  "founded": "1993",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "dg",
+  "uiaid": "XK1848"
+ },
+ {
+  "name": "Sustainable Project Management- Public-Private Partnerships for the Urban Environment",
+  "acronym": "SPM",
+  "founded": "1994",
+  "city": "Rougemont",
+  "country": "Switzerland",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "XF3676"
+ },
+ {
+  "name": "Sustainable Urban Development Network",
+  "acronym": "SUD-Net",
+  "founded": "1990",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "dgy",
+  "uiaid": "XK1208"
+ },
+ {
+  "name": "Synchronicity Earth",
+  "acronym": "",
+  "founded": "",
+  "city": "London",
+  "country": "UK",
+  "type1": "G",
+  "type2": "",
+  "uiaid": "XM6800"
+ },
+ {
+  "name": "The African Capacity Building Foundation",
+  "acronym": "ACBF",
+  "founded": "1991",
+  "city": "Harare",
+  "country": "Zimbabwe",
+  "type1": "F",
+  "type2": "fy",
+  "uiaid": "XF3152"
+ },
+ {
+  "name": "The League of Historical Cities",
+  "acronym": "LHC",
+  "founded": "1987",
+  "city": "Kyoto",
+  "country": "Japan",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "XF4242"
+ },
+ {
+  "name": "Tourism Promotion Organization for Global Cities",
+  "acronym": "TPO",
+  "founded": "2002",
+  "city": "Busan",
+  "country": "Korea Rep",
+  "type1": "D",
+  "type2": "",
+  "uiaid": "XJ6706"
+ },
+ {
+  "name": "Towns-and-Development",
+  "acronym": "T-and-D",
+  "founded": "1985",
+  "city": "Madrid",
+  "country": "Spain",
+  "type1": "U",
+  "type2": "xy",
+  "uiaid": "XE1076"
+ },
+ {
+  "name": "Training Centre on Environmental Matters for Small Local Authorities in the EEC Mediterranean Countries",
+  "acronym": "",
+  "founded": "1985",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "d",
+  "uiaid": "XE2730"
+ },
+ {
+  "name": "Twin Cities International Association",
+  "acronym": "TCIA",
+  "founded": "1991",
+  "city": "",
+  "country": "",
+  "type1": "D",
+  "type2": "",
+  "uiaid": "XD3976"
+ },
+ {
+  "name": "UN-HABITAT Staff Association",
+  "acronym": "",
+  "founded": "1980",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "dv",
+  "uiaid": "XE0226"
+ },
+ {
+  "name": "UNESCO - International Institute for Capacity Building in Africa",
+  "acronym": "IICBA",
+  "founded": "1997",
+  "city": "Addis Ababa",
+  "country": "Ethiopia",
+  "type1": "E",
+  "type2": "gj",
+  "uiaid": "XE4185"
+ },
+ {
+  "name": "Union for the Coordination of Transmission of Electricity",
+  "acronym": "UCTE",
+  "founded": "1951",
+  "city": "",
+  "country": "",
+  "type1": "H",
+  "type2": "d",
+  "uiaid": "XD3336"
+ },
+ {
+  "name": "Union internationale pour le développement de l'habitat",
+  "acronym": "",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "s",
+  "uiaid": "XU8332"
+ },
+ {
+  "name": "Union of African Towns",
+  "acronym": "UAT",
+  "founded": "1975",
+  "city": "",
+  "country": "",
+  "type1": "H",
+  "type2": "d",
+  "uiaid": "XD7815"
+ },
+ {
+  "name": "Union of Caribbean Towns",
+  "acronym": "",
+  "founded": "1980",
+  "city": "",
+  "country": "",
+  "type1": "H",
+  "type2": "d",
+  "uiaid": "XE0765"
+ },
+ {
+  "name": "Union of Ibero-American Capital Cities",
+  "acronym": "",
+  "founded": "1982",
+  "city": "Madrid",
+  "country": "Spain",
+  "type1": "D",
+  "type2": "",
+  "uiaid": "XD7307"
+ },
+ {
+  "name": "Union of Mediterranean Towns",
+  "acronym": "",
+  "founded": "1976",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "d",
+  "uiaid": "XE5069"
+ },
+ {
+  "name": "Union of the Baltic Cities",
+  "acronym": "UBC",
+  "founded": "1991",
+  "city": "Gdansk",
+  "country": "Poland",
+  "type1": "D",
+  "type2": "",
+  "uiaid": "XD4173"
+ },
+ {
+  "name": "Union of the Electricity Industry - Eurelectric",
+  "acronym": "",
+  "founded": "1999",
+  "city": "Brussels",
+  "country": "Belgium",
+  "type1": "D",
+  "type2": "t",
+  "uiaid": "XE3484"
+ },
+ {
+  "name": "United Cities and Local Governments Asia Pacific",
+  "acronym": "UCLG ASPAC",
+  "founded": "2004",
+  "city": "Jakarta",
+  "country": "Indonesia",
+  "type1": "E",
+  "type2": "",
+  "uiaid": "XJ1853"
+ },
+ {
+  "name": "United Cities and Local Governments Middle East and West Asia",
+  "acronym": "UCLG-MEWA",
+  "founded": "2004",
+  "city": "Istanbul",
+  "country": "Türkiye",
+  "type1": "E",
+  "type2": "",
+  "uiaid": "XJ9962"
+ },
+ {
+  "name": "United Cities and Local Governments of Africa",
+  "acronym": "UCLG Africa",
+  "founded": "2003",
+  "city": "Rabat",
+  "country": "Morocco",
+  "type1": "E",
+  "type2": "",
+  "uiaid": "XE4716"
+ },
+ {
+  "name": "United Nations African Institute for Economic Development and Planning",
+  "acronym": "",
+  "founded": "1962",
+  "city": "Dakar",
+  "country": "Senegal",
+  "type1": "E",
+  "type2": "gj",
+  "uiaid": "XE3628"
+ },
+ {
+  "name": "United Nations Centre for Housing, Building and Planning",
+  "acronym": "CHBP",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "H",
+  "type2": "dg",
+  "uiaid": "XH0133"
+ },
+ {
+  "name": "United Nations Centre for Regional Development",
+  "acronym": "UNCRD",
+  "founded": "1971",
+  "city": "Nagoya",
+  "country": "Japan",
+  "type1": "E",
+  "type2": "g",
+  "uiaid": "XE8305"
+ },
+ {
+  "name": "United Nations Centre for Regional Development, Manila",
+  "acronym": "",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "gx",
+  "uiaid": "XU3343"
+ },
+ {
+  "name": "United Nations Commission on Human Settlements",
+  "acronym": "UNCHS",
+  "founded": "1977",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "dg",
+  "uiaid": "XE1139"
+ },
+ {
+  "name": "United Nations Habitat and Human Settlements Foundation",
+  "acronym": "UNHHSF",
+  "founded": "1975",
+  "city": "",
+  "country": "",
+  "type1": "H",
+  "type2": "dfg",
+  "uiaid": "XF2428"
+ },
+ {
+  "name": "United Nations Human Settlements Programme",
+  "acronym": "UN-Habitat",
+  "founded": "1978",
+  "city": "Nairobi",
+  "country": "Kenya",
+  "type1": "E",
+  "type2": "g",
+  "uiaid": "XE6809"
+ },
+ {
+  "name": "United Nations Regional Centre for Research on Human Settlements",
+  "acronym": "",
+  "founded": "1955",
+  "city": "",
+  "country": "",
+  "type1": "H",
+  "type2": "gx",
+  "uiaid": "XE8205"
+ },
+ {
+  "name": "United Nations Task Force on Environment and Human Settlements",
+  "acronym": "",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "dg",
+  "uiaid": "XJ0552"
+ },
+ {
+  "name": "United Towns Agency for North-South Cooperation",
+  "acronym": "",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "x",
+  "uiaid": "XF3876"
+ },
+ {
+  "name": "United Towns Agency for Urban Transport",
+  "acronym": "",
+  "founded": "1976",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "d",
+  "uiaid": "XE2764"
+ },
+ {
+  "name": "United Towns Centre for International Promotion of Innovation and Applied Research",
+  "acronym": "IDEA",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "d",
+  "uiaid": "XE6134"
+ },
+ {
+  "name": "United Towns Committee for the Access of Women to Public Office",
+  "acronym": "",
+  "founded": "1975",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "d",
+  "uiaid": "XE2690"
+ },
+ {
+  "name": "United Towns Development Agency",
+  "acronym": "UTDA",
+  "founded": "1989",
+  "city": "Saint-Denis",
+  "country": "France",
+  "type1": "U",
+  "type2": "x",
+  "uiaid": "XK0049"
+ },
+ {
+  "name": "United Towns Urbanism Unit",
+  "acronym": "",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "d",
+  "uiaid": "XU0682"
+ },
+ {
+  "name": "United Towns Water Agency",
+  "acronym": "",
+  "founded": "1984",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "d",
+  "uiaid": "XE2740"
+ },
+ {
+  "name": "United Towns World Committee of Journalists",
+  "acronym": "",
+  "founded": "1979",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "d",
+  "uiaid": "XE8675"
+ },
+ {
+  "name": "United Towns World Committee of Lawyers",
+  "acronym": "",
+  "founded": "1978",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "d",
+  "uiaid": "XE2468"
+ },
+ {
+  "name": "Universal Fellowship of Metropolitan Community Churches",
+  "acronym": "UFMCC",
+  "founded": "1968",
+  "city": "Sarasota FL",
+  "country": "USA",
+  "type1": "N",
+  "type2": "",
+  "uiaid": "XG7711"
+ },
+ {
+  "name": "Urban Affairs Association",
+  "acronym": "UAA",
+  "founded": "1969",
+  "city": "Milwaukee WI",
+  "country": "USA",
+  "type1": "D",
+  "type2": "",
+  "uiaid": "XM4126"
+ },
+ {
+  "name": "Urban and Regional Information Systems Association",
+  "acronym": "URISA",
+  "founded": "1963",
+  "city": "Park Ridge IL",
+  "country": "USA",
+  "type1": "G",
+  "type2": "",
+  "uiaid": "XN1965"
+ },
+ {
+  "name": "Urban Biodiversity and Design",
+  "acronym": "URBIO",
+  "founded": "2008",
+  "city": "",
+  "country": "",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "XJ4718"
+ },
+ {
+  "name": "Urban Climate Change Research Network",
+  "acronym": "UCCRN",
+  "founded": "",
+  "city": "New York NY",
+  "country": "USA",
+  "type1": "G",
+  "type2": "",
+  "uiaid": "XJ0428"
+ },
+ {
+  "name": "Urban Climate Resilient Infrastructure & Strategic Planning",
+  "acronym": "UCRISP",
+  "founded": "",
+  "city": "San Francisco CA",
+  "country": "USA",
+  "type1": "G",
+  "type2": "",
+  "uiaid": "AA4810"
+ },
+ {
+  "name": "Urban Data Management Society",
+  "acronym": "UDMS",
+  "founded": "1971",
+  "city": "Stuttgart",
+  "country": "Germany",
+  "type1": "D",
+  "type2": "",
+  "uiaid": "XD3677"
+ },
+ {
+  "name": "Urban Economics Association",
+  "acronym": "UEA",
+  "founded": "2006",
+  "city": "Houston TX",
+  "country": "USA",
+  "type1": "D",
+  "type2": "",
+  "uiaid": "XM6271"
+ },
+ {
+  "name": "Urban Knowledge Network Asia",
+  "acronym": "UKNA",
+  "founded": "2016",
+  "city": "Leiden",
+  "country": "Netherlands",
+  "type1": "J",
+  "type2": "",
+  "uiaid": "XJ6237"
+ },
+ {
+  "name": "Urban Land Institute",
+  "acronym": "ULI",
+  "founded": "1936",
+  "city": "Washington DC",
+  "country": "USA",
+  "type1": "G",
+  "type2": "j",
+  "uiaid": "XN8192"
+ },
+ {
+  "name": "Urban Saints",
+  "acronym": "",
+  "founded": "",
+  "city": "Luton",
+  "country": "UK",
+  "type1": "G",
+  "type2": "",
+  "uiaid": "XM0238"
+ },
+ {
+  "name": "Urban Sketchers",
+  "acronym": "USk",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "F",
+  "type2": "v",
+  "uiaid": "AA7365"
+ },
+ {
+  "name": "Water and Sanitation for the Urban Poor",
+  "acronym": "WSUP",
+  "founded": "2004",
+  "city": "London",
+  "country": "UK",
+  "type1": "G",
+  "type2": "y",
+  "uiaid": "XM0840"
+ },
+ {
+  "name": "WHO European Healthy Cities Network",
+  "acronym": "WHO Healthy Cities",
+  "founded": "1988",
+  "city": "Copenhagen",
+  "country": "Denmark",
+  "type1": "E",
+  "type2": "",
+  "uiaid": "XF3238"
+ },
+ {
+  "name": "WHO Global Network for Age-friendly Cities and Communities",
+  "acronym": "GNAFCC",
+  "founded": "2010",
+  "city": "Geneva",
+  "country": "Switzerland",
+  "type1": "F",
+  "type2": "y",
+  "uiaid": "AA2847"
+ },
+ {
+  "name": "Women in Cities International",
+  "acronym": "",
+  "founded": "",
+  "city": "Montréal QC",
+  "country": "Canada",
+  "type1": "G",
+  "type2": "",
+  "uiaid": "XG9551"
+ },
+ {
+  "name": "Working Group on Prolamin Analysis and Toxicity",
+  "acronym": "WGPAT",
+  "founded": "1985",
+  "city": "Esslingen",
+  "country": "Germany",
+  "type1": "D",
+  "type2": "",
+  "uiaid": "XM7046"
+ },
+ {
+  "name": "World Academy for Local Government and Democracy",
+  "acronym": "WALD",
+  "founded": "1993",
+  "city": "Istanbul",
+  "country": "Turkey",
+  "type1": "U",
+  "type2": "x",
+  "uiaid": "XG1848"
+ },
+ {
+  "name": "World Alliance for Low Carbon Cities",
+  "acronym": "WALCC",
+  "founded": "",
+  "city": "Helsinki",
+  "country": "Finland",
+  "type1": "G",
+  "type2": "",
+  "uiaid": "XM7917"
+ },
+ {
+  "name": "World Alliance of Cities Against Poverty",
+  "acronym": "WACAP",
+  "founded": "1997",
+  "city": "New York NY",
+  "country": "USA",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "XF6573"
+ },
+ {
+  "name": "World Association of the Major Metropolises",
+  "acronym": "Metropolis",
+  "founded": "1985",
+  "city": "Barcelona",
+  "country": "Spain",
+  "type1": "B",
+  "type2": "",
+  "uiaid": "XD0472"
+ },
+ {
+  "name": "World Associations of Cities and Local Authorities Coordination",
+  "acronym": "WACLAC",
+  "founded": "1996",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "xy",
+  "uiaid": "XE2377"
+ },
+ {
+  "name": "World Cities Cooperation Centre",
+  "acronym": "",
+  "founded": "",
+  "city": "Milan",
+  "country": "Italy",
+  "type1": "U",
+  "type2": "x",
+  "uiaid": "XE5774"
+ },
+ {
+  "name": "World Cities Culture Forum",
+  "acronym": "WCCF",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "S",
+  "type2": "c",
+  "uiaid": "AA0347"
+ },
+ {
+  "name": "World Cities World Class University Network",
+  "acronym": "WC2 University Network",
+  "founded": "2010",
+  "city": "",
+  "country": "",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "XJ9133"
+ },
+ {
+  "name": "World City Ice and Snow Tourism Cooperation Organization",
+  "acronym": "WCISTCO",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "J",
+  "type2": "",
+  "uiaid": "XM5472"
+ },
+ {
+  "name": "World Conference on Thermophotovoltaic Generation of Electricity",
+  "acronym": "TPV",
+  "founded": "1994",
+  "city": "",
+  "country": "",
+  "type1": "S",
+  "type2": "c",
+  "uiaid": "AA6567"
+ },
+ {
+  "name": "World Council on City Data",
+  "acronym": "WCCD",
+  "founded": "",
+  "city": "Toronto ON",
+  "country": "Canada",
+  "type1": "J",
+  "type2": "",
+  "uiaid": "XM4976"
+ },
+ {
+  "name": "World Federation of United Cities",
+  "acronym": "UTO",
+  "founded": "1957",
+  "city": "",
+  "country": "",
+  "type1": "H",
+  "type2": "d",
+  "uiaid": "XB3391"
+ },
+ {
+  "name": "World Fund for Development and Planning",
+  "acronym": "WFDP",
+  "founded": "2012",
+  "city": "Nairobi",
+  "country": "Kenya",
+  "type1": "F",
+  "type2": "",
+  "uiaid": "AA3020"
+ },
+ {
+  "name": "World Habitat",
+  "acronym": "",
+  "founded": "1976",
+  "city": "Leicester",
+  "country": "UK",
+  "type1": "G",
+  "type2": "f",
+  "uiaid": "XJ2633"
+ },
+ {
+  "name": "World Historic and Cultural Canal Cities Cooperation Organization",
+  "acronym": "WCCO",
+  "founded": "2009",
+  "city": "Yangzhou",
+  "country": "China",
+  "type1": "C",
+  "type2": "y",
+  "uiaid": "XM6696"
+ },
+ {
+  "name": "World Mayors Council on Climate Change",
+  "acronym": "WMCCC",
+  "founded": "2005",
+  "city": "Bonn",
+  "country": "Germany",
+  "type1": "E",
+  "type2": "",
+  "uiaid": "XM0956"
+ },
+ {
+  "name": "World Organization of United Cities and Local Governments",
+  "acronym": "UCLG",
+  "founded": "2004",
+  "city": "Barcelona",
+  "country": "Spain",
+  "type1": "B",
+  "type2": "",
+  "uiaid": "XF6714"
+ },
+ {
+  "name": "World Smart Sustainable Cities Organization",
+  "acronym": "WeGO",
+  "founded": "2010",
+  "city": "Seoul",
+  "country": "Korea Rep",
+  "type1": "B",
+  "type2": "",
+  "uiaid": "XJ5021"
+ },
+ {
+  "name": "World Solar Thermal Electricity Association",
+  "acronym": "STELA-World",
+  "founded": "2012",
+  "city": "",
+  "country": "",
+  "type1": "H",
+  "type2": "d",
+  "uiaid": "XJ7832"
+ },
+ {
+  "name": "World Summit on Nordicity",
+  "acronym": "",
+  "founded": "",
+  "city": "Québec QC",
+  "country": "Canada",
+  "type1": "S",
+  "type2": "c",
+  "uiaid": "XS0241"
+ },
+ {
+  "name": "World Tourism Cities Federation",
+  "acronym": "WTCF",
+  "founded": "2012",
+  "city": "Beijing",
+  "country": "China",
+  "type1": "C",
+  "type2": "",
+  "uiaid": "XJ6260"
+ },
+ {
+  "name": "World Union of Cities for Peace",
+  "acronym": "WUCP",
+  "founded": "1982",
+  "city": "",
+  "country": "",
+  "type1": "H",
+  "type2": "x",
+  "uiaid": "XD6975"
+ },
+ {
+  "name": "World Union of Olympic Cities",
+  "acronym": "",
+  "founded": "2002",
+  "city": "Lausanne",
+  "country": "Switzerland",
+  "type1": "E",
+  "type2": "",
+  "uiaid": "XM6260"
+ },
+ {
+  "name": "World Urban Campaign",
+  "acronym": "WUC",
+  "founded": "",
+  "city": "Nairobi",
+  "country": "Kenya",
+  "type1": "E",
+  "type2": "",
+  "uiaid": "XE4368"
+ },
+ {
+  "name": "World Urban Parks",
+  "acronym": "",
+  "founded": "2015",
+  "city": "Wellington",
+  "country": "New Zealand",
+  "type1": "C",
+  "type2": "",
+  "uiaid": "XJ9791"
+ },
+ {
+  "name": "YMCA World Urban Network",
+  "acronym": "YMCA/WUN",
+  "founded": "",
+  "city": "",
+  "country": "",
+  "type1": "E",
+  "type2": "",
+  "uiaid": "XE3339"
+ },
+ {
+  "name": "Youth for Habitat International Network",
+  "acronym": "YFHIN",
+  "founded": "1995",
+  "city": "",
+  "country": "",
+  "type1": "U",
+  "type2": "d",
+  "uiaid": "XF4298"
+ },
+ {
+  "name": "Youth Participation in Local Authorities Network in Europe Today",
+  "acronym": "Youth Planet",
+  "founded": "1997",
+  "city": "Paris",
+  "country": "France",
+  "type1": "U",
+  "type2": "x",
+  "uiaid": "XF7000"
+ }
+]

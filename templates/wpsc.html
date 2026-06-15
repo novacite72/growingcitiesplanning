@@ -152,6 +152,12 @@ footer{border-top:1px solid var(--line);background:#fff;padding:24px 0;color:var
 .ana-cat label{display:inline-flex;align-items:center;gap:5px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:5px 12px;cursor:pointer;font-weight:600;color:var(--ink2)}
 .ana-cat input{accent-color:var(--teal)}
 .an-catnote{font-size:12px;color:var(--ink3);font-weight:600;margin-left:4px}
+/* 국제기구(UIA) 검색 */
+.io-search{display:flex;align-items:center;gap:9px;background:#fff;border:1px solid var(--line);border-radius:11px;padding:10px 15px;margin:4px 0 8px;box-shadow:var(--shadow)}
+.io-search .ico{font-size:16px;opacity:.7}
+.io-search input{flex:1;border:0;outline:none;font-size:15px;font-family:inherit;background:transparent;color:var(--ink)}
+.io-count{font-size:12.5px;color:var(--ink3);font-weight:600;margin:0 2px 14px}
+.io-card .io-id{font-size:11px;color:var(--ink3);margin-top:7px;font-weight:600}
 </style>
 </head>
 <body>
@@ -257,13 +263,15 @@ function renderProgress(){
 function renderTabs(){
   const base=CATS.map(c=>
     `<div class="tab ${c.key===cur?'active':''}" data-k="${c.key}">${c.icon} ${c.kr} <span class="en">${c.en}</span> <span class="c">${(DATA[c.key]||[]).length}</span></div>`).join('');
+  const io=`<div class="tab ${cur==='intlorg'?'active':''}" data-k="intlorg">🏛 국제기구(UIA) <span class="en">Intl. Organizations</span></div>`;
   const an=`<div class="tab ${cur==='analyze'?'active':''}" data-k="analyze">📂 협력자료 분석 <span class="en">Local Analysis</span></div>`;
-  $('#tabs').innerHTML=base+an;
+  $('#tabs').innerHTML=base+io+an;
   document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{cur=t.dataset.k;renderTabs();render();});
 }
 function render(){
-  $('#addbar').innerHTML=(CANEDIT&&cur!=='analyze')?`<div class="wadd"><button data-k="${cur}">＋ ${KINDLABEL[cur]||''} 추가</button></div>`:'';
-  if(cur==='analyze'){ $('#addbar').innerHTML=''; renderAnalyzer(); return; }
+  $('#addbar').innerHTML=(CANEDIT&&['trips','visits','partners'].includes(cur))?`<div class="wadd"><button data-k="${cur}">＋ ${KINDLABEL[cur]||''} 추가</button></div>`:'';
+  if(cur==='analyze'){ renderAnalyzer(); return; }
+  if(cur==='intlorg'){ renderIntlOrgs(); return; }
   const items=DATA[cur]||[];
   if(!items.length){ $('#list').className='list'; $('#list').innerHTML='<div class="empty">항목이 없습니다.</div>'; return; }
   const cardFn = cur==='partners'?partnerCard:cur==='visits'?visitCard:tripCard;
@@ -344,6 +352,41 @@ async function delItem(id){
 async function reloadWpsc(){
   try{ const r=await (await fetch('/api/wpsc')).json(); DATA=r.data; CATS=r.categories; CANEDIT=!!r.canEdit; }catch(e){}
   renderStats(); renderProgress(); renderTabs(); render();
+}
+/* ============ 국제기구(UIA) 디렉터리 검색 ============ */
+let IO_Q='';
+function renderIntlOrgs(){
+  $('#list').className='';
+  $('#list').innerHTML=`
+    <p class="an-intro">UIA(국제협회연합) <b>국제기구 디렉터리</b> 중 도시·도시협력 관련 기관 <b id="ioTotal">…</b>건을 별도 저장했습니다.
+      기관명·약어·도시·국가로 검색하세요.</p>
+    <div class="io-search"><span class="ico">🔍</span><input id="ioQ" placeholder="기관명·약어·도시·국가 검색 (예: cities, mayors, Seoul, Germany)" value="${esc(IO_Q)}"></div>
+    <div class="io-count" id="ioCount"></div>
+    <div class="list" id="ioList"><div class="loading">불러오는 중…</div></div>`;
+  const inp=$('#ioQ'); let t=null;
+  inp.oninput=()=>{ IO_Q=inp.value; clearTimeout(t); t=setTimeout(ioSearch,250); };
+  inp.onkeydown=e=>{ if(e.key==='Enter'){ clearTimeout(t); ioSearch(); } };
+  ioSearch(); inp.focus();
+}
+async function ioSearch(){
+  const q=IO_Q.trim();
+  $('#ioList').innerHTML='<div class="loading">검색 중…</div>';
+  try{
+    const r=await (await fetch('/api/wpsc/intlorgs?q='+encodeURIComponent(q))).json();
+    const tot=$('#ioTotal'); if(tot) tot.textContent=r.total;
+    $('#ioCount').textContent=q?`"${q}" — ${r.matched}건 매칭${r.matched>r.shown?` · 상위 ${r.shown}건 표시`:''}`:`전체 ${r.total}건 · 상위 ${r.shown}건 표시(검색어로 좁히기)`;
+    if(!r.orgs||!r.orgs.length){ $('#ioList').className=''; $('#ioList').innerHTML='<div class="empty">일치하는 기관이 없습니다.</div>'; return; }
+    $('#ioList').className='list';
+    $('#ioList').innerHTML=r.orgs.map(ioCard).join('');
+  }catch(e){ $('#ioList').className=''; $('#ioList').innerHTML='<div class="empty">검색 오류</div>'; }
+}
+function ioCard(o){
+  const loc=[o.city,o.country].filter(Boolean).join(', ');
+  const meta=[loc, o.founded?('설립 '+o.founded):''].filter(Boolean).join(' · ');
+  return `<div class="card io-card">
+    <div class="ch"><h3>${esc(o.name)}</h3>${o.acronym?`<span class="pill p-net">${esc(o.acronym)}</span>`:''}</div>
+    ${meta?`<div class="meta">${esc(meta)}</div>`:''}
+    ${o.uiaid?`<div class="io-id">UIA ID ${esc(o.uiaid)}</div>`:''}</div>`;
 }
 /* ============ 협력자료 로컬 분석 (브라우저 내 분석 · 서버 전송 없음) ============ */
 let ANALYSIS=null;   // 마지막 분석 결과(탭 전환 시 보존)

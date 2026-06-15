@@ -241,6 +241,10 @@ def init_db():
         seed_wpsc(con)
     except Exception as e:
         print('[wpsc] seed skip:', e); con.rollback()
+    try:
+        seed_intlorgs(con)
+    except Exception as e:
+        print('[uia] seed skip:', e); con.rollback()
     con.commit(); con.close()
 
 def seed_dbrecords(con):
@@ -292,6 +296,26 @@ def seed_wpsc(con):
                               _json.dumps(d, ensure_ascii=False), now()))
             cnt += 1
     print(f'[wpsc] {cnt} board records seeded')
+
+def seed_intlorgs(con):
+    """UIA 국제기구 디렉터리(uia_orgs.json)를 dbrecords(subsystem='wpsc', kind='intlorg')로 1회 시드."""
+    import json as _json
+    p = os.path.join(HERE, 'uia_orgs.json')
+    if not os.path.exists(p): return
+    n = con.execute("SELECT COUNT(*) FROM dbrecords WHERE subsystem='wpsc' AND kind='intlorg'").fetchone()[0]
+    if n > 0: return
+    orgs = _json.load(open(p, encoding='utf-8'))
+    if IS_PG:
+        ins = "INSERT INTO dbrecords(subsystem,kind,slug,title,data,updated) VALUES(?,?,?,?,?,?) ON CONFLICT (subsystem,slug) DO NOTHING"
+    else:
+        ins = "INSERT OR IGNORE INTO dbrecords(subsystem,kind,slug,title,data,updated) VALUES(?,?,?,?,?,?)"
+    cnt = 0
+    for i, o in enumerate(orgs):
+        slug = 'uia-' + (o.get('uiaid') or f'n{i}')
+        con.execute(ins, ('wpsc', 'intlorg', slug, o.get('name') or slug,
+                          _json.dumps(o, ensure_ascii=False), now()))
+        cnt += 1
+    print(f'[uia] {cnt} international orgs seeded')
 
 # ---------------- auth helpers ----------------
 def current():
@@ -446,6 +470,26 @@ def wpsc_del(rid):
     con.execute("DELETE FROM dbrecords WHERE id=? AND subsystem='wpsc'", (rid,))
     con.commit()
     return jsonify(ok=True)
+
+@app.get('/api/wpsc/intlorgs')
+@login_required
+def api_intlorgs():
+    """UIA 국제기구 디렉터리 검색(이름·약어·도시·국가). q 없으면 알파벳순 일부."""
+    u = current()
+    if not can_access_system(u, 'wpsc'): return jsonify(error='접근 권한이 없습니다.'), 403
+    import json as _json
+    q = (request.args.get('q') or '').strip().lower()
+    rows = db().execute("SELECT data FROM dbrecords WHERE subsystem='wpsc' AND kind='intlorg'").fetchall()
+    orgs = []
+    for r in rows:
+        try: orgs.append(_json.loads(r['data']))
+        except Exception: pass
+    total = len(orgs)
+    if q:
+        orgs = [o for o in orgs
+                if any(q in str(o.get(k, '')).lower() for k in ('name', 'acronym', 'city', 'country'))]
+    orgs.sort(key=lambda o: (o.get('name') or '').lower())
+    return jsonify(orgs=orgs[:200], total=total, matched=len(orgs), shown=min(200, len(orgs)))
 
 @app.route('/worldcities')
 @app.route('/world-cities')
