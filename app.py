@@ -237,6 +237,10 @@ def init_db():
         seed_dbrecords(con)
     except Exception as e:
         print('[dbseed] skip:', e); con.rollback()
+    try:
+        seed_wpsc(con)
+    except Exception as e:
+        print('[wpsc] seed skip:', e); con.rollback()
     con.commit(); con.close()
 
 def seed_dbrecords(con):
@@ -256,6 +260,38 @@ def seed_dbrecords(con):
     print(f'[dbseed] {cnt} records seeded ({"PG" if IS_PG else "SQLite"})')
 
 def now(): return datetime.datetime.now().isoformat(timespec='seconds')
+
+# ---------------- WPSC 게시판(편집 가능) — dbrecords(subsystem='wpsc') ----------------
+WPSC_KINDS = ('trips', 'visits', 'partners', 'progress')
+
+def _summary_to_bullets(s):
+    """기존 단락 요약 → 불릿 포인트 배열(문장/구분자 기준 분리)."""
+    import re
+    s = (s or '').strip()
+    if not s: return []
+    parts = re.split(r'(?<=[.。!?])\s+|\n+|\s·\s', s)
+    return [p.strip() for p in parts if p.strip()]
+
+def _wpsc_title(kind, it):
+    return (it.get('title') or it.get('org_kr') or it.get('period') or '(제목 없음)')
+
+def seed_wpsc(con):
+    """WPSC 게시판 데이터를 dbrecords(subsystem='wpsc')로 1회 시드(수퍼관리자 편집 가능화)."""
+    import wpscdata, json as _json
+    n = con.execute("SELECT COUNT(*) FROM dbrecords WHERE subsystem='wpsc'").fetchone()[0]
+    if n > 0: return
+    if IS_PG:
+        ins = "INSERT INTO dbrecords(subsystem,kind,slug,title,data,updated) VALUES(?,?,?,?,?,?) ON CONFLICT (subsystem,slug) DO NOTHING"
+    else:
+        ins = "INSERT OR IGNORE INTO dbrecords(subsystem,kind,slug,title,data,updated) VALUES(?,?,?,?,?,?)"
+    cnt = 0
+    for kind in WPSC_KINDS:
+        for i, it in enumerate(wpscdata.WPSC.get(kind, [])):
+            d = dict(it); d['bullets'] = _summary_to_bullets(it.get('summary')); d['order'] = i
+            con.execute(ins, ('wpsc', kind, f'wpsc-{kind}-{i:03d}', _wpsc_title(kind, it),
+                              _json.dumps(d, ensure_ascii=False), now()))
+            cnt += 1
+    print(f'[wpsc] {cnt} board records seeded')
 
 # ---------------- auth helpers ----------------
 def current():
@@ -358,8 +394,58 @@ def api_wpsc():
     u = current()
     if not u: return jsonify(error='로그인이 필요합니다.'), 401
     if not can_access_system(u, 'wpsc'): return jsonify(error='접근 권한이 없습니다.'), 403
-    import wpscdata
-    return jsonify(data=wpscdata.WPSC, categories=wpscdata.CATEGORIES)
+    import wpscdata, json as _json
+    rows = db().execute("SELECT id,kind,slug,data FROM dbrecords WHERE subsystem='wpsc'").fetchall()
+    out = {k: [] for k in WPSC_KINDS}
+    for r in rows:
+        try: d = _json.loads(r['data'])
+        except Exception: d = {}
+        d['id'] = r['id']; d['slug'] = r['slug']
+        if r['kind'] in out: out[r['kind']].append(d)
+    for k in WPSC_KINDS:
+        out[k].sort(key=lambda x: x.get('order', 0))
+    return jsonify(data=out, categories=wpscdata.CATEGORIES, canEdit=(u['role'] == 'superadmin'))
+
+@app.post('/api/wpsc/item')
+@super_required
+def wpsc_add():
+    import json as _json
+    j = request.get_json(force=True) or {}
+    kind = j.get('kind'); it = dict(j.get('item') or {})
+    if kind not in WPSC_KINDS: return jsonify(error='잘못된 분류입니다.'), 400
+    con = db(); maxo = 0
+    for r in con.execute("SELECT data FROM dbrecords WHERE subsystem='wpsc' AND kind=?", (kind,)).fetchall():
+        try: maxo = max(maxo, _json.loads(r['data']).get('order', 0))
+        except Exception: pass
+    it.setdefault('order', maxo + 1)
+    slug = f'wpsc-{kind}-{int(time.time() * 1000)}'
+    rid = con.insert('INSERT INTO dbrecords(subsystem,kind,slug,title,data,updated) VALUES(?,?,?,?,?,?)',
+                     ('wpsc', kind, slug, _wpsc_title(kind, it), _json.dumps(it, ensure_ascii=False), now()))
+    con.commit()
+    return jsonify(ok=True, id=rid, slug=slug)
+
+@app.put('/api/wpsc/item/<int:rid>')
+@super_required
+def wpsc_edit(rid):
+    import json as _json
+    j = request.get_json(force=True) or {}
+    it = dict(j.get('item') or {}); con = db()
+    row = con.execute("SELECT kind FROM dbrecords WHERE id=? AND subsystem='wpsc'", (rid,)).fetchone()
+    if not row: return jsonify(error='항목을 찾을 수 없습니다.'), 404
+    kind = j.get('kind') or row['kind']
+    if kind not in WPSC_KINDS: return jsonify(error='잘못된 분류입니다.'), 400
+    con.execute("UPDATE dbrecords SET kind=?,title=?,data=?,updated=? WHERE id=? AND subsystem='wpsc'",
+                (kind, _wpsc_title(kind, it), _json.dumps(it, ensure_ascii=False), now(), rid))
+    con.commit()
+    return jsonify(ok=True)
+
+@app.delete('/api/wpsc/item/<int:rid>')
+@super_required
+def wpsc_del(rid):
+    con = db()
+    con.execute("DELETE FROM dbrecords WHERE id=? AND subsystem='wpsc'", (rid,))
+    con.commit()
+    return jsonify(ok=True)
 
 @app.route('/worldcities')
 @app.route('/world-cities')

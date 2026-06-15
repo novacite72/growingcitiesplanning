@@ -149,7 +149,7 @@ table.mini{width:100%;border-collapse:collapse;font-size:12.5px;margin:6px 0}tab
  <p style="font-size:12.5px;color:var(--muted);margin-top:0">공식 상세 프로그램 1563건(<b>발표장 room 포함</b>). 병렬세션 화·목·금 = <b>Aalto 오타니에미</b>, 수 = <b>헬싱키대 도심</b>. <b>🇰🇷 버튼</b>으로 한국 참가자(추정) 필터. 각 행에 <b>🏛 발표장</b> 표기.</p>
  <div id="plenary" style="margin:0 0 12px"></div>
  <div class="filter"><select id="fDay"><option value="">전체 요일</option><option value="Tue">화 6.30</option><option value="Thu">목 7.2</option><option value="Fri">금 7.3</option></select>
-  <select id="fTrack"></select><button id="fKR" class="chip">🇰🇷 한국 참가자</button><input id="fQ" placeholder="제목·저자 검색 (walkable, Seoul, AI…)"></div>
+  <select id="fTrack"></select><select id="fRoom"></select><button id="fKR" class="chip">🇰🇷 한국 참가자</button><input id="fQ" placeholder="제목·저자 검색 (walkable, Seoul, AI…)"></div>
  <div class="cnt" id="cnt"></div><div id="rows"></div></section>
 
 <section id="coop"><h2 class="t">GPEAN 협력방안 (제안)</h2>
@@ -203,13 +203,14 @@ const TRACKS=[...new Set(PROGRAM.map(r=>r.c))];
 function cky(c){let m=c.match(/TRACK (\d+)/);if(m)return[0,+m[1]];m=c.match(/SS(\d+)/);if(m)return[1,+m[1]];return[2,c];}
 TRACKS.sort((a,b)=>{const x=cky(a),y=cky(b);return x[0]-y[0]||(x[1]>y[1]?1:x[1]<y[1]?-1:0);});
 document.getElementById('fTrack').innerHTML='<option value="">전체 트랙</option>'+TRACKS.map(t=>`<option>${esc(t)}</option>`).join('');
+const ROOMS=[...new Set(PROGRAM.map(r=>r.r).filter(Boolean))].sort();document.getElementById('fRoom').innerHTML='<option value="">전체 발표장(room)</option>'+ROOMS.map(r=>`<option>${esc(r)}</option>`).join('');
 let krOnly=false;const fKR=document.getElementById('fKR');fKR.onclick=()=>{krOnly=!krOnly;fKR.classList.toggle('on',krOnly);rr();};
-function rr(){const d=document.getElementById('fDay').value,t=document.getElementById('fTrack').value,q=document.getElementById('fQ').value.trim().toLowerCase();
- let r=PROGRAM.filter(x=>(!d||x.d===d)&&(!t||x.c===t)&&(!krOnly||x.kr)&&(!q||(x.x||'').toLowerCase().includes(q)));
+function rr(){const d=document.getElementById('fDay').value,t=document.getElementById('fTrack').value,rm=document.getElementById('fRoom').value,q=document.getElementById('fQ').value.trim().toLowerCase();
+ let r=PROGRAM.filter(x=>(!d||x.d===d)&&(!t||x.c===t)&&(!rm||x.r===rm)&&(!krOnly||x.kr)&&(!q||(x.x||'').toLowerCase().includes(q)));
  document.getElementById('cnt').textContent=`${r.length}건 표시`+(krOnly?' · 🇰🇷 한국 참가자(추정)':'');
  document.getElementById('rows').innerHTML=r.slice(0,400).map(x=>{const me=x.id==='1385';
   return `<div class="row ${me?'me':''} ${x.kr&&!me?'krr':''}">${me?'<span class="badge rd">내 발표</span>':''}${x.kr&&!me?'<span class="badge kr">🇰🇷 KR</span>':''}${esc(x.x)}<div class="meta"><span class="tk">${esc(x.c)}</span>${x.d} ${x.t}${x.r?' · 🏛 '+esc(x.r):''} · ID ${x.id||'-'}${x.s?' · '+esc(x.s):''}${x.kn?' · 추정: '+esc(x.kn):''}</div></div>`;}).join('')+(r.length>400?`<div class="cnt">…상위 400건. 검색으로 좁히세요.</div>`:'');}
-['fDay','fTrack','fQ'].forEach(id=>document.getElementById(id).addEventListener('input',rr));rr();
+['fDay','fTrack','fRoom','fQ'].forEach(id=>document.getElementById(id).addEventListener('input',rr));rr();
 document.getElementById('mypeers').innerHTML=PROGRAM.filter(x=>x.d==='Tue'&&x.t==='16:00-17:30'&&x.r==='U413').map(x=>{const me=x.id==='1385';return `<div class="row ${me?'me':''}">${me?'<span class="badge rd">내 발표</span>':''}${esc(x.x)}<div class="meta">ID ${x.id||'-'}${x.r?' · 🏛 '+esc(x.r):''}</div></div>`;}).join('');
 document.getElementById('plenary').innerHTML='<details><summary>🏛 기조·전체세션 발표장 ('+PLENARY.length+')</summary><div class="nl">'+PLENARY.map(p=>p.d+' '+p.t+' — '+esc(p.title)+(p.r?'  @ '+esc(p.r):'  @ TBA')+(p.who?'  ('+esc(p.who)+')':'')).join('\n')+'</div></details>';
 const KRN=[...new Set(PROGRAM.filter(r=>r.kn).flatMap(r=>r.kn.split(', ')))].sort();
