@@ -298,24 +298,31 @@ def seed_wpsc(con):
     print(f'[wpsc] {cnt} board records seeded')
 
 def seed_intlorgs(con):
-    """UIA 국제기구 디렉터리(uia_orgs.json)를 dbrecords(subsystem='wpsc', kind='intlorg')로 1회 시드."""
+    """UIA 국제기구 디렉터리(uia_orgs.json)를 dbrecords(subsystem='wpsc', kind='intlorg')로 시드.
+    파일 건수가 DB와 다르면 전체 교체(재시드) — 디렉터리 갱신 자동 반영.
+    title = 검색 블롭(name | acronym | city | country) → LIKE 검색용(데이터 키 오염 방지)."""
     import json as _json
     p = os.path.join(HERE, 'uia_orgs.json')
     if not os.path.exists(p): return
-    n = con.execute("SELECT COUNT(*) FROM dbrecords WHERE subsystem='wpsc' AND kind='intlorg'").fetchone()[0]
-    if n > 0: return
     orgs = _json.load(open(p, encoding='utf-8'))
-    if IS_PG:
-        ins = "INSERT INTO dbrecords(subsystem,kind,slug,title,data,updated) VALUES(?,?,?,?,?,?) ON CONFLICT (subsystem,slug) DO NOTHING"
-    else:
-        ins = "INSERT OR IGNORE INTO dbrecords(subsystem,kind,slug,title,data,updated) VALUES(?,?,?,?,?,?)"
-    cnt = 0
+    n = con.execute("SELECT COUNT(*) FROM dbrecords WHERE subsystem='wpsc' AND kind='intlorg'").fetchone()[0]
+    if n == len(orgs): return   # 이미 최신
+    con.execute("DELETE FROM dbrecords WHERE subsystem='wpsc' AND kind='intlorg'")
+    ts = now(); rows = []
     for i, o in enumerate(orgs):
         slug = 'uia-' + (o.get('uiaid') or f'n{i}')
-        con.execute(ins, ('wpsc', 'intlorg', slug, o.get('name') or slug,
-                          _json.dumps(o, ensure_ascii=False), now()))
-        cnt += 1
-    print(f'[uia] {cnt} international orgs seeded')
+        blob = ' | '.join(x for x in (o.get('name'), o.get('acronym'), o.get('city'), o.get('country')) if x)
+        rows.append(('wpsc', 'intlorg', slug, blob or (o.get('name') or slug),
+                     _json.dumps(o, ensure_ascii=False), ts))
+    if IS_PG:
+        import psycopg2.extras
+        psycopg2.extras.execute_values(con.conn.cursor(),
+            "INSERT INTO dbrecords(subsystem,kind,slug,title,data,updated) VALUES %s ON CONFLICT (subsystem,slug) DO NOTHING",
+            rows, page_size=1000)
+    else:
+        con.conn.executemany(
+            "INSERT OR IGNORE INTO dbrecords(subsystem,kind,slug,title,data,updated) VALUES(?,?,?,?,?,?)", rows)
+    print(f'[uia] reseeded {len(rows)} international orgs (was {n})')
 
 # ---------------- auth helpers ----------------
 def current():
@@ -479,17 +486,20 @@ def api_intlorgs():
     if not can_access_system(u, 'wpsc'): return jsonify(error='접근 권한이 없습니다.'), 403
     import json as _json
     q = (request.args.get('q') or '').strip().lower()
-    rows = db().execute("SELECT data FROM dbrecords WHERE subsystem='wpsc' AND kind='intlorg'").fetchall()
+    con = db()
+    total = con.execute("SELECT COUNT(*) FROM dbrecords WHERE subsystem='wpsc' AND kind='intlorg'").fetchone()[0]
+    if q:
+        like = '%' + q.replace('%', '').replace('_', '') + '%'   # title = 'name | acronym | city | country'
+        matched = con.execute("SELECT COUNT(*) FROM dbrecords WHERE subsystem='wpsc' AND kind='intlorg' AND LOWER(title) LIKE ?", (like,)).fetchone()[0]
+        rows = con.execute("SELECT data FROM dbrecords WHERE subsystem='wpsc' AND kind='intlorg' AND LOWER(title) LIKE ? ORDER BY title LIMIT 300", (like,)).fetchall()
+    else:
+        matched = total
+        rows = con.execute("SELECT data FROM dbrecords WHERE subsystem='wpsc' AND kind='intlorg' ORDER BY title LIMIT 200").fetchall()
     orgs = []
     for r in rows:
         try: orgs.append(_json.loads(r['data']))
         except Exception: pass
-    total = len(orgs)
-    if q:
-        orgs = [o for o in orgs
-                if any(q in str(o.get(k, '')).lower() for k in ('name', 'acronym', 'city', 'country'))]
-    orgs.sort(key=lambda o: (o.get('name') or '').lower())
-    return jsonify(orgs=orgs[:200], total=total, matched=len(orgs), shown=min(200, len(orgs)))
+    return jsonify(orgs=orgs, total=total, matched=matched, shown=len(orgs))
 
 @app.route('/worldcities')
 @app.route('/world-cities')

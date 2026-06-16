@@ -11,3 +11,6 @@ __pycache__/
 .DS_Store
 /tmp/
 serve_public.sh
+
+_uia_full.json
+_uia_done.json
