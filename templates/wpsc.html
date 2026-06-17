@@ -158,6 +158,17 @@ footer{border-top:1px solid var(--line);background:#fff;padding:24px 0;color:var
 .io-search input{flex:1;border:0;outline:none;font-size:15px;font-family:inherit;background:transparent;color:var(--ink)}
 .io-count{font-size:12.5px;color:var(--ink3);font-weight:600;margin:0 2px 14px}
 .io-card .io-id{font-size:11px;color:var(--ink3);margin-top:7px;font-weight:600}
+.io-filters{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:4px 0 10px}
+.io-filters .io-search{flex:1 1 200px;margin:0}
+.io-filters select,.io-filters input{border:1px solid var(--line);border-radius:9px;padding:9px 11px;font-size:13.5px;font-family:inherit;background:#fff;color:var(--ink)}
+.io-filters select{cursor:pointer;max-width:210px}
+.io-yr{width:96px}
+.io-dash{color:var(--ink3)}
+.io-reset{background:#fff;cursor:pointer;font-weight:700;color:var(--ink2)}
+.io-reset:hover{background:var(--teal-l);border-color:var(--teal)}
+.io-more{text-align:center;margin:16px 0 6px}
+.io-morebtn{background:var(--teal);color:#fff;border:0;border-radius:9px;padding:10px 22px;font-size:13.5px;font-weight:700;cursor:pointer;font-family:inherit}
+.io-morebtn:hover{background:var(--teal-d)}
 </style>
 </head>
 <body>
@@ -353,31 +364,60 @@ async function reloadWpsc(){
   try{ const r=await (await fetch('/api/wpsc')).json(); DATA=r.data; CATS=r.categories; CANEDIT=!!r.canEdit; }catch(e){}
   renderStats(); renderProgress(); renderTabs(); render();
 }
-/* ============ 국제기구(UIA) 디렉터리 검색 ============ */
-let IO_Q='';
+/* ============ 국제기구(UIA) 디렉터리 — 설립연도·국가·도시 필터/검색 ============ */
+let IOF={q:'',country:'',city:'',yfrom:'',yto:'',sort:'name'}, IO_FACETS=null, IO_PAGE=0, IO_ACC=[];
 function renderIntlOrgs(){
-  $('#list').className='';
+  $('#list').className='io-wrap';
   $('#list').innerHTML=`
-    <p class="an-intro">UIA(국제협회연합) <b>국제기구 디렉터리</b> 중 도시·도시협력 관련 기관 <b id="ioTotal">…</b>건을 별도 저장했습니다.
-      기관명·약어·도시·국가로 검색하세요.</p>
-    <div class="io-search"><span class="ico">🔍</span><input id="ioQ" placeholder="기관명·약어·도시·국가 검색 (예: cities, mayors, Seoul, Germany)" value="${esc(IO_Q)}"></div>
+    <p class="an-intro">UIA 국제기구 연감 전체 <b id="ioTotal">…</b>개 기관. <b>이름·약어·국가·도시·설립연도</b>로 검색·필터링하세요.</p>
+    <div class="io-filters">
+      <div class="io-search"><span class="ico">🔍</span><input id="ioQ" placeholder="기관명·약어" value="${esc(IOF.q)}"></div>
+      <select id="ioCountry"><option value="">🌐 전체 국가</option></select>
+      <input id="ioCity" list="ioCityList" placeholder="🏙 도시" value="${esc(IOF.city)}">
+      <datalist id="ioCityList"></datalist>
+      <input id="ioYf" class="io-yr" type="number" inputmode="numeric" placeholder="설립 ≥" value="${esc(IOF.yfrom)}">
+      <span class="io-dash">–</span>
+      <input id="ioYt" class="io-yr" type="number" inputmode="numeric" placeholder="설립 ≤" value="${esc(IOF.yto)}">
+      <select id="ioSort"><option value="name">이름순</option><option value="founded">설립 최신순</option><option value="founded_asc">설립 오래된순</option></select>
+      <button id="ioReset" class="io-reset">초기화</button>
+    </div>
     <div class="io-count" id="ioCount"></div>
-    <div class="list" id="ioList"><div class="loading">불러오는 중…</div></div>`;
-  const inp=$('#ioQ'); let t=null;
-  inp.oninput=()=>{ IO_Q=inp.value; clearTimeout(t); t=setTimeout(ioSearch,250); };
-  inp.onkeydown=e=>{ if(e.key==='Enter'){ clearTimeout(t); ioSearch(); } };
-  ioSearch(); inp.focus();
+    <div class="list" id="ioList"></div>
+    <div class="io-more" id="ioMore"></div>`;
+  $('#ioSort').value=IOF.sort;
+  const deb=(fn,ms)=>{let t;return()=>{clearTimeout(t);t=setTimeout(fn,ms);};};
+  $('#ioQ').oninput=deb(()=>{IOF.q=$('#ioQ').value;ioRun(true);},250);
+  $('#ioCity').oninput=deb(()=>{IOF.city=$('#ioCity').value;ioRun(true);},300);
+  $('#ioCountry').onchange=()=>{IOF.country=$('#ioCountry').value;ioRun(true);};
+  $('#ioYf').oninput=deb(()=>{IOF.yfrom=$('#ioYf').value;ioRun(true);},400);
+  $('#ioYt').oninput=deb(()=>{IOF.yto=$('#ioYt').value;ioRun(true);},400);
+  $('#ioSort').onchange=()=>{IOF.sort=$('#ioSort').value;ioRun(true);};
+  $('#ioReset').onclick=()=>{IOF={q:'',country:'',city:'',yfrom:'',yto:'',sort:'name'};renderIntlOrgs();};
+  ioFacets(); ioRun(true);
 }
-async function ioSearch(){
-  const q=IO_Q.trim();
-  $('#ioList').innerHTML='<div class="loading">검색 중…</div>';
+async function ioFacets(){
+  try{ if(!IO_FACETS) IO_FACETS=await (await fetch('/api/wpsc/intlorgs/facets')).json(); }catch(e){ return; }
+  const t=$('#ioTotal'); if(t) t.textContent=Number(IO_FACETS.total).toLocaleString();
+  const cs=$('#ioCountry'); if(cs){ cs.innerHTML='<option value="">🌐 전체 국가</option>'+IO_FACETS.countries.map(c=>`<option value="${esc(c.v)}">${esc(c.v)} (${c.n})</option>`).join(''); cs.value=IOF.country; }
+  const dl=$('#ioCityList'); if(dl) dl.innerHTML=IO_FACETS.cities.map(c=>`<option value="${esc(c)}">`).join('');
+  if(IO_FACETS.yearMin){ const yf=$('#ioYf'),yt=$('#ioYt'); if(yf)yf.placeholder='설립 ≥ '+IO_FACETS.yearMin; if(yt)yt.placeholder='설립 ≤ '+IO_FACETS.yearMax; }
+}
+function ioQS(page){
+  const p=new URLSearchParams();
+  for(const k of ['q','country','city','yfrom','yto','sort']) if(IOF[k]) p.set(k,IOF[k]);
+  p.set('page',page); return p.toString();
+}
+async function ioRun(reset){
+  if(reset){ IO_PAGE=0; IO_ACC=[]; $('#ioList').className='list'; $('#ioList').innerHTML='<div class="loading">불러오는 중…</div>'; $('#ioMore').innerHTML=''; }
   try{
-    const r=await (await fetch('/api/wpsc/intlorgs?q='+encodeURIComponent(q))).json();
-    const tot=$('#ioTotal'); if(tot) tot.textContent=r.total;
-    $('#ioCount').textContent=q?`"${q}" — ${r.matched}건 매칭${r.matched>r.shown?` · 상위 ${r.shown}건 표시`:''}`:`전체 ${r.total}건 · 상위 ${r.shown}건 표시(검색어로 좁히기)`;
-    if(!r.orgs||!r.orgs.length){ $('#ioList').className=''; $('#ioList').innerHTML='<div class="empty">일치하는 기관이 없습니다.</div>'; return; }
+    const r=await (await fetch('/api/wpsc/intlorgs?'+ioQS(IO_PAGE))).json();
+    IO_ACC=IO_ACC.concat(r.orgs||[]);
+    $('#ioCount').textContent=`${Number(r.total).toLocaleString()}개 기관`+(r.total>IO_ACC.length?` · ${IO_ACC.length.toLocaleString()}개 표시`:'');
+    if(!IO_ACC.length){ $('#ioList').className=''; $('#ioList').innerHTML='<div class="empty">조건에 맞는 기관이 없습니다.</div>'; $('#ioMore').innerHTML=''; return; }
     $('#ioList').className='list';
-    $('#ioList').innerHTML=r.orgs.map(ioCard).join('');
+    $('#ioList').innerHTML=IO_ACC.map(ioCard).join('');
+    $('#ioMore').innerHTML=r.hasMore?`<button id="ioMoreBtn" class="io-morebtn">더 보기 (+${r.pageSize})</button>`:'';
+    const mb=$('#ioMoreBtn'); if(mb) mb.onclick=()=>{ IO_PAGE++; mb.textContent='불러오는 중…'; ioRun(false); };
   }catch(e){ $('#ioList').className=''; $('#ioList').innerHTML='<div class="empty">검색 오류</div>'; }
 }
 function ioCard(o){

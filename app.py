@@ -184,6 +184,11 @@ def init_db():
         con.execute('''CREATE TABLE IF NOT EXISTS dbrecords(
           id SERIAL PRIMARY KEY, subsystem TEXT, kind TEXT, slug TEXT, title TEXT, data TEXT,
           updated TEXT, UNIQUE(subsystem, slug))''')
+        con.execute('''CREATE TABLE IF NOT EXISTS intlorgs(
+          id SERIAL PRIMARY KEY, uiaid TEXT UNIQUE, name TEXT, acronym TEXT,
+          founded INTEGER, city TEXT, country TEXT)''')
+        for ix in ('country', 'city', 'founded', 'name'):
+            con.execute(f'CREATE INDEX IF NOT EXISTS idx_io_{ix} ON intlorgs({ix})')
         con.execute('''CREATE TABLE IF NOT EXISTS glossary_terms(
           id SERIAL PRIMARY KEY, en TEXT, kr TEXT, letter TEXT,
           creator_email TEXT, creator_name TEXT, ts TEXT)''')
@@ -199,6 +204,12 @@ def init_db():
           CREATE TABLE IF NOT EXISTS images(id INTEGER PRIMARY KEY AUTOINCREMENT, chapter INTEGER, blk INTEGER, mime TEXT, data TEXT, editor TEXT, ts TEXT);
           CREATE TABLE IF NOT EXISTS dbrecords(id INTEGER PRIMARY KEY AUTOINCREMENT, subsystem TEXT, kind TEXT,
             slug TEXT, title TEXT, data TEXT, updated TEXT, UNIQUE(subsystem, slug));
+          CREATE TABLE IF NOT EXISTS intlorgs(id INTEGER PRIMARY KEY AUTOINCREMENT, uiaid TEXT UNIQUE,
+            name TEXT, acronym TEXT, founded INTEGER, city TEXT, country TEXT);
+          CREATE INDEX IF NOT EXISTS idx_io_country ON intlorgs(country);
+          CREATE INDEX IF NOT EXISTS idx_io_city ON intlorgs(city);
+          CREATE INDEX IF NOT EXISTS idx_io_founded ON intlorgs(founded);
+          CREATE INDEX IF NOT EXISTS idx_io_name ON intlorgs(name);
           CREATE TABLE IF NOT EXISTS glossary_terms(id INTEGER PRIMARY KEY AUTOINCREMENT, en TEXT, kr TEXT,
             letter TEXT, creator_email TEXT, creator_name TEXT, ts TEXT);''')
         if 'undone' not in [r[1] for r in con.execute('PRAGMA table_info(editlog)')]:
@@ -298,31 +309,33 @@ def seed_wpsc(con):
     print(f'[wpsc] {cnt} board records seeded')
 
 def seed_intlorgs(con):
-    """UIA 국제기구 디렉터리(uia_orgs.json)를 dbrecords(subsystem='wpsc', kind='intlorg')로 시드.
-    파일 건수가 DB와 다르면 전체 교체(재시드) — 디렉터리 갱신 자동 반영.
-    title = 검색 블롭(name | acronym | city | country) → LIKE 검색용(데이터 키 오염 방지)."""
-    import json as _json
+    """UIA 국제기구 디렉터리(uia_orgs.json)를 전용 인덱스 테이블 `intlorgs`로 시드.
+    설립연도(founded)는 정수로 파싱(연도 범위 질의용). 파일 건수가 DB와 다르면 전체 교체."""
+    import json as _json, re as _re
     p = os.path.join(HERE, 'uia_orgs.json')
     if not os.path.exists(p): return
+    # 구버전(dbrecords kind='intlorg') 정리 — 전용 테이블로 이전
+    try: con.execute("DELETE FROM dbrecords WHERE subsystem='wpsc' AND kind='intlorg'")
+    except Exception: pass
     orgs = _json.load(open(p, encoding='utf-8'))
-    n = con.execute("SELECT COUNT(*) FROM dbrecords WHERE subsystem='wpsc' AND kind='intlorg'").fetchone()[0]
+    n = con.execute("SELECT COUNT(*) FROM intlorgs").fetchone()[0]
     if n == len(orgs): return   # 이미 최신
-    con.execute("DELETE FROM dbrecords WHERE subsystem='wpsc' AND kind='intlorg'")
-    ts = now(); rows = []
-    for i, o in enumerate(orgs):
-        slug = 'uia-' + (o.get('uiaid') or f'n{i}')
-        blob = ' | '.join(x for x in (o.get('name'), o.get('acronym'), o.get('city'), o.get('country')) if x)
-        rows.append(('wpsc', 'intlorg', slug, blob or (o.get('name') or slug),
-                     _json.dumps(o, ensure_ascii=False), ts))
+    con.execute("DELETE FROM intlorgs")
+    def yr(s):
+        m = _re.match(r'\s*(\d{3,4})', str(s or ''))
+        return int(m.group(1)) if m else None
+    rows = [(o.get('uiaid') or f'n{i}', o.get('name') or '', o.get('acronym') or '',
+             yr(o.get('founded')), o.get('city') or '', o.get('country') or '')
+            for i, o in enumerate(orgs)]
     if IS_PG:
         import psycopg2.extras
         psycopg2.extras.execute_values(con.conn.cursor(),
-            "INSERT INTO dbrecords(subsystem,kind,slug,title,data,updated) VALUES %s ON CONFLICT (subsystem,slug) DO NOTHING",
+            "INSERT INTO intlorgs(uiaid,name,acronym,founded,city,country) VALUES %s ON CONFLICT (uiaid) DO NOTHING",
             rows, page_size=1000)
     else:
         con.conn.executemany(
-            "INSERT OR IGNORE INTO dbrecords(subsystem,kind,slug,title,data,updated) VALUES(?,?,?,?,?,?)", rows)
-    print(f'[uia] reseeded {len(rows)} international orgs (was {n})')
+            "INSERT OR IGNORE INTO intlorgs(uiaid,name,acronym,founded,city,country) VALUES(?,?,?,?,?,?)", rows)
+    print(f'[uia] reseeded {len(rows)} intlorgs into table (was {n})')
 
 # ---------------- auth helpers ----------------
 def current():
@@ -478,28 +491,64 @@ def wpsc_del(rid):
     con.commit()
     return jsonify(ok=True)
 
+_IO_FACETS = None   # 패싯 캐시(워커별, 시드 후 1회 계산)
+
+@app.get('/api/wpsc/intlorgs/facets')
+@login_required
+def api_intlorgs_facets():
+    """국가(건수)·상위 도시·설립연도 범위 — 필터 드롭다운용(캐시)."""
+    u = current()
+    if not can_access_system(u, 'wpsc'): return jsonify(error='접근 권한이 없습니다.'), 403
+    global _IO_FACETS
+    if _IO_FACETS is None:
+        con = db()
+        countries = [{'v': r[0], 'n': r[1]} for r in con.execute(
+            "SELECT country, COUNT(*) c FROM intlorgs WHERE country<>'' GROUP BY country ORDER BY c DESC").fetchall()]
+        cities = [r[0] for r in con.execute(
+            "SELECT city FROM intlorgs WHERE city<>'' GROUP BY city ORDER BY COUNT(*) DESC LIMIT 500").fetchall()]
+        yr = con.execute("SELECT MIN(founded), MAX(founded) FROM intlorgs WHERE founded IS NOT NULL").fetchone()
+        total = con.execute("SELECT COUNT(*) FROM intlorgs").fetchone()[0]
+        _IO_FACETS = {'countries': countries, 'cities': cities,
+                      'yearMin': yr[0], 'yearMax': yr[1], 'total': total}
+    return jsonify(_IO_FACETS)
+
 @app.get('/api/wpsc/intlorgs')
 @login_required
 def api_intlorgs():
-    """UIA 국제기구 디렉터리 검색(이름·약어·도시·국가). q 없으면 알파벳순 일부."""
+    """국제기구 필터·검색(이름·약어·국가·도시·설립연도) + 페이지네이션. 인덱스 SQL로 무지연."""
     u = current()
     if not can_access_system(u, 'wpsc'): return jsonify(error='접근 권한이 없습니다.'), 403
-    import json as _json
-    q = (request.args.get('q') or '').strip().lower()
-    con = db()
-    total = con.execute("SELECT COUNT(*) FROM dbrecords WHERE subsystem='wpsc' AND kind='intlorg'").fetchone()[0]
+    a = request.args
+    def _int(k):
+        try: return int(a.get(k))
+        except (TypeError, ValueError): return None
+    q = (a.get('q') or '').strip().lower()
+    country = (a.get('country') or '').strip()
+    city = (a.get('city') or '').strip().lower()
+    yfrom, yto = _int('yfrom'), _int('yto')
+    page = max(0, _int('page') or 0); PAGE = 50
+    sort = a.get('sort')
+    order = {'founded': 'founded DESC NULLS LAST, name', 'founded_asc': 'founded ASC NULLS LAST, name'}.get(sort, 'name') \
+        if IS_PG else {'founded': 'founded IS NULL, founded DESC, name', 'founded_asc': 'founded IS NULL, founded ASC, name'}.get(sort, 'name')
+    where, params = [], []
     if q:
-        like = '%' + q.replace('%', '').replace('_', '') + '%'   # title = 'name | acronym | city | country'
-        matched = con.execute("SELECT COUNT(*) FROM dbrecords WHERE subsystem='wpsc' AND kind='intlorg' AND LOWER(title) LIKE ?", (like,)).fetchone()[0]
-        rows = con.execute("SELECT data FROM dbrecords WHERE subsystem='wpsc' AND kind='intlorg' AND LOWER(title) LIKE ? ORDER BY title LIMIT 300", (like,)).fetchall()
-    else:
-        matched = total
-        rows = con.execute("SELECT data FROM dbrecords WHERE subsystem='wpsc' AND kind='intlorg' ORDER BY title LIMIT 200").fetchall()
-    orgs = []
-    for r in rows:
-        try: orgs.append(_json.loads(r['data']))
-        except Exception: pass
-    return jsonify(orgs=orgs, total=total, matched=matched, shown=len(orgs))
+        where.append('(LOWER(name) LIKE ? OR LOWER(acronym) LIKE ?)')
+        like = '%' + q.replace('%', '').replace('_', '') + '%'; params += [like, like]
+    if country:
+        where.append('country=?'); params.append(country)
+    if city:
+        where.append('LOWER(city) LIKE ?'); params.append('%' + city.replace('%', '').replace('_', '') + '%')
+    if yfrom is not None:
+        where.append('founded>=?'); params.append(yfrom)
+    if yto is not None:
+        where.append('founded<=?'); params.append(yto)
+    wsql = (' WHERE ' + ' AND '.join(where)) if where else ''
+    con = db()
+    total = con.execute('SELECT COUNT(*) FROM intlorgs' + wsql, params).fetchone()[0]
+    rows = con.execute(f'SELECT uiaid,name,acronym,founded,city,country FROM intlorgs{wsql} ORDER BY {order} LIMIT ? OFFSET ?',
+                       params + [PAGE, page * PAGE]).fetchall()
+    orgs = [{'uiaid': r[0], 'name': r[1], 'acronym': r[2], 'founded': r[3], 'city': r[4], 'country': r[5]} for r in rows]
+    return jsonify(orgs=orgs, total=total, page=page, pageSize=PAGE, hasMore=(page + 1) * PAGE < total)
 
 @app.route('/worldcities')
 @app.route('/world-cities')
