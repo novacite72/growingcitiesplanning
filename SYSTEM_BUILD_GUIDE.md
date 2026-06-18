@@ -50,10 +50,14 @@
 ```bash
 cd ~/seoul_urban_book_app
 git add -A && git commit -m "feat: vX.YZ ..."   # 끝에 Co-Authored-By: Claude ...
-git push https://novacite72:<PAT>@github.com/novacite72/growingcitiesplanning.git main:main
+git push origin main          # ★ SSH 인증(2026-06-17~) — 토큰 불필요·무만료
 # 배포 대기(정적 app.js의 버전 마커로 폴링)
 for i in $(seq 1 40); do curl -s https://growingcitiesplanning.org/static/app.js | grep -q "vX.YZ" && break; sleep 15; done
 ```
+
+> **인증 = SSH 키(2026-06-17 전환).** remote=`git@github.com:novacite72/growingcitiesplanning.git`,
+> 키=`~/.ssh/id_ed25519`(무패스프레이즈, GitHub 등록완료). HTTPS PAT는 만료로 폐기 →
+> 이제 `git push origin main`이 토큰 없이 자동 동작. 새 머신이면 키 재생성+GitHub 등록 또는 기존 키 복사.
 
 - **버전 올릴 때**: `static/app.js` 의 `CHANGELOG` 배열 맨 앞에 새 항목 추가(날짜·항목). 도움말 게시판에 표시됨.
 - **검증**: curl로 라우트 status·API JSON 확인. 로그인은
