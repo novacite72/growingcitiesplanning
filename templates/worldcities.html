@@ -111,6 +111,10 @@ main{padding:36px 0 72px}
 /* kind color map */
 .k-city .card-kind{background:#e2f1f5;color:#085670}
 .k-city{--card-accent:var(--primary);--card-accent-l:var(--primary-l)}
+.k-doc .card-kind{background:#eaf1f8;color:#12355b}
+.k-doc{--card-accent:#12355b;--card-accent-l:#eaf1f8}
+.doc-open{display:inline-flex;align-items:center;gap:8px;margin:0 0 20px;padding:13px 20px;background:#12355b;color:#fff;border-radius:11px;font-weight:700;font-size:14.5px;text-decoration:none;box-shadow:0 6px 18px rgba(18,53,91,.22)}
+.doc-open:hover{background:#1b4a7a}
 .k-case .card-kind{background:#e3f3f3;color:#0a5f5f}
 .k-case{--card-accent:var(--teal);--card-accent-l:#e3f3f3}
 .k-policy .card-kind{background:#e7f1fa;color:var(--un-d)}
@@ -263,6 +267,7 @@ footer{border-top:1px solid var(--line);background:#fff;padding:22px 0;color:var
     <button class="chip" data-kind="case" id="chip-case">📋 사례 Cases <span class="cnt" id="cnt-case"></span></button>
     <button class="chip" data-kind="policy" id="chip-policy">📜 정책 Policies <span class="cnt" id="cnt-policy"></span></button>
     <button class="chip" data-kind="topic" id="chip-topic">💡 토픽 Topics <span class="cnt" id="cnt-topic"></span></button>
+    <button class="chip" data-kind="document" id="chip-document">📄 글로벌 연구 디렉토리 <span class="cnt" id="cnt-document"></span></button>
   </div>
 </div></div>
 
@@ -311,6 +316,7 @@ const KIND_META={
   case:{icon:'📋',label:'사례',labelEn:'Case',accent:'#138f8f',accentL:'#e3f3f3',cls:'k-case'},
   policy:{icon:'📜',label:'정책',labelEn:'Policy',accent:'#1a7dc0',accentL:'#e7f1fa',cls:'k-policy'},
   topic:{icon:'💡',label:'토픽',labelEn:'Topic',accent:'#7b5cc4',accentL:'#efeafb',cls:'k-topic'},
+  document:{icon:'📄',label:'글로벌 연구 디렉토리',labelEn:'Research Directory',accent:'#12355b',accentL:'#eaf1f8',cls:'k-doc'},
 };
 
 /* ── Korean label map ── */
@@ -404,9 +410,9 @@ async function loadData(){
 function updateCountBadges(){
   const total=ALL.length;
   $('#cnt-all').textContent=total;
-  ['city','case','policy','topic'].forEach(k=>{
+  ['city','case','policy','topic','document'].forEach(k=>{
     const cnt=COUNTS[k]||ALL.filter(r=>r.kind===k).length;
-    $('#cnt-'+k).textContent=cnt;
+    const el=$('#cnt-'+k); if(el) el.textContent=cnt;
   });
 }
 
@@ -537,7 +543,7 @@ function renderDetail(rec){
   `;
 
   // skip fields that are structural/meta or already shown in header (body=서술형 위키, 별도 렌더)
-  const SKIP=new Set(['id','slug','title','name','kind','createdAt','updatedAt','updated','body']);
+  const SKIP=new Set(['id','slug','title','name','kind','createdAt','updatedAt','updated','body','docUrl','docFile']);
   // field ordering — known important fields first
   const ORDER=['summary','definition','country','region','population','policyDomain','period','leadOrganization',
     'implementationStatus','caseType','cityId','urbanProblem','intervention','outcomes','topicCategory',
@@ -579,7 +585,8 @@ function renderDetail(rec){
     }
   });
   const bodyHtml=rec.body?`<div class="wiki-body">${mdToHtml(rec.body,'worldcities')}</div>`:'';
-  $('#detailBody').innerHTML=(bodyHtml+html)||'<p style="color:var(--ink3)">상세 정보가 없습니다.</p>';
+  const docBtn=rec.docUrl?`<a class="doc-open" href="${esc(rec.docUrl)}" target="_blank" rel="noopener">📄 전문 보기 — 전체 보고서 열기 ↗</a>`:'';
+  $('#detailBody').innerHTML=(docBtn+bodyHtml+html)||'<p style="color:var(--ink3)">상세 정보가 없습니다.</p>';
 
   // bind xref chip clicks
   $('#detailBody').querySelectorAll('[data-xref]').forEach(el=>{

@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CABEI 한국사무소 개설 과정과 현황 및 한국 유치 영향요인 보고서</title>
+  <style>
+    :root {
+      --navy: #12355b;
+      --blue: #1f6f9f;
+      --light-blue: #eaf4f8;
+      --gray: #f5f7fa;
+      --dark: #1f2933;
+      --muted: #65748b;
+      --border: #d9e2ec;
+      --accent: #c99a2e;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans KR", "Apple SD Gothic Neo", Arial, sans-serif;
+      color: var(--dark);
+      background: #ffffff;
+      line-height: 1.75;
+      word-break: keep-all;
+    }
+    .page {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 48px 28px 72px;
+    }
+    .cover {
+      border-top: 8px solid var(--navy);
+      padding: 56px 40px 44px;
+      background: linear-gradient(135deg, #f7fbfd 0%, #ffffff 55%, #eef6f9 100%);
+      border-radius: 18px;
+      box-shadow: 0 12px 34px rgba(18, 53, 91, 0.09);
+      margin-bottom: 36px;
+    }
+    .eyebrow {
+      display: inline-block;
+      color: var(--blue);
+      font-weight: 700;
+      letter-spacing: .04em;
+      font-size: 14px;
+      margin-bottom: 18px;
+      text-transform: uppercase;
+    }
+    h1 {
+      color: var(--navy);
+      font-size: 34px;
+      line-height: 1.3;
+      margin: 0 0 22px;
+      letter-spacing: -0.04em;
+    }
+    .subtitle {
+      color: var(--muted);
+      font-size: 17px;
+      margin: 0 0 32px;
+    }
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px 24px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .meta strong { color: var(--dark); }
+    .toc, .summary-box, .note-box {
+      background: var(--gray);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px 28px;
+      margin: 28px 0;
+    }
+    .toc h2, .summary-box h2, .note-box h2 { margin-top: 0; }
+    .toc ol { margin: 0; padding-left: 22px; }
+    .toc a { color: var(--navy); text-decoration: none; }
+    .toc a:hover { text-decoration: underline; }
+    section {
+      margin: 44px 0;
+      padding-top: 4px;
+    }
+    h2 {
+      color: var(--navy);
+      font-size: 25px;
+      line-height: 1.35;
+      margin: 0 0 18px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--light-blue);
+      letter-spacing: -0.03em;
+    }
+    h3 {
+      color: #20415f;
+      font-size: 19px;
+      margin: 28px 0 10px;
+      letter-spacing: -0.02em;
+    }
+    p { margin: 0 0 14px; }
+    .lead {
+      font-size: 17px;
+      color: #2f4054;
+    }
+    .key-points {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin: 24px 0;
+    }
+    .card {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+      background: #fff;
+    }
+    .card .num {
+      display: inline-flex;
+      width: 30px;
+      height: 30px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      background: var(--navy);
+      color: white;
+      font-weight: 700;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+    .card h4 {
+      margin: 0 0 8px;
+      color: var(--navy);
+      font-size: 16px;
+    }
+    .timeline {
+      border-left: 3px solid var(--blue);
+      margin: 22px 0 8px 8px;
+      padding-left: 22px;
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 20px;
+      padding-bottom: 4px;
+    }
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -32px;
+      top: 7px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 3px solid #fff;
+      box-shadow: 0 0 0 1px var(--accent);
+    }
+    .timeline-date {
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 2px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 15px;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 12px 14px;
+      vertical-align: top;
+    }
+    th {
+      background: var(--light-blue);
+      color: var(--navy);
+      text-align: left;
+    }
+    ul { padding-left: 22px; }
+    li { margin-bottom: 7px; }
+    .source-list {
+      font-size: 14px;
+      color: #344054;
+      padding-left: 20px;
+    }
+    .source-list li { margin-bottom: 10px; }
+    a { color: #0f5f8d; }
+    .footer {
+      margin-top: 54px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .tag {
+      display: inline-block;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 4px 10px;
+      margin: 0 6px 8px 0;
+      background: #fff;
+      color: #2f4054;
+      font-size: 13px;
+    }
+    @media print {
+      body { background: #fff; }
+      .page { max-width: none; padding: 20mm 18mm; }
+      .cover, .toc, .summary-box, .note-box, .card { box-shadow: none; }
+      a { color: #000; text-decoration: none; }
+      section { break-inside: avoid; }
+      .cover { page-break-after: always; }
+    }
+    @media (max-width: 760px) {
+      .cover { padding: 34px 24px; }
+      h1 { font-size: 27px; }
+      .meta, .key-points { grid-template-columns: 1fr; }
+      .page { padding: 28px 18px 56px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="cover">
+      <span class="eyebrow">Policy & International Finance Report</span>
+      <h1>중미경제통합은행(CABEI) 한국사무소 개설 과정과 현황 및 한국 유치 영향요인</h1>
+      <p class="subtitle">한국의 CABEI 가입·출자, 서울시 유치 활동, 중미 개발금융 수요, 한국 기업 해외진출 전략을 중심으로 정리한 HTML 보고서</p>
+      <div class="meta">
+        <div><strong>대상 기관</strong> CABEI / BCIE</div>
+        <div><strong>주요 지역</strong> 대한민국 서울, 중미 지역</div>
+        <div><strong>작성 기준</strong> 공개자료 기반</div>
+        <div><strong>작성일</strong> 2026년 6월 18일</div>
+      </div>
+    </header>
+
+    <nav class="toc" aria-labelledby="toc-title">
+      <h2 id="toc-title">목차</h2>
+      <ol>
+        <li><a href="#summary">요약</a></li>
+        <li><a href="#overview">CABEI 개요</a></li>
+        <li><a href="#process">한국사무소 개설 과정</a></li>
+        <li><a href="#status">현황</a></li>
+        <li><a href="#factors">한국 유치 영향요인</a></li>
+        <li><a href="#implications">평가 및 시사점</a></li>
+        <li><a href="#conclusion">결론</a></li>
+        <li><a href="#sources">참고자료</a></li>
+      </ol>
+    </nav>
+
+    <section id="summary" class="summary-box">
+      <h2>1. 요약</h2>
+      <p class="lead">중미경제통합은행(CABEI, Central American Bank for Economic Integration)의 한국사무소는 2022년 7월 서울 여의도 IFC 내 서울국제금융오피스에서 개소하였다. 이는 2018년 한국의 CABEI 가입 공식화, 2019년 국내 가입 절차 완료 및 가입 발효, 2020~2021년 자본금 납입과 신탁기금 조성, 2021년 서울 유치 결정, 2022년 사무소 완공 및 개소로 이어진 단계적 협력의 결과이다.</p>
+      <p>한국 유치의 핵심 요인은 한국의 역외회원국 가입과 대규모 출자, 한국 기업의 중미 인프라·에너지·사회개발 프로젝트 진출 필요성, 서울 여의도의 국제금융 인프라와 서울시의 적극적 유치 활동, CABEI의 아시아 자본시장·투자자 접근 확대 전략, 한-중미 FTA와 개발협력·기술협력 수단의 결합으로 평가된다.</p>
+      <div class="key-points">
+        <div class="card"><span class="num">1</span><h4>개설 경로</h4><p>가입·출자·협력기금 조성 이후 서울 유치와 사무소 개소로 연결되었다.</p></div>
+        <div class="card"><span class="num">2</span><h4>주요 기능</h4><p>중미 개발사업과 한국 정부·기업·금융기관을 연결하는 협력 창구이다.</p></div>
+        <div class="card"><span class="num">3</span><h4>정책 의미</h4><p>국제개발금융 외교, 중남미 진출, 서울 국제금융도시 전략이 결합된 사례이다.</p></div>
+      </div>
+    </section>
+
+    <section id="overview">
+      <h2>2. CABEI 개요</h2>
+      <p>CABEI는 1960년 중미 지역의 균형개발과 경제통합을 지원하기 위해 설립된 다자개발은행이다. 설립 초기 회원국은 과테말라, 엘살바도르, 온두라스, 니카라과, 코스타리카 등 중미 5개국이며, 이후 역내·역외 회원국이 확대되었다.</p>
+      <p>CABEI는 중미 지역 인프라, 에너지, 사회개발, 기후변화 대응, 민간부문 금융지원 등에 전문성을 가진 기관으로 평가된다. 한국은 2019년 CABEI 역외회원국으로 가입이 발효되었고, 2020년 가입 절차를 마무리하였다. CABEI는 한국을 한국과 중미를 연결하는 교량으로 규정하고 있으며, 한국은 역외회원국 중 주요 주주국으로 자리 잡았다.</p>
+      <p>
+        <span class="tag">다자개발은행</span>
+        <span class="tag">중미 경제통합</span>
+        <span class="tag">인프라·에너지 금융</span>
+        <span class="tag">역외회원국</span>
+      </p>
+    </section>
+
+    <section id="process">
+      <h2>3. 한국사무소 개설 과정</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-date">2018년 12월</div>
+          <p>한국은 CABEI 가입 관련 문서 서명을 통해 역외회원국 가입을 공식화하였다.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">2019년 8~12월</div>
+          <p>국회 비준동의, 국제금융기구 가입 관련 국내 절차 완료, 가입규약 발효를 거쳐 한국은 CABEI의 역외회원국이 되었다.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">2020~2021년</div>
+          <p>자본금 납입과 Korea-CABEI Partnership Single Donor Trust Fund 등 협력수단이 확대되었다.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">2021년 6월</div>
+          <p>서울시는 CABEI 한국사무소 유치에 성공했다고 발표하였다. 서울 여의도 IFC가 한국사무소 위치로 제시되었다.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">2022년 4월</div>
+          <p>서울시와 CABEI는 서울국제금융오피스 입주협약을 체결하였다.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">2022년 7월 11일</div>
+          <p>서울 여의도 서울국제금융오피스에서 CABEI 한국사무소 완공식이 열렸다.</p>
+        </div>
+      </div>
+
+      <h3>3.1 가입 추진 및 제도적 기반 형성</h3>
+      <p>한국의 CABEI 협력은 사무소 유치 이전에 회원국 가입 과정에서 제도화되었다. 한국 정부는 CABEI 가입을 통해 중미 인프라·에너지 시장에 한국 기업과 인력의 진출을 지원할 수 있을 것으로 보았다. 이는 단순한 국제금융기구 가입이 아니라 중미 개발사업 참여, 개발금융 협력, 민간기업 해외진출 지원을 결합한 정책적 선택이었다.</p>
+
+      <h3>3.2 자본금 납입과 협력수단 확대</h3>
+      <p>한국은 CABEI 가입 이후 자본금 납입을 진행하였다. 공개자료에 따르면 한국의 CABEI 관련 자본금 규모는 총 6억3천만 달러 수준으로 제시되었고, 이 중 일부는 현금 납입, 일부는 필요시 납입하는 성격의 자본으로 구성되었다. 2021년 1월에는 2차분 자본금 2,810만 달러를 현금으로 납입하였다.</p>
+      <p>또한 Korea-CABEI Partnership Single Donor Trust Fund, KEXIM 온렌딩 시설, EDCF-MoEF 공동금융 등 다양한 협력수단이 활용되면서 한국사무소 설치의 실질적 필요성이 커졌다.</p>
+
+      <h3>3.3 서울 유치 결정</h3>
+      <p>2021년 6월 서울시는 CABEI 한국사무소 유치에 성공했다고 발표하였다. 유치 과정에서 서울시는 여의도 금융중심지의 인프라, 글로벌 금융기관 집적, 금융 전문교육·인재 기반 등을 CABEI 측에 제시하였다.</p>
+
+      <h3>3.4 사무소 완공 및 개소</h3>
+      <p>2022년 7월 11일 서울 여의도 서울국제금융오피스에서 CABEI 한국사무소 완공식이 열렸다. 한국사무소는 한국 기업의 중미시장 진출을 지원하는 창구이자, 정부 부처·민간기업·다자개발은행 등을 연결하는 경제·투자 협력 촉진자로 설정되었다.</p>
+    </section>
+
+    <section id="status">
+      <h2>4. 현황</h2>
+      <p>2026년 6월 현재 공개자료 기준으로, CABEI 한국사무소는 서울 여의도 IFC에 위치한 대표사무소로 운영되고 있다. CABEI 공식 자료는 2022년 한국 대표사무소가 서울 여의도 IFC에 개설되었다고 명시하고 있다.</p>
+      <table>
+        <thead>
+          <tr><th>구분</th><th>현황 및 기능</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>위치</td><td>서울 여의도 IFC / 서울국제금융오피스</td></tr>
+          <tr><td>주요 역할</td><td>중미 개발사업과 한국 정부·공공기관·민간기업·금융기관 연결</td></tr>
+          <tr><td>기업 지원</td><td>인프라, 에너지, 보건, 사회주택, 기후변화 대응 프로젝트 참여 지원</td></tr>
+          <tr><td>공공협력</td><td>기획재정부, 수출입은행, KOTRA 등과 기술협력기금·공동금융·사업발굴 연계</td></tr>
+          <tr><td>자본시장 연계</td><td>한국 투자자 및 아시아 금융시장과 CABEI의 접점 확대</td></tr>
+        </tbody>
+      </table>
+      <p>2025년에는 CABEI 총재 방한, 한-CABEI 기술협력기금 협정 개정, KOTRA-CABEI 협력 등 후속 협력도 이어졌다. 다만 공개자료만으로는 한국사무소의 현재 상주 인력 수, 연간 사업 중개 실적, 구체적 프로젝트별 한국 기업 참여 성과를 완전하게 확인하기 어렵다.</p>
+    </section>
+
+    <section id="factors">
+      <h2>5. 한국 유치에 영향을 미친 요인</h2>
+      <h3>5.1 한국의 회원국 지위와 재정 기여</h3>
+      <p>가장 직접적인 요인은 한국의 CABEI 역외회원국 가입과 출자이다. 한국은 CABEI에서 중요한 역외회원국이 되었고, 자본금 납입 및 신탁기금 조성 등을 통해 실질적 기여를 했다.</p>
+
+      <h3>5.2 중미 개발수요와 한국 기업의 해외진출 수요</h3>
+      <p>중미 지역은 인프라, 에너지, 보건, 기후변화 대응, 사회개발 분야에서 개발금융 수요가 크다. 한국 기업은 건설, 교통, 에너지, ICT, 스마트시티, 보건의료 등에서 경쟁력을 갖고 있어 CABEI 프로젝트와 연결될 여지가 크다.</p>
+
+      <h3>5.3 서울 여의도의 금융중심지 인프라</h3>
+      <p>서울시는 CABEI 유치 과정에서 여의도의 글로벌 금융기관 집적, 국제금융센터, 금융 전문 인프라를 강조했다. CABEI가 서울을 선택한 것은 한국 정부·금융기관·기업과의 접근성뿐 아니라, 아시아 자본시장과의 연결 가능성을 고려한 결정으로 볼 수 있다.</p>
+
+      <h3>5.4 서울시의 적극적 유치 활동과 공간 지원</h3>
+      <p>서울시는 유치 의향 표명 이후 단기간 내 협상을 진행했고, 서울국제금융오피스를 통해 입주를 지원했다. 2022년 4월 입주협약 체결과 7월 완공식은 서울시가 국제금융기구 유치 정책의 일환으로 CABEI 사무소 설치를 실무적으로 뒷받침했음을 보여준다.</p>
+
+      <h3>5.5 한-중미 FTA 및 경제협력 확대 흐름</h3>
+      <p>한-중미 FTA는 한국과 중미 간 무역·투자 관계 확대의 제도적 배경이 되었다. FTA는 상품·서비스 교역의 기반을 제공하고, CABEI 한국사무소는 개발금융·프로젝트 협력의 기반을 제공한다.</p>
+
+      <h3>5.6 CABEI의 아시아 전략과 자금조달 다변화</h3>
+      <p>CABEI는 한국을 포함한 아시아 금융시장과 투자자 기반을 중요하게 보고 있다. 한국사무소 설치는 CABEI가 중미 중심 개발은행에서 아시아 파트너와의 협력을 강화하는 전략적 행보로 해석된다.</p>
+    </section>
+
+    <section id="implications">
+      <h2>6. 평가 및 시사점</h2>
+      <p>CABEI 한국사무소 유치는 한국의 국제개발금융 외교, 중남미 진출 전략, 서울의 국제금융도시 전략이 맞물린 사례이다. 한국은 CABEI 가입과 출자를 통해 중미 개발금융 의사결정 구조에 참여하게 되었고, 서울은 다자개발은행 지역사무소를 유치함으로써 국제금융 허브로서의 위상을 강화했다.</p>
+      <p>향후 과제는 한국사무소를 단순 연락거점에 머무르게 하지 않고, 실질적 프로젝트 발굴·기업 매칭·금융조달·정책협력 플랫폼으로 고도화하는 것이다. 특히 스마트시티, 기후·에너지 전환, 교통 인프라, 디지털 행정, 보건의료, 물관리 등 한국의 강점 분야를 CABEI의 중미 개발수요와 연계할 필요가 있다.</p>
+      <div class="note-box">
+        <h2>정책 활용 방향</h2>
+        <ul>
+          <li>정례 사업설명회 및 CABEI 조달정보 제공 체계 강화</li>
+          <li>한국 기업·공공기관·연구기관 대상 프로젝트 매칭 플랫폼 구축</li>
+          <li>공동 타당성조사, 현지 파트너 발굴, 개발금융 교육 프로그램 확대</li>
+          <li>스마트시티·기후·에너지·교통·보건·물관리 분야의 패키지형 협력사업 발굴</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="conclusion">
+      <h2>7. 결론</h2>
+      <p>CABEI 한국사무소 개설은 한국의 CABEI 가입, 출자, 신탁기금 조성, 서울시 유치 활동, 한국 기업의 중미시장 진출 수요, CABEI의 아시아 협력 확대 전략이 결합해 성사된 결과이다.</p>
+      <p>현재 한국사무소는 한국과 중미 간 개발금융·투자협력의 핵심 접점으로 기능하고 있으며, 2025년 이후에도 기술협력기금 개정과 KOTRA 협력 등으로 역할이 확대되고 있다. 향후 성과는 한국사무소가 얼마나 많은 중미 프로젝트를 한국 기업·기관과 연결하고, 개발금융·기술협력·민간투자를 통합적으로 촉진하느냐에 달려 있다.</p>
+    </section>
+
+    <section id="sources">
+      <h2>8. 참고자료</h2>
+      <ol class="source-list">
+        <li>Seoul Metropolitan Government, “CABEI Chose Yeouido for Its Korea Office.” <a href="https://english.seoul.go.kr/cabei-chose-yeouido-for-its-korea-office/">https://english.seoul.go.kr/cabei-chose-yeouido-for-its-korea-office/</a></li>
+        <li>기획재정부, CABEI 가입 국내절차 완료 관련 보도참고자료. <a href="https://mofe.go.kr/nw/nes/detailNesDtaView.do?menuNo=4010100&searchBbsId=MOSFBBS_000000000028&searchNttId=MOSF_000000000030441">기획재정부 자료</a></li>
+        <li>주온두라스 대한민국대사관, 한국의 CABEI 자본금 납입 관련 자료. <a href="https://overseas.mofa.go.kr/hn-ko/brd/m_6371/view.do?seq=1345422">외교부 재외공관 자료</a></li>
+        <li>연합뉴스, “중미경제통합은행 한국사무소, 서울 여의도에 개소.” <a href="https://www.yna.co.kr/view/AKR20220710011400004">연합뉴스 기사</a></li>
+        <li>CABEI, “Republic of Korea” member country page. <a href="https://www.bcie.org/en/member-countries/non-regional/republic-of-korea">CABEI 공식 페이지</a></li>
+        <li>기획재정부, CABEI 총재 방한 및 기술협력기금 협정 개정 관련 자료. <a href="https://mofe.go.kr/nw/nes/detailNesDtaView.do?menuNo=4010100&searchBbsId1=MOSFBBS_000000000028&searchNttId1=MOSF_000000000075867">기획재정부 자료</a></li>
+        <li>Yonhap News Agency, KOTRA-CABEI MOU coverage. <a href="https://en.yna.co.kr/view/AEN20251119008500320">Yonhap English article</a></li>
+        <li>WTO Regional Trade Agreements Database, Korea-Central America FTA. <a href="https://rtais.wto.org/UI/CRShowRTAIDCard.aspx?rtaid=901">WTO RTAIS</a></li>
+        <li>IFC Seoul, official introduction. <a href="https://www.ifcseoul.com/en/IS_01_00.asp">IFC Seoul</a></li>
+      </ol>
+    </section>
+
+    <footer class="footer">
+      <p>본 보고서는 공개자료를 기반으로 작성한 HTML 보고서 초안입니다. 세부 실적, 인력 현황, 개별 프로젝트 참여 여부는 CABEI 한국사무소 및 관계기관의 최신 내부자료 확인이 필요합니다.</p>
+    </footer>
+  </main>
+</body>
+</html>

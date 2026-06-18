@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>국제기구 서울 유치 활성화 전략 기초연구 — 인터뷰 조사 중간보고서</title>
+<style>
+  :root{
+    --navy:#15324f; --navy2:#1f4e79; --steel:#3a6ea5; --accent:#c8881d;
+    --bg:#f5f6f8; --card:#ffffff; --line:#e3e6ea; --ink:#1c2530; --muted:#5d6b7a;
+    --good:#2f7d52; --warn:#b4541a; --soft:#eef3f8;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif;
+    line-height:1.72; font-size:16px;
+  }
+  a{color:var(--navy2); text-decoration:none;}
+  a:hover{text-decoration:underline;}
+
+  /* ===== top bar ===== */
+  header.top{
+    position:sticky; top:0; z-index:50;
+    background:rgba(21,50,79,.97); color:#fff; backdrop-filter:blur(6px);
+    border-bottom:3px solid var(--accent);
+  }
+  .top-inner{max-width:1180px; margin:0 auto; padding:10px 22px; display:flex; align-items:center; gap:18px; flex-wrap:wrap;}
+  .top-inner .brand{font-weight:700; font-size:15px; letter-spacing:-.2px; white-space:nowrap;}
+  .top-inner nav{display:flex; gap:4px; flex-wrap:wrap; font-size:13.5px;}
+  .top-inner nav a{color:#dbe6f1; padding:4px 9px; border-radius:6px;}
+  .top-inner nav a:hover{background:rgba(255,255,255,.12); color:#fff; text-decoration:none;}
+
+  /* ===== cover ===== */
+  .cover{
+    background:linear-gradient(135deg,#15324f 0%,#1f4e79 55%,#3a6ea5 100%);
+    color:#fff; padding:54px 22px 46px;
+  }
+  .cover-inner{max-width:1180px; margin:0 auto;}
+  .cover .eyebrow{font-size:14px; letter-spacing:2px; color:#bcd2e8; text-transform:uppercase;}
+  .cover h1{font-size:33px; line-height:1.3; margin:14px 0 6px; letter-spacing:-.5px;}
+  .cover h2{font-size:18px; font-weight:500; color:#d6e4f2; margin:0 0 22px;}
+  .cover .meta{display:flex; gap:26px; flex-wrap:wrap; font-size:14px; color:#cdddee; border-top:1px solid rgba(255,255,255,.22); padding-top:18px;}
+  .cover .meta b{color:#fff; font-weight:600;}
+
+  /* ===== layout ===== */
+  main{max-width:1180px; margin:0 auto; padding:34px 22px 80px;}
+  section{margin-bottom:40px;}
+  h2.sec{
+    font-size:23px; color:var(--navy); margin:0 0 6px; letter-spacing:-.4px;
+    padding-bottom:10px; border-bottom:2px solid var(--navy);
+  }
+  h2.sec .num{color:var(--accent); font-weight:800; margin-right:10px;}
+  .sec-desc{color:var(--muted); font-size:14.5px; margin:8px 0 22px;}
+  h3.sub{font-size:17.5px; color:var(--navy2); margin:26px 0 12px; padding-left:11px; border-left:4px solid var(--steel);}
+
+  .card{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:22px 24px; box-shadow:0 1px 3px rgba(20,40,70,.05);}
+  p{margin:0 0 12px;}
+  .lead{font-size:16.5px;}
+
+  /* diagnosis grid */
+  .diag-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:14px; margin-top:6px;}
+  .diag{background:var(--card); border:1px solid var(--line); border-left:5px solid var(--steel); border-radius:10px; padding:16px 18px;}
+  .diag .tag{font-size:12px; font-weight:700; color:#fff; background:var(--steel); padding:2px 9px; border-radius:20px; display:inline-block; margin-bottom:9px;}
+  .diag.warn{border-left-color:var(--warn);} .diag.warn .tag{background:var(--warn);}
+  .diag.good{border-left-color:var(--good);} .diag.good .tag{background:var(--good);}
+  .diag p{font-size:14.5px; margin:0; color:#2b3744;}
+
+  /* tables */
+  table{width:100%; border-collapse:collapse; font-size:14px; background:#fff; border:1px solid var(--line); border-radius:8px; overflow:hidden;}
+  th,td{padding:10px 12px; text-align:left; vertical-align:top; border-bottom:1px solid var(--line);}
+  thead th{background:var(--navy); color:#fff; font-weight:600; font-size:13.5px; letter-spacing:-.2px;}
+  tbody tr:nth-child(even){background:#fafbfc;}
+  tbody tr:hover{background:var(--soft);}
+  td.c, th.c{text-align:center;}
+  .pill{display:inline-block; font-size:11.5px; font-weight:700; padding:2px 8px; border-radius:20px; white-space:nowrap;}
+  .p-hi{background:#fbe5d6; color:#9c3b0f;} .p-mid{background:#e3eefb; color:#1f4e79;} .p-low{background:#eceff2; color:#566;}
+  .p-end{background:#fde2e2; color:#9b1c1c;} .p-on{background:#dff1e6; color:#1f6b3e;}
+
+  .table-wrap{overflow-x:auto;}
+
+  /* institution summary cards (link to appendix) */
+  .inst-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(330px,1fr)); gap:16px;}
+  .inst{background:#fff; border:1px solid var(--line); border-radius:12px; padding:0; overflow:hidden; display:flex; flex-direction:column; box-shadow:0 1px 3px rgba(20,40,70,.05);}
+  .inst .ih{background:var(--soft); padding:14px 18px; border-bottom:1px solid var(--line); display:flex; align-items:flex-start; justify-content:space-between; gap:10px;}
+  .inst .ih h4{margin:0; font-size:16.5px; color:var(--navy);}
+  .inst .ih .sub{font-size:12.5px; color:var(--muted); margin-top:3px;}
+  .inst .ih .floor{font-size:12px; font-weight:700; color:#fff; background:var(--steel); padding:3px 10px; border-radius:8px; white-space:nowrap;}
+  .inst .ib{padding:15px 18px; flex:1;}
+  .inst .ib ul{margin:0; padding-left:18px;}
+  .inst .ib li{font-size:14px; margin-bottom:7px; color:#2b3744;}
+  .inst .ib li b{color:var(--navy2);}
+  .inst .ifoot{padding:12px 18px; border-top:1px solid var(--line); background:#fcfdfe;}
+  .inst .ifoot a{display:inline-flex; align-items:center; gap:6px; font-size:13.5px; font-weight:600; color:var(--navy2);}
+  .inst .ifoot a::after{content:"→"; font-size:15px;}
+
+  /* appendix detail */
+  .appx-inst{background:#fff; border:1px solid var(--line); border-radius:12px; margin-bottom:22px; overflow:hidden; scroll-margin-top:70px;}
+  .appx-head{background:var(--navy); color:#fff; padding:16px 22px;}
+  .appx-head h3{margin:0; font-size:19px; color:#fff;}
+  .appx-head .ahmeta{font-size:13px; color:#bcd2e8; margin-top:5px; display:flex; gap:16px; flex-wrap:wrap;}
+  .appx-body{padding:20px 24px;}
+  .qa{margin-bottom:16px;}
+  .qa .qh{font-size:14.5px; font-weight:700; color:var(--navy2); margin-bottom:5px; display:flex; align-items:center; gap:8px;}
+  .qa .qh::before{content:""; width:7px; height:7px; background:var(--accent); border-radius:50%; flex:none;}
+  .qa p{font-size:14.5px; margin:0 0 4px; color:#283441;}
+  .quote{border-left:3px solid var(--accent); background:#fdf8ef; padding:9px 14px; margin:8px 0 4px; font-size:13.8px; color:#4a3f2a; border-radius:0 6px 6px 0;}
+  .quote .who{display:block; font-size:12px; color:#977; margin-top:4px;}
+  .back{font-size:12.5px; color:var(--muted); margin-top:14px;}
+  .back a{font-weight:600;}
+
+  .keytag{display:inline-block; font-size:11.5px; background:#eef3f8; color:var(--navy2); border:1px solid #d8e3ee; padding:2px 9px; border-radius:20px; margin:0 5px 5px 0;}
+
+  /* callout */
+  .callout{background:#fff7ea; border:1px solid #f0dcb4; border-left:5px solid var(--accent); border-radius:10px; padding:16px 20px; margin:16px 0;}
+  .callout b{color:var(--warn);}
+  .note{font-size:12.5px; color:var(--muted); font-style:italic;}
+
+  .twocol{display:grid; grid-template-columns:1fr 1fr; gap:18px;}
+  @media(max-width:760px){ .twocol{grid-template-columns:1fr;} .cover h1{font-size:26px;} }
+
+  footer{background:var(--navy); color:#c3d3e3; font-size:13px; padding:26px 22px;}
+  footer .fi{max-width:1180px; margin:0 auto;}
+
+  /* toc list */
+  ol.toc{counter-reset:t; list-style:none; padding:0; margin:0; columns:2; column-gap:30px;}
+  ol.toc li{margin-bottom:8px; font-size:14.5px;}
+  @media(max-width:680px){ ol.toc{columns:1;} }
+
+  .badge-row{display:flex; gap:10px; flex-wrap:wrap; margin:4px 0 0;}
+  @media print{
+    header.top{position:static;} .inst .ifoot{display:none;}
+    body{background:#fff;} .cover{background:#15324f !important; -webkit-print-color-adjust:exact; print-color-adjust:exact;}
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="top-inner">
+    <span class="brand">국제기구 서울유치 · 인터뷰 중간보고서</span>
+    <nav>
+      <a href="#summary">중간결과 요약</a>
+      <a href="#s1">Ⅰ 개요</a>
+      <a href="#s2">Ⅱ 중간분석</a>
+      <a href="#s3">Ⅲ 설문 개선</a>
+      <a href="#s4">Ⅳ 설문 실행</a>
+      <a href="#s5">Ⅴ 신규유치</a>
+      <a href="#s6">Ⅵ 후속조치</a>
+      <a href="#appendix">부록·기관별 인터뷰</a>
+    </nav>
+  </div>
+</header>
+
+<div class="cover">
+  <div class="cover-inner">
+    <div class="eyebrow">SEOUL INSTITUTE · GLOBAL RESEARCH COOPERATION CENTER</div>
+    <h1>국제기구 서울 유치 활성화 전략 기초연구<br>인터뷰 조사 중간보고서</h1>
+    <h2>대면 인터뷰 5건 중간분석 · 기관별 인터뷰 요약은 부록 참조</h2>
+    <div class="meta">
+      <span><b>작성</b> 서울연구원 글로벌연구협력센터</span>
+      <span><b>일자</b> 2026. 6. 17.</span>
+      <span><b>조사기간</b> 2026. 6. 11. ~ 6. 17.</span>
+      <span><b>대상</b> WeGO · CityNet · 글로벌센터 사무국 · WHO ACE · ICLEI EAS</span>
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <!-- ===== 중간 결과 요약 ===== -->
+  <section id="summary">
+    <h2 class="sec">중간 결과 요약</h2>
+    <p class="sec-desc">기수행 대면 인터뷰 5건(WeGO·CityNet·글로벌센터 사무국·WHO ACE·ICLEI EAS)과 연구계획서·컨택포인트·시행계획(18개 문항)을 기초로 한 중간 결과를 가장 먼저 제시한다. 기관별 인터뷰 핵심 내용은 <a href="#appendix">부록 「기관별 인터뷰」</a> 참조.</p>
+
+    <!-- 핵심 결론 3가지 -->
+    <div class="card" style="border-left:6px solid var(--accent); margin-bottom:18px;">
+      <h3 class="sub" style="margin-top:0;border-left-color:var(--accent);">핵심 결론 3가지</h3>
+      <table style="border:none;">
+        <tbody>
+          <tr><td class="c" style="width:54px;font-size:22px;font-weight:800;color:var(--accent);vertical-align:middle;">1</td>
+            <td><b>본 조사의 핵심 산출물은 「설문(질문지) 개선」이다.</b> 기존 18개 문항은 사무공간·임대조건·예산구조 파악에는 적합하나, 실제 <b>유치·정착 경쟁력</b>(정주지원·부서 간 협업·네트워킹·지원종료 리스크·의사결정 구조)을 설명하지 못한다. 대면 5건의 최대 성과는 이 빈틈을 메운 <a href="#s3">개선 설문(A~G·14개 보완영역)</a>이다.</td></tr>
+          <tr><td class="c" style="font-size:22px;font-weight:800;color:var(--accent);vertical-align:middle;">2</td>
+            <td><b>미인터뷰 기관은 개선 설문으로 실행한다.</b> 다만 기관마다 <b>관계부서·재원·지원여건이 모두 달라</b>(서울시 국제협력·기후환경·보건의료·디지털 / 중앙부처 / 자체재원) 일률 발송이 아니라 기관별 맞춤 설문·창구로 실행해야 한다. <a href="#s4">Ⅳ장</a> 참조.</td></tr>
+          <tr><td class="c" style="font-size:22px;font-weight:800;color:var(--warn);vertical-align:middle;">3</td>
+            <td><b>신규 유치 시사점·후보기관 발굴은 아직 미비하다.</b> 인터뷰 대상이 기존 입주기관(유지 관점)에 집중되어, 정작 과제의 목적인 <b>신규 유치 전략과 후보기관 풀(pool)</b>은 단편적으로만 언급됐다. <a href="#s5">Ⅴ장</a>에서 1차 후보를 정리하되, 이는 향후 설문·전문가 자문으로 보강해야 할 <b>핵심 보완 과제</b>다.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="sub">중간 진단 — 4대 포인트</h3>
+    <div class="diag-grid">
+      <div class="diag good"><span class="tag">진단 1 · 강점</span><p>서울은 <b>도심 접근성, 문화·생활 매력, 시청·대사관·협력기관 접근, 출입국 서비스(1층) 접근성</b>에서 강한 입지 우위를 보유.</p></div>
+      <div class="diag warn"><span class="tag">진단 2 · 제약</span><p>글로벌센터는 <b>공간 포화·높은 임대료</b>, 공유재산 법령상 임대료 인하 제약, 지원 종료 기관 증가라는 구조적 제약.</p></div>
+      <div class="diag"><span class="tag">진단 3 · 체계</span><p>현행 지원은 부서별 사업연계에 장점이 있으나 <b>국제기구 전담 창구·정주지원·네트워킹 플랫폼</b>은 취약.</p></div>
+      <div class="diag warn"><span class="tag">진단 4 · 과제</span><p><b>신규 유치 후보기관 발굴이 미비</b> — 유지 관점에 치우친 인터뷰를 신규 유치 관점의 설문으로 전환·보강 필요.</p></div>
+    </div>
+
+    <h3 class="sub">주요 산출물</h3>
+    <div class="badge-row">
+      <span class="keytag">★ 개선 설문지(A~G·14개 보완영역) — 핵심 산출물</span>
+      <span class="keytag">② 미인터뷰 기관 설문 실행안(기관별 맞춤)</span>
+      <span class="keytag">③ 협조 요청 공문(안)</span>
+      <span class="keytag">④ 신규 유치 시사점·후보기관 1차 풀(보완 과제)</span>
+      <span class="keytag">⑤ 5개 기관별 인터뷰 요약(부록)</span>
+    </div>
+  </section>
+
+  <!-- ===== Ⅰ 개요 ===== -->
+  <section id="s1">
+    <h2 class="sec"><span class="num">Ⅰ</span>중간보고 개요</h2>
+    <p class="sec-desc">인터뷰 조사 단계의 중간 결과를 정리하고, 향후 대면·서면 조사에 반영할 정성적 질문 보완사항을 제시한다.</p>
+
+    <h3 class="sub">기수행 인터뷰 현황</h3>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th class="c" style="width:36px;">No</th><th>기관 / 면담</th><th class="c" style="width:92px;">일시</th><th class="c" style="width:120px;">장소</th><th>주요 논점</th><th class="c" style="width:84px;">상세</th></tr></thead>
+      <tbody>
+        <tr><td class="c">1</td><td><b>세계스마트시티기구(WeGO)</b></td><td class="c">6.11</td><td class="c">글로벌센터 7층</td><td>입주·근무 여건, 서울 입지 매력, 구내식당·복지, 스마트시티 분야 유치</td><td class="c"><a href="#a-wego">바로가기 →</a></td></tr>
+        <tr><td class="c">2</td><td><b>시티넷(CityNet)</b></td><td class="c">6.16</td><td class="c">글로벌센터 10층</td><td>정주지원, 가족·의료·어린이집, 기관 간 네트워킹, MDB 유치 필요성</td><td class="c"><a href="#a-citynet">바로가기 →</a></td></tr>
+        <tr><td class="c">3</td><td><b>서울글로벌센터 사무국</b></td><td class="c">6.16</td><td class="c">글로벌센터/본청</td><td>운영·관리 구조, 지원부서 분산, 임대료·재계약·지원종료 현황</td><td class="c"><a href="#a-center">바로가기 →</a></td></tr>
+        <tr><td class="c">4</td><td><b>WHO 아·태 환경보건센터(ACE)</b></td><td class="c">6.16</td><td class="c">글로벌센터 11층</td><td>서울·송도 비교, 외국인 주거·보증금, 공간 확장, 네트워킹·초급 한국어</td><td class="c"><a href="#a-who">바로가기 →</a></td></tr>
+        <tr><td class="c">5</td><td><b>이클레이 동아시아본부(ICLEI EAS)</b></td><td class="c">6.17</td><td class="c">글로벌센터 14층</td><td>임대료·공간 제약, 출입국 접근성, 서울시 인사·부서 협업, MDB·재단 유치</td><td class="c"><a href="#a-iclei">바로가기 →</a></td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h3 class="sub">서울글로벌센터 입주·지원 현황 <span class="note">(’26.5월 기준 · 시행계획 붙임 자료)</span></h3>
+    <div class="twocol">
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th class="c" style="width:48px;">층</th><th>입주 기관</th><th>소관/지원</th></tr></thead>
+        <tbody>
+          <tr><td class="c">15</td><td>아시아헌법재판소연합(AACC) 연구사무국</td><td>국제협력담당관 <span class="pill p-end">종료예정</span></td></tr>
+          <tr><td class="c">14</td><td><b>이클레이(ICLEI) 동아시아본부</b></td><td>기후환경정책과</td></tr>
+          <tr><td class="c">13</td><td>서울국제개발협력단 / 아셈노인인권센터(AGAC)</td><td>국제협력담당관 / 국가인권위</td></tr>
+          <tr><td class="c">12</td><td>세계은행그룹(IFC·MIGA) 서울연락사무소 / UN여성기구</td><td>국제협력담당관 <span class="pill p-end">종료예정</span> / 성평등가족부</td></tr>
+          <tr><td class="c">11</td><td><b>WHO 아·태 환경보건센터</b></td><td>환경부·보건의료정책과</td></tr>
+          <tr><td class="c">10</td><td><b>시티넷(CITYNET)</b></td><td>국제협력담당관</td></tr>
+          <tr><td class="c">10</td><td><i>공실</i> (’18.6~) → ADB 입주 추진(’26 하반기)</td><td>K-Hub 유치 예정</td></tr>
+          <tr><td class="c">8</td><td>OHCHR 서울사무소 / FAO 연락사무소 / UNICEF 서울</td><td>− <span class="pill p-end">’25종료</span> / 농식품부 / 국제협력담당관</td></tr>
+          <tr><td class="c">7</td><td><b>세계스마트시티기구(WeGO)</b></td><td>디지털정책과 <span class="pill p-on">의장</span></td></tr>
+        </tbody>
+      </table>
+      </div>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>’26 지원 현황 (백만원)</th><th class="c" style="width:80px;">지원액</th><th class="c" style="width:96px;">지원항목</th></tr></thead>
+        <tbody>
+          <tr style="font-weight:700;background:#eef3f8;"><td>합계</td><td class="c">4,585</td><td class="c">—</td></tr>
+          <tr><td>세계스마트시티기구(WeGO) <span class="pill p-on">의장</span></td><td class="c">1,860</td><td class="c">임대·운영·인건·사업</td></tr>
+          <tr><td>시티넷(CityNet) <span class="pill p-on">회장</span></td><td class="c">854</td><td class="c">임대·운영·인건·사업</td></tr>
+          <tr><td>이클레이 동아시아본부(ICLEI EAS)</td><td class="c">600</td><td class="c">임대·운영·인건·사업</td></tr>
+          <tr><td>WHO 아·태환경보건센터(ACE)</td><td class="c">770</td><td class="c">임대·관리·사업</td></tr>
+          <tr><td>세계은행그룹(WBG) 서울연락사무소</td><td class="c">147</td><td class="c">임대료</td></tr>
+          <tr><td>아시아헌법재판소연합(AACC SRD)</td><td class="c">286</td><td class="c">임대료</td></tr>
+          <tr><td>아시아-유럽 국제연구망(TEIN)</td><td class="c">68</td><td class="c">임대·관리</td></tr>
+        </tbody>
+      </table>
+      <p class="note" style="margin-top:8px;">※ 시유재산 입주 15개 기구 중 7개 미지원(중앙부처 3 · 시 직접수행 3 · 지원종료 2). GSEF 본부 이전(서울→보르도, ’22.6).</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Ⅱ 중간분석 ===== -->
+  <section id="s2">
+    <h2 class="sec"><span class="num">Ⅱ</span>기수행 인터뷰 중간분석 결과</h2>
+    <p class="sec-desc">전반적으로 서울 도심 입지 만족도는 높으나, 임대료·주거비 부담, 지원 종료 후 불확실성, 분산된 관리·지원, 맞춤형 정주지원 부족이 <b>유치 이후의 유지 경쟁력</b>을 약화시키는 요인으로 확인됨.</p>
+
+    <h3 class="sub">주제별 중간결과 및 보완 방향</h3>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th style="width:160px;">주제</th><th>중간결과</th><th style="width:320px;">정책·질문 보완 방향</th></tr></thead>
+      <tbody>
+        <tr><td><b>서울 입지 매력</b></td><td>도심 접근성, 시청·대사관·협력기관 접근, 문화·생활, 외국인 직원의 서울 선호가 반복 확인.</td><td>유치 제안서에 “서울형 생활·업무 패키지” 명시</td></tr>
+        <tr><td><b>공간 포화·임대료</b></td><td>입지는 우수하나 확장 여력 제한, 임대료가 부담으로 인식. 공실도 임대료·지원조건에 좌우.</td><td>보완 입지: 여의도 IFC(금융)·대학캠퍼스·공공기여 공간·용산/도심권</td></tr>
+        <tr><td><b>지원체계 분산</b></td><td>국제협력·기후환경·보건의료·디지털·중앙부처 등 지원주체가 기관별 상이. 건물관리·외국인지원 조직도 분리.</td><td>국제기구 전담 데스크 / “호스트 시티 코디네이터” 기능</td></tr>
+        <tr><td><b>정주지원 중요성</b></td><td>어린이집·가족정착·의료·주거 보증금·초급 한국어·구내식당·커뮤니티 수요 반복.</td><td>인센티브 범위를 공간·재정 → 생활·정주·커뮤니티로 확대</td></tr>
+        <tr><td><b>네트워킹 부족</b></td><td>같은 건물이어도 층별 출입·정기행사 부재·부서별 칸막이로 기관 간 협업 제한.</td><td>분기별 네트워킹, 테마별 협업 라운드테이블, 공동 프로젝트 발굴</td></tr>
+        <tr><td><b>지원종료 리스크</b></td><td>AACC·WBG·OHCHR·UNICEF 등 종료/종료예정 기관의 이탈·이전 가능성.</td><td>연장/졸업/대체유치 기준 마련 + 서면조사로 현황 확인</td></tr>
+        <tr><td><b>전략 타깃</b></td><td>MDB·국제금융기구, 기후·건강·AI·도시정책 국제네트워크, 지방정부 대상 기구의 서울 적합성.</td><td>“서울 사업과 결합되는 프로젝트·펀딩 플랫폼” 중심 접근</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h3 class="sub">기관별 주요 시사점 <span class="note">— 카드 하단 링크로 부록의 상세 인터뷰로 이동</span></h3>
+    <div class="inst-grid">
+
+      <div class="inst" id="c-wego">
+        <div class="ih"><div><h4>① 세계스마트시티기구 (WeGO)</h4><div class="sub">서울시 창립·지원 / 의장도시 서울 · 12명</div></div><span class="floor">7층</span></div>
+        <div class="ib"><ul>
+          <li><b>특수성</b> 서울시가 창립·지원한 준산하 성격 — 일반 유치사례와 구분 필요.</li>
+          <li><b>애로</b> ’26년 인건비 동결(물가 미반영), 구내식당 이용 불가(보안·출입증), 물가 대비 낮은 급여.</li>
+          <li><b>강점</b> 스마트시티 이미지 + 도심 접근성, 해외 델리게이션 동선 최적.</li>
+        </ul></div>
+        <div class="ifoot"><a href="#a-wego">기관별 인터뷰 상세 보기</a></div>
+      </div>
+
+      <div class="inst" id="c-citynet">
+        <div class="ih"><div><h4>② 시티넷 (CityNet)</h4><div class="sub">1987 요코하마 창립 → 2013 서울 · 보조금 65%</div></div><span class="floor">10층</span></div>
+        <div class="ib"><ul>
+          <li><b>정주지원이 곧 인센티브</b> 가족·의료·어린이집 부족으로 유능한 직원 이탈(카자흐스탄·중국인 사례).</li>
+          <li><b>생태계 부재</b> 층별 출입제한으로 기관 간 협업 거의 전무. 전담창구·긴급연락망 필요.</li>
+          <li><b>전략</b> MDB 유치 + 서울사업 결합(요코하마 신탁기금 활용 벤치마킹).</li>
+        </ul></div>
+        <div class="ifoot"><a href="#a-citynet">기관별 인터뷰 상세 보기</a></div>
+      </div>
+
+      <div class="inst" id="c-center">
+        <div class="ih"><div><h4>③ 서울글로벌센터 사무국</h4><div class="sub">외국인이민담당관 / 건물관리 소관</div></div><span class="floor">본청</span></div>
+        <div class="ib"><ul>
+          <li><b>관리·유치 분리</b> 이민담당관은 건물만 관리. 기구별 지원은 각 소관부서로 분산.</li>
+          <li><b>임대료 제약</b> 공유재산법 기준 산정 → 인하 불가. 회의장 50% 할인 정도.</li>
+          <li><b>종료 도래</b> AACC·UNICEF·WBG 내년초, OHCHR ’25 종료. 송도는 임대료 무료.</li>
+        </ul></div>
+        <div class="ifoot"><a href="#a-center">기관별 인터뷰 상세 보기</a></div>
+      </div>
+
+      <div class="inst" id="c-who">
+        <div class="ih"><div><h4>④ WHO 아·태 환경보건센터</h4><div class="sub">환경부+서울시 / 외국인 ~70% · 24명</div></div><span class="floor">11층</span></div>
+        <div class="ib"><ul>
+          <li><b>입지</b> 서울>송도 선호(접근성·UN기관 인접·도심·문화). 단 송도가 재정지원은 큼.</li>
+          <li><b>정주</b> 보증금 부담이 최대 챌린지. 단기임대 플랫폼(삼삼엠투) 의존.</li>
+          <li><b>수요</b> 5개년 전략으로 공간 확장 중, 정보공유 플랫폼·초급 한국어·네트워킹.</li>
+        </ul></div>
+        <div class="ifoot"><a href="#a-who">기관별 인터뷰 상세 보기</a></div>
+      </div>
+
+      <div class="inst" id="c-iclei">
+        <div class="ih"><div><h4>⑤ 이클레이 동아시아본부</h4><div class="sub">2012 서울 / 서울·베이징 2개소 · 10명</div></div><span class="floor">14층</span></div>
+        <div class="ib"><ul>
+          <li><b>입지·공간</b> 접근성·교통·녹지·K컬처 압도적 1위(vs 송도/부산). 회의실 협소·냉난방·포화.</li>
+          <li><b>서울시 이슈</b> 잦은 인사이동 → 협력 일관성 저해. 부서 간 협업 약함(싱가포르 벤치마크).</li>
+          <li><b>전략</b> MDB·국제재단 유치(Trump 자금삭감 대응), META 재단화 컨소시엄.</li>
+        </ul></div>
+        <div class="ifoot"><a href="#a-iclei">기관별 인터뷰 상세 보기</a></div>
+      </div>
+
+    </div>
+
+    <div class="callout">
+      <b>중간 정책판단.</b> “빈 공간에 국제기구를 유치”하는 접근보다 ① 현 입주기관의 유지·이전 리스크 점검(잔류·자립·파급효과 기준 연장 판단), ② 신규 유치는 MDB·금융·기후·건강·AI 등 서울 전략사업 연계 분야 우선, ③ 글로벌센터를 대표 거점으로 유지하되 여의도 IFC·대학캠퍼스·공공기여 공간을 묶은 <b>“서울형 국제기구 입지 포트폴리오”</b> 설계가 타당.
+    </div>
+  </section>
+
+  <!-- ===== Ⅲ 질문 보완 ===== -->
+  <section id="s3">
+    <h2 class="sec"><span class="num">Ⅲ</span>설문(질문지) 개선 <span style="font-size:14px;color:var(--accent);font-weight:700;">★ 본 조사의 핵심 산출물</span></h2>
+    <p class="sec-desc">대면 5건의 최대 성과는 <b>설문(질문지)의 개선</b>이다. 기존 18개 문항의 골격은 유지하되, 인터뷰에서 드러난 쟁점(정주·협업·지원종료·의사결정·신규 후보)을 더 세밀히 묻도록 <b>14개 보완영역</b>을 추가하고, 이를 미인터뷰 기관 설문(<a href="#s4">Ⅳ장</a>) 본체로 사용한다. 전체 질문지(A~G)는 <a href="#appendix">부록</a> 참조.</p>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th class="c" style="width:34px;">#</th><th style="width:190px;">보완 영역</th><th>핵심 추가 질문</th></tr></thead>
+      <tbody>
+        <tr><td class="c">1</td><td><b>기관 성격·의사결정 구조</b></td><td>서울 사무소 설치·이전·확장의 최종 결정 주체(본부/지역/이사회/공여기관/중앙정부)와 서울시가 접촉할 공식 라인은?</td></tr>
+        <tr><td class="c">2</td><td><b>유치 경위·후원자</b></td><td>초기 유치에 가장 큰 역할을 한 주체(챔피언)는? 당시 경쟁도시·대안입지가 있었는가? <span class="note">(WHO 한국인 RD 사례)</span></td></tr>
+        <tr><td class="c">3</td><td><b>서울 선택 요인</b></td><td>업무·국제교통·정부접근·문화·외국인친화·비용·안전·학교/의료·커뮤니티별 강·약점 평가.</td></tr>
+        <tr><td class="c">4</td><td><b>사무·회의 공간</b></td><td>향후 3년 인력·인턴·파견 증가를 감당 가능한가? 부족 시 필요 좌석·회의실·행사공간 규모.</td></tr>
+        <tr><td class="c">5</td><td><b>대체 입지 수용성</b></td><td>여의도 IFC·대학캠퍼스·용산/도심·송도 제안 시 수용 가능 여부와 조건.</td></tr>
+        <tr><td class="c">6</td><td><b>예산·지원구조</b></td><td>임대·관리·인건·사업비 비중과 재원 출처. 서울시 지원금의 항목별 사용 제한.</td></tr>
+        <tr><td class="c">7</td><td><b>지원 종료 시나리오</b></td><td>① 자부담 잔류 ② 서울 내 이전 ③ 수도권/타지역 ④ 한국 철수 중 가능 시나리오와 조건.</td></tr>
+        <tr><td class="c">8</td><td><b>정주지원</b></td><td>주거 보증금·단기임대·어린이집/학교·병원·건강보험·배우자 취업·비상연락망·한국어 우선순위.</td></tr>
+        <tr><td class="c">9</td><td><b>일상복지·근무환경</b></td><td>점심·구내식당·출입증·냉난방·회의실 예약·방문객 안내 등 건물 운영상 불편.</td></tr>
+        <tr><td class="c">10</td><td><b>행정·법제도 창구</b></td><td>서울시·중앙정부 협의 시 가장 어려운 절차. 전담창구가 가져야 할 권한·역할.</td></tr>
+        <tr><td class="c">11</td><td><b>기관 간 협업</b></td><td>같은 건물/서울 내 공동사업·세미나 경험. 정기 네트워킹 운영 시 참여 의향.</td></tr>
+        <tr><td class="c">12</td><td><b>서울시 파급효과</b></td><td>정책협력·국제회의·해외방문객·도시브랜드·정책홍보·전문가 네트워크·인턴십 측면 효과.</td></tr>
+        <tr><td class="c">13</td><td><b>신규 유치 후보</b></td><td>서울시가 접촉할 만한 기구·재단·MDB·국제 NGO·도시네트워크 추천과 접촉 경로.</td></tr>
+        <tr><td class="c">14</td><td><b>비교도시 벤치마킹</b></td><td>도쿄·송도·부산·싱가포르·본·바르셀로나 등 참고 도시와 도입할 만한 서비스.</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <!-- ===== Ⅳ 서면조사 ===== -->
+  <section id="s4">
+    <h2 class="sec"><span class="num">Ⅳ</span>미인터뷰 기관 — 개선 설문으로 실행</h2>
+    <p class="sec-desc">미인터뷰 기관은 <a href="#s3">Ⅲ장의 개선 설문(A~G)</a>으로 조사를 <b>실행</b>한다. 다만 기관마다 <b>관계부서·재원·지원여건이 모두 달라</b> 일률 발송이 아니라 아래 표처럼 소관부서·우선순위를 구분해 <b>기관별 맞춤으로 실행</b>한다. <span class="note">(세계은행그룹 서울연락사무소는 서면 응답 의사 표명)</span></p>
+    <div class="callout" style="margin-top:0;margin-bottom:16px;">
+      <b>실행 원칙.</b> ① 소관부서별로 발송 주체·문구를 달리한다(국제협력담당관 / 기후환경 / 보건의료 / 디지털 / 중앙부처 / 자체재원). ② 지원종료 예정·재원 불안정·MDB·금융 트랙을 1순위로 한다. ③ 일정·민감성상 대면이 어려운 기관은 설문 회신으로 대체하고, 필요 시 15~20분 보충통화로 보완한다.
+    </div>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>기관명</th><th class="c" style="width:70px;">층/위치</th><th style="width:150px;">소관/지원</th><th class="c" style="width:110px;">상태</th><th class="c" style="width:64px;">우선</th><th style="width:260px;">서면조사 필요 사유</th></tr></thead>
+      <tbody>
+        <tr><td>아시아헌법재판소연합(AACC) 연구사무국</td><td class="c">15층</td><td>국제협력담당관</td><td class="c">미인터뷰</td><td class="c"><span class="pill p-hi">상</span></td><td>’26 지원종료 예정. 연장·자립·이전 가능성 확인</td></tr>
+        <tr><td>세계은행그룹(IFC·MIGA) 서울연락사무소</td><td class="c">12층</td><td>국제협력담당관</td><td class="c"><span class="pill p-mid">서면응답 의사</span></td><td class="c"><span class="pill p-hi">상</span></td><td>MDB·국제금융 트랙 핵심. ’26 지원종료 예정</td></tr>
+        <tr><td>유엔인권최고대표사무소(OHCHR) 서울</td><td class="c">8층</td><td>−</td><td class="c">미인터뷰</td><td class="c"><span class="pill p-hi">상</span></td><td>’25 서울시 지원종료. 입주·이전·자립 상황 확인</td></tr>
+        <tr><td>유엔여성기구(UN Women) 지식·파트너십센터</td><td class="c">12층</td><td>성평등가족부</td><td class="c">미인터뷰</td><td class="c"><span class="pill p-mid">중</span></td><td>중앙부처 지원. UN 계열 정주·협업 수요 확인</td></tr>
+        <tr><td>아셈노인인권정책센터(AGAC)</td><td class="c">13층</td><td>국가인권위원회</td><td class="c">미인터뷰</td><td class="c"><span class="pill p-mid">중</span></td><td>중앙부처 지원기관. 공간·지원·정주 수요</td></tr>
+        <tr><td>서울국제개발협력단</td><td class="c">13층</td><td>국제협력담당관</td><td class="c">미인터뷰</td><td class="c"><span class="pill p-mid">중</span></td><td>서울시 ODA·국제개발 협력 연계성</td></tr>
+        <tr><td>유엔식량농업기구(FAO) 협력연락사무소</td><td class="c">8층</td><td>농림축산식품부</td><td class="c">미인터뷰</td><td class="c"><span class="pill p-mid">중</span></td><td>중앙부처 지원, UN 계열 수요</td></tr>
+        <tr><td>중미경제통합은행(CABEI) 한국사무소</td><td class="c">여의도 SIFC</td><td>금융조례</td><td class="c">미인터뷰</td><td class="c"><span class="pill p-hi">상</span></td><td>금융 트랙. 최초 입주 지원조건·수요 확인</td></tr>
+        <tr><td>세계은행그룹 한국사무소</td><td class="c">송도 G타워</td><td>인천시·중앙</td><td class="c">서면(합산)</td><td class="c"><span class="pill p-mid">중</span></td><td>송도 사무소와 내용 합산 회신 예정</td></tr>
+        <tr><td>ADB / 한국 기후기술허브(K-Hub)</td><td class="c">10층(추진)</td><td>입주추진</td><td class="c">예비대상</td><td class="c"><span class="pill p-mid">중</span></td><td>입주 전이라도 유치조건 검토용 예비 설문질의</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <!-- ===== Ⅴ 신규 유치 시사점 및 후보기관 ===== -->
+  <section id="s5">
+    <h2 class="sec"><span class="num">Ⅴ</span>신규 유치 시사점 및 후보기관 발굴 <span style="font-size:14px;color:var(--warn);font-weight:700;">— 보완 과제</span></h2>
+    <p class="sec-desc">본 과제의 본래 목적은 <b>신규 국제기구 유치</b>이나, 기수행 인터뷰가 기존 입주기관(유지·정착 관점)에 집중되어 신규 유치 시사점과 후보기관 풀은 단편적으로만 확인됐다. 아래는 인터뷰에서 언급된 후보를 1차 정리한 것으로, <b>향후 설문(F-6 신규 후보 추천)·UIA 데이터베이스·전문가 자문으로 보강해야 할 핵심 보완 과제</b>다.</p>
+
+    <div class="callout">
+      <b>현재의 미비점.</b> ① 인터뷰 질문이 “왜 떠나지 않는가(유지)”에 치우쳐 “무엇을 새로 데려올 것인가(신규)”를 충분히 묻지 못함. ② 후보기관이 MDB·AI 등 일부 분야에 국한, 체계적 후보 풀(pool) 부재. ③ 서울 입지의 정량적 매력(도시경쟁력·GFCI 등)과 후보기관 수요의 매칭이 미흡. → <b>UIA 등록 8만여 협의체 DB를 분류·필터링</b>하고, 개선 설문의 신규 후보 문항으로 보강 예정.
+    </div>
+
+    <h3 class="sub">신규 유치 후보기관 — 1차 풀 <span class="note">(인터뷰 언급 기반 · 추가 발굴 필요)</span></h3>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th style="width:120px;">분야</th><th>후보기관(예시)</th><th style="width:200px;">근거·시사점</th><th style="width:150px;">접촉 경로</th><th class="c" style="width:60px;">우선</th></tr></thead>
+      <tbody>
+        <tr><td><b>MDB·국제금융</b></td><td>ADB(K-Hub), AIIB, WBG, CABEI(여의도 입주), AfDB</td><td>SLW 등 서울 사업에 파이낸싱 기관 부재. 금융조례·여의도 IFC 지원 활용. AfDB는 도쿄 지역사무소 → 한국 브랜치 필요</td><td>기재부 국제금융기구과, 여의도 IFC, 본부 직접</td><td class="c"><span class="pill p-hi">상</span></td></tr>
+        <tr><td><b>AI·디지털</b></td><td>UN AI 허브 / 국제 AI 기구</td><td>국무총리실·기재부 주관 추진(송도 중심). 서울 연계 가능성 점검</td><td>기재부, 과기정통부</td><td class="c"><span class="pill p-hi">상</span></td></tr>
+        <tr><td><b>국제재단·NGO</b></td><td>Good Food Institute, 국제 기후·임팩트 재단</td><td>GFI 싱가포르→한국 사무소 예정. Trump發 자금삭감으로 재단·blended finance 수요 증가</td><td>WHO ACE·ICLEI 파트너 라인</td><td class="c"><span class="pill p-mid">중</span></td></tr>
+        <tr><td><b>건강도시</b></td><td>WHO 건강도시 이니셔티브 사무국/세션</td><td>시장 공약 「건강도시」 연계. 기존 송도·DDP 컨퍼런스 경험</td><td>WHO ACE, 보건의료정책과</td><td class="c"><span class="pill p-mid">중</span></td></tr>
+        <tr><td><b>UN 프로그램오피스</b></td><td>UN-Habitat 등 프로그램·연락 오피스</td><td>본부 유치는 협정·예산 부담 크나, 서울 사업 기반 프로그램오피스는 현실적</td><td>해당 기구 본부/지역사무소</td><td class="c"><span class="pill p-mid">중</span></td></tr>
+        <tr><td><b>협의체·네트워크</b></td><td>신규 도시협의체, META 국제기구화</td><td>서울 희망을 표명하는 신생 협의체 존재. 서울연구원 발(發) META 재단·기구화로 서울이 리드 가능</td><td>서울연구원, 국제협력담당관</td><td class="c"><span class="pill p-mid">중</span></td></tr>
+        <tr><td><b>대학 기반</b></td><td>WFP(서울대)·UNFPA(연세대)·UNDP(고려대) 모델</td><td>글로벌센터 포화 시 대학캠퍼스 무상·저가 입지가 대안. ICLEI·WHO 모두 수용 가능 응답</td><td>서울 소재 대학, 서울시</td><td class="c"><span class="pill p-low">검토</span></td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="note" style="margin-top:8px;">※ 위 후보는 인터뷰에서 단편적으로 언급된 1차 목록으로, 신규 유치 전략의 근거로 쓰려면 분야별 수요·접촉가능성·서울 적합도를 별도 조사로 검증해야 한다.</p>
+  </section>
+
+  <!-- ===== Ⅵ 후속조치 ===== -->
+  <section id="s6">
+    <h2 class="sec"><span class="num">Ⅵ</span>후속조치 제안</h2>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th class="c" style="width:80px;">시점</th><th>후속조치</th><th style="width:300px;">주관/협조</th></tr></thead>
+      <tbody>
+        <tr><td class="c"><span class="pill p-hi">즉시</span></td><td>개선 설문지·공문(안) 확정 후 미인터뷰 기관에 <b>기관별 맞춤 설문</b> 발송(소관부서별·영문 회신 허용)</td><td>서울연구원, 국제협력담당관</td></tr>
+        <tr><td class="c"><span class="pill p-hi">즉시</span></td><td>지원 종료(예정) 기관의 잔류/이전/자립 시나리오 확인</td><td>서울시 소관부서, 입주기관</td></tr>
+        <tr><td class="c"><span class="pill p-hi">단기</span></td><td><b>신규 유치 후보기관 발굴</b>: UIA DB 분류·필터링 + 설문 F-6 응답 종합으로 분야별 후보 풀 구축</td><td>서울연구원, 국제협력담당관</td></tr>
+        <tr><td class="c"><span class="pill p-mid">단기</span></td><td>여의도 IFC/SIFC 금융 트랙: CABEI·WBG·ADB/K-Hub·기재부·금융부서 별도 정리</td><td>서울연구원, 금융 관련 부서</td></tr>
+        <tr><td class="c"><span class="pill p-mid">단기</span></td><td>글로벌센터 네트워킹 파일럿: 분기 1회 라운드테이블/주제별 간담회</td><td>서울시, 글로벌센터, 입주기관</td></tr>
+        <tr><td class="c"><span class="pill p-low">중기</span></td><td>국제기구 전담 창구 / 호스트 시티 코디네이터 기능 검토</td><td>서울시</td></tr>
+        <tr><td class="c"><span class="pill p-low">중기</span></td><td>글로벌센터 외 보완 입지 조사: 대학캠퍼스·공공기여·용산/도심·여의도 금융권</td><td>서울시, 서울연구원</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <!-- =====================  부록 · 기관별 인터뷰  ===================== -->
+  <section id="appendix">
+    <h2 class="sec">부록 · 기관별 인터뷰</h2>
+    <p class="sec-desc">본문 요약의 근거가 되는 기관별 인터뷰 핵심 내용을 정리하였다. 음성인식 기반 녹취를 바탕으로 정리한 것으로, 기관명·인명·수치는 최종 인용 전 원음 또는 기관 확인이 필요하다. 원문 5건은 별도 텍스트 파일(붙임)로 보관.</p>
+
+    <!-- WeGO -->
+    <article class="appx-inst" id="a-wego">
+      <div class="appx-head">
+        <h3>① 세계스마트시티기구 (WeGO)</h3>
+        <div class="ahmeta"><span>2026. 6. 11. · 글로벌센터 7층</span><span>응답: 조은별 본부장 등</span><span>면담: 최준영·최수범·김현</span></div>
+      </div>
+      <div class="appx-body">
+        <div class="qa"><div class="qh">기관 성격 · 특수성</div>
+          <p>서울시가 창립·지원한 스마트시티 국제기구로 <b>의장도시가 서울</b>. 보조금으로 운영되는 “준산하” 성격이어서 일반 유치사례와는 출발이 다름. 본부장이 10년 가까이 재직.</p>
+          <div class="quote">“태생이 조금 달라서 — 서울시에서 창립한 국제기구다 보니까 조금 다른 것 같아요.”<span class="who">— WeGO 담당자</span></div>
+        </div>
+        <div class="qa"><div class="qh">재정 · 인력</div>
+          <p>서울시 보조금 + 회비(국제분담금). 인턴 제외 <b>12명 전원 2년 계약직</b>, 초임 약 3,500만원. 외국인 직원 다수(말레이시아·이탈리아·프랑스·카자흐스탄). 파견제도는 있으나 받지 않고 자체 채용. 직원들은 타 국제기구·제네바·송도 등으로 이직(디딤돌 성격).</p>
+        </div>
+        <div class="qa"><div class="qh">최대 애로 — 인건비 동결 · 구내식당</div>
+          <p>올해 서울시가 <b>인건비를 동결(물가상승률 미반영)</b>한 것이 가장 심각. 또한 보안·출입증 문제로 시청 구내식당 이용 불가 → 직원 전원이 외부 식당에 의존, 물가 대비 급여가 낮아 복지 개선 요구가 큼.</p>
+          <div class="quote">“인건비 지원보다도 다른 복지 — 식당 이런 게 좋을 것 같은데. 여기 기구들이 많으니까 다 같이 이용할 수 있으면 플러스 요인.”<span class="who">— WeGO 담당자</span></div>
+        </div>
+        <div class="qa"><div class="qh">입지 강점</div>
+          <p>도심 한복판으로 동선·접근성 최적, 해외 델리게이션 미팅에 유리. 의장도시=서울이라는 상징성이 강점. 스마트시티 등 <b>서울의 강점과 연계되는 기술 분야</b> 기구라면 매력적인 포스트 시티가 될 수 있음.</p>
+        </div>
+        <div class="qa"><div class="qh">신규 유치 관련</div>
+          <p>ITU·월드뱅크·AfDB 등 파트너는 많지만 “서울에 오고 싶다”는 직접 수요를 WeGO에 표명하는 채널은 아님. AI 허브는 기재부 소관. 11월 상파울루 총회. 회원 대다수가 지방정부(150+/80%)이고 ODA 대상 도시가 많아 회비 100% 구조는 불가능.</p>
+        </div>
+        <p class="back">▲ 본문 요약: <a href="#c-wego">Ⅱ 기관별 시사점 ①</a> &nbsp;|&nbsp; <a href="#appendix">부록 목차로</a></p>
+      </div>
+    </article>
+
+    <!-- CityNet -->
+    <article class="appx-inst" id="a-citynet">
+      <div class="appx-head">
+        <h3>② 시티넷 (CityNet)</h3>
+        <div class="ahmeta"><span>2026. 6. 16. · 글로벌센터 10층</span><span>응답: 장영민 사업본부장·이재복 실장</span><span>면담: 최준영·최수범·김현</span></div>
+      </div>
+      <div class="appx-body">
+        <div class="qa"><div class="qh">기관 연혁 · 재정</div>
+          <p>1987년 UN Habitat·ESCAP·UNDP 창립 포럼에서 출범, 요코하마에서 20여 년 → <b>2013년 서울 이전</b>(오세훈 시장, 총회 만장일치). ESCAP이 모기관. 서울시 의장도시. 재정은 <b>서울시 보조금 65%</b>(임대·인건 일부) + 회비 30% + 프로젝트. EU 프로젝트(2016~, 로컬코디네이터)가 최대. 올해 처음 서울시와 AI 빌딩 공동수주 전망.</p>
+        </div>
+        <div class="qa"><div class="qh">정주지원이 곧 인센티브 — 핵심 메시지</div>
+          <p>10년 새 외국인이 “단기 경험”에서 “장기 정착·결혼”으로 바뀌었으나 제도가 못 따라감. 가족 정착 지원이 가장 중요. <b>유능한 직원이 정주 문제로 이탈</b>하는 사례가 반복.</p>
+          <div class="quote">“카자흐스탄 직원이 쌍둥이를 출산했는데 어린이집 대기로 떠날 결정을 하고 있고, 5년차 중국인 직원은 의료 접근이 어려워 결국 귀국했습니다. 도움을 받을 원스톱 서비스가 전혀 없습니다.”<span class="who">— 장영민 사업본부장</span></div>
+          <div class="quote">“건물이 중요한 게 아니라 국제기구가 들어오려면 사람과 인간이 중요한데, 서울시는 아직 그 시선으로 보고 있지 않은 것 같습니다.”<span class="who">— 장영민 사업본부장</span></div>
+        </div>
+        <div class="qa"><div class="qh">네트워킹 · 협업 생태계 부재</div>
+          <p>같은 건물이어도 층별 출입제한으로 협업이 거의 없음. 지난주 UN Women과의 협업이 거의 처음. 바르셀로나는 입주기구 간 네트워킹 장을 상시 운영. 한국인 사회에 속하지 않은 외국인은 커뮤니티 형성이 어려워 외로움으로 떠나기도 함.</p>
+        </div>
+        <div class="qa"><div class="qh">전담창구 · 행정</div>
+          <p>“전담 인력 1명이 기존 조직으로 연결만 해줘도 큰 도움”. 비자·모바일 개통·생활민원이 모두 허들. 공무원 <b>순환보직(5~6개월 교체)</b>으로 전문성·신뢰가 쌓이지 않는 문제 지적.</p>
+        </div>
+        <div class="qa"><div class="qh">전략 — MDB 유치</div>
+          <p>젊은 직원에게 “UN보다 MDB로 가라”고 조언할 만큼 금융기구 중요성 강조. SLW에 SM 전시는 많으나 파이낸싱 기관이 없음 → ADB·AIIB·WBG를 포럼에 함께 유치 희망. 요코하마는 14년째 스마트시티 컨퍼런스에 ADB/WBG <b>신탁기금</b>을 활용해 인니·필리핀 참가자를 유치 — 서울도 벤치마킹 가능. 메타(META)를 국제기구화하는 방안 제안.</p>
+        </div>
+        <p class="back">▲ 본문 요약: <a href="#c-citynet">Ⅱ 기관별 시사점 ②</a> &nbsp;|&nbsp; <a href="#appendix">부록 목차로</a></p>
+      </div>
+    </article>
+
+    <!-- Center -->
+    <article class="appx-inst" id="a-center">
+      <div class="appx-head">
+        <h3>③ 서울글로벌센터 사무국 (외국인이민담당관)</h3>
+        <div class="ahmeta"><span>2026. 6. 16. · 글로벌센터/본청</span><span>응답: 김희라 주무관</span><span>면담: 최준영·김현</span></div>
+      </div>
+      <div class="appx-body">
+        <div class="qa"><div class="qh">관리 구조 — 유치/지원과 분리</div>
+          <p>외국인이민담당관은 <b>건물(센터)만 관리</b>. 임대료·관리비는 시설공단(상주 8명)이 책정, <b>공유재산법에 따라 산정되어 인하 불가</b>. 기구별 지원은 각 소관부서(국제협력·기후환경·보건의료·디지털·중앙부처)로 분산. 국제협력담당관 기금으로 지원하는 곳은 사실상 시티넷 정도.</p>
+        </div>
+        <div class="qa"><div class="qh">제공 서비스</div>
+          <p>회의장 50% 할인 정도. 별도 원스톱 서비스는 없으나, 같은 건물 4·6층의 <b>서울글로벌센터(민간위탁)</b>가 외국인 생활상담을 제공하고 1층에 출입국사무소가 있어 접근성은 좋음.</p>
+        </div>
+        <div class="qa"><div class="qh">지원종료 · 재계약</div>
+          <p>10년 도래 기관 다수. <b>아시아헌법재판소연합·UNICEF·세계은행그룹이 내년 초, OHCHR은 ’25년 종료</b>. UN 계열은 자금난으로 임대료 지원을 못 받는 곳도 있어 공실 발생 가능. 종료 후 잔류/이전은 미정.</p>
+          <div class="quote">“10년이 되면 지원을 안 해주는데 — 다 10년쯤 도래하니 추후 어떻게 될지….”<span class="who">— 김희라 주무관</span></div>
+        </div>
+        <div class="qa"><div class="qh">유치 경위 · 송도 비교</div>
+          <p>ADB는 기재부가 입주 공간을 의뢰. <b>송도는 임대료 무료</b>로 유치하는 반면, 국제기구들은 대체로 서울 입지를 선호. 통합 기금 운영 제안에는 부서별 사업연계 때문에 회의적.</p>
+        </div>
+        <div class="qa"><div class="qh">요청 자료</div>
+          <p>과거 입주·퇴거 이력(입주기간·사유 포함), 빌딩 현황 자료 → 서면 제공 가능.</p>
+        </div>
+        <p class="back">▲ 본문 요약: <a href="#c-center">Ⅱ 기관별 시사점 ③</a> &nbsp;|&nbsp; <a href="#appendix">부록 목차로</a></p>
+      </div>
+    </article>
+
+    <!-- WHO -->
+    <article class="appx-inst" id="a-who">
+      <div class="appx-head">
+        <h3>④ WHO 아·태 환경보건센터 (ACE)</h3>
+        <div class="ahmeta"><span>2026. 6. 16. · 글로벌센터 11층</span><span>응답: 조혜경, Huang Liying 등</span><span>면담: 최준영·김현</span></div>
+      </div>
+      <div class="appx-body">
+        <div class="qa"><div class="qh">기관 개요 · 재정</div>
+          <p>환경부 + 서울시(임대료 등 770백만 지원: 임대·관리·사업). 별도 도너 프로젝트 펀딩 ~300만 달러(프로젝트 한정). ASG급 1명(45만 달러/년). 사업범위 <b>아태 ~30개국</b>(호주·태평양 도서국·중국·일본·캄보디아 등). 상주 24명, 한국인 4명 — <b>외국인 비중 약 70%</b>. 계약직 1년 / 스태프 정규.</p>
+        </div>
+        <div class="qa"><div class="qh">입지 — 서울 vs 송도</div>
+          <p>한국인 RD가 유치에 영향. 본인들은 <b>서울 선호</b>(접근성, 인근 UN기관, 도심·문화·역사). 단 송도는 재정지원이 더 큼. 부산도 개방적(생계비 낮음). 회의는 많으나 주로 싱가포르에서 개최.</p>
+          <div class="quote">“손님을 데려올 때 송도보다 여기가 접근이 훨씬 쉽다 — 산업은행 등 미팅이 서울에 많은데, 송도는 한 번 출장 가면 하루 일을 못 한다고들 합니다.”<span class="who">— WHO 담당자(서울시)</span></div>
+        </div>
+        <div class="qa"><div class="qh">정주 — 보증금이 최대 챌린지</div>
+          <p>1년 미만 계약직은 <b>단기임대 플랫폼(삼삼엠투 등)</b> 이용 — 홍대·합정·해방촌·이태원. 의외로 호텔보다 저렴하고 보증금이 없어 선호. 다만 서울 도심 주거의 <b>높은 보증금</b>이 외국인 정착의 큰 장벽. 렌탈 서브시디는 WHO 룰(급여 기반, 일정액 초과분 80% 보전).</p>
+        </div>
+        <div class="qa"><div class="qh">공간 · 수요</div>
+          <p>5개년 신전략으로 인력 확대 중, 사무실 거의 만석. 인턴·세컨드먼트 증가로 추가공간 필요. 서울시 추가지원이 불확실하면 송도·부산도 고려(재정 문제). 수요: <b>정보공유 플랫폼</b>(신규자 안내), <b>초급 한국어 클래스</b>(현재 중급만 존재), 건물 내 네트워킹(9월 기획).</p>
+          <div class="quote">“정보를 공유할 플랫폼이 없어요. 신규자가 사무실·추천 정보를 알 수 있는 국제기구 직원용 플랫폼이 있으면 정말 좋겠습니다. 초급 한국어 강좌도요.”<span class="who">— Huang Liying</span></div>
+        </div>
+        <div class="qa"><div class="qh">신규 유치 정보</div>
+          <p>AI 국제기구(기재부 주관) 추진, <b>Good Food Institute</b>(싱가포르→한국 사무소 예정), 건강도시(시장 공약). UNDP는 고려대 기반, 서울대 백신연구소 등 대학 입지 사례. 도시경쟁력·GFCI 노출 효과도 의의.</p>
+        </div>
+        <p class="back">▲ 본문 요약: <a href="#c-who">Ⅱ 기관별 시사점 ④</a> &nbsp;|&nbsp; <a href="#appendix">부록 목차로</a></p>
+      </div>
+    </article>
+
+    <!-- ICLEI -->
+    <article class="appx-inst" id="a-iclei">
+      <div class="appx-head">
+        <h3>⑤ 이클레이 동아시아본부 (ICLEI EAS)</h3>
+        <div class="ahmeta"><span>2026. 6. 17. · 글로벌센터 14층</span><span>응답: 류거(Ge Liu) 전략팀장·김나경 팀장</span><span>면담: 최준영·최수범·김현</span></div>
+      </div>
+      <div class="appx-body">
+        <div class="qa"><div class="qh">기관 개요</div>
+          <p>1991년 환경 이슈로 bottom-up 설립(세계사무국 본, 유럽사무국 프라이부르크 200+명). <b>동아시아본부 2012년 서울</b> 개소(박원순 시장·SMG 유치), 중앙아시아까지 관할. 서울·베이징 2개소 운영(베이징 지출은 독립성 이유로 비공개). 상주 10명.</p>
+        </div>
+        <div class="qa"><div class="qh">재정 · 임대료</div>
+          <p>서울시 보조금 <b>연 6억(고정)</b> + 자체수입(연도편차 큼: ’22 3.36억 → ’24 36억 → ’25 3.8억). 임대료 <b>9,500만원 = 서울사무소 예산의 약 12%</b>. 단 인건비는 전체예산의 <b>딱 절반 상한</b>이어서, 임대료를 낮춰도 그 차액을 인건비로 전용할 수 없음(→ 임대료 인하의 실익 제한).</p>
+        </div>
+        <div class="qa"><div class="qh">입지 · 공간</div>
+          <p>14층을 스페인대사관과 공유. <b>회의실이 작아 국제회의에 부족</b>, 대형 창으로 냉난방 불균형. 포화 상태. <b>1층 출입국사무소</b>가 비자 연장(분기별 발생)에 핵심 강점, 시청 근접도 보조금 정산·회의에 유리.</p>
+          <div class="quote">“임대료 비중이 예산에서 꽤 큽니다. 비영리 기구로서는 부담이에요. SMG가 임대료를 줄이거나 혜택을 줄 수 있다면 유치에 훨씬 매력적일 것입니다.”<span class="who">— Ge Liu 전략팀장</span></div>
+        </div>
+        <div class="qa"><div class="qh">서울 강·약점</div>
+          <p>접근성·교통·녹지·보행·K컬처에서 <b>송도·부산 대비 압도적 1위</b>. 약점은 외국인 주거비와 <b>배우자 비자(취업·사회활동 불가)</b> 문제. 글로벌센터의 원스톱 비자·무료 한국어 클래스는 강점.</p>
+        </div>
+        <div class="qa"><div class="qh">서울시 협력 이슈</div>
+          <p><b>잦은 인사이동</b>으로 우선순위·업무방식이 자주 바뀌어 장기협력 일관성이 저해됨. 부서 간 협업도 약함 — 싱가포르(100년 계획, 부처 통합 의사결정)를 벤치마크로 제시. ICLEI는 교통·순환경제·자연기반해법(NbS)도 협업 가능.</p>
+          <div class="quote">“사람이 바뀌면 아이디어도 프로젝트도 다 바뀌어 불안정합니다. 구조화된 방식으로 우선순위를 일관되게 유지할 수 있으면 좋겠습니다.”<span class="who">— Ge Liu 전략팀장</span></div>
+        </div>
+        <div class="qa"><div class="qh">대체입지 · 전략</div>
+          <p>대학캠퍼스(WFP 서울대, UNFPA 연세대) 수용 가능. 지방정부 중심 기구 선호. <b>Trump 행정부의 국제기구 자금 삭감</b> 대응으로 MDB·국제재단(blended/innovative finance) 유치가 기존기구와 시너지. META 재단화 시 한국 컨소시엄 리드 기관 제안.</p>
+        </div>
+        <p class="back">▲ 본문 요약: <a href="#c-iclei">Ⅱ 기관별 시사점 ⑤</a> &nbsp;|&nbsp; <a href="#appendix">부록 목차로</a></p>
+      </div>
+    </article>
+
+    <div class="callout" style="margin-top:8px;">
+      <b>붙임(원문).</b> 음성인식 녹취 원문 5건은 별도 텍스트 파일로 보관: ① 26.6.11 WeGO · ② 26.6.16 시티넷 · ③ 26.6.16 글로벌센터 사무국 · ④ 26.6.16 WHO 아태환경센터 · ⑤ 26.6.17 이클레이 동아시아본부. 맞춤법·기관명·인명·영문 표기에 오인식이 포함될 수 있어 최종 인용 시 확인 필요.
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="fi">
+    국제기구 서울 유치 활성화 전략 기초연구 · 인터뷰 조사 중간보고서 &nbsp;|&nbsp; 서울연구원 글로벌연구협력센터 &nbsp;|&nbsp; 2026. 6. 17.<br>
+    문의: 글로벌연구협력센터 최준영(☎ 2144-2969) · 김현(☎ 2149-1021)
+  </div>
+</footer>
+
+</body>
+</html>

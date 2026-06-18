@@ -558,6 +558,16 @@ def worldcities_page():
     if not can_access_system(u, 'worldcities'): return redirect('/?denied=worldcities')
     return render_template('worldcities.html')
 
+@app.route('/worldcities/doc/<slug>')
+def worldcities_doc(slug):
+    """글로벌 연구 디렉토리 문서 전문(HTML) 서빙 — worldcities 접근권한 게이트."""
+    u = current()
+    if not u: return redirect('/?sys=worldcities')
+    if not can_access_system(u, 'worldcities'): return redirect('/?denied=worldcities')
+    doc = next((d for d in WC_DOCS if d['slug'] == slug), None)
+    if not doc: abort(404)
+    return send_file(os.path.join(HERE, 'docs', doc['docFile']))
+
 @app.route('/urbanrobotics')
 @app.route('/urban-robotics')
 def urbanrobotics_page():
@@ -581,6 +591,23 @@ def _db_guard(subsystem):
         return None, (jsonify(error='접근 권한이 없습니다.'), 403)
     return u, None
 
+# 글로벌 연구 디렉토리(kind='document') — 풀텍스트 HTML 보고서는 docs/ 에서 서빙.
+# dbrecords에 저장하지 않아 KB prune의 영향을 받지 않음(항상 노출).
+WC_DOCS = [
+    {'slug': 'io-seoul-cabei-korea-office', 'kind': 'document',
+     'title': 'CABEI 한국사무소 개설 과정과 현황 및 한국 유치 영향요인',
+     'summary': '중미경제통합은행(CABEI) 한국사무소(2022.7 서울 여의도 IFC 개소)의 개설 경로·현황과 서울 유치에 영향을 미친 요인을 공개자료 기반으로 정리한 보고서.',
+     'date': '2026-06-18', 'tags': ['국제기구 서울유치', 'CABEI', '다자개발은행', '국제금융', '서울 여의도'],
+     'docFile': 'cabei-korea-office.html', 'docUrl': '/worldcities/doc/io-seoul-cabei-korea-office',
+     'body': '국제기구 서울유치 활성화 전략 기초연구의 사례 보고서. 한국의 CABEI 가입·출자 → 서울 유치 → 한국사무소 개소로 이어진 과정과 유치 영향요인(회원국 지위·재정기여, 중미 개발수요, 여의도 금융 인프라, 서울시 유치활동, 한-중미 FTA, CABEI 아시아 전략)을 분석한다. 상단의 **📄 전문 보기** 버튼으로 전체 보고서를 확인하세요.'},
+    {'slug': 'io-seoul-attraction-interviews', 'kind': 'document',
+     'title': '국제기구 서울 유치 활성화 전략 기초연구 — 인터뷰 조사 중간보고서',
+     'summary': '서울 소재 국제기구 대상 대면 인터뷰 5건의 중간분석과, 본 조사의 핵심 산출물인 개선 설문(질문지), 신규 유치 시사점·후보기관 발굴, 후속조치 제안을 담은 중간보고서.',
+     'date': '2026-06', 'tags': ['국제기구 서울유치', '인터뷰 조사', '유치전략', '설문 개선', '서울연구원'],
+     'docFile': 'io-seoul-attraction-interviews.html', 'docUrl': '/worldcities/doc/io-seoul-attraction-interviews',
+     'body': '국제기구 서울유치 활성화 전략 기초연구의 인터뷰 조사 중간보고서. 대면 인터뷰 5건 중간분석, 개선 설문지(핵심 산출물), 미인터뷰 기관 실행계획, 신규 유치 시사점·후보기관 발굴, 후속조치 제안으로 구성. 상단의 **📄 전문 보기** 버튼으로 전체 보고서를 확인하세요.'},
+]
+
 def _load_records(subsystem):
     import json as _json
     rows = db().execute('SELECT id,kind,slug,title,data,updated FROM dbrecords WHERE subsystem=? ORDER BY kind,title',
@@ -593,6 +620,8 @@ def _load_records(subsystem):
         rec = {'id': d['id'], 'kind': d['kind'], 'slug': d['slug'], 'title': d['title'], 'updated': d['updated']}
         rec.update(data)
         out.append(rec)
+    if subsystem == 'worldcities':
+        out.extend(copy.deepcopy(d) for d in WC_DOCS)
     return out
 
 @app.get('/api/db/<subsystem>')
