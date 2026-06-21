@@ -204,7 +204,7 @@ const META={
   worldcities:{ic:'🌐',accent:'#168f8f',accentL:'#e6f3f1',desc:'세계 도시·스마트도시·고령도시·보행도시·도시 공공공간·스마트 모빌리티의 정책·사례·지표를 담은 연구 지식베이스입니다. 도시로봇 연구의 도시 맥락을 제공합니다.'},
   urbanrobotics:{ic:'🤖',accent:'#6d4bb6',accentL:'#efeafb',desc:'자율주행 배송로봇·돌봄로봇·인간-로봇 상호작용(HRI)의 사례·구성개념·연구방법·관찰/실험 프로토콜과 연구도구를 담은 데이터베이스입니다.'},
   wpsc:{ic:'🤝',accent:'#138f8f',accentL:'#e3f3f3',desc:'세계 대도시 간 정책 교류·협력과 국제행사(WPSC 등) 출장·일정을 관리합니다.'},
-  book:{ic:'📘',accent:'#14304a',accentL:'#e7edf3',titleEn:'English Monographs',titleKr:'영문단행본 · 2종',desc:'두 영문 단행본 「성장하는 도시를 위한 도시계획」과 「Planning the Global City with AI」를 하나의 창에서 선택해 열람·메모·감수·편집합니다.'},
+  book:{ic:'📘',accent:'#14304a',accentL:'#e7edf3',titleEn:'Monographs',titleKr:'단행본 · 3종',desc:'세 권의 단행본 「성장하는 도시를 위한 도시계획」, 「Planning the Global City with AI」, 「AI 시대의 스마트도시 계획과 국제협력」을 하나의 창에서 선택해 열람·메모·감수·편집합니다.'},
 };
 const ORDER=['worldcities','urbanrobotics','wpsc','book'];
 let SYS={}, ME=null;
@@ -214,7 +214,7 @@ function canAccess(k){
   if(!ME) return false;
   if(ME.isSuper) return true;
   const s=ME.systems||[];
-  return k==='book' ? (s.includes('book')||s.includes('globalbook')) : s.includes(k);
+  return k==='book' ? (s.includes('book')||s.includes('globalbook')||s.includes('smartcity')) : s.includes(k);
 }
 function renderUserbox(){
   const ub=$('#userbox'); if(!ub)return;

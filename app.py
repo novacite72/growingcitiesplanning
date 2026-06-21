@@ -60,10 +60,11 @@ SYSTEMS = {
     'wpsc':   ('세계대도시협력', 'World Metropolitan Cooperation', 'link'),
     'book':   ('영문단행본 「성장하는 도시를 위한 도시계획」', 'Urban Planning for Growing Cities', 'open'),
     'globalbook': ('영문단행본 「Planning the Global City with AI」', 'Planning the Global City with AI', 'open'),
+    'smartcity': ('단행본 「AI 시대의 스마트도시 계획과 국제협력」', 'Smart City Planning and International Cooperation in the Age of AI', 'open'),
 }
-# 영문단행본은 포털에서 'book' 카드 하나(허브)로 진입한다. 두 책의 권한은 'book'(성장하는 도시)·
-# 'globalbook'(Planning the Global City)로 따로 관리한다.
-BOOK_SYSTEMS = ('book', 'globalbook')
+# 단행본은 포털에서 'book' 카드 하나(허브)로 진입한다. 각 책의 권한은 'book'(성장하는 도시)·
+# 'globalbook'(Planning the Global City)·'smartcity'(스마트도시와 국제협력)로 따로 관리한다.
+BOOK_SYSTEMS = ('book', 'globalbook', 'smartcity')
 # 연구 DB 서브시스템 ↔ 라우트/페이지 매핑
 DB_SUBSYSTEMS = {'worldcities', 'urbanrobotics'}
 BOOK = json.load(open(DATA, encoding='utf-8'))
@@ -72,11 +73,15 @@ BOOK = json.load(open(DATA, encoding='utf-8'))
 GBOOK_PATH = os.path.join(HERE, 'globalbook_data.json')
 GBOOK = (json.load(open(GBOOK_PATH, encoding='utf-8'))
          if os.path.exists(GBOOK_PATH) else {'chapters': [], 'meta': {}})
-BOOKS = {'growing': BOOK, 'global': GBOOK}
+# 세 번째 단행본(스마트도시와 국제협력) — 장 order를 2000번대로 오프셋(서장 2000~맺음말 2015).
+SBOOK_PATH = os.path.join(HERE, 'smartcity_data.json')
+SBOOK = (json.load(open(SBOOK_PATH, encoding='utf-8'))
+         if os.path.exists(SBOOK_PATH) else {'chapters': [], 'meta': {}})
+BOOKS = {'growing': BOOK, 'global': GBOOK, 'smart': SBOOK}
 def book_by_key(k):
     return BOOKS.get(k or 'growing', BOOK)
 def all_chapters():
-    return BOOK['chapters'] + GBOOK['chapters']
+    return BOOK['chapters'] + GBOOK['chapters'] + SBOOK['chapters']
 def find_chapter(ch):
     return next((c for c in all_chapters() if c['order'] == ch), None)
 # 한영 용어 사전 — 가상의 '장(chapter)'으로 취급해 기존 메모(comments)·편집(overrides) 인프라 재사용.
@@ -418,7 +423,7 @@ def books_hub():
     # 영문단행본 허브: 두 단행본 중 권한 있는 책을 선택해 입장
     u = current()
     if not u: return redirect('/?sys=book')
-    if not (can_access_system(u, 'book') or can_access_system(u, 'globalbook')):
+    if not (can_access_system(u, 'book') or can_access_system(u, 'globalbook') or can_access_system(u, 'smartcity')):
         return redirect('/?denied=book')
     return render_template('books_hub.html')
 
@@ -435,6 +440,14 @@ def book_global():
     if not u: return redirect('/?sys=book')
     if not can_access_system(u, 'globalbook'): return redirect('/book?denied=global')
     return render_template('index.html', book_key='global')    # 「Planning the Global City with AI」
+
+@app.route('/book/smart')
+@app.route('/smartcity')
+def book_smart():
+    u = current()
+    if not u: return redirect('/?sys=book')
+    if not can_access_system(u, 'smartcity'): return redirect('/book?denied=smart')
+    return render_template('index.html', book_key='smart')     # 「AI 시대의 스마트도시 계획과 국제협력」
 
 @app.route('/globalbook')
 @app.route('/global-book')
@@ -821,8 +834,8 @@ def login():
     if system and system in SYSTEMS:
         u0 = dict(r)
         usys = [s for s in (u0.get('systems') or '').split(',') if s]
-        if system == 'book':   # 영문단행본 허브: 두 책 중 하나라도 권한이 있으면 입장
-            ok = r['role'] == 'superadmin' or 'book' in usys or 'globalbook' in usys
+        if system == 'book':   # 단행본 허브: 세 책 중 하나라도 권한이 있으면 입장
+            ok = r['role'] == 'superadmin' or 'book' in usys or 'globalbook' in usys or 'smartcity' in usys
         else:
             ok = r['role'] == 'superadmin' or system in usys
         if not ok:
@@ -900,10 +913,10 @@ def load_order():
 def data():
     u = current()
     bkey = request.args.get('book') or 'growing'
-    need = 'globalbook' if bkey == 'global' else 'book'    # 책별 접근 권한 분리
+    need = {'global': 'globalbook', 'smart': 'smartcity'}.get(bkey, 'book')   # 책별 접근 권한 분리
     if not can_access_system(u, need):
         return jsonify(error='이 단행본에 접근할 권한이 없습니다.'), 403
-    bk = book_by_key(bkey)                                  # 'growing'(기본) | 'global'
+    bk = book_by_key(bkey)                                  # 'growing'(기본) | 'global' | 'smart'
     ov = load_overrides(); orders = load_order()
     chs = []
     for c in bk['chapters']:
@@ -1306,7 +1319,7 @@ def users():
         d['chapters'] = sorted(assigned_chapters(r['email']))
         out.append(d)
     chapters = [{'order': c['order'], 'label': c['label'], 'titleKR': c['titleKR'],
-                 'book': ('global' if c['order'] >= 1000 else 'growing')} for c in all_chapters()]
+                 'book': ('smart' if c['order'] >= 2000 else 'global' if c['order'] >= 1000 else 'growing')} for c in all_chapters()]
     sysmeta = {k: {'kr': v[0], 'en': v[1]} for k, v in SYSTEMS.items()}
     return jsonify(users=out, roles=ROLES, chapters=chapters, systems=sysmeta, isSuper=(actor['role'] == 'superadmin'))
 

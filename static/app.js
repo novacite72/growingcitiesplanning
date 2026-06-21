@@ -1,7 +1,9 @@
 'use strict';
-// ---------- book selector (기본=성장하는 도시 / global=글로벌 도시 연구 단행본) ----------
-const GB = (window.BOOK_KEY === 'global');
-const DATAURL = '/api/data' + (GB ? '?book=global' : '');
+// ---------- book selector (기본=성장하는 도시 / global=글로벌 도시 연구 / smart=스마트도시와 국제협력) ----------
+const BK = window.BOOK_KEY || 'growing';
+const GB = (BK === 'global');
+const SC = (BK === 'smart');
+const DATAURL = '/api/data' + (BK === 'growing' ? '' : '?book=' + BK);
 // ---------- state ----------
 let ME=null, ROLES={}, BOOK=null, CH=[], M={}, PARTS=[];
 let view='chapters', query='', partFilter='all', curRead=null;
@@ -36,13 +38,13 @@ async function boot(){
   ME=r.user; ROLES=r.roles;
   const d=await api(DATAURL); BOOK=d; CH=d.chapters; M=d.meta; PARTS=[...new Set(CH.map(c=>c.partname))];
   $('#login').classList.add('hidden'); $('#app').classList.remove('hidden');
-  $('#h-pub').textContent=GB?'글로벌 도시 연구 단행본 · 편집/감수 시스템':'영문단행본 "성장하는 도시를 위한 도시계획" 감수시스템';
+  $('#h-pub').textContent=SC?'단행본 「AI 시대의 스마트도시 계획과 국제협력」 · 편집/감수 시스템':GB?'글로벌 도시 연구 단행본 · 편집/감수 시스템':'영문단행본 "성장하는 도시를 위한 도시계획" 감수시스템';
   $('#h-en').textContent=M.titleEN;   // 영문 제목 크게(위)
   $('#h-kr').textContent=M.titleKR;   // 국문 제목 작게(아래)
   $('#st-ch').textContent=CH.length;
   $('#st-case').textContent=CH.reduce((s,c)=>s+c.caseCount,0);
   $('#st-img').textContent=CH.reduce((s,c)=>s+(c.images||0),0);
-  $('#foot').innerHTML=(GB?'글로벌 도시 연구 단행본 「Planning the Global City with AI」':'영문단행본 "성장하는 도시를 위한 도시계획" 감수시스템')+' &nbsp;|&nbsp; © 최준영';
+  $('#foot').innerHTML=(SC?'단행본 「AI 시대의 스마트도시 계획과 국제협력」':GB?'글로벌 도시 연구 단행본 「Planning the Global City with AI」':'영문단행본 "성장하는 도시를 위한 도시계획" 감수시스템')+' &nbsp;|&nbsp; © 최준영';
   renderUserChip(); buildFilters(); loadAllMemoCount(); render();
   $('#helpBtn').classList.remove('hidden'); $('#helpBtn').onclick=openHelp;
 }
