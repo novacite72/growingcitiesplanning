@@ -48,6 +48,10 @@ async function boot(){
 }
 // ---------- 사용 매뉴얼 · 업데이트 내역 ----------
 const CHANGELOG=[
+  {v:'v0.42', date:'2026-06-22', items:[
+    '영문단행본 진입을 하나의 창으로 통합 — 포털 “📘 영문단행본” 카드로 들어가면 두 단행본(「성장하는 도시를 위한 도시계획」·「Planning the Global City with AI」)을 고르는 허브(/book) 표시. 각 책은 권한 있을 때만 입장.',
+    '두 단행본의 접근 권한을 분리 관리 — book(성장하는 도시)·globalbook(Planning the Global City) 권한을 관리자 “시스템 권한”에서 책별로 부여. /book/growing·/book/global·/api/data에 책별 게이트 적용.',
+  ]},
   {v:'v0.41', date:'2026-06-21', items:[
     '15장 「도시계획 거버넌스 체계」 본문 재작성 — 앞장과의 중복 제거, 유엔해비타트 IG-UTP 틀로 한국 전역 사례 3선(결정의 제도·자원의 조달·시민의 참여)으로 재구성. 본문 인용 표기((UN-Habitat, 2015) 등)와 사례별 사진·출처 수록',
   ]},

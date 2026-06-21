@@ -59,7 +59,11 @@ SYSTEMS = {
     'urbanrobotics': ('도시로봇·HRI 연구 데이터베이스', 'Urban Robotics & HRI Research Database', 'open'),
     'wpsc':   ('세계대도시협력', 'World Metropolitan Cooperation', 'link'),
     'book':   ('영문단행본 「성장하는 도시를 위한 도시계획」', 'Urban Planning for Growing Cities', 'open'),
+    'globalbook': ('영문단행본 「Planning the Global City with AI」', 'Planning the Global City with AI', 'open'),
 }
+# 영문단행본은 포털에서 'book' 카드 하나(허브)로 진입한다. 두 책의 권한은 'book'(성장하는 도시)·
+# 'globalbook'(Planning the Global City)로 따로 관리한다.
+BOOK_SYSTEMS = ('book', 'globalbook')
 # 연구 DB 서브시스템 ↔ 라우트/페이지 매핑
 DB_SUBSYSTEMS = {'worldcities', 'urbanrobotics'}
 BOOK = json.load(open(DATA, encoding='utf-8'))
@@ -410,14 +414,32 @@ def architecture_page():
     return render_template('architecture.html')   # 공개(로그인 불필요) 아키텍처 안내
 
 @app.route('/book')
-def book_app():
-    return render_template('index.html', book_key='growing')   # 영문단행본 「성장하는 도시」 SPA
+def books_hub():
+    # 영문단행본 허브: 두 단행본 중 권한 있는 책을 선택해 입장
+    u = current()
+    if not u: return redirect('/?sys=book')
+    if not (can_access_system(u, 'book') or can_access_system(u, 'globalbook')):
+        return redirect('/?denied=book')
+    return render_template('books_hub.html')
+
+@app.route('/book/growing')
+def book_growing():
+    u = current()
+    if not u: return redirect('/?sys=book')
+    if not can_access_system(u, 'book'): return redirect('/book?denied=growing')
+    return render_template('index.html', book_key='growing')   # 「성장하는 도시를 위한 도시계획」
+
+@app.route('/book/global')
+def book_global():
+    u = current()
+    if not u: return redirect('/?sys=book')
+    if not can_access_system(u, 'globalbook'): return redirect('/book?denied=global')
+    return render_template('index.html', book_key='global')    # 「Planning the Global City with AI」
 
 @app.route('/globalbook')
 @app.route('/global-book')
-def globalbook_app():
-    # 글로벌 도시 연구 단행본 「Planning the Global City with AI」 — 동일 SPA, 다른 책 데이터
-    return render_template('index.html', book_key='global')
+def globalbook_redirect():
+    return redirect('/book/global')   # 구 경로 호환
 
 @app.route('/wpsc')
 def wpsc_page():
@@ -798,7 +820,12 @@ def login():
     system = j.get('system')   # 포털에서 선택한 서브시스템(선택)
     if system and system in SYSTEMS:
         u0 = dict(r)
-        if r['role'] != 'superadmin' and system not in [s for s in (u0.get('systems') or '').split(',') if s]:
+        usys = [s for s in (u0.get('systems') or '').split(',') if s]
+        if system == 'book':   # 영문단행본 허브: 두 책 중 하나라도 권한이 있으면 입장
+            ok = r['role'] == 'superadmin' or 'book' in usys or 'globalbook' in usys
+        else:
+            ok = r['role'] == 'superadmin' or system in usys
+        if not ok:
             return jsonify(error=f"'{SYSTEMS[system][0]}' 접근 권한이 없습니다."), 403
         session['system'] = system
     session.permanent = True; session['email'] = email
@@ -872,7 +899,11 @@ def load_order():
 @login_required
 def data():
     u = current()
-    bk = book_by_key(request.args.get('book'))             # 'growing'(기본) | 'global'
+    bkey = request.args.get('book') or 'growing'
+    need = 'globalbook' if bkey == 'global' else 'book'    # 책별 접근 권한 분리
+    if not can_access_system(u, need):
+        return jsonify(error='이 단행본에 접근할 권한이 없습니다.'), 403
+    bk = book_by_key(bkey)                                  # 'growing'(기본) | 'global'
     ov = load_overrides(); orders = load_order()
     chs = []
     for c in bk['chapters']:

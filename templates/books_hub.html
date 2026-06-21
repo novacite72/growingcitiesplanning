@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<title>English Monographs · 영문단행본</title>
+<style>
+:root{
+  --ink:#14304a;--ink2:#42566b;--ink3:#7d8a9b;--line:#e7e2d6;--bg:#f5f3ee;--cream:#fbf8f1;
+  --navy:#14304a;--teal:#168f8f;--amber:#f3b13b;
+  --shadow:0 1px 2px rgba(40,40,30,.05),0 10px 30px rgba(40,40,30,.07);
+  --shadow-lg:0 18px 50px rgba(40,40,30,.16);
+}
+*{box-sizing:border-box}html,body{margin:0;padding:0}
+body{font-family:"Montserrat","Pretendard","Apple SD Gothic Neo","Malgun Gothic",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:16px;color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+a{color:inherit;text-decoration:none}
+.topbar{background:var(--cream);border-bottom:1px solid var(--line)}
+.topbar-in{display:flex;align-items:center;justify-content:space-between;height:62px;gap:12px}
+.brand{display:flex;align-items:center;gap:12px;font-weight:800;font-size:16px;color:var(--navy)}
+.brand .dot{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,var(--navy),var(--teal));display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px}
+.brand b{display:block;line-height:1.15}.brand small{display:block;font-size:11px;color:var(--ink3);font-weight:600}
+.tr{display:flex;align-items:center;gap:10px}
+.home-link{font-size:13px;font-weight:700;color:var(--navy);padding:7px 12px;border-radius:8px;background:#eef0ea;border:1px solid var(--line)}
+.home-link:hover{background:#e6e8e0}
+.sysswitch{position:relative}
+.ss-btn{font-size:12.5px;font-weight:800;color:var(--navy);background:#eef0ea;border:1px solid var(--line);padding:7px 12px;border-radius:8px;cursor:pointer}
+.ss-menu{position:absolute;top:calc(100% + 6px);right:0;background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:var(--shadow-lg);padding:6px;min-width:215px;display:none;z-index:60}
+.ss-menu.open{display:block}
+.ss-menu a{display:block;padding:9px 12px;font-size:13px;font-weight:700;border-radius:7px;white-space:nowrap}
+.ss-menu a:hover{background:var(--bg)}
+.ss-menu a.cur{color:var(--navy);background:#eef0ea;cursor:default}
+.ss-menu a.ss-home{border-top:1px solid var(--line);margin-top:4px;color:var(--ink2)}
+.uchip{font-size:13px;color:var(--ink2);font-weight:700;background:#fff;border:1px solid var(--line);padding:7px 13px;border-radius:20px}
+.ulogout{font-size:12.5px;color:var(--ink3);font-weight:700;background:none;border:1px solid var(--line);padding:7px 12px;border-radius:20px;cursor:pointer}
+.hero{background:linear-gradient(180deg,#fcf9f2,#f5f3ee);border-bottom:1px solid var(--line)}
+.hero-in{padding:46px 0 36px;max-width:720px}
+.hero .kick{font-size:13px;letter-spacing:.18em;font-weight:800;color:var(--teal);text-transform:uppercase}
+.hero h1{font-size:34px;font-weight:800;letter-spacing:-.02em;margin:.3em 0 .1em;color:var(--navy)}
+.hero .ko{font-size:17px;font-weight:600;color:var(--ink2)}
+.hero p{font-size:15px;color:var(--ink2);margin:14px 0 0;max-width:600px}
+main{padding:42px 0 70px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.bk{background:#fff;border:1px solid var(--line);border-radius:18px;padding:28px;box-shadow:var(--shadow);position:relative;overflow:hidden;display:flex;flex-direction:column;transition:.18s}
+.bk::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--accent)}
+.bk.ok{cursor:pointer}.bk.ok:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:#d7d0c0}
+.bk.locked{opacity:.72}
+.bk .ic{width:60px;height:60px;border-radius:15px;display:flex;align-items:center;justify-content:center;font-size:32px;background:var(--accentL);margin-bottom:18px}
+.bk h3{font-size:21px;font-weight:800;margin:0 0 3px;letter-spacing:-.01em;color:var(--ink)}
+.bk .kr{font-size:14px;color:var(--ink3);font-weight:700;margin-bottom:14px}
+.bk .desc{font-size:14px;color:var(--ink2);line-height:1.65;flex:1}
+.bk .meta{font-size:12.5px;color:var(--ink3);font-weight:700;margin:14px 0 0}
+.bk .foot{display:flex;align-items:center;justify-content:space-between;margin-top:18px;padding-top:14px;border-top:1px dashed var(--line)}
+.badge{font-size:11.5px;font-weight:800;padding:3px 11px;border-radius:20px}
+.b-ok{background:#e7f3ec;color:#3a8a4a}.b-lock{background:#f2ece0;color:#9a8a6a}
+.bk .go{font-size:13.5px;font-weight:800;color:var(--accent)}
+.bk .lockmsg{font-size:12.5px;color:var(--ink3);font-weight:700}
+footer{border-top:1px solid var(--line);background:var(--cream);padding:26px 0;color:var(--ink3);font-size:12.5px;text-align:center}
+@media(max-width:760px){.grid{grid-template-columns:1fr}.hero h1{font-size:26px}}
+</style>
+</head>
+<body>
+<div class="topbar"><div class="wrap topbar-in">
+  <a href="/" class="brand"><span class="dot">📘</span><span><b>English Monographs</b><small>영문단행본 · 2종</small></span></a>
+  <div class="tr">
+    <div class="sysswitch" id="sysSwitch" style="display:none">
+      <button class="ss-btn" id="ssBtn">⇄ 서브시스템 이동 ▾</button>
+      <div class="ss-menu" id="ssMenu">
+        <a href="/worldcities">🌐 글로벌 도시 연구</a>
+        <a href="/urbanrobotics">🤖 도시로봇·HRI 연구 DB</a>
+        <a href="/wpsc">🤝 세계대도시협력</a>
+        <a href="/book" class="cur">📘 영문단행본</a>
+        <a href="/graph">🕸 지식 그래프</a>
+        <a href="/" class="ss-home">🏠 플랫폼 홈</a>
+      </div>
+    </div>
+    <a href="/" class="home-link">← 플랫폼 홈</a>
+    <span id="userbox"></span>
+  </div>
+</div></div>
+
+<header class="hero"><div class="wrap hero-in">
+  <div class="kick">English Monographs · 영문단행본</div>
+  <h1>English Monographs</h1>
+  <div class="ko">영문단행본 · 2종</div>
+  <p>Select a monograph to enter its reading, memo, review, and editing system.
+    이용하실 단행본을 선택하세요. 권한이 있는 책만 입장할 수 있습니다.</p>
+</div></header>
+
+<main><div class="wrap">
+  <div class="grid" id="grid"><div style="color:var(--ink3)">불러오는 중…</div></div>
+</div></main>
+
+<footer><div class="wrap">English Monographs · 영문단행본 &nbsp;|&nbsp; © Dr. Junyoung Choi</div></footer>
+
+<script>
+'use strict';
+const $=s=>document.querySelector(s);
+const BOOKS=[
+  {key:'book', route:'/book/growing', ic:'📘', accent:'#14304a', accentL:'#e7edf3',
+   en:'Urban Planning for Growing Cities', kr:'성장하는 도시를 위한 도시계획',
+   meta:'18개 장 · 한국·서울의 도시계획 경험',
+   desc:'한국과 서울의 도시계획 경험을 밀도·중심·가로·거버넌스 등 체계별로 정리한 영문 단행본입니다. 본문 열람·문단 메모·감수·직접 편집을 제공합니다.'},
+  {key:'globalbook', route:'/book/global', ic:'🌐', accent:'#0a6e8c', accentL:'#e2f1f5',
+   en:'Planning the Global City with AI', kr:'서울의 데이터 기반 도시계획과 국제 도시협력',
+   meta:'14개 장 · AI·데이터 기반 도시계획',
+   desc:'AI와 빅데이터에 기반한 도시계획과 국제 도시협력을 다룬 두 번째 영문 단행본입니다. 동일 엔진으로 열람·메모·편집을 제공합니다.'},
+];
+let ME=null;
+function canAccess(key){return !!(ME && (ME.isSuper || (ME.systems||[]).includes(key)));}
+async function boot(){
+  try{ME=(await (await fetch('/api/me')).json()).user||null;}catch(e){ME=null;}
+  if(!ME){location.replace('/?sys=book');return;}
+  // 서브시스템 스위처(수퍼관리자만)
+  if(ME.isSuper){const sw=$('#sysSwitch');sw.style.display='block';
+    const sm=$('#ssMenu');$('#ssBtn').onclick=e=>{e.stopPropagation();sm.classList.toggle('open');};
+    document.addEventListener('click',()=>sm.classList.remove('open'));}
+  $('#userbox').innerHTML=`<span class="uchip">${ME.name||ME.email}${ME.isSuper?' · 수퍼관리자':''}</span> <button class="ulogout" id="ulogout">로그아웃</button>`;
+  $('#ulogout').onclick=async()=>{await fetch('/api/logout',{method:'POST'});location.href='/';};
+  render();
+  const p=new URLSearchParams(location.search);
+  if(p.get('denied')){const k=p.get('denied')==='global'?'globalbook':'book';
+    const b=BOOKS.find(x=>x.key===k);alert(`‘${b.en}’ 접근 권한이 없습니다. 관리자에게 문의하세요.`);}
+}
+function render(){
+  $('#grid').innerHTML=BOOKS.map(b=>{const ok=canAccess(b.key);
+    return `<div class="bk ${ok?'ok':'locked'}" style="--accent:${b.accent};--accentL:${b.accentL}" data-route="${ok?b.route:''}">
+      <div class="ic">${b.ic}</div>
+      <h3>${b.en}</h3><div class="kr">${b.kr}</div>
+      <div class="desc">${b.desc}</div>
+      <div class="meta">${b.meta}</div>
+      <div class="foot">${ok?'<span class="badge b-ok">열람 가능</span>':'<span class="badge b-lock">🔒 권한 없음</span>'}
+        ${ok?'<span class="go">들어가기 ›</span>':'<span class="lockmsg">관리자에게 문의</span>'}</div></div>`;
+  }).join('');
+  document.querySelectorAll('.bk.ok').forEach(el=>el.onclick=()=>{location.href=el.dataset.route;});
+}
+boot();
+</script>
+</body>
+</html>
