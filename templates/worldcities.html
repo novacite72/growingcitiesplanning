@@ -73,6 +73,11 @@ a{color:inherit;text-decoration:none}
 .chip:hover{border-color:var(--primary);color:var(--primary)}
 .chip.active{background:var(--primary);border-color:var(--primary);color:#fff}
 .chip .cnt{font-size:10.5px;opacity:.75;margin-left:4px}
+.cat-row{gap:8px;margin-bottom:6px}
+.catchip{border:1.5px solid var(--line);background:#fff;color:var(--ink2);font-size:14px;font-weight:800;padding:9px 18px;border-radius:10px;cursor:pointer;transition:.15s;white-space:nowrap;font-family:inherit;letter-spacing:-.01em}
+.catchip:hover{border-color:var(--primary);color:var(--primary)}
+.catchip.active{background:var(--primary);border-color:var(--primary);color:#fff;box-shadow:0 2px 8px rgba(10,110,140,.18)}
+.catchip .cnt{font-size:11px;opacity:.8;margin-left:5px}
 .region-select{border:1.5px solid var(--line);background:#fff;color:var(--ink2);font-size:12.5px;font-weight:700;padding:5px 30px 5px 12px;border-radius:20px;cursor:pointer;font-family:inherit;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='7'%3E%3Cpath d='M0 0l5 7 5-7z' fill='%237a8aa0'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;outline:none;transition:.15s}
 .region-select:focus{border-color:var(--primary)}
 
@@ -241,14 +246,18 @@ footer{border-top:1px solid var(--line);background:#fff;padding:22px 0;color:var
       <option value="oceania">오세아니아 Oceania</option>
     </select>
   </div>
-  <div class="filter-row">
+  <div class="filter-row cat-row" id="catRow">
+    <button class="catchip active" data-cat="monitoring">🌐 글로벌 정책·연구 모니터링 <span class="cnt" id="cat-monitoring"></span></button>
+    <button class="catchip" data-cat="research">🏛 연구 <span class="cnt" id="cat-research"></span></button>
+    <button class="catchip" data-cat="oda">🤝 ODA <span class="cnt" id="cat-oda"></span></button>
+  </div>
+  <div class="filter-row kind-row" id="kindRow">
     <span class="filter-label">유형:</span>
     <button class="chip active" data-kind="all" id="chip-all">전체 All <span class="cnt" id="cnt-all"></span></button>
     <button class="chip" data-kind="city" id="chip-city">🏙 도시 Cities <span class="cnt" id="cnt-city"></span></button>
     <button class="chip" data-kind="case" id="chip-case">📋 사례 Cases <span class="cnt" id="cnt-case"></span></button>
     <button class="chip" data-kind="policy" id="chip-policy">📜 정책 Policies <span class="cnt" id="cnt-policy"></span></button>
     <button class="chip" data-kind="topic" id="chip-topic">💡 토픽 Topics <span class="cnt" id="cnt-topic"></span></button>
-    <button class="chip" data-kind="document" id="chip-document">📄 글로벌 연구 디렉토리 <span class="cnt" id="cnt-document"></span></button>
   </div>
 </div></div>
 
@@ -290,6 +299,9 @@ function api(url,opts){
 /* ── state ── */
 let ME=null, ALL=[], COUNTS={}, INDEX={};
 let kindFilter='all', regionFilter='', searchQ='', DETAIL_REC=null;
+let categoryFilter='monitoring';   // monitoring(위키) | research(연구) | oda
+// 레코드 → 상위 카테고리. document 종류는 data.category(research|oda)로 구분, 그 외는 모니터링.
+function recCategory(r){ return r.kind==='document' ? (r.category||'research') : 'monitoring'; }
 
 /* ── kind meta ── */
 const KIND_META={
@@ -304,6 +316,8 @@ const KIND_META={
 const FIELD_LABELS={
   name:'도시명',country:'국가',region:'지역',population:'인구',
   summary:'요약',definition:'정의',
+  program:'프로그램',agency:'발주·주관',performer:'수행',site:'대상지',
+  projectType:'사업 유형',status:'진행 상태',timeline:'추진 경과',keyDocuments:'주요 문서',date:'일자',
   smartCityRelevance:'스마트도시 연관성',agingCityRelevance:'고령도시 연관성',
   walkabilityRelevance:'보행도시 연관성',publicSpaceRelevance:'공공공간 연관성',
   careInfrastructureRelevance:'돌봄 인프라 연관성',urbanRobotRelevance:'도시로봇 연관성',
@@ -389,11 +403,13 @@ async function loadData(){
 }
 
 function updateCountBadges(){
-  const total=ALL.length;
-  $('#cnt-all').textContent=total;
-  ['city','case','policy','topic','document'].forEach(k=>{
-    const cnt=COUNTS[k]||ALL.filter(r=>r.kind===k).length;
-    const el=$('#cnt-'+k); if(el) el.textContent=cnt;
+  const cat={monitoring:0,research:0,oda:0};
+  ALL.forEach(r=>{const c=recCategory(r); cat[c]=(cat[c]||0)+1;});
+  ['monitoring','research','oda'].forEach(c=>{const el=$('#cat-'+c); if(el) el.textContent=cat[c]||0;});
+  // 모니터링 내 유형 카운트(document 제외)
+  $('#cnt-all').textContent=cat.monitoring;
+  ['city','case','policy','topic'].forEach(k=>{
+    const el=$('#cnt-'+k); if(el) el.textContent=ALL.filter(r=>r.kind===k).length;
   });
 }
 
@@ -413,9 +429,11 @@ function renderHeroStats(d){
 
 /* ── filtering ── */
 function filtered(){
-  let recs=ALL;
-  if(kindFilter!=='all') recs=recs.filter(r=>r.kind===kindFilter);
-  if(regionFilter) recs=recs.filter(r=>r.region===regionFilter||r.region===regionFilter);
+  let recs=ALL.filter(r=>recCategory(r)===categoryFilter);
+  if(categoryFilter==='monitoring'){
+    if(kindFilter!=='all') recs=recs.filter(r=>r.kind===kindFilter);
+    if(regionFilter) recs=recs.filter(r=>r.region===regionFilter);
+  }
   if(searchQ){
     const q=searchQ.toLowerCase();
     recs=recs.filter(r=>{
@@ -460,13 +478,18 @@ function showError(msg){
 
 function cardHTML(r){
   const m=KIND_META[r.kind]||KIND_META.city;
+  let kLabel=m.label, kLabelEn=m.labelEn, kIcon=m.icon;
+  if(r.kind==='document'){
+    if(recCategory(r)==='oda'){kLabel='ODA';kLabelEn='ODA';kIcon='🤝';}
+    else {kLabel='연구';kLabelEn='Research';kIcon='🏛';}
+  }
   const sub=cardSub(r);
   const snippet=r.summary||r.definition||'';
   return `<div class="card ${m.cls}" data-slug="${esc(r.slug)}" style="cursor:pointer">
     <div class="card-head">
-      <div class="card-icon">${m.icon}</div>
+      <div class="card-icon">${kIcon}</div>
       <div class="card-meta">
-        <div class="card-kind">${m.label} · ${m.labelEn}</div>
+        <div class="card-kind">${kLabel} · ${kLabelEn}</div>
         <div class="card-title">${esc(r.title||r.name||r.slug)}</div>
         ${sub?`<div class="card-sub">${esc(sub)}</div>`:''}
       </div>
@@ -524,7 +547,7 @@ function renderDetail(rec){
   `;
 
   // skip fields that are structural/meta or already shown in header (body=서술형 위키, 별도 렌더)
-  const SKIP=new Set(['id','slug','title','name','kind','createdAt','updatedAt','updated','body','docUrl','docFile']);
+  const SKIP=new Set(['id','slug','title','name','kind','createdAt','updatedAt','updated','body','docUrl','docFile','category']);
   // field ordering — known important fields first
   const ORDER=['summary','definition','country','region','population','policyDomain','period','leadOrganization',
     'implementationStatus','caseType','cityId','urbanProblem','intervention','outcomes','topicCategory',
@@ -670,6 +693,18 @@ function checkDeepLink(){
 }
 
 /* ── filter events ── */
+document.querySelectorAll('.catchip[data-cat]').forEach(btn=>{
+  btn.onclick=()=>{
+    document.querySelectorAll('.catchip[data-cat]').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    categoryFilter=btn.dataset.cat;
+    // 유형(kind) 행은 모니터링에서만 표시, 카테고리 전환 시 유형은 전체로 초기화
+    kindFilter='all';
+    document.querySelectorAll('.chip[data-kind]').forEach(b=>b.classList.toggle('active',b.dataset.kind==='all'));
+    $('#kindRow').style.display = categoryFilter==='monitoring' ? '' : 'none';
+    renderList();
+  };
+});
 document.querySelectorAll('.chip[data-kind]').forEach(btn=>{
   btn.onclick=()=>{
     document.querySelectorAll('.chip[data-kind]').forEach(b=>b.classList.remove('active'));
