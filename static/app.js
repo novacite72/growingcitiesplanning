@@ -302,7 +302,7 @@ async function openReader(order,scrollBi){
       if(b.kind==='core'){
         const cs=c.cases.find(x=>x.kr===b.kr);const kws=cs?cs.kws||cs.keywords:null;
         const kw=kws?kws.map(k=>`<span class="kw">${esc(k)}</span>`).join(''):'';
-        body+=`<div class="case-h blk" id="${id}" data-bi="${bi}"><span class="cbd">서울의 경험</span><h2>${esc(b.kr)}${b.en?`<span class="en" style="display:block;font-size:14px;font-style:italic;color:#a07b3a;font-weight:500">${esc(b.en)}</span>`:''}</h2>${kw?`<div class="kws">${kw}</div>`:''}${memoUI(id,b.kr)}</div>`;
+        body+=`<div class="case-h blk" id="${id}" data-bi="${bi}"><span class="cbd">${SC?'핵심 사례':'서울의 경험'}</span><h2>${esc(b.kr)}${b.en?`<span class="en" style="display:block;font-size:14px;font-style:italic;color:#a07b3a;font-weight:500">${esc(b.en)}</span>`:''}</h2>${kw?`<div class="kws">${kw}</div>`:''}${memoUI(id,b.kr)}</div>`;
         toc+=`<a href="#${id}" class="t${b.level===1?1:2} core" data-id="${id}">★ ${esc(b.kr)}</a>`;return;
       }
       const tag=b.level===1?'h2':b.level===2?'h3':'h4';

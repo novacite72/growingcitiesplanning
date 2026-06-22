@@ -142,10 +142,10 @@
     },
     {
      "t": "h",
-     "level": 2,
-     "kr": "사례 1. 인천 송도 — U-City에서 스마트시티 1세대로",
-     "en": "",
-     "kind": "sub"
+     "level": 1,
+     "kr": "인천 송도",
+     "en": "Songdo, Korea",
+     "kind": "core"
     },
     {
      "t": "p",
@@ -173,10 +173,10 @@
     },
     {
      "t": "h",
-     "level": 2,
-     "kr": "사례 2. 바르셀로나 — 슈퍼블록과 기술주권으로의 전환",
-     "en": "",
-     "kind": "sub"
+     "level": 1,
+     "kr": "바르셀로나",
+     "en": "Barcelona, Spain",
+     "kind": "core"
     },
     {
      "t": "p",
@@ -204,10 +204,10 @@
     },
     {
      "t": "h",
-     "level": 2,
-     "kr": "사례 3. 싱가포르 — Smart Nation과 Virtual Singapore",
-     "en": "",
-     "kind": "sub"
+     "level": 1,
+     "kr": "싱가포르",
+     "en": "Singapore",
+     "kind": "core"
     },
     {
      "t": "p",
@@ -310,7 +310,7 @@
    ],
    "mode": "authored",
    "file": "01.md",
-   "chars": 4594,
+   "chars": 4501,
    "images": 5,
    "tables": 0,
    "headings": [
@@ -318,13 +318,41 @@
     "기술 결정론 비판과 '공간계획으로서의 스마트도시'",
     "스마트 공간론: 센서와 데이터가 만드는 새로운 공간 위계",
     "핵심 사례 3선",
-    "사례 1. 인천 송도 — U-City에서 스마트시티 1세대로",
-    "사례 2. 바르셀로나 — 슈퍼블록과 기술주권으로의 전환",
-    "사례 3. 싱가포르 — Smart Nation과 Virtual Singapore",
     "정리와 원칙"
    ],
-   "cases": [],
-   "caseCount": 0
+   "cases": [
+    {
+     "kr": "인천 송도",
+     "en": "Songdo, Korea",
+     "keywords": [
+      "U-City",
+      "신도시",
+      "도시통합운영센터",
+      "스마트시티 1세대"
+     ]
+    },
+    {
+     "kr": "바르셀로나",
+     "en": "Barcelona, Spain",
+     "keywords": [
+      "Superblock",
+      "기술주권",
+      "Decidim",
+      "DECODE"
+     ]
+    },
+    {
+     "kr": "싱가포르",
+     "en": "Singapore",
+     "keywords": [
+      "Smart Nation",
+      "Virtual Singapore",
+      "Digital Twin",
+      "국가 데이터 플랫폼"
+     ]
+    }
+   ],
+   "caseCount": 3
   },
   {
    "order": 2002,
@@ -410,10 +438,10 @@
     },
     {
      "t": "h",
-     "level": 2,
-     "kr": "사례 1: 서울 생활인구 — 통신 빅데이터로 도시를 다시 세다",
-     "en": "",
-     "kind": "sub"
+     "level": 1,
+     "kr": "서울 생활인구",
+     "en": "Seoul De-facto Population",
+     "kind": "core"
     },
     {
      "t": "p",
@@ -433,10 +461,10 @@
     },
     {
      "t": "h",
-     "level": 2,
-     "kr": "사례 2: 부산 AI 생활권계획 실증 — 탐지·진단·재배치의 파이프라인",
-     "en": "",
-     "kind": "sub"
+     "level": 1,
+     "kr": "부산 AI 생활권계획",
+     "en": "Busan AI Living-zone Planning",
+     "kind": "core"
     },
     {
      "t": "img",
@@ -464,10 +492,10 @@
     },
     {
      "t": "h",
-     "level": 2,
-     "kr": "사례 3: 수원 15분도시 — 격자 빅데이터와 비용편익의 만남",
-     "en": "",
-     "kind": "sub"
+     "level": 1,
+     "kr": "수원 15분도시",
+     "en": "Suwon 15-min City",
+     "kind": "core"
     },
     {
      "t": "img",
@@ -570,20 +598,47 @@
    ],
    "mode": "authored",
    "file": "02.md",
-   "chars": 5821,
+   "chars": 5740,
    "images": 5,
    "tables": 0,
    "headings": [
     "도시 빅데이터의 종류와 그 한계",
     "머신러닝·군집화·최적화의 계획 적용",
     "핵심 사례 3선",
-    "사례 1: 서울 생활인구 — 통신 빅데이터로 도시를 다시 세다",
-    "사례 2: 부산 AI 생활권계획 실증 — 탐지·진단·재배치의 파이프라인",
-    "사례 3: 수원 15분도시 — 격자 빅데이터와 비용편익의 만남",
     "정리와 원칙"
    ],
-   "cases": [],
-   "caseCount": 0
+   "cases": [
+    {
+     "kr": "서울 생활인구",
+     "en": "Seoul De-facto Population",
+     "keywords": [
+      "통신 빅데이터",
+      "생활인구",
+      "도시 진단"
+     ]
+    },
+    {
+     "kr": "부산 AI 생활권계획",
+     "en": "Busan AI Living-zone Planning",
+     "keywords": [
+      "Louvain",
+      "E2SFCA",
+      "ILP",
+      "시설 재배치"
+     ]
+    },
+    {
+     "kr": "수원 15분도시",
+     "en": "Suwon 15-min City",
+     "keywords": [
+      "250m 격자",
+      "E2SFCA",
+      "Monte-Carlo BCA",
+      "B/C"
+     ]
+    }
+   ],
+   "caseCount": 3
   },
   {
    "order": 2003,
@@ -656,10 +711,10 @@
     },
     {
      "t": "h",
-     "level": 2,
-     "kr": "사례 1: 서울 시민 페르소나·AI 에이전트 — 합성된 시민으로 정책을 시험하다",
-     "en": "",
-     "kind": "sub"
+     "level": 1,
+     "kr": "시민 페르소나·AI 에이전트",
+     "en": "Synthetic Citizen Personas",
+     "kind": "core"
     },
     {
      "t": "p",
@@ -687,10 +742,10 @@
     },
     {
      "t": "h",
-     "level": 2,
-     "kr": "사례 2: LLM 기반 계획 시나리오·보고서 자동 생성",
-     "en": "",
-     "kind": "sub"
+     "level": 1,
+     "kr": "계획 시나리오 생성",
+     "en": "LLM Scenario Generation",
+     "kind": "core"
     },
     {
      "t": "p",
@@ -718,10 +773,10 @@
     },
     {
      "t": "h",
-     "level": 2,
-     "kr": "사례 3: 생성형 AI 민원·참여 챗봇 — 소통의 문턱을 낮추다",
-     "en": "",
-     "kind": "sub"
+     "level": 1,
+     "kr": "생성형 참여 챗봇",
+     "en": "Generative Participation Chatbot",
+     "kind": "core"
     },
     {
      "t": "p",
@@ -824,7 +879,7 @@
    ],
    "mode": "authored",
    "file": "03.md",
-   "chars": 4594,
+   "chars": 4519,
    "images": 5,
    "tables": 0,
    "headings": [
@@ -832,13 +887,40 @@
     "계획 지원의 세 가지 활용 축",
     "환각·편향·검증이라는 숙제",
     "핵심 사례 3선",
-    "사례 1: 서울 시민 페르소나·AI 에이전트 — 합성된 시민으로 정책을 시험하다",
-    "사례 2: LLM 기반 계획 시나리오·보고서 자동 생성",
-    "사례 3: 생성형 AI 민원·참여 챗봇 — 소통의 문턱을 낮추다",
     "정리와 원칙"
    ],
-   "cases": [],
-   "caseCount": 0
+   "cases": [
+    {
+     "kr": "시민 페르소나·AI 에이전트",
+     "en": "Synthetic Citizen Personas",
+     "keywords": [
+      "LLM",
+      "AI Agent",
+      "정책 시뮬레이션",
+      "KAIA"
+     ]
+    },
+    {
+     "kr": "계획 시나리오 생성",
+     "en": "LLM Scenario Generation",
+     "keywords": [
+      "Generative AI",
+      "시나리오",
+      "문서 자동화",
+      "RAG"
+     ]
+    },
+    {
+     "kr": "생성형 참여 챗봇",
+     "en": "Generative Participation Chatbot",
+     "keywords": [
+      "Chatbot",
+      "민원 자동화",
+      "시민 소통"
+     ]
+    }
+   ],
+   "caseCount": 3
   },
   {
    "order": 2004,
@@ -932,10 +1014,10 @@
     },
     {
      "t": "h",
-     "level": 2,
-     "kr": "사례 ① 서울 S-Map·버추얼 서울 — 행정에 들어온 3D 디지털트윈",
-     "en": "",
-     "kind": "sub"
+     "level": 1,
+     "kr": "버추얼 서울 S-Map",
+     "en": "Virtual Seoul (S-Map)",
+     "kind": "core"
     },
     {
      "t": "p",
@@ -963,10 +1045,10 @@
     },
     {
      "t": "h",
-     "level": 2,
-     "kr": "사례 ② 용산 디지털물류 시범도시·'로봇시티' — 디지털트윈으로 검증한 배송로봇 도시설계",
-     "en": "",
-     "kind": "sub"
+     "level": 1,
+     "kr": "용산 로봇시티",
+     "en": "Yongsan Robot City",
+     "kind": "core"
     },
     {
      "t": "p",
@@ -994,10 +1076,10 @@
     },
     {
      "t": "h",
-     "level": 2,
-     "kr": "사례 ③ 버추얼 싱가포르 — 국가 단위 디지털트윈",
-     "en": "",
-     "kind": "sub"
+     "level": 1,
+     "kr": "버추얼 싱가포르",
+     "en": "Virtual Singapore",
+     "kind": "core"
     },
     {
      "t": "img",
@@ -1108,20 +1190,45 @@
    ],
    "mode": "authored",
    "file": "04.md",
-   "chars": 5628,
+   "chars": 5540,
    "images": 8,
    "tables": 0,
    "headings": [
     "디지털트윈의 세 위계 — 3D 모델에서 시뮬레이션까지",
     "가상도시와 피지컬 AI를 위한 설계 검증",
     "핵심 사례 3선",
-    "사례 ① 서울 S-Map·버추얼 서울 — 행정에 들어온 3D 디지털트윈",
-    "사례 ② 용산 디지털물류 시범도시·'로봇시티' — 디지털트윈으로 검증한 배송로봇 도시설계",
-    "사례 ③ 버추얼 싱가포르 — 국가 단위 디지털트윈",
     "정리와 원칙"
    ],
-   "cases": [],
-   "caseCount": 0
+   "cases": [
+    {
+     "kr": "버추얼 서울 S-Map",
+     "en": "Virtual Seoul (S-Map)",
+     "keywords": [
+      "Digital Twin",
+      "3D 행정",
+      "S-Map"
+     ]
+    },
+    {
+     "kr": "용산 로봇시티",
+     "en": "Yongsan Robot City",
+     "keywords": [
+      "ADR",
+      "Cesium",
+      "디지털트윈 실증",
+      "Physical AI"
+     ]
+    },
+    {
+     "kr": "버추얼 싱가포르",
+     "en": "Virtual Singapore",
+     "keywords": [
+      "국가 Digital Twin",
+      "시뮬레이션"
+     ]
+    }
+   ],
+   "caseCount": 3
   },
   {
    "order": 2005,
@@ -1199,10 +1306,10 @@
     },
     {
      "t": "h",
-     "level": 2,
-     "kr": "사례 ① 서울 올빼미버스 — 통신 빅데이터로 노선을 그리다",
-     "en": "",
-     "kind": "sub"
+     "level": 1,
+     "kr": "서울 올빼미버스",
+     "en": "Seoul Owl Bus",
+     "kind": "core"
     },
     {
      "t": "p",
@@ -1230,10 +1337,10 @@
     },
     {
      "t": "h",
-     "level": 2,
-     "kr": "사례 ② 헬싱키 Whim — 세계 첫 MaaS 통합 플랫폼",
-     "en": "",
-     "kind": "sub"
+     "level": 1,
+     "kr": "헬싱키 Whim",
+     "en": "Helsinki Whim",
+     "kind": "core"
     },
     {
      "t": "p",
@@ -1261,10 +1368,10 @@
     },
     {
      "t": "h",
-     "level": 2,
-     "kr": "사례 ③ TOD·15분도시와 결합한 탄소중립 모빌리티 — 파리·수원의 길",
-     "en": "",
-     "kind": "sub"
+     "level": 1,
+     "kr": "TOD·15분도시 탄소중립",
+     "en": "TOD & Carbon-neutral Mobility",
+     "kind": "core"
     },
     {
      "t": "p",
@@ -1367,20 +1474,45 @@
    ],
    "mode": "authored",
    "file": "05.md",
-   "chars": 5340,
+   "chars": 5266,
    "images": 6,
    "tables": 0,
    "headings": [
     "MaaS와 수요응답형 교통 — 이동을 하나의 서비스로",
     "TOD와 탄소중립의 결합 — 토지이용이 곧 교통이다",
     "핵심 사례 3선",
-    "사례 ① 서울 올빼미버스 — 통신 빅데이터로 노선을 그리다",
-    "사례 ② 헬싱키 Whim — 세계 첫 MaaS 통합 플랫폼",
-    "사례 ③ TOD·15분도시와 결합한 탄소중립 모빌리티 — 파리·수원의 길",
     "정리와 원칙"
    ],
-   "cases": [],
-   "caseCount": 0
+   "cases": [
+    {
+     "kr": "서울 올빼미버스",
+     "en": "Seoul Owl Bus",
+     "keywords": [
+      "심야버스",
+      "통신 빅데이터",
+      "수요기반 노선"
+     ]
+    },
+    {
+     "kr": "헬싱키 Whim",
+     "en": "Helsinki Whim",
+     "keywords": [
+      "MaaS",
+      "통합 모빌리티",
+      "구독형 교통"
+     ]
+    },
+    {
+     "kr": "TOD·15분도시 탄소중립",
+     "en": "TOD & Carbon-neutral Mobility",
+     "keywords": [
+      "TOD",
+      "15분도시",
+      "탄소중립"
+     ]
+    }
+   ],
+   "caseCount": 3
   },
   {
    "order": 2006,
@@ -1458,10 +1590,10 @@
     },
     {
      "t": "h",
-     "level": 2,
-     "kr": "사례 1 대한민국 전자정부 — 정부24·G4C로 본 행정 디지털화의 토대",
-     "en": "",
-     "kind": "sub"
+     "level": 1,
+     "kr": "정부24",
+     "en": "Government24",
+     "kind": "core"
     },
     {
      "t": "p",
@@ -1489,10 +1621,10 @@
     },
     {
      "t": "h",
-     "level": 2,
-     "kr": "사례 2 국가공간정보체계·UPIS — 계획행정의 디지털화",
-     "en": "",
-     "kind": "sub"
+     "level": 1,
+     "kr": "국가공간정보·UPIS",
+     "en": "NSDI & UPIS",
+     "kind": "core"
     },
     {
      "t": "p",
@@ -1520,10 +1652,10 @@
     },
     {
      "t": "h",
-     "level": 2,
-     "kr": "사례 3 디지털플랫폼정부 DPG — 데이터 기반 정부 혁신 전략",
-     "en": "",
-     "kind": "sub"
+     "level": 1,
+     "kr": "디지털플랫폼정부",
+     "en": "Digital Platform Government",
+     "kind": "core"
     },
     {
      "t": "p",
@@ -1626,20 +1758,45 @@
    ],
    "mode": "authored",
    "file": "06.md",
-   "chars": 5142,
+   "chars": 5059,
    "images": 6,
    "tables": 0,
    "headings": [
     "전자정부는 스마트도시계획의 제도적 인프라다",
     "국가공간정보기반 NSDI와 도시계획정보체계 UPIS",
     "핵심 사례 3선",
-    "사례 1 대한민국 전자정부 — 정부24·G4C로 본 행정 디지털화의 토대",
-    "사례 2 국가공간정보체계·UPIS — 계획행정의 디지털화",
-    "사례 3 디지털플랫폼정부 DPG — 데이터 기반 정부 혁신 전략",
     "정리와 원칙"
    ],
-   "cases": [],
-   "caseCount": 0
+   "cases": [
+    {
+     "kr": "정부24",
+     "en": "Government24",
+     "keywords": [
+      "e-Government",
+      "G4C",
+      "EGDI"
+     ]
+    },
+    {
+     "kr": "국가공간정보·UPIS",
+     "en": "NSDI & UPIS",
+     "keywords": [
+      "NSDI",
+      "UPIS",
+      "V-World",
+      "LURIS"
+     ]
+    },
+    {
+     "kr": "디지털플랫폼정부",
+     "en": "Digital Platform Government",
+     "keywords": [
+      "DPG",
+      "데이터 기반 정부"
+     ]
+    }
+   ],
+   "caseCount": 3
   },
   {
    "order": 2007,
@@ -1705,10 +1862,10 @@
     },
     {
      "t": "h",
-     "level": 2,
-     "kr": "사례 1 데이터센터의 도시 인프라화 — 입지·전력·냉각 갈등",
-     "en": "",
-     "kind": "sub"
+     "level": 1,
+     "kr": "데이터센터 입지",
+     "en": "Data Center Siting",
+     "kind": "core"
     },
     {
      "t": "p",
@@ -1736,10 +1893,10 @@
     },
     {
      "t": "h",
-     "level": 2,
-     "kr": "사례 2 토론토 사이드워크랩 무산 — 데이터 거버넌스의 실패",
-     "en": "",
-     "kind": "sub"
+     "level": 1,
+     "kr": "토론토 사이드워크랩",
+     "en": "Toronto Sidewalk Labs",
+     "kind": "core"
     },
     {
      "t": "img",
@@ -1767,10 +1924,10 @@
     },
     {
      "t": "h",
-     "level": 2,
-     "kr": "사례 3 감시·디지털 격차·데이터 식민주의",
-     "en": "",
-     "kind": "sub"
+     "level": 1,
+     "kr": "감시·디지털 격차",
+     "en": "Surveillance & Digital Divide",
+     "kind": "core"
     },
     {
      "t": "img",
@@ -1896,21 +2053,47 @@
    ],
    "mode": "authored",
    "file": "07.md",
-   "chars": 5585,
+   "chars": 5523,
    "images": 6,
    "tables": 0,
    "headings": [
     "전통 인프라의 계보 — 보이지 않는 도시의 뼈대",
     "새로운 도시 기반시설 — 센서·통신·클라우드·데이터센터",
     "핵심 사례 3선",
-    "사례 1 데이터센터의 도시 인프라화 — 입지·전력·냉각 갈등",
-    "사례 2 토론토 사이드워크랩 무산 — 데이터 거버넌스의 실패",
-    "사례 3 감시·디지털 격차·데이터 식민주의",
     "정리와 원칙",
     "제1편을 닫으며 — 비판에서 협력으로"
    ],
-   "cases": [],
-   "caseCount": 0
+   "cases": [
+    {
+     "kr": "데이터센터 입지",
+     "en": "Data Center Siting",
+     "keywords": [
+      "Data Center",
+      "전력·냉각",
+      "용인",
+      "Data Center Alley"
+     ]
+    },
+    {
+     "kr": "토론토 사이드워크랩",
+     "en": "Toronto Sidewalk Labs",
+     "keywords": [
+      "데이터 거버넌스",
+      "Privacy",
+      "사업 무산"
+     ]
+    },
+    {
+     "kr": "감시·디지털 격차",
+     "en": "Surveillance & Digital Divide",
+     "keywords": [
+      "Surveillance",
+      "Digital Divide",
+      "데이터 식민주의"
+     ]
+    }
+   ],
+   "caseCount": 3
   },
   {
    "order": 2008,
@@ -1976,10 +2159,10 @@
     },
     {
      "t": "h",
-     "level": 2,
-     "kr": "사례 1: K-City Network — 공모형 스마트시티 협력 플랫폼",
-     "en": "",
-     "kind": "sub"
+     "level": 1,
+     "kr": "K-City Network",
+     "en": "K-City Network",
+     "kind": "core"
     },
     {
      "t": "img",
@@ -2015,10 +2198,10 @@
     },
     {
      "t": "h",
-     "level": 2,
-     "kr": "사례 2: EDCF — 유상원조 차관과 개발금융을 통한 인프라 재원",
-     "en": "",
-     "kind": "sub"
+     "level": 1,
+     "kr": "EDCF 개발금융",
+     "en": "EDCF Concessional Loan",
+     "kind": "core"
     },
     {
      "t": "p",
@@ -2046,10 +2229,10 @@
     },
     {
      "t": "h",
-     "level": 2,
-     "kr": "사례 3: 다자개발은행과 PPP를 결합한 혼합금융",
-     "en": "",
-     "kind": "sub"
+     "level": 1,
+     "kr": "다자개발은행·PPP",
+     "en": "MDB & PPP Blended Finance",
+     "kind": "core"
     },
     {
      "t": "p",
@@ -2124,20 +2307,48 @@
    ],
    "mode": "authored",
    "file": "08.md",
-   "chars": 5334,
+   "chars": 5264,
    "images": 6,
    "tables": 0,
    "headings": [
     "국제개발협력 생태계와 행위자 지형",
     "스마트도시 사업의 재원 조달 구조와 사업 유형",
     "핵심 사례 3선",
-    "사례 1: K-City Network — 공모형 스마트시티 협력 플랫폼",
-    "사례 2: EDCF — 유상원조 차관과 개발금융을 통한 인프라 재원",
-    "사례 3: 다자개발은행과 PPP를 결합한 혼합금융",
     "정리와 원칙"
    ],
-   "cases": [],
-   "caseCount": 0
+   "cases": [
+    {
+     "kr": "K-City Network",
+     "en": "K-City Network",
+     "keywords": [
+      "국토교통부",
+      "공모형",
+      "마스터플랜",
+      "F/S"
+     ]
+    },
+    {
+     "kr": "EDCF 개발금융",
+     "en": "EDCF Concessional Loan",
+     "keywords": [
+      "EDCF",
+      "유상원조",
+      "PIS",
+      "다각적 재원"
+     ]
+    },
+    {
+     "kr": "다자개발은행·PPP",
+     "en": "MDB & PPP Blended Finance",
+     "keywords": [
+      "MDB",
+      "PPP",
+      "Blended Finance",
+      "IDB/WB/ADB"
+     ]
+    }
+   ],
+   "caseCount": 3
   },
   {
    "order": 2009,
@@ -2195,10 +2406,10 @@
     },
     {
      "t": "h",
-     "level": 2,
-     "kr": "사례 1: UN-Habitat 국가도시정책 프로그램",
-     "en": "",
-     "kind": "sub"
+     "level": 1,
+     "kr": "UN-Habitat NUPP",
+     "en": "National Urban Policy Programme",
+     "kind": "core"
     },
     {
      "t": "p",
@@ -2218,10 +2429,10 @@
     },
     {
      "t": "h",
-     "level": 2,
-     "kr": "사례 2: New Urban Agenda·SDG와 연계한 전략적 접근",
-     "en": "",
-     "kind": "sub"
+     "level": 1,
+     "kr": "NUA·SDG 전략적 접근",
+     "en": "New Urban Agenda & SDG",
+     "kind": "core"
     },
     {
      "t": "p",
@@ -2249,10 +2460,10 @@
     },
     {
      "t": "h",
-     "level": 2,
-     "kr": "사례 3: 협력 리스크 관리 프레임워크",
-     "en": "",
-     "kind": "sub"
+     "level": 1,
+     "kr": "협력 리스크 관리",
+     "en": "Cooperation Risk Management",
+     "kind": "core"
     },
     {
      "t": "p",
@@ -2307,20 +2518,45 @@
    ],
    "mode": "authored",
    "file": "09.md",
-   "chars": 4646,
+   "chars": 4597,
    "images": 1,
    "tables": 0,
    "headings": [
     "국제기구 협력 구조와 글로벌 도시의제",
     "대상국 진단에서 전략 수립으로",
     "핵심 사례 3선",
-    "사례 1: UN-Habitat 국가도시정책 프로그램",
-    "사례 2: New Urban Agenda·SDG와 연계한 전략적 접근",
-    "사례 3: 협력 리스크 관리 프레임워크",
     "정리와 원칙"
    ],
-   "cases": [],
-   "caseCount": 0
+   "cases": [
+    {
+     "kr": "UN-Habitat NUPP",
+     "en": "National Urban Policy Programme",
+     "keywords": [
+      "NUPP",
+      "국가도시정책",
+      "UN-Habitat"
+     ]
+    },
+    {
+     "kr": "NUA·SDG 전략적 접근",
+     "en": "New Urban Agenda & SDG",
+     "keywords": [
+      "NUA",
+      "SDG 11",
+      "도시모델 진단"
+     ]
+    },
+    {
+     "kr": "협력 리스크 관리",
+     "en": "Cooperation Risk Management",
+     "keywords": [
+      "정치·재정 Risk",
+      "지속가능성",
+      "흡수역량"
+     ]
+    }
+   ],
+   "caseCount": 3
   },
   {
    "order": 2010,
@@ -2390,10 +2626,10 @@
     },
     {
      "t": "h",
-     "level": 2,
-     "kr": "사례 1 콜롬비아 메데진 — '사회적 도시계획'과 케이블카가 능선을 잇다",
-     "en": "",
-     "kind": "sub"
+     "level": 1,
+     "kr": "콜롬비아 메데진",
+     "en": "Medellín, Colombia",
+     "kind": "core"
     },
     {
      "t": "p",
@@ -2421,10 +2657,10 @@
     },
     {
      "t": "h",
-     "level": 2,
-     "kr": "사례 2 콜롬비아 보고타 — 스마트 도시재생, 디지털과 공간을 겹치다",
-     "en": "",
-     "kind": "sub"
+     "level": 1,
+     "kr": "콜롬비아 보고타",
+     "en": "Bogotá, Colombia",
+     "kind": "core"
     },
     {
      "t": "img",
@@ -2460,10 +2696,10 @@
     },
     {
      "t": "h",
-     "level": 2,
-     "kr": "사례 3 파라과이 아순시온 — 후발 수도의 스마트도시 국제협력 설계",
-     "en": "",
-     "kind": "sub"
+     "level": 1,
+     "kr": "파라과이 아순시온",
+     "en": "Asunción, Paraguay",
+     "kind": "core"
     },
     {
      "t": "p",
@@ -2574,20 +2810,45 @@
    ],
    "mode": "authored",
    "file": "10.md",
-   "chars": 5149,
+   "chars": 5059,
    "images": 8,
    "tables": 0,
    "headings": [
     "라틴아메리카 도시화의 맥락 — 비공식성과 불평등의 지리",
     "협력 환경 — IDB와 지역개발은행의 역할",
     "핵심 사례 3선",
-    "사례 1 콜롬비아 메데진 — '사회적 도시계획'과 케이블카가 능선을 잇다",
-    "사례 2 콜롬비아 보고타 — 스마트 도시재생, 디지털과 공간을 겹치다",
-    "사례 3 파라과이 아순시온 — 후발 수도의 스마트도시 국제협력 설계",
     "정리와 원칙"
    ],
-   "cases": [],
-   "caseCount": 0
+   "cases": [
+    {
+     "kr": "콜롬비아 메데진",
+     "en": "Medellín, Colombia",
+     "keywords": [
+      "Metrocable",
+      "Urbanismo Social",
+      "사회적 도시계획"
+     ]
+    },
+    {
+     "kr": "콜롬비아 보고타",
+     "en": "Bogotá, Colombia",
+     "keywords": [
+      "스마트 도시재생",
+      "TransMilenio BRT",
+      "Ciclovía"
+     ]
+    },
+    {
+     "kr": "파라과이 아순시온",
+     "en": "Asunción, Paraguay",
+     "keywords": [
+      "후발 수도",
+      "전자행정",
+      "역량 이전"
+     ]
+    }
+   ],
+   "caseCount": 3
   },
   {
    "order": 2011,
@@ -2657,10 +2918,10 @@
     },
     {
      "t": "h",
-     "level": 2,
-     "kr": "사례 1 르완다 키갈리 — ICT 거점 전략과 스마트시티 마스터플랜",
-     "en": "",
-     "kind": "sub"
+     "level": 1,
+     "kr": "르완다 키갈리",
+     "en": "Kigali, Rwanda",
+     "kind": "core"
     },
     {
      "t": "p",
@@ -2688,10 +2949,10 @@
     },
     {
      "t": "h",
-     "level": 2,
-     "kr": "사례 2 나이지리아 라고스와 서아프리카 — 에코 아틀란틱, 해안 신도시의 명암",
-     "en": "",
-     "kind": "sub"
+     "level": 1,
+     "kr": "나이지리아 라고스",
+     "en": "Lagos, Nigeria",
+     "kind": "core"
     },
     {
      "t": "img",
@@ -2727,10 +2988,10 @@
     },
     {
      "t": "h",
-     "level": 2,
-     "kr": "사례 3 케냐 나이로비와 콘자 — ICT 신도시의 약속과 현실",
-     "en": "",
-     "kind": "sub"
+     "level": 1,
+     "kr": "케냐 나이로비",
+     "en": "Nairobi, Kenya",
+     "kind": "core"
     },
     {
      "t": "p",
@@ -2841,20 +3102,45 @@
    ],
    "mode": "authored",
    "file": "11.md",
-   "chars": 5021,
+   "chars": 4930,
    "images": 8,
    "tables": 0,
    "headings": [
     "사하라 이남 아프리카 도시화의 맥락 — 속도, 비공식성, 역량 격차",
     "도약과 신도시 붐, 그리고 그 그림자",
     "핵심 사례 3선",
-    "사례 1 르완다 키갈리 — ICT 거점 전략과 스마트시티 마스터플랜",
-    "사례 2 나이지리아 라고스와 서아프리카 — 에코 아틀란틱, 해안 신도시의 명암",
-    "사례 3 케냐 나이로비와 콘자 — ICT 신도시의 약속과 현실",
     "정리와 원칙"
    ],
-   "cases": [],
-   "caseCount": 0
+   "cases": [
+    {
+     "kr": "르완다 키갈리",
+     "en": "Kigali, Rwanda",
+     "keywords": [
+      "ICT Hub",
+      "스마트시티 마스터플랜",
+      "전자정부"
+     ]
+    },
+    {
+     "kr": "나이지리아 라고스",
+     "en": "Lagos, Nigeria",
+     "keywords": [
+      "Eko Atlantic",
+      "해안 신도시",
+      "비공식 정착지"
+     ]
+    },
+    {
+     "kr": "케냐 나이로비",
+     "en": "Nairobi, Kenya",
+     "keywords": [
+      "Konza Technopolis",
+      "ICT 신도시",
+      "Leapfrog"
+     ]
+    }
+   ],
+   "caseCount": 3
   },
   {
    "order": 2012,
@@ -2906,9 +3192,9 @@
     {
      "t": "h",
      "level": 1,
-     "kr": "사례 1 — 네옴과 더 라인",
-     "en": "",
-     "kind": "sub"
+     "kr": "NEOM",
+     "en": "NEOM, Saudi Arabia",
+     "kind": "core"
     },
     {
      "t": "p",
@@ -2937,9 +3223,9 @@
     {
      "t": "h",
      "level": 1,
-     "kr": "사례 2 — 누산타라 인도네시아 신수도",
-     "en": "",
-     "kind": "sub"
+     "kr": "누산타라",
+     "en": "Nusantara, Indonesia",
+     "kind": "core"
     },
     {
      "t": "p",
@@ -2968,9 +3254,9 @@
     {
      "t": "h",
      "level": 1,
-     "kr": "사례 3 — 송도형 모델의 아시아 수출 K-City",
-     "en": "",
-     "kind": "sub"
+     "kr": "송도형 모델 수출",
+     "en": "Songdo Model Export",
+     "kind": "core"
     },
     {
      "t": "img",
@@ -3053,19 +3339,44 @@
    ],
    "mode": "authored",
    "file": "12.md",
-   "chars": 4329,
+   "chars": 4282,
    "images": 6,
    "tables": 0,
    "headings": [
     "아시아 도시화의 다층성과 신도시 충동",
     "스마트시티, 국가 비전의 매개이자 수출 상품",
-    "사례 1 — 네옴과 더 라인",
-    "사례 2 — 누산타라 인도네시아 신수도",
-    "사례 3 — 송도형 모델의 아시아 수출 K-City",
     "정리와 원칙"
    ],
-   "cases": [],
-   "caseCount": 0
+   "cases": [
+    {
+     "kr": "NEOM",
+     "en": "NEOM, Saudi Arabia",
+     "keywords": [
+      "The Line",
+      "Vision 2030",
+      "선형도시"
+     ]
+    },
+    {
+     "kr": "누산타라",
+     "en": "Nusantara, Indonesia",
+     "keywords": [
+      "신수도",
+      "Green·Smart City",
+      "천도"
+     ]
+    },
+    {
+     "kr": "송도형 모델 수출",
+     "en": "Songdo Model Export",
+     "keywords": [
+      "K-City",
+      "신도시 수출",
+      "패키지형"
+     ]
+    }
+   ],
+   "caseCount": 3
   },
   {
    "order": 2013,
@@ -3117,9 +3428,9 @@
     {
      "t": "h",
      "level": 1,
-     "kr": "사례 1 — 한–캐나다 디지털트윈·자율주행 배송로봇 ADR 공동연구",
-     "en": "",
-     "kind": "sub"
+     "kr": "한–캐 ADR 공동연구",
+     "en": "Korea–Canada ADR Study",
+     "kind": "core"
     },
     {
      "t": "p",
@@ -3156,9 +3467,9 @@
     {
      "t": "h",
      "level": 1,
-     "kr": "사례 2 — EU DUT 도시 전환 추진·15분도시 데이터 협력",
-     "en": "",
-     "kind": "sub"
+     "kr": "EU DUT·15분도시",
+     "en": "EU DUT & 15-min City",
+     "kind": "core"
     },
     {
      "t": "p",
@@ -3187,9 +3498,9 @@
     {
      "t": "h",
      "level": 1,
-     "kr": "사례 3 — 북미 스마트시티 미국 Smart Columbus 등",
-     "en": "",
-     "kind": "sub"
+     "kr": "스마트 콜럼버스",
+     "en": "Smart Columbus",
+     "kind": "core"
     },
     {
      "t": "img",
@@ -3280,19 +3591,44 @@
    ],
    "mode": "authored",
    "file": "13.md",
-   "chars": 4524,
+   "chars": 4449,
    "images": 8,
    "tables": 0,
    "headings": [
     "원조에서 공동연구로 — 협력 문법의 전환",
     "테스트베드와 실증 — 공동연구의 물리적 토대",
-    "사례 1 — 한–캐나다 디지털트윈·자율주행 배송로봇 ADR 공동연구",
-    "사례 2 — EU DUT 도시 전환 추진·15분도시 데이터 협력",
-    "사례 3 — 북미 스마트시티 미국 Smart Columbus 등",
     "정리와 원칙"
    ],
-   "cases": [],
-   "caseCount": 0
+   "cases": [
+    {
+     "kr": "한–캐 ADR 공동연구",
+     "en": "Korea–Canada ADR Study",
+     "keywords": [
+      "ADR",
+      "AHP",
+      "보행안전",
+      "Digital Twin Testbed"
+     ]
+    },
+    {
+     "kr": "EU DUT·15분도시",
+     "en": "EU DUT & 15-min City",
+     "keywords": [
+      "DUT",
+      "15분도시",
+      "헬싱키·바르셀로나"
+     ]
+    },
+    {
+     "kr": "스마트 콜럼버스",
+     "en": "Smart Columbus",
+     "keywords": [
+      "US DOT Smart City Challenge",
+      "MaaS"
+     ]
+    }
+   ],
+   "caseCount": 3
   },
   {
    "order": 2014,
@@ -3354,10 +3690,10 @@
     },
     {
      "t": "h",
-     "level": 2,
-     "kr": "사례 하나. 서울 정책아카이브의 세계화 — 경험을 지식플랫폼으로 구조화하다",
-     "en": "",
-     "kind": "sub"
+     "level": 1,
+     "kr": "서울 정책아카이브 세계화",
+     "en": "Seoul Policy Archive",
+     "kind": "core"
     },
     {
      "t": "p",
@@ -3385,10 +3721,10 @@
     },
     {
      "t": "h",
-     "level": 2,
-     "kr": "사례 둘. 도시외교와 개방형 공간정보 — 오픈소스로 종속을 넘다",
-     "en": "",
-     "kind": "sub"
+     "level": 1,
+     "kr": "도시외교·개방형 공간정보",
+     "en": "City Diplomacy & FOSS4G",
+     "kind": "core"
     },
     {
      "t": "img",
@@ -3424,10 +3760,10 @@
     },
     {
      "t": "h",
-     "level": 2,
-     "kr": "사례 셋. 글로벌 연구협력의 제도화 — 일회성을 넘어 상설 네트워크로",
-     "en": "",
-     "kind": "sub"
+     "level": 1,
+     "kr": "연구협력 제도화",
+     "en": "Institutionalizing Research Cooperation",
+     "kind": "core"
     },
     {
      "t": "p",
@@ -3530,20 +3866,45 @@
    ],
    "mode": "authored",
    "file": "14.md",
-   "chars": 4546,
+   "chars": 4466,
    "images": 6,
    "tables": 0,
    "headings": [
     "사업이 아니라 모델을 수출한다",
     "지식 공유의 패키지화와 도시외교",
     "핵심 사례 3선",
-    "사례 하나. 서울 정책아카이브의 세계화 — 경험을 지식플랫폼으로 구조화하다",
-    "사례 둘. 도시외교와 개방형 공간정보 — 오픈소스로 종속을 넘다",
-    "사례 셋. 글로벌 연구협력의 제도화 — 일회성을 넘어 상설 네트워크로",
     "정리와 원칙"
    ],
-   "cases": [],
-   "caseCount": 0
+   "cases": [
+    {
+     "kr": "서울 정책아카이브 세계화",
+     "en": "Seoul Policy Archive",
+     "keywords": [
+      "TIP-CARD",
+      "정책지식 패키지",
+      "Knowledge Sharing"
+     ]
+    },
+    {
+     "kr": "도시외교·개방형 공간정보",
+     "en": "City Diplomacy & FOSS4G",
+     "keywords": [
+      "FOSS4G",
+      "UN-GGIM",
+      "City Diplomacy"
+     ]
+    },
+    {
+     "kr": "연구협력 제도화",
+     "en": "Institutionalizing Research Cooperation",
+     "keywords": [
+      "MeTTA",
+      "CGRC",
+      "다자 네트워크"
+     ]
+    }
+   ],
+   "caseCount": 3
   },
   {
    "order": 2015,

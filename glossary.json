@@ -1,1 +1,4166 @@
-[{"id": 1, "letter": "A", "en": "Accessibility Equity", "kr": "접근성 형평성"}, {"id": 2, "letter": "A", "en": "Acid deposition (acid rain)", "kr": "산성강하물(산성비)"}, {"id": 3, "letter": "A", "en": "Act on the Prevention of Light Pollution Due to Artificial Lighting", "kr": "인공조명에 의한 빛공해 방지법"}, {"id": 4, "letter": "A", "en": "Act on the Promotion of Saving and Recycling of Resources", "kr": "자원의 절약과 재활용 촉진에 관한 법률"}, {"id": 5, "letter": "A", "en": "Act on the Rational Use of Energy", "kr": "에너지이용합리화법"}, {"id": 6, "letter": "A", "en": "ad hoc approach", "kr": "임시적, 비체계적 방식"}, {"id": 7, "letter": "A", "en": "Administrative Data", "kr": "행정 데이터"}, {"id": 8, "letter": "A", "en": "Administrative transparency", "kr": "행정 투명성"}, {"id": 9, "letter": "A", "en": "Advanced oxidation process (AOP)", "kr": "고도산화공정(AOP)"}, {"id": 10, "letter": "A", "en": "Advanced water treatment", "kr": "고도정수처리"}, {"id": 11, "letter": "A", "en": "Advanced water treatment", "kr": "고도정수처리"}, {"id": 12, "letter": "A", "en": "Affordability Threshold", "kr": "부담경계"}, {"id": 13, "letter": "A", "en": "Aging infrastructure", "kr": "노후 인프라"}, {"id": 14, "letter": "A", "en": "Aging pipelines", "kr": "노후 관로"}, {"id": 15, "letter": "A", "en": "Aging pipelines / aging water pipes", "kr": "노후관(노후 수도관)"}, {"id": 16, "letter": "A", "en": "AI Transformation (AX)", "kr": "인공지능 전환"}, {"id": 17, "letter": "A", "en": "Air Pollution", "kr": "대기오염"}, {"id": 18, "letter": "A", "en": "Air pollution alert system", "kr": "대기오염 경보제"}, {"id": 19, "letter": "A", "en": "Air pollution forecasting system", "kr": "대기오염 예보제"}, {"id": 20, "letter": "A", "en": "Air quality improvement", "kr": "대기질 개선"}, {"id": 21, "letter": "A", "en": "Air Quality Improvement", "kr": "대기질 개선"}, {"id": 22, "letter": "A", "en": "Air quality information system", "kr": "대기환경정보 시스템"}, {"id": 23, "letter": "A", "en": "Air quality measurement system", "kr": "대기질 측정 시스템"}, {"id": 24, "letter": "A", "en": "Algal bloom early warning system", "kr": "조류경보제"}, {"id": 25, "letter": "A", "en": "Allowable leakage threshold", "kr": "허용 누수량"}, {"id": 26, "letter": "A", "en": "Alternative water supply", "kr": "대체급수"}, {"id": 27, "letter": "A", "en": "Anaerobic Digestion", "kr": "혐기소화"}, {"id": 28, "letter": "A", "en": "apartment complex", "kr": "단지"}, {"id": 29, "letter": "A", "en": "Arisu brand", "kr": "아리수 브랜드"}, {"id": 30, "letter": "A", "en": "Arisu tap water quality verification program", "kr": "아리수 품질확인제"}, {"id": 31, "letter": "A", "en": "articles of incorporation", "kr": "정관"}, {"id": 32, "letter": "A", "en": "At-risk households", "kr": "위기 가구"}, {"id": 33, "letter": "A", "en": "Automated air pollution monitoring network", "kr": "대기오염 자동측정망"}, {"id": 34, "letter": "A", "en": "Automated control system", "kr": "자동제어 시스템"}, {"id": 35, "letter": "A", "en": "Automated Fare Collection", "kr": "자동운임징수시스템"}, {"id": 36, "letter": "A", "en": "Automatic monitoring instruments", "kr": "자동측정기기"}, {"id": 37, "letter": "A", "en": "Automatic water quality monitoring network", "kr": "수질자동측정망"}, {"id": 38, "letter": "A", "en": "Automobile Dependence", "kr": "승용차 의존"}, {"id": 39, "letter": "A", "en": "automobile-oriented transportation system", "kr": "자동차 중심의 교통체계"}, {"id": 40, "letter": "A", "en": "Autonomous Driving Support", "kr": "자율주행 지원"}, {"id": 41, "letter": "B", "en": "backfilling", "kr": "되메우기 작업"}, {"id": 42, "letter": "B", "en": "Background (clean air) monitoring network", "kr": "배경(청정) 측정망"}, {"id": 43, "letter": "B", "en": "Backstreet", "kr": "이면도로"}, {"id": 44, "letter": "B", "en": "BAR(Biotope Area Ratio)", "kr": "생태면적률"}, {"id": 45, "letter": "B", "en": "basic design plan", "kr": "기본설계안"}, {"id": 46, "letter": "B", "en": "Basic Livelihood Security Recipients", "kr": "국민기초생활보장 수급자"}, {"id": 47, "letter": "B", "en": "beneficiaries’ contribution", "kr": "수익자 부담금"}, {"id": 48, "letter": "B", "en": "Beneficiary-pays principle", "kr": "수익자 부담 원칙"}, {"id": 49, "letter": "B", "en": "Biochemical Oxygen Demand(BOD)", "kr": "생물화학적 산소요구량"}, {"id": 50, "letter": "B", "en": "Biogas", "kr": "바이오가스"}, {"id": 51, "letter": "B", "en": "Biological early warning system", "kr": "생물경보시스템"}, {"id": 52, "letter": "B", "en": "Biomass Combustion", "kr": "생물성 연소"}, {"id": 53, "letter": "B", "en": "Block zoning system", "kr": "블록화 시스템"}, {"id": 54, "letter": "B", "en": "Boarding and Alighting Data", "kr": "승·하차 데이터"}, {"id": 55, "letter": "B", "en": "Booster pumping station", "kr": "가압장"}, {"id": 56, "letter": "B", "en": "Booster pumping station", "kr": "가압장"}, {"id": 57, "letter": "B", "en": "Budget savings", "kr": "예산 절감 효과"}, {"id": 58, "letter": "B", "en": "Building Act", "kr": "건축법"}, {"id": 59, "letter": "B", "en": "Building carbon neutrality", "kr": "건물탄소중립"}, {"id": 60, "letter": "B", "en": "Building Energy Reporting and Rating System", "kr": "건물 에너지 신고·등급제"}, {"id": 61, "letter": "B", "en": "building energy retrofit", "kr": "건물 녹색화"}, {"id": 62, "letter": "B", "en": "Building Greenhouse Gas Emissions Cap system", "kr": "건물온실가스배출총량제"}, {"id": 63, "letter": "B", "en": "building greenhouse gas total emissions system", "kr": "건물 온실가스 총량제"}, {"id": 64, "letter": "B", "en": "Building height management", "kr": "건축물 높이 관리"}, {"id": 65, "letter": "B", "en": "Building Information Modeling (BIM)", "kr": "건물정보모델링"}, {"id": 66, "letter": "B", "en": "Building Retrofit Project", "kr": "건물에너지 효율화"}, {"id": 67, "letter": "B", "en": "Building-Integrated Photovoltaics (BIPV)", "kr": "건물일체형 태양광 발전 시스템"}, {"id": 68, "letter": "B", "en": "bus bunching", "kr": "버스 열차화"}, {"id": 69, "letter": "B", "en": "Bus Network Optimization", "kr": "버스 노선 최적화"}, {"id": 70, "letter": "B", "en": "Bus Policy Citizen Committee.", "kr": "버스정책 시민위원회"}, {"id": 71, "letter": "B", "en": "bus priority policy", "kr": "버스우대정책"}, {"id": 72, "letter": "C", "en": "C40 World Mayors Summit", "kr": "C40 세계도시 기후정상회의"}, {"id": 73, "letter": "C", "en": "cadastral subdivision", "kr": "지적분할"}, {"id": 74, "letter": "C", "en": "Car Mileage Program", "kr": "승용차 마일리지 사업"}, {"id": 75, "letter": "C", "en": "Carbon Neutrality", "kr": "탄소중립"}, {"id": 76, "letter": "C", "en": "carbon reduction", "kr": "탄소 저감"}, {"id": 77, "letter": "C", "en": "Chemical expenses", "kr": "약품비"}, {"id": 78, "letter": "C", "en": "Chemical Oxygen Demand(COD)", "kr": "화학적 산소요구량"}, {"id": 79, "letter": "C", "en": "Cheonggyecheon Restoration", "kr": "청계천 복원"}, {"id": 80, "letter": "C", "en": "Citizen Participation Platform", "kr": "시민참여형 플랫폼"}, {"id": 81, "letter": "C", "en": "Citizen satisfaction", "kr": "시민 만족도"}, {"id": 82, "letter": "C", "en": "Citizen-participatory water quality management", "kr": "시민 참여 수질관리"}, {"id": 83, "letter": "C", "en": "Citizens’ committee operation", "kr": "시민위원회 운영"}, {"id": 84, "letter": "C", "en": "Citizens’ right to know", "kr": "시민의 알 권리"}, {"id": 85, "letter": "C", "en": "City Bus Financial Support and Safety Standards Ordinance", "kr": "시내버스 재정지원 및 안전 운행기준에 관한 조례"}, {"id": 86, "letter": "C", "en": "Civic Engagement(일부: Civic participation)", "kr": "참여형 시민주도(시민참여)"}, {"id": 87, "letter": "C", "en": "Civic Engineering", "kr": "토목"}, {"id": 88, "letter": "C", "en": "Climate Card", "kr": "기후동행카드"}, {"id": 89, "letter": "C", "en": "Climate Change", "kr": "기후변화"}, {"id": 90, "letter": "C", "en": "Climate change response", "kr": "기후변화 대응"}, {"id": 91, "letter": "C", "en": "Climate Change Response", "kr": "기후변화 대응"}, {"id": 92, "letter": "C", "en": "Climate Response Fund", "kr": "기후변화대응기금"}, {"id": 93, "letter": "C", "en": "Co-financing Structure", "kr": "자부담 체계"}, {"id": 94, "letter": "C", "en": "Combined Heat and Power (CHP)", "kr": "열병합발전(CHP)"}, {"id": 95, "letter": "C", "en": "Commercial revitalization", "kr": "상업 활성화"}, {"id": 96, "letter": "C", "en": "Community capacity building", "kr": "공동체 역량 강화"}, {"id": 97, "letter": "C", "en": "Complex-level infrastructure", "kr": "단지 단위 인프라"}, {"id": 98, "letter": "C", "en": "Compliance with environmental standards", "kr": "환경기준 달성 여부"}, {"id": 99, "letter": "C", "en": "Computerization of distribution zones", "kr": "배수구역 전산화"}, {"id": 100, "letter": "C", "en": "conditional approval", "kr": "조건부 승인"}, {"id": 101, "letter": "C", "en": "Construction Machinery", "kr": "건설기계"}, {"id": 102, "letter": "C", "en": "Construction Management", "kr": "공사관리"}, {"id": 103, "letter": "C", "en": "Contractor", "kr": "도급자(=시공사)"}, {"id": 104, "letter": "C", "en": "Conversion", "kr": "분양전환"}, {"id": 105, "letter": "C", "en": "Correlation leakage detection", "kr": "상관식 누수탐지"}, {"id": 106, "letter": "C", "en": "Cost savings in restoration project", "kr": "복원사업 비용 절감"}, {"id": 107, "letter": "C", "en": "Crime Prevention Through Environmental Design (CPTED)", "kr": "범죄예방환경설계"}, {"id": 108, "letter": "C", "en": "Criteria air pollutants", "kr": "기준성 대기오염물질"}, {"id": 109, "letter": "C", "en": "Cultural events", "kr": "문화 행사"}, {"id": 110, "letter": "C", "en": "cutoff wall", "kr": "차수벽"}, {"id": 111, "letter": "D", "en": "Data Hub", "kr": "데이터 허브"}, {"id": 112, "letter": "D", "en": "Data-based Monitoring", "kr": "데이터 기반 모니터링"}, {"id": 113, "letter": "D", "en": "Data-driven administration", "kr": "데이터 기반 행정"}, {"id": 114, "letter": "D", "en": "Data-driven environmental administration", "kr": "데이터 기반 환경행정"}, {"id": 115, "letter": "D", "en": "dedicated unit", "kr": "전담조직"}, {"id": 116, "letter": "D", "en": "Demolition control", "kr": "멸실 제어"}, {"id": 117, "letter": "D", "en": "deployment roadmap", "kr": "보급 로드맵"}, {"id": 118, "letter": "D", "en": "Depot", "kr": "(버스) 차고지"}, {"id": 119, "letter": "D", "en": "Detatched house", "kr": "단독주택"}, {"id": 120, "letter": "D", "en": "Diesel Particulate Filter (DPF)", "kr": "매연저감장치"}, {"id": 121, "letter": "D", "en": "Diesel Vehicles", "kr": "경유차"}, {"id": 122, "letter": "D", "en": "Digester Gas", "kr": "소화가스"}, {"id": 123, "letter": "D", "en": "Digital Elevation Model (DEM)", "kr": "수치표고모델"}, {"id": 124, "letter": "D", "en": "Digital Transformation (DX)", "kr": "디지털 전환"}, {"id": 125, "letter": "D", "en": "Digital Twin", "kr": "디지털 트윈"}, {"id": 126, "letter": "D", "en": "Digital Twin Governance", "kr": "디지털 트윈 거버넌스"}, {"id": 127, "letter": "D", "en": "Direct water supply method", "kr": "직접급수 방식"}, {"id": 128, "letter": "D", "en": "Disaster Risk Prediction", "kr": "재난 위험 예측"}, {"id": 129, "letter": "D", "en": "Dispersed chlorine injection", "kr": "염소 분산주입"}, {"id": 130, "letter": "D", "en": "Distance-based Fare System", "kr": "거리비례 요금제"}, {"id": 131, "letter": "D", "en": "Distributed Energy Sources", "kr": "분산형 전원(분산형 에너지원)"}, {"id": 132, "letter": "D", "en": "Distribution and supply system management", "kr": "배·급수 계통 관리"}, {"id": 133, "letter": "D", "en": "District flow meters", "kr": "구역 유량계"}, {"id": 134, "letter": "D", "en": "district heating", "kr": "지역 난방"}, {"id": 135, "letter": "D", "en": "District Heating Supply", "kr": "지역난방 공급"}, {"id": 136, "letter": "D", "en": "District Unit Planning", "kr": "지구단위계획"}, {"id": 137, "letter": "D", "en": "District-based Management", "kr": "자치구 맞춤 관리"}, {"id": 138, "letter": "D", "en": "Double Track", "kr": "복선화"}, {"id": 139, "letter": "D", "en": "Drainage layer", "kr": "배수층"}, {"id": 140, "letter": "D", "en": "Drinking water safety", "kr": "먹는 물 안전성"}, {"id": 141, "letter": "E", "en": "Early warning signs", "kr": "위기 징후"}, {"id": 142, "letter": "E", "en": "Eco-friendly housing option", "kr": "친환경 주거 대안"}, {"id": 143, "letter": "E", "en": "eco-friendly light source", "kr": "친환경 광원"}, {"id": 144, "letter": "E", "en": "Eco-friendly Vehicles", "kr": "친환경자동차"}, {"id": 145, "letter": "E", "en": "Ecological stream restoration", "kr": "생태적 하천 복원"}, {"id": 146, "letter": "E", "en": "Economic benefits / economic value", "kr": "경제적 효과(가치)"}, {"id": 147, "letter": "E", "en": "ecosystem monitoring", "kr": "생태계 모니터링"}, {"id": 148, "letter": "E", "en": "Elderly Households and Households with Persons with Disabilities", "kr": "노인·장애인가구"}, {"id": 149, "letter": "E", "en": "Electricity Demand Management", "kr": "전력수요관리"}, {"id": 150, "letter": "E", "en": "Electronic Fare Collection (EFC)", "kr": "전자요금징수"}, {"id": 151, "letter": "E", "en": "Elevated roadway demolition", "kr": "고가도로 철거"}, {"id": 152, "letter": "E", "en": "Emergency interconnection pipeline", "kr": "비상관로"}, {"id": 153, "letter": "E", "en": "Emergency Reduction Measures", "kr": "비상저감조치"}, {"id": 154, "letter": "E", "en": "Emergency water supply system", "kr": "비상급수 체계"}, {"id": 155, "letter": "E", "en": "Emerging contaminants", "kr": "신종 오염물질"}, {"id": 156, "letter": "E", "en": "Emission Source", "kr": "배출원"}, {"id": 157, "letter": "E", "en": "Endangered species", "kr": "멸종위기종"}, {"id": 158, "letter": "E", "en": "Energy Conservation", "kr": "에너지 절감"}, {"id": 159, "letter": "E", "en": "Energy costs", "kr": "동력비(에너지 비용)"}, {"id": 160, "letter": "E", "en": "Energy Crisis", "kr": "에너지 위기"}, {"id": 161, "letter": "E", "en": "energy demand management (DSM)", "kr": "에너지 수요 관리"}, {"id": 162, "letter": "E", "en": "energy efficiency enhancement", "kr": "에너지 효율화"}, {"id": 163, "letter": "E", "en": "Energy Intensity", "kr": "에너지 원단위"}, {"id": 164, "letter": "E", "en": "Energy loss", "kr": "에너지 손실"}, {"id": 165, "letter": "E", "en": "Energy Self-Reliant Villages(ESV)", "kr": "에너지자립마을"}, {"id": 166, "letter": "E", "en": "Energy Self-sufficiency", "kr": "에너지 자립(자급)"}, {"id": 167, "letter": "E", "en": "energy welfare", "kr": "에너지 복지"}, {"id": 168, "letter": "E", "en": "Energy-Recovery incineration", "kr": "열회수형 소각"}, {"id": 169, "letter": "E", "en": "Enhancement of public trust in tap water", "kr": "수돗물 신뢰도 제고"}, {"id": 170, "letter": "E", "en": "Enhancement of urban competitiveness", "kr": "도시 경쟁력 강화"}, {"id": 171, "letter": "E", "en": "Environmental Benefits", "kr": "환경 편익"}, {"id": 172, "letter": "E", "en": "Environmental data governance", "kr": "환경 데이터 거버넌스"}, {"id": 173, "letter": "E", "en": "Environmental impact assessment", "kr": "환경 영향 평가"}, {"id": 174, "letter": "E", "en": "environmental regeneration", "kr": "환경재생"}, {"id": 175, "letter": "E", "en": "Evidence-based policy", "kr": "근거 기반 정책"}, {"id": 176, "letter": "E", "en": "Evidence-Based Policy Making", "kr": "증거기반 정책결정"}, {"id": 177, "letter": "E", "en": "Excessive water pressure", "kr": "과수압"}, {"id": 178, "letter": "E", "en": "exclusive lane(s)", "kr": "전용차로"}, {"id": 179, "letter": "E", "en": "Expansion of public space", "kr": "공공공간 확장"}, {"id": 180, "letter": "E", "en": "Expansion of water quality parameters", "kr": "수질검사항목 확대"}, {"id": 181, "letter": "F", "en": "Facility modernization", "kr": "시설 현대화"}, {"id": 182, "letter": "F", "en": "Families with Young Children", "kr": "육아가구"}, {"id": 183, "letter": "F", "en": "Fare Integration", "kr": "요금 통합"}, {"id": 184, "letter": "F", "en": "Fare-setting Authority", "kr": "요금책정권"}, {"id": 185, "letter": "F", "en": "FARMLAND ACT", "kr": "토지개량사업법 -> 농지법으로 변경"}, {"id": 186, "letter": "F", "en": "Feeder Route", "kr": "지선 노선"}, {"id": 187, "letter": "F", "en": "Feeder Service", "kr": "보완·연계 교통서비스"}, {"id": 188, "letter": "F", "en": "Financial efficiency", "kr": "재정 효율성"}, {"id": 189, "letter": "F", "en": "Financial incentives", "kr": "재정지원"}, {"id": 190, "letter": "F", "en": "Financial self-reliance", "kr": "경영 자립"}, {"id": 191, "letter": "F", "en": "Fine particulate matter (PM₂.₅)", "kr": "초미세먼지(PM2.5)"}, {"id": 192, "letter": "F", "en": "Fire Safety Management", "kr": "소방 안전 관리"}, {"id": 193, "letter": "F", "en": "Fiscal outcomes", "kr": "재정적 성과"}, {"id": 194, "letter": "F", "en": "Fiscal soundness", "kr": "재정건전성"}, {"id": 195, "letter": "F", "en": "Flat Fare System", "kr": "균일요금제"}, {"id": 196, "letter": "F", "en": "Flat Fare System", "kr": "균일요금제"}, {"id": 197, "letter": "F", "en": "floodplain", "kr": "범람원"}, {"id": 198, "letter": "F", "en": "Flow control", "kr": "유량 제어"}, {"id": 199, "letter": "F", "en": "Flow monitoring system", "kr": "유량감시시스템"}, {"id": 200, "letter": "F", "en": "Forecast accuracy rate", "kr": "예보 적중률"}, {"id": 201, "letter": "F", "en": "Fossil Fuel Dependence", "kr": "화석연료 의존(도)"}, {"id": 202, "letter": "F", "en": "Framework Act on Carbon Neutrality and Green Growth to Cope with Climate Crisi", "kr": "탄소중립 녹색성장 기본법"}, {"id": 203, "letter": "F", "en": "Free Transfer", "kr": "무료 환승"}, {"id": 204, "letter": "F", "en": "From source to tap", "kr": "상수원에서 수도꼭지까지"}, {"id": 205, "letter": "F", "en": "Fuel Cell", "kr": "연료전지"}, {"id": 206, "letter": "F", "en": "Fugitive Dust", "kr": "비산먼지"}, {"id": 207, "letter": "F", "en": "Full Investment", "kr": "전액 출자"}, {"id": 208, "letter": "G", "en": "Gangbuk containment policy", "kr": "강북 억제 정책"}, {"id": 209, "letter": "G", "en": "Gangnam Development Plan", "kr": "강남개발계획"}, {"id": 210, "letter": "G", "en": "Gangnam new town development", "kr": "강남 신시가지 개발"}, {"id": 211, "letter": "G", "en": "gas to energy", "kr": "가스 에너지화"}, {"id": 212, "letter": "G", "en": "Geographic Information System (GIS)", "kr": "지리정보시스템"}, {"id": 213, "letter": "G", "en": "GIS-based prioritization", "kr": "GIS 기반 우선순위 설정"}, {"id": 214, "letter": "G", "en": "Global Profile", "kr": "국제적 위상"}, {"id": 215, "letter": "G", "en": "Gosiwon(Micro-room lodging)", "kr": "고시원"}, {"id": 216, "letter": "G", "en": "Governance", "kr": "거버넌스"}, {"id": 217, "letter": "G", "en": "Governance Framework", "kr": "거버넌스 체계"}, {"id": 218, "letter": "G", "en": "Gravity-fed water supply", "kr": "중력식 급수"}, {"id": 219, "letter": "G", "en": "Green Buildings Construction Support Act", "kr": "녹색건축물조성지원법"}, {"id": 220, "letter": "G", "en": "Green Coverage Ratio", "kr": "녹지율"}, {"id": 221, "letter": "G", "en": "Green Seoul Citizens’ Committee", "kr": "녹색서울시민위원회"}, {"id": 222, "letter": "G", "en": "Greenhouse Gas Reduction", "kr": "온실가스 저감"}, {"id": 223, "letter": "G", "en": "Grid-based road network", "kr": "격자형 도로망"}, {"id": 224, "letter": "G", "en": "ground subsidence", "kr": "지반침하"}, {"id": 225, "letter": "G", "en": "Group 1 Carcinogen", "kr": "1급 발암물질"}, {"id": 226, "letter": "G", "en": "Gyeonggang merchants", "kr": "경강상인"}, {"id": 227, "letter": "H", "en": "Han River system", "kr": "한강 수계"}, {"id": 228, "letter": "H", "en": "Hanok-preservation-oriented District Unit Planning (DUP)", "kr": "한옥보전형 지구단위계획"}, {"id": 229, "letter": "H", "en": "Head Difference", "kr": "낙차"}, {"id": 230, "letter": "H", "en": "Headway", "kr": "배차간격"}, {"id": 231, "letter": "H", "en": "Health Risk", "kr": "건강 위해성"}, {"id": 232, "letter": "H", "en": "Heavy metal monitoring network", "kr": "중금속 측정망"}, {"id": 233, "letter": "H", "en": "High-concentration Episode", "kr": "고농도 발생 시기"}, {"id": 234, "letter": "H", "en": "High-Definition Road Map", "kr": "정밀도로지도"}, {"id": 235, "letter": "H", "en": "high-efficiency lighting", "kr": "고효율 조명"}, {"id": 236, "letter": "H", "en": "High-Precision 3D City Model", "kr": "고정밀 3차원 도시모델"}, {"id": 237, "letter": "H", "en": "High-rise building water supply support", "kr": "고층건물 급수 지원"}, {"id": 238, "letter": "H", "en": "High-strength wastewater", "kr": "고농도폐수"}, {"id": 239, "letter": "H", "en": "Historic and cultural landscape", "kr": "자연경관 보전"}, {"id": 240, "letter": "H", "en": "Homeownership Assistance", "kr": "자가보유지원"}, {"id": 241, "letter": "H", "en": "Homogenization of housing types", "kr": "주거 유형 획일화"}, {"id": 242, "letter": "H", "en": "Households Facing Forced Eviction", "kr": "강제퇴거가구"}, {"id": 243, "letter": "H", "en": "Households Living in Non-Residential Structures", "kr": "비주택 거주가구"}, {"id": 244, "letter": "H", "en": "Housing Allowance", "kr": "주거비 보조"}, {"id": 245, "letter": "H", "en": "Housing allowance", "kr": "주택수당"}, {"id": 246, "letter": "H", "en": "Housing cost subsidy", "kr": "주거비 보조(제도)"}, {"id": 247, "letter": "H", "en": "Housing Improvement Program", "kr": "주택개량"}, {"id": 248, "letter": "H", "en": "Housing shortage", "kr": "주택 부족"}, {"id": 249, "letter": "H", "en": "Housing typological diversity", "kr": "주거 유형 다양성"}, {"id": 250, "letter": "H", "en": "Housing Voucher Program", "kr": "주택 바우처(제도)"}, {"id": 251, "letter": "H", "en": "Housing Welfare program", "kr": "주거 복지 프로그램"}, {"id": 252, "letter": "I", "en": "ICT convergence", "kr": "ICT 융합"}, {"id": 253, "letter": "I", "en": "ICT-based leakage detection", "kr": "IT/ICT 기반 누수탐지"}, {"id": 254, "letter": "I", "en": "IMF bailout program", "kr": "IMF 구제금융 프로그램"}, {"id": 255, "letter": "I", "en": "improve sidewalk paving", "kr": "보도블록 개선"}, {"id": 256, "letter": "I", "en": "Improvement of transportation accessibility", "kr": "교통 접근성 개선"}, {"id": 257, "letter": "I", "en": "Income decile", "kr": "소득분위"}, {"id": 258, "letter": "I", "en": "Independent accounting system", "kr": "독립채산제"}, {"id": 259, "letter": "I", "en": "Independent Fare System", "kr": "독립요금체계"}, {"id": 260, "letter": "I", "en": "Indirect water supply method", "kr": "간접급수 방식"}, {"id": 261, "letter": "I", "en": "Indoor Spatial Information", "kr": "실내공간 정보"}, {"id": 262, "letter": "I", "en": "Inflow and Infiltration (I/I)", "kr": "불명수 유입/침투(I/I)"}, {"id": 263, "letter": "I", "en": "Informal Sector", "kr": "비공식 부문"}, {"id": 264, "letter": "I", "en": "Infrastructure Lifecycle Management", "kr": "시설물 생애주기 관리"}, {"id": 265, "letter": "I", "en": "Integrated distance-based fare system", "kr": "통합거리비례제"}, {"id": 266, "letter": "I", "en": "Integrated Fare System", "kr": "통합요금제"}, {"id": 267, "letter": "I", "en": "integrated public transport transfer cente", "kr": "대중교통 복합환승센터"}, {"id": 268, "letter": "I", "en": "Integrated Public Transportation Fare System", "kr": "대중교통 통합요금제"}, {"id": 269, "letter": "I", "en": "Integrated Tranfer Fare System", "kr": "통합환승요금제"}, {"id": 270, "letter": "I", "en": "Integrated water quality management system", "kr": "수질통합관리시스템"}, {"id": 271, "letter": "I", "en": "Integration of supply zones", "kr": "급수구역 통합"}, {"id": 272, "letter": "I", "en": "Interconnected water treatment center network", "kr": "정수센터 상호보완 네트워크"}, {"id": 273, "letter": "I", "en": "intermodal connectivity", "kr": "교통수단 간 연계성"}, {"id": 274, "letter": "I", "en": "international policy exchange", "kr": "정책교류"}, {"id": 275, "letter": "I", "en": "Interoperability", "kr": "시스템 연계성"}, {"id": 276, "letter": "I", "en": "Intersection improvement", "kr": "교차로 개선"}, {"id": 277, "letter": "I", "en": "irregular bus headways", "kr": "불규칙한 배차"}, {"id": 278, "letter": "J", "en": "Jeonse(Deposit-basis Rental Housing)", "kr": "전세"}, {"id": 279, "letter": "J", "en": "Joint Revenue Management", "kr": "수입금 공동관리"}, {"id": 280, "letter": "J", "en": "Joint revenue management system", "kr": "수입금공동관리"}, {"id": 281, "letter": "K", "en": "Key Workers", "kr": "핵심근로자"}, {"id": 282, "letter": "K", "en": "kiss-and-ride (K&R) facilities", "kr": "배웅·승하차 공간(K&R 시설)"}, {"id": 283, "letter": "K", "en": "KNHC: Korea National Housing Corporation", "kr": "대한주택공사"}, {"id": 284, "letter": "K", "en": "Korea District Heating Corporation", "kr": "한국지역난방공사"}, {"id": 285, "letter": "K", "en": "Korea National Railway", "kr": "한국철도시설공단(현 국가철도공단)"}, {"id": 286, "letter": "K", "en": "Korea Research Institute for Human Settlements", "kr": "국토연구원"}, {"id": 287, "letter": "K", "en": "Korea Smart Card Co., Ltd", "kr": "한국스마트카드(주)"}, {"id": 288, "letter": "K", "en": "Korean Planning Association.", "kr": "대한국토도시계획학회"}, {"id": 289, "letter": "L", "en": "laissez-faire", "kr": "자유방임주의"}, {"id": 290, "letter": "L", "en": "LAND COMPARTMENTALIZATION AND \nREARRANGEMENT PROJECTS ACT", "kr": "토지구획정리사업법"}, {"id": 291, "letter": "L", "en": "Land contribution rate (reduction ratio)", "kr": "감보율"}, {"id": 292, "letter": "L", "en": "Land Readjustment", "kr": "토지구획정리사업"}, {"id": 293, "letter": "L", "en": "Land readjustment method", "kr": "환지 방식"}, {"id": 294, "letter": "L", "en": "Land readjustment project", "kr": "토지구획정리사업"}, {"id": 295, "letter": "L", "en": "Land Reduction Rate", "kr": "감보율"}, {"id": 296, "letter": "L", "en": "Land Secured for Recompense of Developement Outlay", "kr": "체비지"}, {"id": 297, "letter": "L", "en": "Landfill Restoration", "kr": "매립지 복원"}, {"id": 298, "letter": "L", "en": "landfill stablization", "kr": "매립지 안정화"}, {"id": 299, "letter": "L", "en": "Landscape and Skyline Analysis", "kr": "경관·스카이라인 분석"}, {"id": 300, "letter": "L", "en": "Landscape Transpormation", "kr": "경관변화"}, {"id": 301, "letter": "L", "en": "land-use zoning", "kr": "용도지역"}, {"id": 302, "letter": "L", "en": "Large-scale new town", "kr": "대규모 신시가지"}, {"id": 303, "letter": "L", "en": "Leachate", "kr": "침흡수"}, {"id": 304, "letter": "L", "en": "Leakage losses", "kr": "누수 손실"}, {"id": 305, "letter": "L", "en": "Leakage management", "kr": "누수 관리"}, {"id": 306, "letter": "L", "en": "Leakage prevention", "kr": "누수 방지"}, {"id": 307, "letter": "L", "en": "Leakage reduction", "kr": "누수 저감"}, {"id": 308, "letter": "L", "en": "Legal Basis", "kr": "법적 근거"}, {"id": 309, "letter": "L", "en": "Legally Designated Low-Income Households", "kr": "법정영세민"}, {"id": 310, "letter": "L", "en": "LH Corporate", "kr": "LH 공사"}, {"id": 311, "letter": "L", "en": "lighting environment management zones", "kr": "조명환경관리구역"}, {"id": 312, "letter": "L", "en": "Linear park", "kr": "선형공원"}, {"id": 313, "letter": "L", "en": "Livelihood Protection Act", "kr": "생활보호법"}, {"id": 314, "letter": "L", "en": "Local Autonomy Act", "kr": "지방자치법"}, {"id": 315, "letter": "L", "en": "Local Autonomy Act", "kr": "지방자치법"}, {"id": 316, "letter": "L", "en": "Local Governments", "kr": "지방자치단체"}, {"id": 317, "letter": "L", "en": "Location-Based Services (LBS)", "kr": "위치기반 서비스"}, {"id": 318, "letter": "L", "en": "Long Term Public Deposit-basis Rental Housing", "kr": "장기전세주택"}, {"id": 319, "letter": "L", "en": "Long-range Transport", "kr": "장거리 이동 오염"}, {"id": 320, "letter": "L", "en": "Long-range transported pollutants", "kr": "장거리 이동 오염물질"}, {"id": 321, "letter": "L", "en": "Long-term water supply system master plan", "kr": "장기 수도정비기본계획"}, {"id": 322, "letter": "L", "en": "Low Emission Zone (LEZ)", "kr": "저공해구역"}, {"id": 323, "letter": "L", "en": "Low water pressure", "kr": "저수압"}, {"id": 324, "letter": "L", "en": "low-carbon building certification schemes", "kr": "저탄소 건물 인증제"}, {"id": 325, "letter": "L", "en": "Low-carbon Economy", "kr": "저탄소 경제"}, {"id": 326, "letter": "L", "en": "low-efficiency lighting equipment", "kr": "저효율 조명 기기"}, {"id": 327, "letter": "L", "en": "Low-Income Households", "kr": "저소득층"}, {"id": 328, "letter": "L", "en": "Low-Income Population", "kr": "빈곤층"}, {"id": 329, "letter": "L", "en": "LUCI(Lighting Urban Community International)", "kr": "국제도시조명연맹"}, {"id": 330, "letter": "M", "en": "Major Arterial", "kr": "간선도로"}, {"id": 331, "letter": "M", "en": "Managerial rationalization", "kr": "경영 합리화"}, {"id": 332, "letter": "M", "en": "Matching Fund", "kr": "메칭펀드"}, {"id": 333, "letter": "M", "en": "Material Recovery Faclilty(MRFs)", "kr": "재활용품선별시설"}, {"id": 334, "letter": "M", "en": "measurement, reporting, and verification", "kr": "측정, 보고, 입증(MRV)"}, {"id": 335, "letter": "M", "en": "Median Bus-Only Lane(MBL)", "kr": "중앙버스전용차로"}, {"id": 336, "letter": "M", "en": "Median Bus-Only Lane(MBL)", "kr": "중앙버스전용차로"}, {"id": 337, "letter": "M", "en": "Medium-block system", "kr": "중블록 시스템"}, {"id": 338, "letter": "M", "en": "meeting minutes", "kr": "회의록"}, {"id": 339, "letter": "M", "en": "Merchant conflict management", "kr": "상인 갈등 관리"}, {"id": 340, "letter": "M", "en": "Mercury monitoring", "kr": "수은 모니터링"}, {"id": 341, "letter": "M", "en": "Metropolitan Integrated Fare System", "kr": "수도권 통합요금제"}, {"id": 342, "letter": "M", "en": "metropolitan transport network", "kr": "광역교통망"}, {"id": 343, "letter": "M", "en": "Middle-Income Households", "kr": "중산층"}, {"id": 344, "letter": "M", "en": "Minimum cost of living", "kr": "최저생계비"}, {"id": 345, "letter": "M", "en": "Minimum night flow", "kr": "야간 최소 유량"}, {"id": 346, "letter": "M", "en": "Minimum night flow (MNF)", "kr": "야간 최소유량"}, {"id": 347, "letter": "M", "en": "Ministry of interior", "kr": "내무부"}, {"id": 348, "letter": "M", "en": "Ministry of Land, Infrastructure and Transport", "kr": "국토교통부"}, {"id": 349, "letter": "M", "en": "Mitigation of urban heat island effect", "kr": "도심 열섬 현상 완화"}, {"id": 350, "letter": "M", "en": "Mixed-use buildings", "kr": "주상복합건물"}, {"id": 351, "letter": "M", "en": "Mobility Rights", "kr": "이동권"}, {"id": 352, "letter": "M", "en": "Modal Integration", "kr": "교통수단 간 통합"}, {"id": 353, "letter": "M", "en": "Modal Share", "kr": "수송 분담률"}, {"id": 354, "letter": "M", "en": "modal share", "kr": "교통수단분담률"}, {"id": 355, "letter": "M", "en": "Modernization of facilities", "kr": "시설 현대화"}, {"id": 356, "letter": "M", "en": "Monitoring network master plan", "kr": "측정망 기본계획"}, {"id": 357, "letter": "M", "en": "Monitoring System", "kr": "모니터링 시스템"}, {"id": 358, "letter": "M", "en": "Multi-family housing", "kr": "공동주택"}, {"id": 359, "letter": "M", "en": "Multiple Equilibria", "kr": "다중균형"}, {"id": 360, "letter": "M", "en": "Multi-point leakage detection equipment", "kr": "다점형 누수탐지 장비"}, {"id": 361, "letter": "M", "en": "municipal solid waste(MSW)", "kr": "생활폐기물"}, {"id": 362, "letter": "N", "en": "National Basic Livelihood Security(NBLS) System", "kr": "국민기초생활보장제도"}, {"id": 363, "letter": "N", "en": "National Framework Plan for Carbon Neutrality and Green Growth (2024-2033)", "kr": "탄소중립 녹색성장 기본계획 (2024-2033)"}, {"id": 364, "letter": "N", "en": "National Housing Fund (현 Housing and Urban Fund)", "kr": "국민주택기금(현 주택도시기금)"}, {"id": 365, "letter": "N", "en": "National Land Planning and Utilization Act", "kr": "국토의 계획 및 이용에 관한 법률"}, {"id": 366, "letter": "N", "en": "National Public Rental housing", "kr": "국민임대주택"}, {"id": 367, "letter": "N", "en": "National Waste Generation and Treatment Status", "kr": "전국 폐기물 발생 및 처리현황"}, {"id": 368, "letter": "N", "en": "Naturalized stream", "kr": "자연형 하천"}, {"id": 369, "letter": "N", "en": "NBLS beneficiaries", "kr": "(국민기초생활보장) 수급자"}, {"id": 370, "letter": "N", "en": "Near-Poor Households", "kr": "차상위계층"}, {"id": 371, "letter": "N", "en": "neighbor homicides", "kr": "이웃살인"}, {"id": 372, "letter": "N", "en": "Nitrogen Oxides (NOₓ)", "kr": "질소산화물"}, {"id": 373, "letter": "N", "en": "Non-interruption water supply system", "kr": "무단수 급수체계"}, {"id": 374, "letter": "N", "en": "Non-revenue water (NRW)", "kr": "무수수량(비수익수)"}, {"id": 375, "letter": "N", "en": "Non-revenue water (NRW)", "kr": "비수익수"}, {"id": 376, "letter": "N", "en": "Northeast Asia Cooperation", "kr": "동북아 협력"}, {"id": 377, "letter": "O", "en": "Occupancy fee", "kr": "점유료"}, {"id": 378, "letter": "O", "en": "Odor-causing substance control", "kr": "냄새물질 관리"}, {"id": 379, "letter": "O", "en": "off-site  reduction", "kr": "외부 감축"}, {"id": 380, "letter": "O", "en": "One Less Nuclear Power Plant", "kr": "원전하나줄이기 종합대책"}, {"id": 381, "letter": "O", "en": "One-Source Multi-Service", "kr": "원소스 멀티서비스"}, {"id": 382, "letter": "O", "en": "on-site reductions", "kr": "자체 감축"}, {"id": 383, "letter": "O", "en": "Open API", "kr": "개방형 API"}, {"id": 384, "letter": "O", "en": "Open Calls for Proposals", "kr": "공모사업"}, {"id": 385, "letter": "O", "en": "Open Lab (Experimental Validation Space)", "kr": "오픈랩(실험·실증 공간)"}, {"id": 386, "letter": "O", "en": "operating speed", "kr": "운행속도"}, {"id": 387, "letter": "O", "en": "Operational efficiency", "kr": "운영 효율성"}, {"id": 388, "letter": "O", "en": "Optimization (Operational Optimization)", "kr": "(운전) 최적화"}, {"id": 389, "letter": "O", "en": "Ordinance on Promoting and Disseminating the Value of Companioning the Socially Disadvantaged in Seoul Metropolitan Government", "kr": "서울특별시 약자동행 가치 확산 및 활성화 조례"}, {"id": 390, "letter": "O", "en": "Ordinance on the Establishment of Local Public Enterprises", "kr": "지방공기업 설치 조례"}, {"id": 391, "letter": "O", "en": "Ordinance on the Establishment of the Seoul Urban Development Corporation", "kr": "서울특별시 도시개발공사 설치조례"}, {"id": 392, "letter": "O", "en": "Overconcentration in northern Seoul", "kr": "강북 과밀"}, {"id": 393, "letter": "O", "en": "Ozone (O₃)", "kr": "오존(O₃)"}, {"id": 394, "letter": "P", "en": "Paris Agreement", "kr": "파리협정"}, {"id": 395, "letter": "P", "en": "Park Conversion", "kr": "공원화"}, {"id": 396, "letter": "P", "en": "Park Development Division.", "kr": "공원조성과"}, {"id": 397, "letter": "P", "en": "park-and-ride (P&R) facilities", "kr": "환승주차장(P&R 시설)"}, {"id": 398, "letter": "P", "en": "Particulate Matter (PM₁₀)", "kr": "미세먼지(PM10)"}, {"id": 399, "letter": "P", "en": "Particulate matter (PM₁₀)", "kr": "미세먼지(PM10)"}, {"id": 400, "letter": "P", "en": "Passenger Transport Service Act", "kr": "여객자동차 운수사업법"}, {"id": 401, "letter": "P", "en": "Passenger Transport Service Act", "kr": "여객자동차운수사업법"}, {"id": 402, "letter": "P", "en": "peak-hour travel speed", "kr": "첨두시 통행속도"}, {"id": 403, "letter": "P", "en": "pedestrian-friendly city", "kr": "보행친화도시"}, {"id": 404, "letter": "P", "en": "Pedestrian-friendly urbanization", "kr": "보행자 친화적 도시"}, {"id": 405, "letter": "P", "en": "Permanent Rental Housing", "kr": "영구임대주택"}, {"id": 406, "letter": "P", "en": "Photochemical pollutants", "kr": "광화학 오염물질"}, {"id": 407, "letter": "P", "en": "Photorealistic Orthophoto", "kr": "실감정사영상"}, {"id": 408, "letter": "P", "en": "Pilot Project", "kr": "시범사업"}, {"id": 409, "letter": "P", "en": "Pipe rehabilitation / renewal", "kr": "관로 갱생(개량)"}, {"id": 410, "letter": "P", "en": "Pipeline cleaning", "kr": "수도관 세척"}, {"id": 411, "letter": "P", "en": "Pipeline leakage", "kr": "관로 누수"}, {"id": 412, "letter": "P", "en": "Pipeline rehabilitation", "kr": "관로 개량"}, {"id": 413, "letter": "P", "en": "Place Names Committee", "kr": "지명위원회"}, {"id": 414, "letter": "P", "en": "Plan", "kr": "계획안"}, {"id": 415, "letter": "P", "en": "Policy paradigm shift", "kr": "정책 패러다임 전환"}, {"id": 416, "letter": "P", "en": "Polycentric urban structure", "kr": "다핵 도시 구조"}, {"id": 417, "letter": "P", "en": "Population decentralization policy", "kr": "인구 분산 정책"}, {"id": 418, "letter": "P", "en": "post-consumer materials.", "kr": "사용후재료"}, {"id": 419, "letter": "P", "en": "Predecessor", "kr": "전신기관"}, {"id": 420, "letter": "P", "en": "Presidential Committee on Carbon Neutrality and Green Growth", "kr": "탄소중립녹색성장위원회"}, {"id": 421, "letter": "P", "en": "Pressure equalization", "kr": "수압 균등화"}, {"id": 422, "letter": "P", "en": "private operation system", "kr": "민영제"}, {"id": 423, "letter": "P", "en": "Proactive water quality management", "kr": "선제적 수질관리"}, {"id": 424, "letter": "P", "en": "Proactive welfare", "kr": "능동적 복지"}, {"id": 425, "letter": "P", "en": "proceeds from the sale of reserved land", "kr": "체비지 매각대금"}, {"id": 426, "letter": "P", "en": "Process Efficiency Improvement", "kr": "공정 효율 개선"}, {"id": 427, "letter": "P", "en": "Progressive Electricity\nTariff System", "kr": "누진세"}, {"id": 428, "letter": "P", "en": "Promotion of Installation of waste disposal facilities and assistance to adjacent act", "kr": "폐기물처리시설 설치촉진 및 주변지역 지원등에 관한 법률"}, {"id": 429, "letter": "P", "en": "Protection of public health", "kr": "시민 건강 보호"}, {"id": 430, "letter": "P", "en": "Pseudo-Urbanization", "kr": "가도시화"}, {"id": 431, "letter": "P", "en": "Public aseet", "kr": "공적자산"}, {"id": 432, "letter": "P", "en": "Public Contribution", "kr": "공공기여"}, {"id": 433, "letter": "P", "en": "Public disclosure of water quality data", "kr": "수질 정보 공개"}, {"id": 434, "letter": "P", "en": "public operation system", "kr": "공영제"}, {"id": 435, "letter": "P", "en": "Public Participation", "kr": "시민 참여"}, {"id": 436, "letter": "P", "en": "Public reuse / public utilization", "kr": "공공적 활용"}, {"id": 437, "letter": "P", "en": "Public Subsidy", "kr": "공공 보조금"}, {"id": 438, "letter": "P", "en": "Public Transit Promotion Task Force", "kr": "대중교통활성화추진단"}, {"id": 439, "letter": "P", "en": "Public Transport Competitiveness", "kr": "대중교통 경쟁력"}, {"id": 440, "letter": "P", "en": "Publicness", "kr": "공공성"}, {"id": 441, "letter": "P", "en": "Public-private cooperation", "kr": "민간-공공 협력"}, {"id": 442, "letter": "P", "en": "Public–Private Data Utilization", "kr": "공공–민간 데이터 활용"}, {"id": 443, "letter": "P", "en": "public–private financing linkage", "kr": "민간금융연계"}, {"id": 444, "letter": "P", "en": "Public–Private Partnership (PPP)", "kr": "민관협력(PPP)"}, {"id": 445, "letter": "P", "en": "punctuality", "kr": "정시성"}, {"id": 446, "letter": "P", "en": "purchase-based public rental housing", "kr": "기존주택매입임대주택"}, {"id": 447, "letter": "P", "en": "Purchased Rental Housing", "kr": "매입임대주택"}, {"id": 448, "letter": "R", "en": "radial network structure (hub-and-spoke)", "kr": "방사형 네트워크"}, {"id": 449, "letter": "R", "en": "Railway Corridor", "kr": "철도부지"}, {"id": 450, "letter": "R", "en": "Rapid urbanization", "kr": "급격한 도시화"}, {"id": 451, "letter": "R", "en": "Rationalization of water utility management", "kr": "상수도 경영 합리화"}, {"id": 452, "letter": "R", "en": "ravel demand management", "kr": "교통수요관리(TDM)"}, {"id": 453, "letter": "R", "en": "Raw water purchase costs", "kr": "원수 구입비"}, {"id": 454, "letter": "R", "en": "Real-time air quality monitoring", "kr": "실시간 대기질 모니터링"}, {"id": 455, "letter": "R", "en": "Real-Time Data Integration", "kr": "실시간 데이터 연계"}, {"id": 456, "letter": "R", "en": "Real-time flow monitoring", "kr": "실시간 유량 모니터링"}, {"id": 457, "letter": "R", "en": "Real-time flow monitoring", "kr": "실시간 유량 모니터링"}, {"id": 458, "letter": "R", "en": "Real-time public disclosure", "kr": "실시간 정보 공개"}, {"id": 459, "letter": "R", "en": "Real-time water quality monitoring", "kr": "실시간 수질 감시"}, {"id": 460, "letter": "R", "en": "Real-time water quality monitoring", "kr": "실시간 수질 모니터링"}, {"id": 461, "letter": "R", "en": "reclaimed tidal land", "kr": "간척지"}, {"id": 462, "letter": "R", "en": "Recpnstruction", "kr": "재건축"}, {"id": 463, "letter": "R", "en": "Redevelopment", "kr": "재개발"}, {"id": 464, "letter": "R", "en": "redevelopment", "kr": "재개발"}, {"id": 465, "letter": "R", "en": "redevelopment rental housing", "kr": "재개발임대주택"}, {"id": 466, "letter": "R", "en": "Reduction in production costs", "kr": "생산원가 절감"}, {"id": 467, "letter": "R", "en": "Rehabilitation of aging pipelines", "kr": "노후 수도관 정비"}, {"id": 468, "letter": "R", "en": "Relocation of prestigious high schools", "kr": "명문 고교 이전"}, {"id": 469, "letter": "R", "en": "Relocation of public institutions", "kr": "공공기관 이전"}, {"id": 470, "letter": "R", "en": "Renewable Energy", "kr": "신재생에너지"}, {"id": 471, "letter": "R", "en": "Rent Subsidy", "kr": "임대료 보조(제도)"}, {"id": 472, "letter": "R", "en": "Rental Deposit Loan", "kr": "임대보증금 융자"}, {"id": 473, "letter": "R", "en": "Replacement of aging water pipes", "kr": "노후관 교체"}, {"id": 474, "letter": "R", "en": "Reserved Land(일부 문서: Reserve land)", "kr": "유보지"}, {"id": 475, "letter": "R", "en": "Residecnt-led", "kr": "주민 주도"}, {"id": 476, "letter": "R", "en": "Resident leadership", "kr": "주민주도성"}, {"id": 477, "letter": "R", "en": "Resident-proposed project", "kr": "주민제안사업"}, {"id": 478, "letter": "R", "en": "Residual chlorine control", "kr": "잔류염소 관리"}, {"id": 479, "letter": "R", "en": "Resource Circulation System", "kr": "자원 순환 시스템"}, {"id": 480, "letter": "R", "en": "Restoration of historical significance", "kr": "역사성 회복"}, {"id": 481, "letter": "R", "en": "Restoration of public trust", "kr": "시민 신뢰 회복"}, {"id": 482, "letter": "R", "en": "retrofit", "kr": "기존 건물의 성능 개선"}, {"id": 483, "letter": "R", "en": "Reuse of idle facilities", "kr": "유휴시설 재활용"}, {"id": 484, "letter": "R", "en": "Revenue Settlement System", "kr": "수입금 정산 시스템"}, {"id": 485, "letter": "R", "en": "Roadside air monitoring network", "kr": "도로변 대기 측정망"}, {"id": 486, "letter": "R", "en": "Route Planning Authority", "kr": "노선계획권"}, {"id": 487, "letter": "S", "en": "Saechang-gogae", "kr": "새창고개"}, {"id": 488, "letter": "S", "en": "safety barrier(s)", "kr": "방호울타리"}, {"id": 489, "letter": "S", "en": "Sale of reserve land", "kr": "체비지 매각"}, {"id": 490, "letter": "S", "en": "schedule adherence", "kr": "(버스) 정시성"}, {"id": 491, "letter": "S", "en": "Scientific leakage detection", "kr": "과학적 누수탐사"}, {"id": 492, "letter": "S", "en": "Scientific Urban Management", "kr": "과학적 도시관리"}, {"id": 493, "letter": "S", "en": "Seasonal Management System", "kr": "계절관리제"}, {"id": 494, "letter": "S", "en": "Secondary air pollutants", "kr": "2차 대기오염물질"}, {"id": 495, "letter": "S", "en": "secure temporary pedestrian routes during construction", "kr": "임시 보행로 확보"}, {"id": 496, "letter": "S", "en": "Securing public land", "kr": "공공용지 확보"}, {"id": 497, "letter": "S", "en": "self-contribution rate", "kr": "자부담률"}, {"id": 498, "letter": "S", "en": "Self-reinforce", "kr": "자기강화"}, {"id": 499, "letter": "S", "en": "Self-Supporting Accounting system", "kr": "독립채산제"}, {"id": 500, "letter": "S", "en": "semi\npublic operating system", "kr": "준공영제"}, {"id": 501, "letter": "S", "en": "Semi-basement", "kr": "반지하"}, {"id": 502, "letter": "S", "en": "Semi-public Bus Operation System", "kr": "준공영제 버스 운영체계"}, {"id": 503, "letter": "S", "en": "Sensor Data", "kr": "센서 데이터"}, {"id": 504, "letter": "S", "en": "Seoul Bus Transport Association", "kr": "버스운송사업조합"}, {"id": 505, "letter": "S", "en": "Seoul Community Support Center", "kr": "마을공동체 종합지원센터"}, {"id": 506, "letter": "S", "en": "Seoul Facilities Corporation", "kr": "서울시설관리공단"}, {"id": 507, "letter": "S", "en": "Seoul Housing Policy Bureau's Apartment Housing Support Division", "kr": "서울시 주택정책실 공동주택지원과"}, {"id": 508, "letter": "S", "en": "Seoul Housing Policy Bureau's Apartment Housing Support Division", "kr": "서울시 주택정책실 공동주택지원과"}, {"id": 509, "letter": "S", "en": "Seoul Metropolitan Government Ordinance on Carbon Neutrality and Green Growth for Coping with Climate Crisis", "kr": "서울특별시 기후위기 대응을 위한 탄소중립·녹색성장 기본조례"}, {"id": 510, "letter": "S", "en": "seoul metropolitan government ordinance on support for Development of village communities", "kr": "서울시 마을공동체 만들기 지원 등에 관한 조례"}, {"id": 511, "letter": "S", "en": "seoul metropolitan government ordinance on support, etc. for creation of village communities", "kr": "서울시 마을공동체 만들기 지원 등에 관한 조례"}, {"id": 512, "letter": "S", "en": "Seoul Metropolitan Government Ordinance on Tackling Climate Change", "kr": "서울특별시 기후변화 대응에 관한 조례"}, {"id": 513, "letter": "S", "en": "Seoul Metropolitan Government Ordinance on the Operation of the Climate Budget System", "kr": "서울특별시 기후예산제 운영에 관한 조례"}, {"id": 514, "letter": "S", "en": "Seoul Metropolitan Government’s Green City Bureau", "kr": "서울시 푸른도시국"}, {"id": 515, "letter": "S", "en": "Seoul Resource Center", "kr": "서울도시금속회수센터"}, {"id": 516, "letter": "S", "en": "Seoul Upcycling Plaza", "kr": "서울새활용플라자"}, {"id": 517, "letter": "S", "en": "Seoul Water Research Institute", "kr": "서울물연구원"}, {"id": 518, "letter": "S", "en": "Seoul’s Public Rental housing Policy", "kr": "서울시 공공임대주택 정책"}, {"id": 519, "letter": "S", "en": "Seoul-Type Housing Voucher Program", "kr": "서울형 주택 바우처"}, {"id": 520, "letter": "S", "en": "Service Integration", "kr": "서비스 통합"}, {"id": 521, "letter": "S", "en": "Service interruption", "kr": "급수 중단"}, {"id": 522, "letter": "S", "en": "service reliability", "kr": "서비스 신뢰성"}, {"id": 523, "letter": "S", "en": "service reliability", "kr": "서비스 신뢰성"}, {"id": 524, "letter": "S", "en": "Service reservoir", "kr": "배수지"}, {"id": 525, "letter": "S", "en": "Service reservoir", "kr": "배수지"}, {"id": 526, "letter": "S", "en": "settlement", "kr": "침하"}, {"id": 527, "letter": "S", "en": "Sewage treatment system", "kr": "하수 처리 시스템"}, {"id": 528, "letter": "S", "en": "SH Corporate", "kr": "SH 공사"}, {"id": 529, "letter": "S", "en": "Shared-Ownership Housing / Shared Equity Housing", "kr": "자분공유분양주택"}, {"id": 530, "letter": "S", "en": "Simulation and Scenario Analysis", "kr": "시뮬레이션 및 시나리오 분석"}, {"id": 531, "letter": "S", "en": "Slope Failure", "kr": "사면붕괴"}, {"id": 532, "letter": "S", "en": "Slumification", "kr": "슬럼화"}, {"id": 533, "letter": "S", "en": "Small-block system / block zoning", "kr": "블록화(소블록)"}, {"id": 534, "letter": "S", "en": "Small-scale Hydropower", "kr": "소수력 발전"}, {"id": 535, "letter": "S", "en": "Smart Card System", "kr": "스마트카드 시스템"}, {"id": 536, "letter": "S", "en": "Smart City", "kr": "스마트시티"}, {"id": 537, "letter": "S", "en": "smart lighting control system", "kr": "스마트 LED 조명 제어 시스템"}, {"id": 538, "letter": "S", "en": "Smart Transit Card(Transport Card) System", "kr": "교통카드 시스템"}, {"id": 539, "letter": "S", "en": "Social Housing", "kr": "사회주택"}, {"id": 540, "letter": "S", "en": "Social mobility", "kr": "계층 이동성"}, {"id": 541, "letter": "S", "en": "Social safety net", "kr": "사회안전망"}, {"id": 542, "letter": "S", "en": "Socially Vulnerable Groups", "kr": "사회적 약자"}, {"id": 543, "letter": "S", "en": "Solar Photovoltaic (PV)", "kr": "태양광 발전(태양광 PV)"}, {"id": 544, "letter": "S", "en": "source reduction", "kr": "원천감량"}, {"id": 545, "letter": "S", "en": "Source-specific Reduction", "kr": "배출원별 저감"}, {"id": 546, "letter": "S", "en": "Spatial Data Security", "kr": "공간정보 보안"}, {"id": 547, "letter": "S", "en": "Standard Transportation Cost", "kr": "표준운송원가"}, {"id": 548, "letter": "S", "en": "State Property Act", "kr": "국유재산법"}, {"id": 549, "letter": "S", "en": "state-owned land", "kr": "국유지"}, {"id": 550, "letter": "S", "en": "status of the Volume-Based Waste Fee System.", "kr": "쓰레기 종량제 현황"}, {"id": 551, "letter": "S", "en": "Strategic hubs / anchor facilities", "kr": "앵커 시설"}, {"id": 552, "letter": "S", "en": "subscribers to the housing subscription savings program", "kr": "청약저축가입자"}, {"id": 553, "letter": "S", "en": "substantial lump-sum", "kr": "큰 액수의 일시불 금액"}, {"id": 554, "letter": "S", "en": "Substitution Method", "kr": "환지방식"}, {"id": 555, "letter": "S", "en": "Subway Line 2 circular line", "kr": "지하철 2호선 순환선"}, {"id": 556, "letter": "S", "en": "Sudokwon Landfill Management Corporation", "kr": "수도권매립지관리공사"}, {"id": 557, "letter": "S", "en": "Sudokwon Landfill site", "kr": "수도권매립지"}, {"id": 558, "letter": "S", "en": "Sunhyechung", "kr": "선혜청"}, {"id": 559, "letter": "S", "en": "Sunlight Rights Analysis", "kr": "일조권 분석"}, {"id": 560, "letter": "S", "en": "Surge in water demand", "kr": "물 수요 급증"}, {"id": 561, "letter": "S", "en": "Sustainable Air Environment", "kr": "지속가능한 대기환경"}, {"id": 562, "letter": "S", "en": "Sustainable Development Committee.", "kr": "지속가능발전위원회"}, {"id": 563, "letter": "S", "en": "Sustainable Development Goals (SDGs)", "kr": "지속가능한 개발목표(SDGs)"}, {"id": 564, "letter": "S", "en": "Sustainable Smart City", "kr": "지속가능한 스마트시티"}, {"id": 565, "letter": "S", "en": "Sustainable urban infrastructure", "kr": "지속가능한 도시 인프라"}, {"id": 566, "letter": "T", "en": "Target beneficiaries", "kr": "정책대상자(수혜대상자)"}, {"id": 567, "letter": "T", "en": "Tax incentives", "kr": "세제 혜택"}, {"id": 568, "letter": "T", "en": "Temporary Act on the Promotion of Development in Designated Districts", "kr": "특정지구 개발촉진법"}, {"id": 569, "letter": "T", "en": "Tenants Displaced by Redevelopment", "kr": "철거세입자"}, {"id": 570, "letter": "T", "en": "Tender system", "kr": "입찰제"}, {"id": 571, "letter": "T", "en": "Three-Dimensional Spatial Information", "kr": "3차원 공간정보"}, {"id": 572, "letter": "T", "en": "Three-Dimensional Urban Space Design", "kr": "도시공간 입체화"}, {"id": 573, "letter": "T", "en": "T-money", "kr": "티머니"}, {"id": 574, "letter": "T", "en": "Top-down approach", "kr": "관주도 하향식 접근"}, {"id": 575, "letter": "T", "en": "Trace hazardous substances", "kr": "미량 유해물질"}, {"id": 576, "letter": "T", "en": "Traffic Congestion", "kr": "교통 혼잡"}, {"id": 577, "letter": "T", "en": "Traffic innovation", "kr": "교통 혁신"}, {"id": 578, "letter": "T", "en": "Transboundary Air Pollution", "kr": "월경성 대기오염"}, {"id": 579, "letter": "T", "en": "Transfer Discount", "kr": "환승 할인"}, {"id": 580, "letter": "T", "en": "Transfer Penalty", "kr": "환승 페널티"}, {"id": 581, "letter": "T", "en": "transfer time reduction", "kr": "환승시간 단축"}, {"id": 582, "letter": "T", "en": "Transportation corridor", "kr": "교통로"}, {"id": 583, "letter": "T", "en": "Transportation Demand Management", "kr": "교통수요관리"}, {"id": 584, "letter": "T", "en": "transportation disadvantaged group", "kr": "교통소외계층"}, {"id": 585, "letter": "T", "en": "Transportation Equity", "kr": "교통 형평성"}, {"id": 586, "letter": "T", "en": "Transportation System Management (TSM)", "kr": "교통체계 관리"}, {"id": 587, "letter": "T", "en": "Transportation Welfare", "kr": "교통 복지"}, {"id": 588, "letter": "T", "en": "Travel pattern", "kr": "이동패턴"}, {"id": 589, "letter": "T", "en": "travel speed advantage", "kr": "속도우위"}, {"id": 590, "letter": "T", "en": "travel time deviation", "kr": "통행시간 편차"}, {"id": 591, "letter": "T", "en": "travel time variability", "kr": "통행시간 변동성"}, {"id": 592, "letter": "T", "en": "Treated Effluent", "kr": "처리수(방류수)"}, {"id": 593, "letter": "T", "en": "Trunk Route", "kr": "간선 노선"}, {"id": 594, "letter": "T", "en": "Turbidity control", "kr": "탁도 관리"}, {"id": 595, "letter": "U", "en": "Ultrafine Particulate Matter (PM₂.₅)", "kr": "초미세먼지(PM2.5)"}, {"id": 596, "letter": "U", "en": "Uncontrolled Developement", "kr": "난개발"}, {"id": 597, "letter": "U", "en": "Underground leakage detection", "kr": "지하 누수탐지"}, {"id": 598, "letter": "U", "en": "Underground Spatial Information", "kr": "지하공간 정보"}, {"id": 599, "letter": "U", "en": "Undergrounding", "kr": "지하화"}, {"id": 600, "letter": "U", "en": "Undergrounding overhead utilities", "kr": "전진주 / 전선 지중화"}, {"id": 601, "letter": "U", "en": "Universal public service", "kr": "보편적 공공서비스"}, {"id": 602, "letter": "U", "en": "Universal water welfare", "kr": "보편적 물 복지"}, {"id": 603, "letter": "U", "en": "Universal water welfare", "kr": "보편적 물 복지"}, {"id": 604, "letter": "U", "en": "Upfront infrastructure investment", "kr": "기반시설 선투자"}, {"id": 605, "letter": "U", "en": "Urban ambient air monitoring network", "kr": "도시대기 측정망"}, {"id": 606, "letter": "U", "en": "Urban Analytics", "kr": "도시 분석"}, {"id": 607, "letter": "U", "en": "urban center", "kr": "도심"}, {"id": 608, "letter": "U", "en": "Urban Digital Archiving", "kr": "도시 디지털 아카이빙"}, {"id": 609, "letter": "U", "en": "Urban heat island effect", "kr": "도시열섬"}, {"id": 610, "letter": "U", "en": "Urban identity restoration", "kr": "도시 정체성 회복"}, {"id": 611, "letter": "U", "en": "urban infrastructure", "kr": "도시기반시설"}, {"id": 612, "letter": "U", "en": "Urban Infrastructure Headquarters", "kr": "도시기반본부"}, {"id": 613, "letter": "U", "en": "Urban planning changes", "kr": "도시계획 변경"}, {"id": 614, "letter": "U", "en": "Urban Planning Facility", "kr": "도시계획시설"}, {"id": 615, "letter": "U", "en": "Urban Planning Review", "kr": "도시계획 심의"}, {"id": 616, "letter": "U", "en": "Urban Policy Decision Support System", "kr": "도시정책 의사결정 지원체계"}, {"id": 617, "letter": "U", "en": "Urban Regeneration", "kr": "도심 재생"}, {"id": 618, "letter": "U", "en": "Urban Regeneration", "kr": "도시재생"}, {"id": 619, "letter": "U", "en": "Urban Safety Map", "kr": "도시안전지도"}, {"id": 620, "letter": "U", "en": "Urban Spatial Digital Twin", "kr": "도시공간 디지털 트윈"}, {"id": 621, "letter": "U", "en": "Urban sprawl", "kr": "도시 스프롤"}, {"id": 622, "letter": "U", "en": "urban vitality (diminished / enhanced)", "kr": "도시의 활력(저하/증진)"}, {"id": 623, "letter": "U", "en": "Urban Wastewater Treatment Plant(s)", "kr": "도시 하수처리장"}, {"id": 624, "letter": "U", "en": "Urban Wind Corridor Simulation", "kr": "도시 바람길 시뮬레이션"}, {"id": 625, "letter": "V", "en": "vegetative cover layer", "kr": "식생층"}, {"id": 626, "letter": "V", "en": "village community (maeul gongdongche) project", "kr": "마을 공동체 사업"}, {"id": 627, "letter": "V", "en": "Village making", "kr": "마을 만들기"}, {"id": 628, "letter": "V", "en": "Virtual Museum", "kr": "가상 박물관"}, {"id": 629, "letter": "V", "en": "Virtual Seoul (S-Map)", "kr": "버추얼 서울(S-Map)"}, {"id": 630, "letter": "V", "en": "Volatile Organic Compounds (VOCs)", "kr": "휘발성유기화합물"}, {"id": 631, "letter": "V", "en": "Volatile organic compounds (VOCs)", "kr": "휘발성 유기화합물(VOCs)"}, {"id": 632, "letter": "V", "en": "volume-based waste fee bags(VBMF)", "kr": "종량제봉투"}, {"id": 633, "letter": "V", "en": "Vulnerable groups", "kr": "취약계층"}, {"id": 634, "letter": "W", "en": "waste disposal facility", "kr": "폐기물처리시설"}, {"id": 635, "letter": "W", "en": "Waste Heat", "kr": "폐열"}, {"id": 636, "letter": "W", "en": "Wastewater Heat Recovery", "kr": "하수열 회수"}, {"id": 637, "letter": "W", "en": "Water pressure imbalance", "kr": "수압 불균형"}, {"id": 638, "letter": "W", "en": "Water quality management", "kr": "수질 관리"}, {"id": 639, "letter": "W", "en": "Water quality safety", "kr": "수질 안전성"}, {"id": 640, "letter": "W", "en": "Water quality variability", "kr": "수질 변동성"}, {"id": 641, "letter": "W", "en": "Water Reclamation Center(s)", "kr": "물재생센터"}, {"id": 642, "letter": "W", "en": "Water revenue ratio", "kr": "유수율"}, {"id": 643, "letter": "W", "en": "Water revenue ratio", "kr": "유수율"}, {"id": 644, "letter": "W", "en": "Water source management", "kr": "상수원 관리"}, {"id": 645, "letter": "W", "en": "Water source protection", "kr": "상수원 보호"}, {"id": 646, "letter": "W", "en": "Water supply infrastructure", "kr": "상수도 인프라"}, {"id": 647, "letter": "W", "en": "Water supply stability", "kr": "급수 안정성"}, {"id": 648, "letter": "W", "en": "Water tariff stability", "kr": "수도요금 안정"}, {"id": 649, "letter": "W", "en": "Water treatment plant", "kr": "정수장"}, {"id": 650, "letter": "W", "en": "Water–Energy Nexus", "kr": "물-에너지 넥서스"}, {"id": 651, "letter": "W", "en": "Waterfront space", "kr": "수변 공간"}, {"id": 652, "letter": "W", "en": "waterproof rating", "kr": "방수등급 적용"}, {"id": 653, "letter": "W", "en": "Waterworks Headquarters", "kr": "수도사업본부"}, {"id": 654, "letter": "W", "en": "Welfare blind spots", "kr": "복지 사각지대"}, {"id": 655, "letter": "W", "en": "WHO drinking water standards", "kr": "세계보건기구 기준"}, {"id": 656, "letter": "W", "en": "Working Poor", "kr": "근로빈곤층"}, {"id": 657, "letter": "W", "en": "World Health Organization (WHO)", "kr": "세계보건기구"}, {"id": 658, "letter": "W", "en": "World Inequality Report", "kr": "세계 불평등 보고서"}, {"id": 659, "letter": "Y", "en": "Yeongdong District", "kr": "영동지구"}, {"id": 660, "letter": "Y", "en": "Young Adults Entering the Workforce", "kr": "사회초년생"}]
+[
+ {
+  "id": 1,
+  "letter": "A",
+  "en": "Accessibility Equity",
+  "kr": "접근성 형평성"
+ },
+ {
+  "id": 2,
+  "letter": "A",
+  "en": "Acid deposition (acid rain)",
+  "kr": "산성강하물(산성비)"
+ },
+ {
+  "id": 3,
+  "letter": "A",
+  "en": "Act on the Prevention of Light Pollution Due to Artificial Lighting",
+  "kr": "인공조명에 의한 빛공해 방지법"
+ },
+ {
+  "id": 4,
+  "letter": "A",
+  "en": "Act on the Promotion of Saving and Recycling of Resources",
+  "kr": "자원의 절약과 재활용 촉진에 관한 법률"
+ },
+ {
+  "id": 5,
+  "letter": "A",
+  "en": "Act on the Rational Use of Energy",
+  "kr": "에너지이용합리화법"
+ },
+ {
+  "id": 6,
+  "letter": "A",
+  "en": "ad hoc approach",
+  "kr": "임시적, 비체계적 방식"
+ },
+ {
+  "id": 7,
+  "letter": "A",
+  "en": "Administrative Data",
+  "kr": "행정 데이터"
+ },
+ {
+  "id": 8,
+  "letter": "A",
+  "en": "Administrative transparency",
+  "kr": "행정 투명성"
+ },
+ {
+  "id": 9,
+  "letter": "A",
+  "en": "Advanced oxidation process (AOP)",
+  "kr": "고도산화공정(AOP)"
+ },
+ {
+  "id": 10,
+  "letter": "A",
+  "en": "Advanced water treatment",
+  "kr": "고도정수처리"
+ },
+ {
+  "id": 11,
+  "letter": "A",
+  "en": "Advanced water treatment",
+  "kr": "고도정수처리"
+ },
+ {
+  "id": 12,
+  "letter": "A",
+  "en": "Affordability Threshold",
+  "kr": "부담경계"
+ },
+ {
+  "id": 13,
+  "letter": "A",
+  "en": "Aging infrastructure",
+  "kr": "노후 인프라"
+ },
+ {
+  "id": 14,
+  "letter": "A",
+  "en": "Aging pipelines",
+  "kr": "노후 관로"
+ },
+ {
+  "id": 15,
+  "letter": "A",
+  "en": "Aging pipelines / aging water pipes",
+  "kr": "노후관(노후 수도관)"
+ },
+ {
+  "id": 16,
+  "letter": "A",
+  "en": "AI Transformation (AX)",
+  "kr": "인공지능 전환"
+ },
+ {
+  "id": 17,
+  "letter": "A",
+  "en": "Air Pollution",
+  "kr": "대기오염"
+ },
+ {
+  "id": 18,
+  "letter": "A",
+  "en": "Air pollution alert system",
+  "kr": "대기오염 경보제"
+ },
+ {
+  "id": 19,
+  "letter": "A",
+  "en": "Air pollution forecasting system",
+  "kr": "대기오염 예보제"
+ },
+ {
+  "id": 20,
+  "letter": "A",
+  "en": "Air quality improvement",
+  "kr": "대기질 개선"
+ },
+ {
+  "id": 21,
+  "letter": "A",
+  "en": "Air Quality Improvement",
+  "kr": "대기질 개선"
+ },
+ {
+  "id": 22,
+  "letter": "A",
+  "en": "Air quality information system",
+  "kr": "대기환경정보 시스템"
+ },
+ {
+  "id": 23,
+  "letter": "A",
+  "en": "Air quality measurement system",
+  "kr": "대기질 측정 시스템"
+ },
+ {
+  "id": 24,
+  "letter": "A",
+  "en": "Algal bloom early warning system",
+  "kr": "조류경보제"
+ },
+ {
+  "id": 25,
+  "letter": "A",
+  "en": "Allowable leakage threshold",
+  "kr": "허용 누수량"
+ },
+ {
+  "id": 26,
+  "letter": "A",
+  "en": "Alternative water supply",
+  "kr": "대체급수"
+ },
+ {
+  "id": 27,
+  "letter": "A",
+  "en": "Anaerobic Digestion",
+  "kr": "혐기소화"
+ },
+ {
+  "id": 28,
+  "letter": "A",
+  "en": "apartment complex",
+  "kr": "단지"
+ },
+ {
+  "id": 29,
+  "letter": "A",
+  "en": "Arisu brand",
+  "kr": "아리수 브랜드"
+ },
+ {
+  "id": 30,
+  "letter": "A",
+  "en": "Arisu tap water quality verification program",
+  "kr": "아리수 품질확인제"
+ },
+ {
+  "id": 31,
+  "letter": "A",
+  "en": "articles of incorporation",
+  "kr": "정관"
+ },
+ {
+  "id": 32,
+  "letter": "A",
+  "en": "At-risk households",
+  "kr": "위기 가구"
+ },
+ {
+  "id": 33,
+  "letter": "A",
+  "en": "Automated air pollution monitoring network",
+  "kr": "대기오염 자동측정망"
+ },
+ {
+  "id": 34,
+  "letter": "A",
+  "en": "Automated control system",
+  "kr": "자동제어 시스템"
+ },
+ {
+  "id": 35,
+  "letter": "A",
+  "en": "Automated Fare Collection",
+  "kr": "자동운임징수시스템"
+ },
+ {
+  "id": 36,
+  "letter": "A",
+  "en": "Automatic monitoring instruments",
+  "kr": "자동측정기기"
+ },
+ {
+  "id": 37,
+  "letter": "A",
+  "en": "Automatic water quality monitoring network",
+  "kr": "수질자동측정망"
+ },
+ {
+  "id": 38,
+  "letter": "A",
+  "en": "Automobile Dependence",
+  "kr": "승용차 의존"
+ },
+ {
+  "id": 39,
+  "letter": "A",
+  "en": "automobile-oriented transportation system",
+  "kr": "자동차 중심의 교통체계"
+ },
+ {
+  "id": 40,
+  "letter": "A",
+  "en": "Autonomous Driving Support",
+  "kr": "자율주행 지원"
+ },
+ {
+  "id": 41,
+  "letter": "B",
+  "en": "backfilling",
+  "kr": "되메우기 작업"
+ },
+ {
+  "id": 42,
+  "letter": "B",
+  "en": "Background (clean air) monitoring network",
+  "kr": "배경(청정) 측정망"
+ },
+ {
+  "id": 43,
+  "letter": "B",
+  "en": "Backstreet",
+  "kr": "이면도로"
+ },
+ {
+  "id": 44,
+  "letter": "B",
+  "en": "BAR(Biotope Area Ratio)",
+  "kr": "생태면적률"
+ },
+ {
+  "id": 45,
+  "letter": "B",
+  "en": "basic design plan",
+  "kr": "기본설계안"
+ },
+ {
+  "id": 46,
+  "letter": "B",
+  "en": "Basic Livelihood Security Recipients",
+  "kr": "국민기초생활보장 수급자"
+ },
+ {
+  "id": 47,
+  "letter": "B",
+  "en": "beneficiaries’ contribution",
+  "kr": "수익자 부담금"
+ },
+ {
+  "id": 48,
+  "letter": "B",
+  "en": "Beneficiary-pays principle",
+  "kr": "수익자 부담 원칙"
+ },
+ {
+  "id": 49,
+  "letter": "B",
+  "en": "Biochemical Oxygen Demand(BOD)",
+  "kr": "생물화학적 산소요구량"
+ },
+ {
+  "id": 50,
+  "letter": "B",
+  "en": "Biogas",
+  "kr": "바이오가스"
+ },
+ {
+  "id": 51,
+  "letter": "B",
+  "en": "Biological early warning system",
+  "kr": "생물경보시스템"
+ },
+ {
+  "id": 52,
+  "letter": "B",
+  "en": "Biomass Combustion",
+  "kr": "생물성 연소"
+ },
+ {
+  "id": 53,
+  "letter": "B",
+  "en": "Block zoning system",
+  "kr": "블록화 시스템"
+ },
+ {
+  "id": 54,
+  "letter": "B",
+  "en": "Boarding and Alighting Data",
+  "kr": "승·하차 데이터"
+ },
+ {
+  "id": 55,
+  "letter": "B",
+  "en": "Booster pumping station",
+  "kr": "가압장"
+ },
+ {
+  "id": 56,
+  "letter": "B",
+  "en": "Booster pumping station",
+  "kr": "가압장"
+ },
+ {
+  "id": 57,
+  "letter": "B",
+  "en": "Budget savings",
+  "kr": "예산 절감 효과"
+ },
+ {
+  "id": 58,
+  "letter": "B",
+  "en": "Building Act",
+  "kr": "건축법"
+ },
+ {
+  "id": 59,
+  "letter": "B",
+  "en": "Building carbon neutrality",
+  "kr": "건물탄소중립"
+ },
+ {
+  "id": 60,
+  "letter": "B",
+  "en": "Building Energy Reporting and Rating System",
+  "kr": "건물 에너지 신고·등급제"
+ },
+ {
+  "id": 61,
+  "letter": "B",
+  "en": "building energy retrofit",
+  "kr": "건물 녹색화"
+ },
+ {
+  "id": 62,
+  "letter": "B",
+  "en": "Building Greenhouse Gas Emissions Cap system",
+  "kr": "건물온실가스배출총량제"
+ },
+ {
+  "id": 63,
+  "letter": "B",
+  "en": "building greenhouse gas total emissions system",
+  "kr": "건물 온실가스 총량제"
+ },
+ {
+  "id": 64,
+  "letter": "B",
+  "en": "Building height management",
+  "kr": "건축물 높이 관리"
+ },
+ {
+  "id": 65,
+  "letter": "B",
+  "en": "Building Information Modeling (BIM)",
+  "kr": "건물정보모델링"
+ },
+ {
+  "id": 66,
+  "letter": "B",
+  "en": "Building Retrofit Project",
+  "kr": "건물에너지 효율화"
+ },
+ {
+  "id": 67,
+  "letter": "B",
+  "en": "Building-Integrated Photovoltaics (BIPV)",
+  "kr": "건물일체형 태양광 발전 시스템"
+ },
+ {
+  "id": 68,
+  "letter": "B",
+  "en": "bus bunching",
+  "kr": "버스 열차화"
+ },
+ {
+  "id": 69,
+  "letter": "B",
+  "en": "Bus Network Optimization",
+  "kr": "버스 노선 최적화"
+ },
+ {
+  "id": 70,
+  "letter": "B",
+  "en": "Bus Policy Citizen Committee.",
+  "kr": "버스정책 시민위원회"
+ },
+ {
+  "id": 71,
+  "letter": "B",
+  "en": "bus priority policy",
+  "kr": "버스우대정책"
+ },
+ {
+  "id": 72,
+  "letter": "C",
+  "en": "C40 World Mayors Summit",
+  "kr": "C40 세계도시 기후정상회의"
+ },
+ {
+  "id": 73,
+  "letter": "C",
+  "en": "cadastral subdivision",
+  "kr": "지적분할"
+ },
+ {
+  "id": 74,
+  "letter": "C",
+  "en": "Car Mileage Program",
+  "kr": "승용차 마일리지 사업"
+ },
+ {
+  "id": 75,
+  "letter": "C",
+  "en": "Carbon Neutrality",
+  "kr": "탄소중립"
+ },
+ {
+  "id": 76,
+  "letter": "C",
+  "en": "carbon reduction",
+  "kr": "탄소 저감"
+ },
+ {
+  "id": 77,
+  "letter": "C",
+  "en": "Chemical expenses",
+  "kr": "약품비"
+ },
+ {
+  "id": 78,
+  "letter": "C",
+  "en": "Chemical Oxygen Demand(COD)",
+  "kr": "화학적 산소요구량"
+ },
+ {
+  "id": 79,
+  "letter": "C",
+  "en": "Cheonggyecheon Restoration",
+  "kr": "청계천 복원"
+ },
+ {
+  "id": 80,
+  "letter": "C",
+  "en": "Citizen Participation Platform",
+  "kr": "시민참여형 플랫폼"
+ },
+ {
+  "id": 81,
+  "letter": "C",
+  "en": "Citizen satisfaction",
+  "kr": "시민 만족도"
+ },
+ {
+  "id": 82,
+  "letter": "C",
+  "en": "Citizen-participatory water quality management",
+  "kr": "시민 참여 수질관리"
+ },
+ {
+  "id": 83,
+  "letter": "C",
+  "en": "Citizens’ committee operation",
+  "kr": "시민위원회 운영"
+ },
+ {
+  "id": 84,
+  "letter": "C",
+  "en": "Citizens’ right to know",
+  "kr": "시민의 알 권리"
+ },
+ {
+  "id": 85,
+  "letter": "C",
+  "en": "City Bus Financial Support and Safety Standards Ordinance",
+  "kr": "시내버스 재정지원 및 안전 운행기준에 관한 조례"
+ },
+ {
+  "id": 86,
+  "letter": "C",
+  "en": "Civic Engagement(일부: Civic participation)",
+  "kr": "참여형 시민주도(시민참여)"
+ },
+ {
+  "id": 87,
+  "letter": "C",
+  "en": "Civic Engineering",
+  "kr": "토목"
+ },
+ {
+  "id": 88,
+  "letter": "C",
+  "en": "Climate Card",
+  "kr": "기후동행카드"
+ },
+ {
+  "id": 89,
+  "letter": "C",
+  "en": "Climate Change",
+  "kr": "기후변화"
+ },
+ {
+  "id": 90,
+  "letter": "C",
+  "en": "Climate change response",
+  "kr": "기후변화 대응"
+ },
+ {
+  "id": 91,
+  "letter": "C",
+  "en": "Climate Change Response",
+  "kr": "기후변화 대응"
+ },
+ {
+  "id": 92,
+  "letter": "C",
+  "en": "Climate Response Fund",
+  "kr": "기후변화대응기금"
+ },
+ {
+  "id": 93,
+  "letter": "C",
+  "en": "Co-financing Structure",
+  "kr": "자부담 체계"
+ },
+ {
+  "id": 94,
+  "letter": "C",
+  "en": "Combined Heat and Power (CHP)",
+  "kr": "열병합발전(CHP)"
+ },
+ {
+  "id": 95,
+  "letter": "C",
+  "en": "Commercial revitalization",
+  "kr": "상업 활성화"
+ },
+ {
+  "id": 96,
+  "letter": "C",
+  "en": "Community capacity building",
+  "kr": "공동체 역량 강화"
+ },
+ {
+  "id": 97,
+  "letter": "C",
+  "en": "Complex-level infrastructure",
+  "kr": "단지 단위 인프라"
+ },
+ {
+  "id": 98,
+  "letter": "C",
+  "en": "Compliance with environmental standards",
+  "kr": "환경기준 달성 여부"
+ },
+ {
+  "id": 99,
+  "letter": "C",
+  "en": "Computerization of distribution zones",
+  "kr": "배수구역 전산화"
+ },
+ {
+  "id": 100,
+  "letter": "C",
+  "en": "conditional approval",
+  "kr": "조건부 승인"
+ },
+ {
+  "id": 101,
+  "letter": "C",
+  "en": "Construction Machinery",
+  "kr": "건설기계"
+ },
+ {
+  "id": 102,
+  "letter": "C",
+  "en": "Construction Management",
+  "kr": "공사관리"
+ },
+ {
+  "id": 103,
+  "letter": "C",
+  "en": "Contractor",
+  "kr": "도급자(=시공사)"
+ },
+ {
+  "id": 104,
+  "letter": "C",
+  "en": "Conversion",
+  "kr": "분양전환"
+ },
+ {
+  "id": 105,
+  "letter": "C",
+  "en": "Correlation leakage detection",
+  "kr": "상관식 누수탐지"
+ },
+ {
+  "id": 106,
+  "letter": "C",
+  "en": "Cost savings in restoration project",
+  "kr": "복원사업 비용 절감"
+ },
+ {
+  "id": 107,
+  "letter": "C",
+  "en": "Crime Prevention Through Environmental Design (CPTED)",
+  "kr": "범죄예방환경설계"
+ },
+ {
+  "id": 108,
+  "letter": "C",
+  "en": "Criteria air pollutants",
+  "kr": "기준성 대기오염물질"
+ },
+ {
+  "id": 109,
+  "letter": "C",
+  "en": "Cultural events",
+  "kr": "문화 행사"
+ },
+ {
+  "id": 110,
+  "letter": "C",
+  "en": "cutoff wall",
+  "kr": "차수벽"
+ },
+ {
+  "id": 111,
+  "letter": "D",
+  "en": "Data Hub",
+  "kr": "데이터 허브"
+ },
+ {
+  "id": 112,
+  "letter": "D",
+  "en": "Data-based Monitoring",
+  "kr": "데이터 기반 모니터링"
+ },
+ {
+  "id": 113,
+  "letter": "D",
+  "en": "Data-driven administration",
+  "kr": "데이터 기반 행정"
+ },
+ {
+  "id": 114,
+  "letter": "D",
+  "en": "Data-driven environmental administration",
+  "kr": "데이터 기반 환경행정"
+ },
+ {
+  "id": 115,
+  "letter": "D",
+  "en": "dedicated unit",
+  "kr": "전담조직"
+ },
+ {
+  "id": 116,
+  "letter": "D",
+  "en": "Demolition control",
+  "kr": "멸실 제어"
+ },
+ {
+  "id": 117,
+  "letter": "D",
+  "en": "deployment roadmap",
+  "kr": "보급 로드맵"
+ },
+ {
+  "id": 118,
+  "letter": "D",
+  "en": "Depot",
+  "kr": "(버스) 차고지"
+ },
+ {
+  "id": 119,
+  "letter": "D",
+  "en": "Detatched house",
+  "kr": "단독주택"
+ },
+ {
+  "id": 120,
+  "letter": "D",
+  "en": "Diesel Particulate Filter (DPF)",
+  "kr": "매연저감장치"
+ },
+ {
+  "id": 121,
+  "letter": "D",
+  "en": "Diesel Vehicles",
+  "kr": "경유차"
+ },
+ {
+  "id": 122,
+  "letter": "D",
+  "en": "Digester Gas",
+  "kr": "소화가스"
+ },
+ {
+  "id": 123,
+  "letter": "D",
+  "en": "Digital Elevation Model (DEM)",
+  "kr": "수치표고모델"
+ },
+ {
+  "id": 124,
+  "letter": "D",
+  "en": "Digital Transformation (DX)",
+  "kr": "디지털 전환"
+ },
+ {
+  "id": 125,
+  "letter": "D",
+  "en": "Digital Twin",
+  "kr": "디지털 트윈"
+ },
+ {
+  "id": 126,
+  "letter": "D",
+  "en": "Digital Twin Governance",
+  "kr": "디지털 트윈 거버넌스"
+ },
+ {
+  "id": 127,
+  "letter": "D",
+  "en": "Direct water supply method",
+  "kr": "직접급수 방식"
+ },
+ {
+  "id": 128,
+  "letter": "D",
+  "en": "Disaster Risk Prediction",
+  "kr": "재난 위험 예측"
+ },
+ {
+  "id": 129,
+  "letter": "D",
+  "en": "Dispersed chlorine injection",
+  "kr": "염소 분산주입"
+ },
+ {
+  "id": 130,
+  "letter": "D",
+  "en": "Distance-based Fare System",
+  "kr": "거리비례 요금제"
+ },
+ {
+  "id": 131,
+  "letter": "D",
+  "en": "Distributed Energy Sources",
+  "kr": "분산형 전원(분산형 에너지원)"
+ },
+ {
+  "id": 132,
+  "letter": "D",
+  "en": "Distribution and supply system management",
+  "kr": "배·급수 계통 관리"
+ },
+ {
+  "id": 133,
+  "letter": "D",
+  "en": "District flow meters",
+  "kr": "구역 유량계"
+ },
+ {
+  "id": 134,
+  "letter": "D",
+  "en": "district heating",
+  "kr": "지역 난방"
+ },
+ {
+  "id": 135,
+  "letter": "D",
+  "en": "District Heating Supply",
+  "kr": "지역난방 공급"
+ },
+ {
+  "id": 136,
+  "letter": "D",
+  "en": "District Unit Planning",
+  "kr": "지구단위계획"
+ },
+ {
+  "id": 137,
+  "letter": "D",
+  "en": "District-based Management",
+  "kr": "자치구 맞춤 관리"
+ },
+ {
+  "id": 138,
+  "letter": "D",
+  "en": "Double Track",
+  "kr": "복선화"
+ },
+ {
+  "id": 139,
+  "letter": "D",
+  "en": "Drainage layer",
+  "kr": "배수층"
+ },
+ {
+  "id": 140,
+  "letter": "D",
+  "en": "Drinking water safety",
+  "kr": "먹는 물 안전성"
+ },
+ {
+  "id": 141,
+  "letter": "E",
+  "en": "Early warning signs",
+  "kr": "위기 징후"
+ },
+ {
+  "id": 142,
+  "letter": "E",
+  "en": "Eco-friendly housing option",
+  "kr": "친환경 주거 대안"
+ },
+ {
+  "id": 143,
+  "letter": "E",
+  "en": "eco-friendly light source",
+  "kr": "친환경 광원"
+ },
+ {
+  "id": 144,
+  "letter": "E",
+  "en": "Eco-friendly Vehicles",
+  "kr": "친환경자동차"
+ },
+ {
+  "id": 145,
+  "letter": "E",
+  "en": "Ecological stream restoration",
+  "kr": "생태적 하천 복원"
+ },
+ {
+  "id": 146,
+  "letter": "E",
+  "en": "Economic benefits / economic value",
+  "kr": "경제적 효과(가치)"
+ },
+ {
+  "id": 147,
+  "letter": "E",
+  "en": "ecosystem monitoring",
+  "kr": "생태계 모니터링"
+ },
+ {
+  "id": 148,
+  "letter": "E",
+  "en": "Elderly Households and Households with Persons with Disabilities",
+  "kr": "노인·장애인가구"
+ },
+ {
+  "id": 149,
+  "letter": "E",
+  "en": "Electricity Demand Management",
+  "kr": "전력수요관리"
+ },
+ {
+  "id": 150,
+  "letter": "E",
+  "en": "Electronic Fare Collection (EFC)",
+  "kr": "전자요금징수"
+ },
+ {
+  "id": 151,
+  "letter": "E",
+  "en": "Elevated roadway demolition",
+  "kr": "고가도로 철거"
+ },
+ {
+  "id": 152,
+  "letter": "E",
+  "en": "Emergency interconnection pipeline",
+  "kr": "비상관로"
+ },
+ {
+  "id": 153,
+  "letter": "E",
+  "en": "Emergency Reduction Measures",
+  "kr": "비상저감조치"
+ },
+ {
+  "id": 154,
+  "letter": "E",
+  "en": "Emergency water supply system",
+  "kr": "비상급수 체계"
+ },
+ {
+  "id": 155,
+  "letter": "E",
+  "en": "Emerging contaminants",
+  "kr": "신종 오염물질"
+ },
+ {
+  "id": 156,
+  "letter": "E",
+  "en": "Emission Source",
+  "kr": "배출원"
+ },
+ {
+  "id": 157,
+  "letter": "E",
+  "en": "Endangered species",
+  "kr": "멸종위기종"
+ },
+ {
+  "id": 158,
+  "letter": "E",
+  "en": "Energy Conservation",
+  "kr": "에너지 절감"
+ },
+ {
+  "id": 159,
+  "letter": "E",
+  "en": "Energy costs",
+  "kr": "동력비(에너지 비용)"
+ },
+ {
+  "id": 160,
+  "letter": "E",
+  "en": "Energy Crisis",
+  "kr": "에너지 위기"
+ },
+ {
+  "id": 161,
+  "letter": "E",
+  "en": "energy demand management (DSM)",
+  "kr": "에너지 수요 관리"
+ },
+ {
+  "id": 162,
+  "letter": "E",
+  "en": "energy efficiency enhancement",
+  "kr": "에너지 효율화"
+ },
+ {
+  "id": 163,
+  "letter": "E",
+  "en": "Energy Intensity",
+  "kr": "에너지 원단위"
+ },
+ {
+  "id": 164,
+  "letter": "E",
+  "en": "Energy loss",
+  "kr": "에너지 손실"
+ },
+ {
+  "id": 165,
+  "letter": "E",
+  "en": "Energy Self-Reliant Villages(ESV)",
+  "kr": "에너지자립마을"
+ },
+ {
+  "id": 166,
+  "letter": "E",
+  "en": "Energy Self-sufficiency",
+  "kr": "에너지 자립(자급)"
+ },
+ {
+  "id": 167,
+  "letter": "E",
+  "en": "energy welfare",
+  "kr": "에너지 복지"
+ },
+ {
+  "id": 168,
+  "letter": "E",
+  "en": "Energy-Recovery incineration",
+  "kr": "열회수형 소각"
+ },
+ {
+  "id": 169,
+  "letter": "E",
+  "en": "Enhancement of public trust in tap water",
+  "kr": "수돗물 신뢰도 제고"
+ },
+ {
+  "id": 170,
+  "letter": "E",
+  "en": "Enhancement of urban competitiveness",
+  "kr": "도시 경쟁력 강화"
+ },
+ {
+  "id": 171,
+  "letter": "E",
+  "en": "Environmental Benefits",
+  "kr": "환경 편익"
+ },
+ {
+  "id": 172,
+  "letter": "E",
+  "en": "Environmental data governance",
+  "kr": "환경 데이터 거버넌스"
+ },
+ {
+  "id": 173,
+  "letter": "E",
+  "en": "Environmental impact assessment",
+  "kr": "환경 영향 평가"
+ },
+ {
+  "id": 174,
+  "letter": "E",
+  "en": "environmental regeneration",
+  "kr": "환경재생"
+ },
+ {
+  "id": 175,
+  "letter": "E",
+  "en": "Evidence-based policy",
+  "kr": "근거 기반 정책"
+ },
+ {
+  "id": 176,
+  "letter": "E",
+  "en": "Evidence-Based Policy Making",
+  "kr": "증거기반 정책결정"
+ },
+ {
+  "id": 177,
+  "letter": "E",
+  "en": "Excessive water pressure",
+  "kr": "과수압"
+ },
+ {
+  "id": 178,
+  "letter": "E",
+  "en": "exclusive lane(s)",
+  "kr": "전용차로"
+ },
+ {
+  "id": 179,
+  "letter": "E",
+  "en": "Expansion of public space",
+  "kr": "공공공간 확장"
+ },
+ {
+  "id": 180,
+  "letter": "E",
+  "en": "Expansion of water quality parameters",
+  "kr": "수질검사항목 확대"
+ },
+ {
+  "id": 181,
+  "letter": "F",
+  "en": "Facility modernization",
+  "kr": "시설 현대화"
+ },
+ {
+  "id": 182,
+  "letter": "F",
+  "en": "Families with Young Children",
+  "kr": "육아가구"
+ },
+ {
+  "id": 183,
+  "letter": "F",
+  "en": "Fare Integration",
+  "kr": "요금 통합"
+ },
+ {
+  "id": 184,
+  "letter": "F",
+  "en": "Fare-setting Authority",
+  "kr": "요금책정권"
+ },
+ {
+  "id": 185,
+  "letter": "F",
+  "en": "FARMLAND ACT",
+  "kr": "토지개량사업법 -> 농지법으로 변경"
+ },
+ {
+  "id": 186,
+  "letter": "F",
+  "en": "Feeder Route",
+  "kr": "지선 노선"
+ },
+ {
+  "id": 187,
+  "letter": "F",
+  "en": "Feeder Service",
+  "kr": "보완·연계 교통서비스"
+ },
+ {
+  "id": 188,
+  "letter": "F",
+  "en": "Financial efficiency",
+  "kr": "재정 효율성"
+ },
+ {
+  "id": 189,
+  "letter": "F",
+  "en": "Financial incentives",
+  "kr": "재정지원"
+ },
+ {
+  "id": 190,
+  "letter": "F",
+  "en": "Financial self-reliance",
+  "kr": "경영 자립"
+ },
+ {
+  "id": 191,
+  "letter": "F",
+  "en": "Fine particulate matter (PM₂.₅)",
+  "kr": "초미세먼지(PM2.5)"
+ },
+ {
+  "id": 192,
+  "letter": "F",
+  "en": "Fire Safety Management",
+  "kr": "소방 안전 관리"
+ },
+ {
+  "id": 193,
+  "letter": "F",
+  "en": "Fiscal outcomes",
+  "kr": "재정적 성과"
+ },
+ {
+  "id": 194,
+  "letter": "F",
+  "en": "Fiscal soundness",
+  "kr": "재정건전성"
+ },
+ {
+  "id": 195,
+  "letter": "F",
+  "en": "Flat Fare System",
+  "kr": "균일요금제"
+ },
+ {
+  "id": 196,
+  "letter": "F",
+  "en": "Flat Fare System",
+  "kr": "균일요금제"
+ },
+ {
+  "id": 197,
+  "letter": "F",
+  "en": "floodplain",
+  "kr": "범람원"
+ },
+ {
+  "id": 198,
+  "letter": "F",
+  "en": "Flow control",
+  "kr": "유량 제어"
+ },
+ {
+  "id": 199,
+  "letter": "F",
+  "en": "Flow monitoring system",
+  "kr": "유량감시시스템"
+ },
+ {
+  "id": 200,
+  "letter": "F",
+  "en": "Forecast accuracy rate",
+  "kr": "예보 적중률"
+ },
+ {
+  "id": 201,
+  "letter": "F",
+  "en": "Fossil Fuel Dependence",
+  "kr": "화석연료 의존(도)"
+ },
+ {
+  "id": 202,
+  "letter": "F",
+  "en": "Framework Act on Carbon Neutrality and Green Growth to Cope with Climate Crisi",
+  "kr": "탄소중립 녹색성장 기본법"
+ },
+ {
+  "id": 203,
+  "letter": "F",
+  "en": "Free Transfer",
+  "kr": "무료 환승"
+ },
+ {
+  "id": 204,
+  "letter": "F",
+  "en": "From source to tap",
+  "kr": "상수원에서 수도꼭지까지"
+ },
+ {
+  "id": 205,
+  "letter": "F",
+  "en": "Fuel Cell",
+  "kr": "연료전지"
+ },
+ {
+  "id": 206,
+  "letter": "F",
+  "en": "Fugitive Dust",
+  "kr": "비산먼지"
+ },
+ {
+  "id": 207,
+  "letter": "F",
+  "en": "Full Investment",
+  "kr": "전액 출자"
+ },
+ {
+  "id": 208,
+  "letter": "G",
+  "en": "Gangbuk containment policy",
+  "kr": "강북 억제 정책"
+ },
+ {
+  "id": 209,
+  "letter": "G",
+  "en": "Gangnam Development Plan",
+  "kr": "강남개발계획"
+ },
+ {
+  "id": 210,
+  "letter": "G",
+  "en": "Gangnam new town development",
+  "kr": "강남 신시가지 개발"
+ },
+ {
+  "id": 211,
+  "letter": "G",
+  "en": "gas to energy",
+  "kr": "가스 에너지화"
+ },
+ {
+  "id": 212,
+  "letter": "G",
+  "en": "Geographic Information System (GIS)",
+  "kr": "지리정보시스템"
+ },
+ {
+  "id": 213,
+  "letter": "G",
+  "en": "GIS-based prioritization",
+  "kr": "GIS 기반 우선순위 설정"
+ },
+ {
+  "id": 214,
+  "letter": "G",
+  "en": "Global Profile",
+  "kr": "국제적 위상"
+ },
+ {
+  "id": 215,
+  "letter": "G",
+  "en": "Gosiwon(Micro-room lodging)",
+  "kr": "고시원"
+ },
+ {
+  "id": 216,
+  "letter": "G",
+  "en": "Governance",
+  "kr": "거버넌스"
+ },
+ {
+  "id": 217,
+  "letter": "G",
+  "en": "Governance Framework",
+  "kr": "거버넌스 체계"
+ },
+ {
+  "id": 218,
+  "letter": "G",
+  "en": "Gravity-fed water supply",
+  "kr": "중력식 급수"
+ },
+ {
+  "id": 219,
+  "letter": "G",
+  "en": "Green Buildings Construction Support Act",
+  "kr": "녹색건축물조성지원법"
+ },
+ {
+  "id": 220,
+  "letter": "G",
+  "en": "Green Coverage Ratio",
+  "kr": "녹지율"
+ },
+ {
+  "id": 221,
+  "letter": "G",
+  "en": "Green Seoul Citizens’ Committee",
+  "kr": "녹색서울시민위원회"
+ },
+ {
+  "id": 222,
+  "letter": "G",
+  "en": "Greenhouse Gas Reduction",
+  "kr": "온실가스 저감"
+ },
+ {
+  "id": 223,
+  "letter": "G",
+  "en": "Grid-based road network",
+  "kr": "격자형 도로망"
+ },
+ {
+  "id": 224,
+  "letter": "G",
+  "en": "ground subsidence",
+  "kr": "지반침하"
+ },
+ {
+  "id": 225,
+  "letter": "G",
+  "en": "Group 1 Carcinogen",
+  "kr": "1급 발암물질"
+ },
+ {
+  "id": 226,
+  "letter": "G",
+  "en": "Gyeonggang merchants",
+  "kr": "경강상인"
+ },
+ {
+  "id": 227,
+  "letter": "H",
+  "en": "Han River system",
+  "kr": "한강 수계"
+ },
+ {
+  "id": 228,
+  "letter": "H",
+  "en": "Hanok-preservation-oriented District Unit Planning (DUP)",
+  "kr": "한옥보전형 지구단위계획"
+ },
+ {
+  "id": 229,
+  "letter": "H",
+  "en": "Head Difference",
+  "kr": "낙차"
+ },
+ {
+  "id": 230,
+  "letter": "H",
+  "en": "Headway",
+  "kr": "배차간격"
+ },
+ {
+  "id": 231,
+  "letter": "H",
+  "en": "Health Risk",
+  "kr": "건강 위해성"
+ },
+ {
+  "id": 232,
+  "letter": "H",
+  "en": "Heavy metal monitoring network",
+  "kr": "중금속 측정망"
+ },
+ {
+  "id": 233,
+  "letter": "H",
+  "en": "High-concentration Episode",
+  "kr": "고농도 발생 시기"
+ },
+ {
+  "id": 234,
+  "letter": "H",
+  "en": "High-Definition Road Map",
+  "kr": "정밀도로지도"
+ },
+ {
+  "id": 235,
+  "letter": "H",
+  "en": "high-efficiency lighting",
+  "kr": "고효율 조명"
+ },
+ {
+  "id": 236,
+  "letter": "H",
+  "en": "High-Precision 3D City Model",
+  "kr": "고정밀 3차원 도시모델"
+ },
+ {
+  "id": 237,
+  "letter": "H",
+  "en": "High-rise building water supply support",
+  "kr": "고층건물 급수 지원"
+ },
+ {
+  "id": 238,
+  "letter": "H",
+  "en": "High-strength wastewater",
+  "kr": "고농도폐수"
+ },
+ {
+  "id": 239,
+  "letter": "H",
+  "en": "Historic and cultural landscape",
+  "kr": "자연경관 보전"
+ },
+ {
+  "id": 240,
+  "letter": "H",
+  "en": "Homeownership Assistance",
+  "kr": "자가보유지원"
+ },
+ {
+  "id": 241,
+  "letter": "H",
+  "en": "Homogenization of housing types",
+  "kr": "주거 유형 획일화"
+ },
+ {
+  "id": 242,
+  "letter": "H",
+  "en": "Households Facing Forced Eviction",
+  "kr": "강제퇴거가구"
+ },
+ {
+  "id": 243,
+  "letter": "H",
+  "en": "Households Living in Non-Residential Structures",
+  "kr": "비주택 거주가구"
+ },
+ {
+  "id": 244,
+  "letter": "H",
+  "en": "Housing Allowance",
+  "kr": "주거비 보조"
+ },
+ {
+  "id": 245,
+  "letter": "H",
+  "en": "Housing allowance",
+  "kr": "주택수당"
+ },
+ {
+  "id": 246,
+  "letter": "H",
+  "en": "Housing cost subsidy",
+  "kr": "주거비 보조(제도)"
+ },
+ {
+  "id": 247,
+  "letter": "H",
+  "en": "Housing Improvement Program",
+  "kr": "주택개량"
+ },
+ {
+  "id": 248,
+  "letter": "H",
+  "en": "Housing shortage",
+  "kr": "주택 부족"
+ },
+ {
+  "id": 249,
+  "letter": "H",
+  "en": "Housing typological diversity",
+  "kr": "주거 유형 다양성"
+ },
+ {
+  "id": 250,
+  "letter": "H",
+  "en": "Housing Voucher Program",
+  "kr": "주택 바우처(제도)"
+ },
+ {
+  "id": 251,
+  "letter": "H",
+  "en": "Housing Welfare program",
+  "kr": "주거 복지 프로그램"
+ },
+ {
+  "id": 252,
+  "letter": "I",
+  "en": "ICT convergence",
+  "kr": "ICT 융합"
+ },
+ {
+  "id": 253,
+  "letter": "I",
+  "en": "ICT-based leakage detection",
+  "kr": "IT/ICT 기반 누수탐지"
+ },
+ {
+  "id": 254,
+  "letter": "I",
+  "en": "IMF bailout program",
+  "kr": "IMF 구제금융 프로그램"
+ },
+ {
+  "id": 255,
+  "letter": "I",
+  "en": "improve sidewalk paving",
+  "kr": "보도블록 개선"
+ },
+ {
+  "id": 256,
+  "letter": "I",
+  "en": "Improvement of transportation accessibility",
+  "kr": "교통 접근성 개선"
+ },
+ {
+  "id": 257,
+  "letter": "I",
+  "en": "Income decile",
+  "kr": "소득분위"
+ },
+ {
+  "id": 258,
+  "letter": "I",
+  "en": "Independent accounting system",
+  "kr": "독립채산제"
+ },
+ {
+  "id": 259,
+  "letter": "I",
+  "en": "Independent Fare System",
+  "kr": "독립요금체계"
+ },
+ {
+  "id": 260,
+  "letter": "I",
+  "en": "Indirect water supply method",
+  "kr": "간접급수 방식"
+ },
+ {
+  "id": 261,
+  "letter": "I",
+  "en": "Indoor Spatial Information",
+  "kr": "실내공간 정보"
+ },
+ {
+  "id": 262,
+  "letter": "I",
+  "en": "Inflow and Infiltration (I/I)",
+  "kr": "불명수 유입/침투(I/I)"
+ },
+ {
+  "id": 263,
+  "letter": "I",
+  "en": "Informal Sector",
+  "kr": "비공식 부문"
+ },
+ {
+  "id": 264,
+  "letter": "I",
+  "en": "Infrastructure Lifecycle Management",
+  "kr": "시설물 생애주기 관리"
+ },
+ {
+  "id": 265,
+  "letter": "I",
+  "en": "Integrated distance-based fare system",
+  "kr": "통합거리비례제"
+ },
+ {
+  "id": 266,
+  "letter": "I",
+  "en": "Integrated Fare System",
+  "kr": "통합요금제"
+ },
+ {
+  "id": 267,
+  "letter": "I",
+  "en": "integrated public transport transfer cente",
+  "kr": "대중교통 복합환승센터"
+ },
+ {
+  "id": 268,
+  "letter": "I",
+  "en": "Integrated Public Transportation Fare System",
+  "kr": "대중교통 통합요금제"
+ },
+ {
+  "id": 269,
+  "letter": "I",
+  "en": "Integrated Tranfer Fare System",
+  "kr": "통합환승요금제"
+ },
+ {
+  "id": 270,
+  "letter": "I",
+  "en": "Integrated water quality management system",
+  "kr": "수질통합관리시스템"
+ },
+ {
+  "id": 271,
+  "letter": "I",
+  "en": "Integration of supply zones",
+  "kr": "급수구역 통합"
+ },
+ {
+  "id": 272,
+  "letter": "I",
+  "en": "Interconnected water treatment center network",
+  "kr": "정수센터 상호보완 네트워크"
+ },
+ {
+  "id": 273,
+  "letter": "I",
+  "en": "intermodal connectivity",
+  "kr": "교통수단 간 연계성"
+ },
+ {
+  "id": 274,
+  "letter": "I",
+  "en": "international policy exchange",
+  "kr": "정책교류"
+ },
+ {
+  "id": 275,
+  "letter": "I",
+  "en": "Interoperability",
+  "kr": "시스템 연계성"
+ },
+ {
+  "id": 276,
+  "letter": "I",
+  "en": "Intersection improvement",
+  "kr": "교차로 개선"
+ },
+ {
+  "id": 277,
+  "letter": "I",
+  "en": "irregular bus headways",
+  "kr": "불규칙한 배차"
+ },
+ {
+  "id": 278,
+  "letter": "J",
+  "en": "Jeonse(Deposit-basis Rental Housing)",
+  "kr": "전세"
+ },
+ {
+  "id": 279,
+  "letter": "J",
+  "en": "Joint Revenue Management",
+  "kr": "수입금 공동관리"
+ },
+ {
+  "id": 280,
+  "letter": "J",
+  "en": "Joint revenue management system",
+  "kr": "수입금공동관리"
+ },
+ {
+  "id": 281,
+  "letter": "K",
+  "en": "Key Workers",
+  "kr": "핵심근로자"
+ },
+ {
+  "id": 282,
+  "letter": "K",
+  "en": "kiss-and-ride (K&R) facilities",
+  "kr": "배웅·승하차 공간(K&R 시설)"
+ },
+ {
+  "id": 283,
+  "letter": "K",
+  "en": "KNHC: Korea National Housing Corporation",
+  "kr": "대한주택공사"
+ },
+ {
+  "id": 284,
+  "letter": "K",
+  "en": "Korea District Heating Corporation",
+  "kr": "한국지역난방공사"
+ },
+ {
+  "id": 285,
+  "letter": "K",
+  "en": "Korea National Railway",
+  "kr": "한국철도시설공단(현 국가철도공단)"
+ },
+ {
+  "id": 286,
+  "letter": "K",
+  "en": "Korea Research Institute for Human Settlements",
+  "kr": "국토연구원"
+ },
+ {
+  "id": 287,
+  "letter": "K",
+  "en": "Korea Smart Card Co., Ltd",
+  "kr": "한국스마트카드(주)"
+ },
+ {
+  "id": 288,
+  "letter": "K",
+  "en": "Korean Planning Association.",
+  "kr": "대한국토도시계획학회"
+ },
+ {
+  "id": 289,
+  "letter": "L",
+  "en": "laissez-faire",
+  "kr": "자유방임주의"
+ },
+ {
+  "id": 290,
+  "letter": "L",
+  "en": "LAND COMPARTMENTALIZATION AND \nREARRANGEMENT PROJECTS ACT",
+  "kr": "토지구획정리사업법"
+ },
+ {
+  "id": 291,
+  "letter": "L",
+  "en": "Land contribution rate (reduction ratio)",
+  "kr": "감보율"
+ },
+ {
+  "id": 292,
+  "letter": "L",
+  "en": "Land Readjustment",
+  "kr": "토지구획정리사업"
+ },
+ {
+  "id": 293,
+  "letter": "L",
+  "en": "Land readjustment method",
+  "kr": "환지 방식"
+ },
+ {
+  "id": 294,
+  "letter": "L",
+  "en": "Land readjustment project",
+  "kr": "토지구획정리사업"
+ },
+ {
+  "id": 295,
+  "letter": "L",
+  "en": "Land Reduction Rate",
+  "kr": "감보율"
+ },
+ {
+  "id": 296,
+  "letter": "L",
+  "en": "Land Secured for Recompense of Developement Outlay",
+  "kr": "체비지"
+ },
+ {
+  "id": 297,
+  "letter": "L",
+  "en": "Landfill Restoration",
+  "kr": "매립지 복원"
+ },
+ {
+  "id": 298,
+  "letter": "L",
+  "en": "landfill stablization",
+  "kr": "매립지 안정화"
+ },
+ {
+  "id": 299,
+  "letter": "L",
+  "en": "Landscape and Skyline Analysis",
+  "kr": "경관·스카이라인 분석"
+ },
+ {
+  "id": 300,
+  "letter": "L",
+  "en": "Landscape Transpormation",
+  "kr": "경관변화"
+ },
+ {
+  "id": 301,
+  "letter": "L",
+  "en": "land-use zoning",
+  "kr": "용도지역"
+ },
+ {
+  "id": 302,
+  "letter": "L",
+  "en": "Large-scale new town",
+  "kr": "대규모 신시가지"
+ },
+ {
+  "id": 303,
+  "letter": "L",
+  "en": "Leachate",
+  "kr": "침흡수"
+ },
+ {
+  "id": 304,
+  "letter": "L",
+  "en": "Leakage losses",
+  "kr": "누수 손실"
+ },
+ {
+  "id": 305,
+  "letter": "L",
+  "en": "Leakage management",
+  "kr": "누수 관리"
+ },
+ {
+  "id": 306,
+  "letter": "L",
+  "en": "Leakage prevention",
+  "kr": "누수 방지"
+ },
+ {
+  "id": 307,
+  "letter": "L",
+  "en": "Leakage reduction",
+  "kr": "누수 저감"
+ },
+ {
+  "id": 308,
+  "letter": "L",
+  "en": "Legal Basis",
+  "kr": "법적 근거"
+ },
+ {
+  "id": 309,
+  "letter": "L",
+  "en": "Legally Designated Low-Income Households",
+  "kr": "법정영세민"
+ },
+ {
+  "id": 310,
+  "letter": "L",
+  "en": "LH Corporate",
+  "kr": "LH 공사"
+ },
+ {
+  "id": 311,
+  "letter": "L",
+  "en": "lighting environment management zones",
+  "kr": "조명환경관리구역"
+ },
+ {
+  "id": 312,
+  "letter": "L",
+  "en": "Linear park",
+  "kr": "선형공원"
+ },
+ {
+  "id": 313,
+  "letter": "L",
+  "en": "Livelihood Protection Act",
+  "kr": "생활보호법"
+ },
+ {
+  "id": 314,
+  "letter": "L",
+  "en": "Local Autonomy Act",
+  "kr": "지방자치법"
+ },
+ {
+  "id": 315,
+  "letter": "L",
+  "en": "Local Autonomy Act",
+  "kr": "지방자치법"
+ },
+ {
+  "id": 316,
+  "letter": "L",
+  "en": "Local Governments",
+  "kr": "지방자치단체"
+ },
+ {
+  "id": 317,
+  "letter": "L",
+  "en": "Location-Based Services (LBS)",
+  "kr": "위치기반 서비스"
+ },
+ {
+  "id": 318,
+  "letter": "L",
+  "en": "Long Term Public Deposit-basis Rental Housing",
+  "kr": "장기전세주택"
+ },
+ {
+  "id": 319,
+  "letter": "L",
+  "en": "Long-range Transport",
+  "kr": "장거리 이동 오염"
+ },
+ {
+  "id": 320,
+  "letter": "L",
+  "en": "Long-range transported pollutants",
+  "kr": "장거리 이동 오염물질"
+ },
+ {
+  "id": 321,
+  "letter": "L",
+  "en": "Long-term water supply system master plan",
+  "kr": "장기 수도정비기본계획"
+ },
+ {
+  "id": 322,
+  "letter": "L",
+  "en": "Low Emission Zone (LEZ)",
+  "kr": "저공해구역"
+ },
+ {
+  "id": 323,
+  "letter": "L",
+  "en": "Low water pressure",
+  "kr": "저수압"
+ },
+ {
+  "id": 324,
+  "letter": "L",
+  "en": "low-carbon building certification schemes",
+  "kr": "저탄소 건물 인증제"
+ },
+ {
+  "id": 325,
+  "letter": "L",
+  "en": "Low-carbon Economy",
+  "kr": "저탄소 경제"
+ },
+ {
+  "id": 326,
+  "letter": "L",
+  "en": "low-efficiency lighting equipment",
+  "kr": "저효율 조명 기기"
+ },
+ {
+  "id": 327,
+  "letter": "L",
+  "en": "Low-Income Households",
+  "kr": "저소득층"
+ },
+ {
+  "id": 328,
+  "letter": "L",
+  "en": "Low-Income Population",
+  "kr": "빈곤층"
+ },
+ {
+  "id": 329,
+  "letter": "L",
+  "en": "LUCI(Lighting Urban Community International)",
+  "kr": "국제도시조명연맹"
+ },
+ {
+  "id": 330,
+  "letter": "M",
+  "en": "Major Arterial",
+  "kr": "간선도로"
+ },
+ {
+  "id": 331,
+  "letter": "M",
+  "en": "Managerial rationalization",
+  "kr": "경영 합리화"
+ },
+ {
+  "id": 332,
+  "letter": "M",
+  "en": "Matching Fund",
+  "kr": "메칭펀드"
+ },
+ {
+  "id": 333,
+  "letter": "M",
+  "en": "Material Recovery Faclilty(MRFs)",
+  "kr": "재활용품선별시설"
+ },
+ {
+  "id": 334,
+  "letter": "M",
+  "en": "measurement, reporting, and verification",
+  "kr": "측정, 보고, 입증(MRV)"
+ },
+ {
+  "id": 335,
+  "letter": "M",
+  "en": "Median Bus-Only Lane(MBL)",
+  "kr": "중앙버스전용차로"
+ },
+ {
+  "id": 336,
+  "letter": "M",
+  "en": "Median Bus-Only Lane(MBL)",
+  "kr": "중앙버스전용차로"
+ },
+ {
+  "id": 337,
+  "letter": "M",
+  "en": "Medium-block system",
+  "kr": "중블록 시스템"
+ },
+ {
+  "id": 338,
+  "letter": "M",
+  "en": "meeting minutes",
+  "kr": "회의록"
+ },
+ {
+  "id": 339,
+  "letter": "M",
+  "en": "Merchant conflict management",
+  "kr": "상인 갈등 관리"
+ },
+ {
+  "id": 340,
+  "letter": "M",
+  "en": "Mercury monitoring",
+  "kr": "수은 모니터링"
+ },
+ {
+  "id": 341,
+  "letter": "M",
+  "en": "Metropolitan Integrated Fare System",
+  "kr": "수도권 통합요금제"
+ },
+ {
+  "id": 342,
+  "letter": "M",
+  "en": "metropolitan transport network",
+  "kr": "광역교통망"
+ },
+ {
+  "id": 343,
+  "letter": "M",
+  "en": "Middle-Income Households",
+  "kr": "중산층"
+ },
+ {
+  "id": 344,
+  "letter": "M",
+  "en": "Minimum cost of living",
+  "kr": "최저생계비"
+ },
+ {
+  "id": 345,
+  "letter": "M",
+  "en": "Minimum night flow",
+  "kr": "야간 최소 유량"
+ },
+ {
+  "id": 346,
+  "letter": "M",
+  "en": "Minimum night flow (MNF)",
+  "kr": "야간 최소유량"
+ },
+ {
+  "id": 347,
+  "letter": "M",
+  "en": "Ministry of interior",
+  "kr": "내무부"
+ },
+ {
+  "id": 348,
+  "letter": "M",
+  "en": "Ministry of Land, Infrastructure and Transport",
+  "kr": "국토교통부"
+ },
+ {
+  "id": 349,
+  "letter": "M",
+  "en": "Mitigation of urban heat island effect",
+  "kr": "도심 열섬 현상 완화"
+ },
+ {
+  "id": 350,
+  "letter": "M",
+  "en": "Mixed-use buildings",
+  "kr": "주상복합건물"
+ },
+ {
+  "id": 351,
+  "letter": "M",
+  "en": "Mobility Rights",
+  "kr": "이동권"
+ },
+ {
+  "id": 352,
+  "letter": "M",
+  "en": "Modal Integration",
+  "kr": "교통수단 간 통합"
+ },
+ {
+  "id": 353,
+  "letter": "M",
+  "en": "Modal Share",
+  "kr": "수송 분담률"
+ },
+ {
+  "id": 354,
+  "letter": "M",
+  "en": "modal share",
+  "kr": "교통수단분담률"
+ },
+ {
+  "id": 355,
+  "letter": "M",
+  "en": "Modernization of facilities",
+  "kr": "시설 현대화"
+ },
+ {
+  "id": 356,
+  "letter": "M",
+  "en": "Monitoring network master plan",
+  "kr": "측정망 기본계획"
+ },
+ {
+  "id": 357,
+  "letter": "M",
+  "en": "Monitoring System",
+  "kr": "모니터링 시스템"
+ },
+ {
+  "id": 358,
+  "letter": "M",
+  "en": "Multi-family housing",
+  "kr": "공동주택"
+ },
+ {
+  "id": 359,
+  "letter": "M",
+  "en": "Multiple Equilibria",
+  "kr": "다중균형"
+ },
+ {
+  "id": 360,
+  "letter": "M",
+  "en": "Multi-point leakage detection equipment",
+  "kr": "다점형 누수탐지 장비"
+ },
+ {
+  "id": 361,
+  "letter": "M",
+  "en": "municipal solid waste(MSW)",
+  "kr": "생활폐기물"
+ },
+ {
+  "id": 362,
+  "letter": "N",
+  "en": "National Basic Livelihood Security(NBLS) System",
+  "kr": "국민기초생활보장제도"
+ },
+ {
+  "id": 363,
+  "letter": "N",
+  "en": "National Framework Plan for Carbon Neutrality and Green Growth (2024-2033)",
+  "kr": "탄소중립 녹색성장 기본계획 (2024-2033)"
+ },
+ {
+  "id": 364,
+  "letter": "N",
+  "en": "National Housing Fund (현 Housing and Urban Fund)",
+  "kr": "국민주택기금(현 주택도시기금)"
+ },
+ {
+  "id": 365,
+  "letter": "N",
+  "en": "National Land Planning and Utilization Act",
+  "kr": "국토의 계획 및 이용에 관한 법률"
+ },
+ {
+  "id": 366,
+  "letter": "N",
+  "en": "National Public Rental housing",
+  "kr": "국민임대주택"
+ },
+ {
+  "id": 367,
+  "letter": "N",
+  "en": "National Waste Generation and Treatment Status",
+  "kr": "전국 폐기물 발생 및 처리현황"
+ },
+ {
+  "id": 368,
+  "letter": "N",
+  "en": "Naturalized stream",
+  "kr": "자연형 하천"
+ },
+ {
+  "id": 369,
+  "letter": "N",
+  "en": "NBLS beneficiaries",
+  "kr": "(국민기초생활보장) 수급자"
+ },
+ {
+  "id": 370,
+  "letter": "N",
+  "en": "Near-Poor Households",
+  "kr": "차상위계층"
+ },
+ {
+  "id": 371,
+  "letter": "N",
+  "en": "neighbor homicides",
+  "kr": "이웃살인"
+ },
+ {
+  "id": 372,
+  "letter": "N",
+  "en": "Nitrogen Oxides (NOₓ)",
+  "kr": "질소산화물"
+ },
+ {
+  "id": 373,
+  "letter": "N",
+  "en": "Non-interruption water supply system",
+  "kr": "무단수 급수체계"
+ },
+ {
+  "id": 374,
+  "letter": "N",
+  "en": "Non-revenue water (NRW)",
+  "kr": "무수수량(비수익수)"
+ },
+ {
+  "id": 375,
+  "letter": "N",
+  "en": "Non-revenue water (NRW)",
+  "kr": "비수익수"
+ },
+ {
+  "id": 376,
+  "letter": "N",
+  "en": "Northeast Asia Cooperation",
+  "kr": "동북아 협력"
+ },
+ {
+  "id": 377,
+  "letter": "O",
+  "en": "Occupancy fee",
+  "kr": "점유료"
+ },
+ {
+  "id": 378,
+  "letter": "O",
+  "en": "Odor-causing substance control",
+  "kr": "냄새물질 관리"
+ },
+ {
+  "id": 379,
+  "letter": "O",
+  "en": "off-site  reduction",
+  "kr": "외부 감축"
+ },
+ {
+  "id": 380,
+  "letter": "O",
+  "en": "One Less Nuclear Power Plant",
+  "kr": "원전하나줄이기 종합대책"
+ },
+ {
+  "id": 381,
+  "letter": "O",
+  "en": "One-Source Multi-Service",
+  "kr": "원소스 멀티서비스"
+ },
+ {
+  "id": 382,
+  "letter": "O",
+  "en": "on-site reductions",
+  "kr": "자체 감축"
+ },
+ {
+  "id": 383,
+  "letter": "O",
+  "en": "Open API",
+  "kr": "개방형 API"
+ },
+ {
+  "id": 384,
+  "letter": "O",
+  "en": "Open Calls for Proposals",
+  "kr": "공모사업"
+ },
+ {
+  "id": 385,
+  "letter": "O",
+  "en": "Open Lab (Experimental Validation Space)",
+  "kr": "오픈랩(실험·실증 공간)"
+ },
+ {
+  "id": 386,
+  "letter": "O",
+  "en": "operating speed",
+  "kr": "운행속도"
+ },
+ {
+  "id": 387,
+  "letter": "O",
+  "en": "Operational efficiency",
+  "kr": "운영 효율성"
+ },
+ {
+  "id": 388,
+  "letter": "O",
+  "en": "Optimization (Operational Optimization)",
+  "kr": "(운전) 최적화"
+ },
+ {
+  "id": 389,
+  "letter": "O",
+  "en": "Ordinance on Promoting and Disseminating the Value of Companioning the Socially Disadvantaged in Seoul Metropolitan Government",
+  "kr": "서울특별시 약자동행 가치 확산 및 활성화 조례"
+ },
+ {
+  "id": 390,
+  "letter": "O",
+  "en": "Ordinance on the Establishment of Local Public Enterprises",
+  "kr": "지방공기업 설치 조례"
+ },
+ {
+  "id": 391,
+  "letter": "O",
+  "en": "Ordinance on the Establishment of the Seoul Urban Development Corporation",
+  "kr": "서울특별시 도시개발공사 설치조례"
+ },
+ {
+  "id": 392,
+  "letter": "O",
+  "en": "Overconcentration in northern Seoul",
+  "kr": "강북 과밀"
+ },
+ {
+  "id": 393,
+  "letter": "O",
+  "en": "Ozone (O₃)",
+  "kr": "오존(O₃)"
+ },
+ {
+  "id": 394,
+  "letter": "P",
+  "en": "Paris Agreement",
+  "kr": "파리협정"
+ },
+ {
+  "id": 395,
+  "letter": "P",
+  "en": "Park Conversion",
+  "kr": "공원화"
+ },
+ {
+  "id": 396,
+  "letter": "P",
+  "en": "Park Development Division.",
+  "kr": "공원조성과"
+ },
+ {
+  "id": 397,
+  "letter": "P",
+  "en": "park-and-ride (P&R) facilities",
+  "kr": "환승주차장(P&R 시설)"
+ },
+ {
+  "id": 398,
+  "letter": "P",
+  "en": "Particulate Matter (PM₁₀)",
+  "kr": "미세먼지(PM10)"
+ },
+ {
+  "id": 399,
+  "letter": "P",
+  "en": "Particulate matter (PM₁₀)",
+  "kr": "미세먼지(PM10)"
+ },
+ {
+  "id": 400,
+  "letter": "P",
+  "en": "Passenger Transport Service Act",
+  "kr": "여객자동차 운수사업법"
+ },
+ {
+  "id": 401,
+  "letter": "P",
+  "en": "Passenger Transport Service Act",
+  "kr": "여객자동차운수사업법"
+ },
+ {
+  "id": 402,
+  "letter": "P",
+  "en": "peak-hour travel speed",
+  "kr": "첨두시 통행속도"
+ },
+ {
+  "id": 403,
+  "letter": "P",
+  "en": "pedestrian-friendly city",
+  "kr": "보행친화도시"
+ },
+ {
+  "id": 404,
+  "letter": "P",
+  "en": "Pedestrian-friendly urbanization",
+  "kr": "보행자 친화적 도시"
+ },
+ {
+  "id": 405,
+  "letter": "P",
+  "en": "Permanent Rental Housing",
+  "kr": "영구임대주택"
+ },
+ {
+  "id": 406,
+  "letter": "P",
+  "en": "Photochemical pollutants",
+  "kr": "광화학 오염물질"
+ },
+ {
+  "id": 407,
+  "letter": "P",
+  "en": "Photorealistic Orthophoto",
+  "kr": "실감정사영상"
+ },
+ {
+  "id": 408,
+  "letter": "P",
+  "en": "Pilot Project",
+  "kr": "시범사업"
+ },
+ {
+  "id": 409,
+  "letter": "P",
+  "en": "Pipe rehabilitation / renewal",
+  "kr": "관로 갱생(개량)"
+ },
+ {
+  "id": 410,
+  "letter": "P",
+  "en": "Pipeline cleaning",
+  "kr": "수도관 세척"
+ },
+ {
+  "id": 411,
+  "letter": "P",
+  "en": "Pipeline leakage",
+  "kr": "관로 누수"
+ },
+ {
+  "id": 412,
+  "letter": "P",
+  "en": "Pipeline rehabilitation",
+  "kr": "관로 개량"
+ },
+ {
+  "id": 413,
+  "letter": "P",
+  "en": "Place Names Committee",
+  "kr": "지명위원회"
+ },
+ {
+  "id": 414,
+  "letter": "P",
+  "en": "Plan",
+  "kr": "계획안"
+ },
+ {
+  "id": 415,
+  "letter": "P",
+  "en": "Policy paradigm shift",
+  "kr": "정책 패러다임 전환"
+ },
+ {
+  "id": 416,
+  "letter": "P",
+  "en": "Polycentric urban structure",
+  "kr": "다핵 도시 구조"
+ },
+ {
+  "id": 417,
+  "letter": "P",
+  "en": "Population decentralization policy",
+  "kr": "인구 분산 정책"
+ },
+ {
+  "id": 418,
+  "letter": "P",
+  "en": "post-consumer materials.",
+  "kr": "사용후재료"
+ },
+ {
+  "id": 419,
+  "letter": "P",
+  "en": "Predecessor",
+  "kr": "전신기관"
+ },
+ {
+  "id": 420,
+  "letter": "P",
+  "en": "Presidential Committee on Carbon Neutrality and Green Growth",
+  "kr": "탄소중립녹색성장위원회"
+ },
+ {
+  "id": 421,
+  "letter": "P",
+  "en": "Pressure equalization",
+  "kr": "수압 균등화"
+ },
+ {
+  "id": 422,
+  "letter": "P",
+  "en": "private operation system",
+  "kr": "민영제"
+ },
+ {
+  "id": 423,
+  "letter": "P",
+  "en": "Proactive water quality management",
+  "kr": "선제적 수질관리"
+ },
+ {
+  "id": 424,
+  "letter": "P",
+  "en": "Proactive welfare",
+  "kr": "능동적 복지"
+ },
+ {
+  "id": 425,
+  "letter": "P",
+  "en": "proceeds from the sale of reserved land",
+  "kr": "체비지 매각대금"
+ },
+ {
+  "id": 426,
+  "letter": "P",
+  "en": "Process Efficiency Improvement",
+  "kr": "공정 효율 개선"
+ },
+ {
+  "id": 427,
+  "letter": "P",
+  "en": "Progressive Electricity\nTariff System",
+  "kr": "누진세"
+ },
+ {
+  "id": 428,
+  "letter": "P",
+  "en": "Promotion of Installation of waste disposal facilities and assistance to adjacent act",
+  "kr": "폐기물처리시설 설치촉진 및 주변지역 지원등에 관한 법률"
+ },
+ {
+  "id": 429,
+  "letter": "P",
+  "en": "Protection of public health",
+  "kr": "시민 건강 보호"
+ },
+ {
+  "id": 430,
+  "letter": "P",
+  "en": "Pseudo-Urbanization",
+  "kr": "가도시화"
+ },
+ {
+  "id": 431,
+  "letter": "P",
+  "en": "Public aseet",
+  "kr": "공적자산"
+ },
+ {
+  "id": 432,
+  "letter": "P",
+  "en": "Public Contribution",
+  "kr": "공공기여"
+ },
+ {
+  "id": 433,
+  "letter": "P",
+  "en": "Public disclosure of water quality data",
+  "kr": "수질 정보 공개"
+ },
+ {
+  "id": 434,
+  "letter": "P",
+  "en": "public operation system",
+  "kr": "공영제"
+ },
+ {
+  "id": 435,
+  "letter": "P",
+  "en": "Public Participation",
+  "kr": "시민 참여"
+ },
+ {
+  "id": 436,
+  "letter": "P",
+  "en": "Public reuse / public utilization",
+  "kr": "공공적 활용"
+ },
+ {
+  "id": 437,
+  "letter": "P",
+  "en": "Public Subsidy",
+  "kr": "공공 보조금"
+ },
+ {
+  "id": 438,
+  "letter": "P",
+  "en": "Public Transit Promotion Task Force",
+  "kr": "대중교통활성화추진단"
+ },
+ {
+  "id": 439,
+  "letter": "P",
+  "en": "Public Transport Competitiveness",
+  "kr": "대중교통 경쟁력"
+ },
+ {
+  "id": 440,
+  "letter": "P",
+  "en": "Publicness",
+  "kr": "공공성"
+ },
+ {
+  "id": 441,
+  "letter": "P",
+  "en": "Public-private cooperation",
+  "kr": "민간-공공 협력"
+ },
+ {
+  "id": 442,
+  "letter": "P",
+  "en": "Public–Private Data Utilization",
+  "kr": "공공–민간 데이터 활용"
+ },
+ {
+  "id": 443,
+  "letter": "P",
+  "en": "public–private financing linkage",
+  "kr": "민간금융연계"
+ },
+ {
+  "id": 444,
+  "letter": "P",
+  "en": "Public–Private Partnership (PPP)",
+  "kr": "민관협력(PPP)"
+ },
+ {
+  "id": 445,
+  "letter": "P",
+  "en": "punctuality",
+  "kr": "정시성"
+ },
+ {
+  "id": 446,
+  "letter": "P",
+  "en": "purchase-based public rental housing",
+  "kr": "기존주택매입임대주택"
+ },
+ {
+  "id": 447,
+  "letter": "P",
+  "en": "Purchased Rental Housing",
+  "kr": "매입임대주택"
+ },
+ {
+  "id": 448,
+  "letter": "R",
+  "en": "radial network structure (hub-and-spoke)",
+  "kr": "방사형 네트워크"
+ },
+ {
+  "id": 449,
+  "letter": "R",
+  "en": "Railway Corridor",
+  "kr": "철도부지"
+ },
+ {
+  "id": 450,
+  "letter": "R",
+  "en": "Rapid urbanization",
+  "kr": "급격한 도시화"
+ },
+ {
+  "id": 451,
+  "letter": "R",
+  "en": "Rationalization of water utility management",
+  "kr": "상수도 경영 합리화"
+ },
+ {
+  "id": 452,
+  "letter": "R",
+  "en": "ravel demand management",
+  "kr": "교통수요관리(TDM)"
+ },
+ {
+  "id": 453,
+  "letter": "R",
+  "en": "Raw water purchase costs",
+  "kr": "원수 구입비"
+ },
+ {
+  "id": 454,
+  "letter": "R",
+  "en": "Real-time air quality monitoring",
+  "kr": "실시간 대기질 모니터링"
+ },
+ {
+  "id": 455,
+  "letter": "R",
+  "en": "Real-Time Data Integration",
+  "kr": "실시간 데이터 연계"
+ },
+ {
+  "id": 456,
+  "letter": "R",
+  "en": "Real-time flow monitoring",
+  "kr": "실시간 유량 모니터링"
+ },
+ {
+  "id": 457,
+  "letter": "R",
+  "en": "Real-time flow monitoring",
+  "kr": "실시간 유량 모니터링"
+ },
+ {
+  "id": 458,
+  "letter": "R",
+  "en": "Real-time public disclosure",
+  "kr": "실시간 정보 공개"
+ },
+ {
+  "id": 459,
+  "letter": "R",
+  "en": "Real-time water quality monitoring",
+  "kr": "실시간 수질 감시"
+ },
+ {
+  "id": 460,
+  "letter": "R",
+  "en": "Real-time water quality monitoring",
+  "kr": "실시간 수질 모니터링"
+ },
+ {
+  "id": 461,
+  "letter": "R",
+  "en": "reclaimed tidal land",
+  "kr": "간척지"
+ },
+ {
+  "id": 462,
+  "letter": "R",
+  "en": "Recpnstruction",
+  "kr": "재건축"
+ },
+ {
+  "id": 463,
+  "letter": "R",
+  "en": "Redevelopment",
+  "kr": "재개발"
+ },
+ {
+  "id": 464,
+  "letter": "R",
+  "en": "redevelopment",
+  "kr": "재개발"
+ },
+ {
+  "id": 465,
+  "letter": "R",
+  "en": "redevelopment rental housing",
+  "kr": "재개발임대주택"
+ },
+ {
+  "id": 466,
+  "letter": "R",
+  "en": "Reduction in production costs",
+  "kr": "생산원가 절감"
+ },
+ {
+  "id": 467,
+  "letter": "R",
+  "en": "Rehabilitation of aging pipelines",
+  "kr": "노후 수도관 정비"
+ },
+ {
+  "id": 468,
+  "letter": "R",
+  "en": "Relocation of prestigious high schools",
+  "kr": "명문 고교 이전"
+ },
+ {
+  "id": 469,
+  "letter": "R",
+  "en": "Relocation of public institutions",
+  "kr": "공공기관 이전"
+ },
+ {
+  "id": 470,
+  "letter": "R",
+  "en": "Renewable Energy",
+  "kr": "신재생에너지"
+ },
+ {
+  "id": 471,
+  "letter": "R",
+  "en": "Rent Subsidy",
+  "kr": "임대료 보조(제도)"
+ },
+ {
+  "id": 472,
+  "letter": "R",
+  "en": "Rental Deposit Loan",
+  "kr": "임대보증금 융자"
+ },
+ {
+  "id": 473,
+  "letter": "R",
+  "en": "Replacement of aging water pipes",
+  "kr": "노후관 교체"
+ },
+ {
+  "id": 474,
+  "letter": "R",
+  "en": "Reserved Land(일부 문서: Reserve land)",
+  "kr": "유보지"
+ },
+ {
+  "id": 475,
+  "letter": "R",
+  "en": "Residecnt-led",
+  "kr": "주민 주도"
+ },
+ {
+  "id": 476,
+  "letter": "R",
+  "en": "Resident leadership",
+  "kr": "주민주도성"
+ },
+ {
+  "id": 477,
+  "letter": "R",
+  "en": "Resident-proposed project",
+  "kr": "주민제안사업"
+ },
+ {
+  "id": 478,
+  "letter": "R",
+  "en": "Residual chlorine control",
+  "kr": "잔류염소 관리"
+ },
+ {
+  "id": 479,
+  "letter": "R",
+  "en": "Resource Circulation System",
+  "kr": "자원 순환 시스템"
+ },
+ {
+  "id": 480,
+  "letter": "R",
+  "en": "Restoration of historical significance",
+  "kr": "역사성 회복"
+ },
+ {
+  "id": 481,
+  "letter": "R",
+  "en": "Restoration of public trust",
+  "kr": "시민 신뢰 회복"
+ },
+ {
+  "id": 482,
+  "letter": "R",
+  "en": "retrofit",
+  "kr": "기존 건물의 성능 개선"
+ },
+ {
+  "id": 483,
+  "letter": "R",
+  "en": "Reuse of idle facilities",
+  "kr": "유휴시설 재활용"
+ },
+ {
+  "id": 484,
+  "letter": "R",
+  "en": "Revenue Settlement System",
+  "kr": "수입금 정산 시스템"
+ },
+ {
+  "id": 485,
+  "letter": "R",
+  "en": "Roadside air monitoring network",
+  "kr": "도로변 대기 측정망"
+ },
+ {
+  "id": 486,
+  "letter": "R",
+  "en": "Route Planning Authority",
+  "kr": "노선계획권"
+ },
+ {
+  "id": 487,
+  "letter": "S",
+  "en": "Saechang-gogae",
+  "kr": "새창고개"
+ },
+ {
+  "id": 488,
+  "letter": "S",
+  "en": "safety barrier(s)",
+  "kr": "방호울타리"
+ },
+ {
+  "id": 489,
+  "letter": "S",
+  "en": "Sale of reserve land",
+  "kr": "체비지 매각"
+ },
+ {
+  "id": 490,
+  "letter": "S",
+  "en": "schedule adherence",
+  "kr": "(버스) 정시성"
+ },
+ {
+  "id": 491,
+  "letter": "S",
+  "en": "Scientific leakage detection",
+  "kr": "과학적 누수탐사"
+ },
+ {
+  "id": 492,
+  "letter": "S",
+  "en": "Scientific Urban Management",
+  "kr": "과학적 도시관리"
+ },
+ {
+  "id": 493,
+  "letter": "S",
+  "en": "Seasonal Management System",
+  "kr": "계절관리제"
+ },
+ {
+  "id": 494,
+  "letter": "S",
+  "en": "Secondary air pollutants",
+  "kr": "2차 대기오염물질"
+ },
+ {
+  "id": 495,
+  "letter": "S",
+  "en": "secure temporary pedestrian routes during construction",
+  "kr": "임시 보행로 확보"
+ },
+ {
+  "id": 496,
+  "letter": "S",
+  "en": "Securing public land",
+  "kr": "공공용지 확보"
+ },
+ {
+  "id": 497,
+  "letter": "S",
+  "en": "self-contribution rate",
+  "kr": "자부담률"
+ },
+ {
+  "id": 498,
+  "letter": "S",
+  "en": "Self-reinforce",
+  "kr": "자기강화"
+ },
+ {
+  "id": 499,
+  "letter": "S",
+  "en": "Self-Supporting Accounting system",
+  "kr": "독립채산제"
+ },
+ {
+  "id": 500,
+  "letter": "S",
+  "en": "semi\npublic operating system",
+  "kr": "준공영제"
+ },
+ {
+  "id": 501,
+  "letter": "S",
+  "en": "Semi-basement",
+  "kr": "반지하"
+ },
+ {
+  "id": 502,
+  "letter": "S",
+  "en": "Semi-public Bus Operation System",
+  "kr": "준공영제 버스 운영체계"
+ },
+ {
+  "id": 503,
+  "letter": "S",
+  "en": "Sensor Data",
+  "kr": "센서 데이터"
+ },
+ {
+  "id": 504,
+  "letter": "S",
+  "en": "Seoul Bus Transport Association",
+  "kr": "버스운송사업조합"
+ },
+ {
+  "id": 505,
+  "letter": "S",
+  "en": "Seoul Community Support Center",
+  "kr": "마을공동체 종합지원센터"
+ },
+ {
+  "id": 506,
+  "letter": "S",
+  "en": "Seoul Facilities Corporation",
+  "kr": "서울시설관리공단"
+ },
+ {
+  "id": 507,
+  "letter": "S",
+  "en": "Seoul Housing Policy Bureau's Apartment Housing Support Division",
+  "kr": "서울시 주택정책실 공동주택지원과"
+ },
+ {
+  "id": 508,
+  "letter": "S",
+  "en": "Seoul Housing Policy Bureau's Apartment Housing Support Division",
+  "kr": "서울시 주택정책실 공동주택지원과"
+ },
+ {
+  "id": 509,
+  "letter": "S",
+  "en": "Seoul Metropolitan Government Ordinance on Carbon Neutrality and Green Growth for Coping with Climate Crisis",
+  "kr": "서울특별시 기후위기 대응을 위한 탄소중립·녹색성장 기본조례"
+ },
+ {
+  "id": 510,
+  "letter": "S",
+  "en": "seoul metropolitan government ordinance on support for Development of village communities",
+  "kr": "서울시 마을공동체 만들기 지원 등에 관한 조례"
+ },
+ {
+  "id": 511,
+  "letter": "S",
+  "en": "seoul metropolitan government ordinance on support, etc. for creation of village communities",
+  "kr": "서울시 마을공동체 만들기 지원 등에 관한 조례"
+ },
+ {
+  "id": 512,
+  "letter": "S",
+  "en": "Seoul Metropolitan Government Ordinance on Tackling Climate Change",
+  "kr": "서울특별시 기후변화 대응에 관한 조례"
+ },
+ {
+  "id": 513,
+  "letter": "S",
+  "en": "Seoul Metropolitan Government Ordinance on the Operation of the Climate Budget System",
+  "kr": "서울특별시 기후예산제 운영에 관한 조례"
+ },
+ {
+  "id": 514,
+  "letter": "S",
+  "en": "Seoul Metropolitan Government’s Green City Bureau",
+  "kr": "서울시 푸른도시국"
+ },
+ {
+  "id": 515,
+  "letter": "S",
+  "en": "Seoul Resource Center",
+  "kr": "서울도시금속회수센터"
+ },
+ {
+  "id": 516,
+  "letter": "S",
+  "en": "Seoul Upcycling Plaza",
+  "kr": "서울새활용플라자"
+ },
+ {
+  "id": 517,
+  "letter": "S",
+  "en": "Seoul Water Research Institute",
+  "kr": "서울물연구원"
+ },
+ {
+  "id": 518,
+  "letter": "S",
+  "en": "Seoul’s Public Rental housing Policy",
+  "kr": "서울시 공공임대주택 정책"
+ },
+ {
+  "id": 519,
+  "letter": "S",
+  "en": "Seoul-Type Housing Voucher Program",
+  "kr": "서울형 주택 바우처"
+ },
+ {
+  "id": 520,
+  "letter": "S",
+  "en": "Service Integration",
+  "kr": "서비스 통합"
+ },
+ {
+  "id": 521,
+  "letter": "S",
+  "en": "Service interruption",
+  "kr": "급수 중단"
+ },
+ {
+  "id": 522,
+  "letter": "S",
+  "en": "service reliability",
+  "kr": "서비스 신뢰성"
+ },
+ {
+  "id": 523,
+  "letter": "S",
+  "en": "service reliability",
+  "kr": "서비스 신뢰성"
+ },
+ {
+  "id": 524,
+  "letter": "S",
+  "en": "Service reservoir",
+  "kr": "배수지"
+ },
+ {
+  "id": 525,
+  "letter": "S",
+  "en": "Service reservoir",
+  "kr": "배수지"
+ },
+ {
+  "id": 526,
+  "letter": "S",
+  "en": "settlement",
+  "kr": "침하"
+ },
+ {
+  "id": 527,
+  "letter": "S",
+  "en": "Sewage treatment system",
+  "kr": "하수 처리 시스템"
+ },
+ {
+  "id": 528,
+  "letter": "S",
+  "en": "SH Corporate",
+  "kr": "SH 공사"
+ },
+ {
+  "id": 529,
+  "letter": "S",
+  "en": "Shared-Ownership Housing / Shared Equity Housing",
+  "kr": "자분공유분양주택"
+ },
+ {
+  "id": 530,
+  "letter": "S",
+  "en": "Simulation and Scenario Analysis",
+  "kr": "시뮬레이션 및 시나리오 분석"
+ },
+ {
+  "id": 531,
+  "letter": "S",
+  "en": "Slope Failure",
+  "kr": "사면붕괴"
+ },
+ {
+  "id": 532,
+  "letter": "S",
+  "en": "Slumification",
+  "kr": "슬럼화"
+ },
+ {
+  "id": 533,
+  "letter": "S",
+  "en": "Small-block system / block zoning",
+  "kr": "블록화(소블록)"
+ },
+ {
+  "id": 534,
+  "letter": "S",
+  "en": "Small-scale Hydropower",
+  "kr": "소수력 발전"
+ },
+ {
+  "id": 535,
+  "letter": "S",
+  "en": "Smart Card System",
+  "kr": "스마트카드 시스템"
+ },
+ {
+  "id": 536,
+  "letter": "S",
+  "en": "Smart City",
+  "kr": "스마트시티"
+ },
+ {
+  "id": 537,
+  "letter": "S",
+  "en": "smart lighting control system",
+  "kr": "스마트 LED 조명 제어 시스템"
+ },
+ {
+  "id": 538,
+  "letter": "S",
+  "en": "Smart Transit Card(Transport Card) System",
+  "kr": "교통카드 시스템"
+ },
+ {
+  "id": 539,
+  "letter": "S",
+  "en": "Social Housing",
+  "kr": "사회주택"
+ },
+ {
+  "id": 540,
+  "letter": "S",
+  "en": "Social mobility",
+  "kr": "계층 이동성"
+ },
+ {
+  "id": 541,
+  "letter": "S",
+  "en": "Social safety net",
+  "kr": "사회안전망"
+ },
+ {
+  "id": 542,
+  "letter": "S",
+  "en": "Socially Vulnerable Groups",
+  "kr": "사회적 약자"
+ },
+ {
+  "id": 543,
+  "letter": "S",
+  "en": "Solar Photovoltaic (PV)",
+  "kr": "태양광 발전(태양광 PV)"
+ },
+ {
+  "id": 544,
+  "letter": "S",
+  "en": "source reduction",
+  "kr": "원천감량"
+ },
+ {
+  "id": 545,
+  "letter": "S",
+  "en": "Source-specific Reduction",
+  "kr": "배출원별 저감"
+ },
+ {
+  "id": 546,
+  "letter": "S",
+  "en": "Spatial Data Security",
+  "kr": "공간정보 보안"
+ },
+ {
+  "id": 547,
+  "letter": "S",
+  "en": "Standard Transportation Cost",
+  "kr": "표준운송원가"
+ },
+ {
+  "id": 548,
+  "letter": "S",
+  "en": "State Property Act",
+  "kr": "국유재산법"
+ },
+ {
+  "id": 549,
+  "letter": "S",
+  "en": "state-owned land",
+  "kr": "국유지"
+ },
+ {
+  "id": 550,
+  "letter": "S",
+  "en": "status of the Volume-Based Waste Fee System.",
+  "kr": "쓰레기 종량제 현황"
+ },
+ {
+  "id": 551,
+  "letter": "S",
+  "en": "Strategic hubs / anchor facilities",
+  "kr": "앵커 시설"
+ },
+ {
+  "id": 552,
+  "letter": "S",
+  "en": "subscribers to the housing subscription savings program",
+  "kr": "청약저축가입자"
+ },
+ {
+  "id": 553,
+  "letter": "S",
+  "en": "substantial lump-sum",
+  "kr": "큰 액수의 일시불 금액"
+ },
+ {
+  "id": 554,
+  "letter": "S",
+  "en": "Substitution Method",
+  "kr": "환지방식"
+ },
+ {
+  "id": 555,
+  "letter": "S",
+  "en": "Subway Line 2 circular line",
+  "kr": "지하철 2호선 순환선"
+ },
+ {
+  "id": 556,
+  "letter": "S",
+  "en": "Sudokwon Landfill Management Corporation",
+  "kr": "수도권매립지관리공사"
+ },
+ {
+  "id": 557,
+  "letter": "S",
+  "en": "Sudokwon Landfill site",
+  "kr": "수도권매립지"
+ },
+ {
+  "id": 558,
+  "letter": "S",
+  "en": "Sunhyechung",
+  "kr": "선혜청"
+ },
+ {
+  "id": 559,
+  "letter": "S",
+  "en": "Sunlight Rights Analysis",
+  "kr": "일조권 분석"
+ },
+ {
+  "id": 560,
+  "letter": "S",
+  "en": "Surge in water demand",
+  "kr": "물 수요 급증"
+ },
+ {
+  "id": 561,
+  "letter": "S",
+  "en": "Sustainable Air Environment",
+  "kr": "지속가능한 대기환경"
+ },
+ {
+  "id": 562,
+  "letter": "S",
+  "en": "Sustainable Development Committee.",
+  "kr": "지속가능발전위원회"
+ },
+ {
+  "id": 563,
+  "letter": "S",
+  "en": "Sustainable Development Goals (SDGs)",
+  "kr": "지속가능한 개발목표(SDGs)"
+ },
+ {
+  "id": 564,
+  "letter": "S",
+  "en": "Sustainable Smart City",
+  "kr": "지속가능한 스마트시티"
+ },
+ {
+  "id": 565,
+  "letter": "S",
+  "en": "Sustainable urban infrastructure",
+  "kr": "지속가능한 도시 인프라"
+ },
+ {
+  "id": 566,
+  "letter": "T",
+  "en": "Target beneficiaries",
+  "kr": "정책대상자(수혜대상자)"
+ },
+ {
+  "id": 567,
+  "letter": "T",
+  "en": "Tax incentives",
+  "kr": "세제 혜택"
+ },
+ {
+  "id": 568,
+  "letter": "T",
+  "en": "Temporary Act on the Promotion of Development in Designated Districts",
+  "kr": "특정지구 개발촉진법"
+ },
+ {
+  "id": 569,
+  "letter": "T",
+  "en": "Tenants Displaced by Redevelopment",
+  "kr": "철거세입자"
+ },
+ {
+  "id": 570,
+  "letter": "T",
+  "en": "Tender system",
+  "kr": "입찰제"
+ },
+ {
+  "id": 571,
+  "letter": "T",
+  "en": "Three-Dimensional Spatial Information",
+  "kr": "3차원 공간정보"
+ },
+ {
+  "id": 572,
+  "letter": "T",
+  "en": "Three-Dimensional Urban Space Design",
+  "kr": "도시공간 입체화"
+ },
+ {
+  "id": 573,
+  "letter": "T",
+  "en": "T-money",
+  "kr": "티머니"
+ },
+ {
+  "id": 574,
+  "letter": "T",
+  "en": "Top-down approach",
+  "kr": "관주도 하향식 접근"
+ },
+ {
+  "id": 575,
+  "letter": "T",
+  "en": "Trace hazardous substances",
+  "kr": "미량 유해물질"
+ },
+ {
+  "id": 576,
+  "letter": "T",
+  "en": "Traffic Congestion",
+  "kr": "교통 혼잡"
+ },
+ {
+  "id": 577,
+  "letter": "T",
+  "en": "Traffic innovation",
+  "kr": "교통 혁신"
+ },
+ {
+  "id": 578,
+  "letter": "T",
+  "en": "Transboundary Air Pollution",
+  "kr": "월경성 대기오염"
+ },
+ {
+  "id": 579,
+  "letter": "T",
+  "en": "Transfer Discount",
+  "kr": "환승 할인"
+ },
+ {
+  "id": 580,
+  "letter": "T",
+  "en": "Transfer Penalty",
+  "kr": "환승 페널티"
+ },
+ {
+  "id": 581,
+  "letter": "T",
+  "en": "transfer time reduction",
+  "kr": "환승시간 단축"
+ },
+ {
+  "id": 582,
+  "letter": "T",
+  "en": "Transportation corridor",
+  "kr": "교통로"
+ },
+ {
+  "id": 583,
+  "letter": "T",
+  "en": "Transportation Demand Management",
+  "kr": "교통수요관리"
+ },
+ {
+  "id": 584,
+  "letter": "T",
+  "en": "transportation disadvantaged group",
+  "kr": "교통소외계층"
+ },
+ {
+  "id": 585,
+  "letter": "T",
+  "en": "Transportation Equity",
+  "kr": "교통 형평성"
+ },
+ {
+  "id": 586,
+  "letter": "T",
+  "en": "Transportation System Management (TSM)",
+  "kr": "교통체계 관리"
+ },
+ {
+  "id": 587,
+  "letter": "T",
+  "en": "Transportation Welfare",
+  "kr": "교통 복지"
+ },
+ {
+  "id": 588,
+  "letter": "T",
+  "en": "Travel pattern",
+  "kr": "이동패턴"
+ },
+ {
+  "id": 589,
+  "letter": "T",
+  "en": "travel speed advantage",
+  "kr": "속도우위"
+ },
+ {
+  "id": 590,
+  "letter": "T",
+  "en": "travel time deviation",
+  "kr": "통행시간 편차"
+ },
+ {
+  "id": 591,
+  "letter": "T",
+  "en": "travel time variability",
+  "kr": "통행시간 변동성"
+ },
+ {
+  "id": 592,
+  "letter": "T",
+  "en": "Treated Effluent",
+  "kr": "처리수(방류수)"
+ },
+ {
+  "id": 593,
+  "letter": "T",
+  "en": "Trunk Route",
+  "kr": "간선 노선"
+ },
+ {
+  "id": 594,
+  "letter": "T",
+  "en": "Turbidity control",
+  "kr": "탁도 관리"
+ },
+ {
+  "id": 595,
+  "letter": "U",
+  "en": "Ultrafine Particulate Matter (PM₂.₅)",
+  "kr": "초미세먼지(PM2.5)"
+ },
+ {
+  "id": 596,
+  "letter": "U",
+  "en": "Uncontrolled Developement",
+  "kr": "난개발"
+ },
+ {
+  "id": 597,
+  "letter": "U",
+  "en": "Underground leakage detection",
+  "kr": "지하 누수탐지"
+ },
+ {
+  "id": 598,
+  "letter": "U",
+  "en": "Underground Spatial Information",
+  "kr": "지하공간 정보"
+ },
+ {
+  "id": 599,
+  "letter": "U",
+  "en": "Undergrounding",
+  "kr": "지하화"
+ },
+ {
+  "id": 600,
+  "letter": "U",
+  "en": "Undergrounding overhead utilities",
+  "kr": "전진주 / 전선 지중화"
+ },
+ {
+  "id": 601,
+  "letter": "U",
+  "en": "Universal public service",
+  "kr": "보편적 공공서비스"
+ },
+ {
+  "id": 602,
+  "letter": "U",
+  "en": "Universal water welfare",
+  "kr": "보편적 물 복지"
+ },
+ {
+  "id": 603,
+  "letter": "U",
+  "en": "Universal water welfare",
+  "kr": "보편적 물 복지"
+ },
+ {
+  "id": 604,
+  "letter": "U",
+  "en": "Upfront infrastructure investment",
+  "kr": "기반시설 선투자"
+ },
+ {
+  "id": 605,
+  "letter": "U",
+  "en": "Urban ambient air monitoring network",
+  "kr": "도시대기 측정망"
+ },
+ {
+  "id": 606,
+  "letter": "U",
+  "en": "Urban Analytics",
+  "kr": "도시 분석"
+ },
+ {
+  "id": 607,
+  "letter": "U",
+  "en": "urban center",
+  "kr": "도심"
+ },
+ {
+  "id": 608,
+  "letter": "U",
+  "en": "Urban Digital Archiving",
+  "kr": "도시 디지털 아카이빙"
+ },
+ {
+  "id": 609,
+  "letter": "U",
+  "en": "Urban heat island effect",
+  "kr": "도시열섬"
+ },
+ {
+  "id": 610,
+  "letter": "U",
+  "en": "Urban identity restoration",
+  "kr": "도시 정체성 회복"
+ },
+ {
+  "id": 611,
+  "letter": "U",
+  "en": "urban infrastructure",
+  "kr": "도시기반시설"
+ },
+ {
+  "id": 612,
+  "letter": "U",
+  "en": "Urban Infrastructure Headquarters",
+  "kr": "도시기반본부"
+ },
+ {
+  "id": 613,
+  "letter": "U",
+  "en": "Urban planning changes",
+  "kr": "도시계획 변경"
+ },
+ {
+  "id": 614,
+  "letter": "U",
+  "en": "Urban Planning Facility",
+  "kr": "도시계획시설"
+ },
+ {
+  "id": 615,
+  "letter": "U",
+  "en": "Urban Planning Review",
+  "kr": "도시계획 심의"
+ },
+ {
+  "id": 616,
+  "letter": "U",
+  "en": "Urban Policy Decision Support System",
+  "kr": "도시정책 의사결정 지원체계"
+ },
+ {
+  "id": 617,
+  "letter": "U",
+  "en": "Urban Regeneration",
+  "kr": "도심 재생"
+ },
+ {
+  "id": 618,
+  "letter": "U",
+  "en": "Urban Regeneration",
+  "kr": "도시재생"
+ },
+ {
+  "id": 619,
+  "letter": "U",
+  "en": "Urban Safety Map",
+  "kr": "도시안전지도"
+ },
+ {
+  "id": 620,
+  "letter": "U",
+  "en": "Urban Spatial Digital Twin",
+  "kr": "도시공간 디지털 트윈"
+ },
+ {
+  "id": 621,
+  "letter": "U",
+  "en": "Urban sprawl",
+  "kr": "도시 스프롤"
+ },
+ {
+  "id": 622,
+  "letter": "U",
+  "en": "urban vitality (diminished / enhanced)",
+  "kr": "도시의 활력(저하/증진)"
+ },
+ {
+  "id": 623,
+  "letter": "U",
+  "en": "Urban Wastewater Treatment Plant(s)",
+  "kr": "도시 하수처리장"
+ },
+ {
+  "id": 624,
+  "letter": "U",
+  "en": "Urban Wind Corridor Simulation",
+  "kr": "도시 바람길 시뮬레이션"
+ },
+ {
+  "id": 625,
+  "letter": "V",
+  "en": "vegetative cover layer",
+  "kr": "식생층"
+ },
+ {
+  "id": 626,
+  "letter": "V",
+  "en": "village community (maeul gongdongche) project",
+  "kr": "마을 공동체 사업"
+ },
+ {
+  "id": 627,
+  "letter": "V",
+  "en": "Village making",
+  "kr": "마을 만들기"
+ },
+ {
+  "id": 628,
+  "letter": "V",
+  "en": "Virtual Museum",
+  "kr": "가상 박물관"
+ },
+ {
+  "id": 629,
+  "letter": "V",
+  "en": "Virtual Seoul (S-Map)",
+  "kr": "버추얼 서울(S-Map)"
+ },
+ {
+  "id": 630,
+  "letter": "V",
+  "en": "Volatile Organic Compounds (VOCs)",
+  "kr": "휘발성유기화합물"
+ },
+ {
+  "id": 631,
+  "letter": "V",
+  "en": "Volatile organic compounds (VOCs)",
+  "kr": "휘발성 유기화합물(VOCs)"
+ },
+ {
+  "id": 632,
+  "letter": "V",
+  "en": "volume-based waste fee bags(VBMF)",
+  "kr": "종량제봉투"
+ },
+ {
+  "id": 633,
+  "letter": "V",
+  "en": "Vulnerable groups",
+  "kr": "취약계층"
+ },
+ {
+  "id": 634,
+  "letter": "W",
+  "en": "waste disposal facility",
+  "kr": "폐기물처리시설"
+ },
+ {
+  "id": 635,
+  "letter": "W",
+  "en": "Waste Heat",
+  "kr": "폐열"
+ },
+ {
+  "id": 636,
+  "letter": "W",
+  "en": "Wastewater Heat Recovery",
+  "kr": "하수열 회수"
+ },
+ {
+  "id": 637,
+  "letter": "W",
+  "en": "Water pressure imbalance",
+  "kr": "수압 불균형"
+ },
+ {
+  "id": 638,
+  "letter": "W",
+  "en": "Water quality management",
+  "kr": "수질 관리"
+ },
+ {
+  "id": 639,
+  "letter": "W",
+  "en": "Water quality safety",
+  "kr": "수질 안전성"
+ },
+ {
+  "id": 640,
+  "letter": "W",
+  "en": "Water quality variability",
+  "kr": "수질 변동성"
+ },
+ {
+  "id": 641,
+  "letter": "W",
+  "en": "Water Reclamation Center(s)",
+  "kr": "물재생센터"
+ },
+ {
+  "id": 642,
+  "letter": "W",
+  "en": "Water revenue ratio",
+  "kr": "유수율"
+ },
+ {
+  "id": 643,
+  "letter": "W",
+  "en": "Water revenue ratio",
+  "kr": "유수율"
+ },
+ {
+  "id": 644,
+  "letter": "W",
+  "en": "Water source management",
+  "kr": "상수원 관리"
+ },
+ {
+  "id": 645,
+  "letter": "W",
+  "en": "Water source protection",
+  "kr": "상수원 보호"
+ },
+ {
+  "id": 646,
+  "letter": "W",
+  "en": "Water supply infrastructure",
+  "kr": "상수도 인프라"
+ },
+ {
+  "id": 647,
+  "letter": "W",
+  "en": "Water supply stability",
+  "kr": "급수 안정성"
+ },
+ {
+  "id": 648,
+  "letter": "W",
+  "en": "Water tariff stability",
+  "kr": "수도요금 안정"
+ },
+ {
+  "id": 649,
+  "letter": "W",
+  "en": "Water treatment plant",
+  "kr": "정수장"
+ },
+ {
+  "id": 650,
+  "letter": "W",
+  "en": "Water–Energy Nexus",
+  "kr": "물-에너지 넥서스"
+ },
+ {
+  "id": 651,
+  "letter": "W",
+  "en": "Waterfront space",
+  "kr": "수변 공간"
+ },
+ {
+  "id": 652,
+  "letter": "W",
+  "en": "waterproof rating",
+  "kr": "방수등급 적용"
+ },
+ {
+  "id": 653,
+  "letter": "W",
+  "en": "Waterworks Headquarters",
+  "kr": "수도사업본부"
+ },
+ {
+  "id": 654,
+  "letter": "W",
+  "en": "Welfare blind spots",
+  "kr": "복지 사각지대"
+ },
+ {
+  "id": 655,
+  "letter": "W",
+  "en": "WHO drinking water standards",
+  "kr": "세계보건기구 기준"
+ },
+ {
+  "id": 656,
+  "letter": "W",
+  "en": "Working Poor",
+  "kr": "근로빈곤층"
+ },
+ {
+  "id": 657,
+  "letter": "W",
+  "en": "World Health Organization (WHO)",
+  "kr": "세계보건기구"
+ },
+ {
+  "id": 658,
+  "letter": "W",
+  "en": "World Inequality Report",
+  "kr": "세계 불평등 보고서"
+ },
+ {
+  "id": 659,
+  "letter": "Y",
+  "en": "Yeongdong District",
+  "kr": "영동지구"
+ },
+ {
+  "id": 660,
+  "letter": "Y",
+  "en": "Young Adults Entering the Workforce",
+  "kr": "사회초년생"
+ },
+ {
+  "id": 661,
+  "letter": "A",
+  "en": "ADR · Autonomous Delivery Robot",
+  "kr": "자율주행 배송로봇"
+ },
+ {
+  "id": 662,
+  "letter": "A",
+  "en": "AHP · Analytic Hierarchy Process",
+  "kr": "계층분석법"
+ },
+ {
+  "id": 663,
+  "letter": "B",
+  "en": "BCA · Benefit–Cost Analysis",
+  "kr": "비용편익분석"
+ },
+ {
+  "id": 664,
+  "letter": "B",
+  "en": "BRT · Bus Rapid Transit",
+  "kr": "간선급행버스체계"
+ },
+ {
+  "id": 665,
+  "letter": "C",
+  "en": "CAF · Development Bank of Latin America",
+  "kr": "라틴아메리카개발은행"
+ },
+ {
+  "id": 666,
+  "letter": "C",
+  "en": "CGRC · Center for Global Research Cooperation",
+  "kr": "글로벌연구협력센터"
+ },
+ {
+  "id": 667,
+  "letter": "D",
+  "en": "DPG · Digital Platform Government",
+  "kr": "디지털플랫폼정부"
+ },
+ {
+  "id": 668,
+  "letter": "D",
+  "en": "DRT · Demand Responsive Transport",
+  "kr": "수요응답형 교통"
+ },
+ {
+  "id": 669,
+  "letter": "D",
+  "en": "DUT · Driving Urban Transitions",
+  "kr": "유럽 도시전환 파트너십"
+ },
+ {
+  "id": 670,
+  "letter": "E",
+  "en": "E2SFCA · Enhanced Two-Step Floating Catchment Area",
+  "kr": "향상된 2단계 유동지구법"
+ },
+ {
+  "id": 671,
+  "letter": "E",
+  "en": "EDCF · Economic Development Cooperation Fund",
+  "kr": "대외경제협력기금"
+ },
+ {
+  "id": 672,
+  "letter": "E",
+  "en": "EGDI · E-Government Development Index",
+  "kr": "전자정부 발전지수"
+ },
+ {
+  "id": 673,
+  "letter": "F",
+  "en": "F/S · Feasibility Study",
+  "kr": "타당성조사"
+ },
+ {
+  "id": 674,
+  "letter": "F",
+  "en": "FOSS4G · Free and Open Source Software for Geospatial",
+  "kr": "자유·오픈소스 공간정보"
+ },
+ {
+  "id": 675,
+  "letter": "H",
+  "en": "HRI · Human–Robot Interaction",
+  "kr": "인간-로봇 상호작용"
+ },
+ {
+  "id": 676,
+  "letter": "I",
+  "en": "ICT · Information and Communications Technology",
+  "kr": "정보통신기술"
+ },
+ {
+  "id": 677,
+  "letter": "I",
+  "en": "IDB · Inter-American Development Bank",
+  "kr": "미주개발은행"
+ },
+ {
+  "id": 678,
+  "letter": "I",
+  "en": "ILP · Integer Linear Programming",
+  "kr": "정수선형계획법"
+ },
+ {
+  "id": 679,
+  "letter": "K",
+  "en": "KSP · Knowledge Sharing Program",
+  "kr": "경제발전경험공유사업"
+ },
+ {
+  "id": 680,
+  "letter": "L",
+  "en": "LLM · Large Language Model",
+  "kr": "초거대언어모델"
+ },
+ {
+  "id": 681,
+  "letter": "M",
+  "en": "MaaS · Mobility as a Service",
+  "kr": "서비스형 모빌리티"
+ },
+ {
+  "id": 682,
+  "letter": "M",
+  "en": "MDB · Multilateral Development Bank",
+  "kr": "다자개발은행"
+ },
+ {
+  "id": 683,
+  "letter": "M",
+  "en": "MeTTA · Megacity Think Tank Alliance",
+  "kr": "메가시티 싱크탱크 얼라이언스"
+ },
+ {
+  "id": 684,
+  "letter": "N",
+  "en": "NSDI · National Spatial Data Infrastructure",
+  "kr": "국가공간정보기반"
+ },
+ {
+  "id": 685,
+  "letter": "N",
+  "en": "NUA · New Urban Agenda",
+  "kr": "새로운 도시의제"
+ },
+ {
+  "id": 686,
+  "letter": "N",
+  "en": "NUPP · National Urban Policy Programme",
+  "kr": "국가도시정책 프로그램"
+ },
+ {
+  "id": 687,
+  "letter": "O",
+  "en": "ODA · Official Development Assistance",
+  "kr": "공적개발원조"
+ },
+ {
+  "id": 688,
+  "letter": "P",
+  "en": "PPP · Public–Private Partnership",
+  "kr": "민관협력"
+ },
+ {
+  "id": 689,
+  "letter": "S",
+  "en": "SDG · Sustainable Development Goals",
+  "kr": "지속가능발전목표"
+ },
+ {
+  "id": 690,
+  "letter": "S",
+  "en": "S-Map · Seoul Digital Twin Map",
+  "kr": "서울 디지털트윈 지도 에스맵"
+ },
+ {
+  "id": 691,
+  "letter": "T",
+  "en": "TOD · Transit-Oriented Development",
+  "kr": "대중교통중심개발"
+ },
+ {
+  "id": 692,
+  "letter": "U",
+  "en": "UN-GGIM · UN Global Geospatial Information Management",
+  "kr": "유엔 글로벌 지리공간정보관리"
+ },
+ {
+  "id": 693,
+  "letter": "U",
+  "en": "UN-Habitat · UN Human Settlements Programme",
+  "kr": "유엔 해비타트"
+ },
+ {
+  "id": 694,
+  "letter": "U",
+  "en": "UPIS · Urban Planning Information System",
+  "kr": "도시계획정보체계"
+ }
+]

@@ -28,6 +28,52 @@ ORDER = [
  ("15_맺음말.md","맺음말",3,"맺음말",None),
 ]
 
+# 장별 사례 3선: (간결 국문명, 영문명, [키워드 — 중요표현은 영문/약자])
+CASES = {
+ "1": [("인천 송도","Songdo, Korea",["U-City","신도시","도시통합운영센터","스마트시티 1세대"]),
+       ("바르셀로나","Barcelona, Spain",["Superblock","기술주권","Decidim","DECODE"]),
+       ("싱가포르","Singapore",["Smart Nation","Virtual Singapore","Digital Twin","국가 데이터 플랫폼"])],
+ "2": [("서울 생활인구","Seoul De-facto Population",["통신 빅데이터","생활인구","도시 진단"]),
+       ("부산 AI 생활권계획","Busan AI Living-zone Planning",["Louvain","E2SFCA","ILP","시설 재배치"]),
+       ("수원 15분도시","Suwon 15-min City",["250m 격자","E2SFCA","Monte-Carlo BCA","B/C"])],
+ "3": [("시민 페르소나·AI 에이전트","Synthetic Citizen Personas",["LLM","AI Agent","정책 시뮬레이션","KAIA"]),
+       ("계획 시나리오 생성","LLM Scenario Generation",["Generative AI","시나리오","문서 자동화","RAG"]),
+       ("생성형 참여 챗봇","Generative Participation Chatbot",["Chatbot","민원 자동화","시민 소통"])],
+ "4": [("버추얼 서울 S-Map","Virtual Seoul (S-Map)",["Digital Twin","3D 행정","S-Map"]),
+       ("용산 로봇시티","Yongsan Robot City",["ADR","Cesium","디지털트윈 실증","Physical AI"]),
+       ("버추얼 싱가포르","Virtual Singapore",["국가 Digital Twin","시뮬레이션"])],
+ "5": [("서울 올빼미버스","Seoul Owl Bus",["심야버스","통신 빅데이터","수요기반 노선"]),
+       ("헬싱키 Whim","Helsinki Whim",["MaaS","통합 모빌리티","구독형 교통"]),
+       ("TOD·15분도시 탄소중립","TOD & Carbon-neutral Mobility",["TOD","15분도시","탄소중립"])],
+ "6": [("정부24","Government24",["e-Government","G4C","EGDI"]),
+       ("국가공간정보·UPIS","NSDI & UPIS",["NSDI","UPIS","V-World","LURIS"]),
+       ("디지털플랫폼정부","Digital Platform Government",["DPG","데이터 기반 정부"])],
+ "7": [("데이터센터 입지","Data Center Siting",["Data Center","전력·냉각","용인","Data Center Alley"]),
+       ("토론토 사이드워크랩","Toronto Sidewalk Labs",["데이터 거버넌스","Privacy","사업 무산"]),
+       ("감시·디지털 격차","Surveillance & Digital Divide",["Surveillance","Digital Divide","데이터 식민주의"])],
+ "8": [("K-City Network","K-City Network",["국토교통부","공모형","마스터플랜","F/S"]),
+       ("EDCF 개발금융","EDCF Concessional Loan",["EDCF","유상원조","PIS","다각적 재원"]),
+       ("다자개발은행·PPP","MDB & PPP Blended Finance",["MDB","PPP","Blended Finance","IDB/WB/ADB"])],
+ "9": [("UN-Habitat NUPP","National Urban Policy Programme",["NUPP","국가도시정책","UN-Habitat"]),
+       ("NUA·SDG 전략적 접근","New Urban Agenda & SDG",["NUA","SDG 11","도시모델 진단"]),
+       ("협력 리스크 관리","Cooperation Risk Management",["정치·재정 Risk","지속가능성","흡수역량"])],
+ "10":[("콜롬비아 메데진","Medellín, Colombia",["Metrocable","Urbanismo Social","사회적 도시계획"]),
+       ("콜롬비아 보고타","Bogotá, Colombia",["스마트 도시재생","TransMilenio BRT","Ciclovía"]),
+       ("파라과이 아순시온","Asunción, Paraguay",["후발 수도","전자행정","역량 이전"])],
+ "11":[("르완다 키갈리","Kigali, Rwanda",["ICT Hub","스마트시티 마스터플랜","전자정부"]),
+       ("나이지리아 라고스","Lagos, Nigeria",["Eko Atlantic","해안 신도시","비공식 정착지"]),
+       ("케냐 나이로비","Nairobi, Kenya",["Konza Technopolis","ICT 신도시","Leapfrog"])],
+ "12":[("NEOM","NEOM, Saudi Arabia",["The Line","Vision 2030","선형도시"]),
+       ("누산타라","Nusantara, Indonesia",["신수도","Green·Smart City","천도"]),
+       ("송도형 모델 수출","Songdo Model Export",["K-City","신도시 수출","패키지형"])],
+ "13":[("한–캐 ADR 공동연구","Korea–Canada ADR Study",["ADR","AHP","보행안전","Digital Twin Testbed"]),
+       ("EU DUT·15분도시","EU DUT & 15-min City",["DUT","15분도시","헬싱키·바르셀로나"]),
+       ("스마트 콜럼버스","Smart Columbus",["US DOT Smart City Challenge","MaaS"])],
+ "14":[("서울 정책아카이브 세계화","Seoul Policy Archive",["TIP-CARD","정책지식 패키지","Knowledge Sharing"]),
+       ("도시외교·개방형 공간정보","City Diplomacy & FOSS4G",["FOSS4G","UN-GGIM","City Diplomacy"]),
+       ("연구협력 제도화","Institutionalizing Research Cooperation",["MeTTA","CGRC","다자 네트워크"])],
+}
+
 def strip_parens(s):
     # 둥근 괄호와 내용 제거(중첩 대비 반복) + 잔여 공백 정리
     prev=None
@@ -102,6 +148,15 @@ for i,(fn,label,part,partname,imgkey) in enumerate(ORDER):
     if refs:
         for r in refs: content.append({"t":"ref","text":r})
 
+    # 사례 헤딩(#### 사례 N …)을 kind='core'로 승격하고 간결 국문명·영문명 부여
+    chcases = CASES.get(imgkey or "", [])
+    ci = 0
+    for b in content:
+        if b.get("t")=="h" and b.get("kind")=="sub" and b.get("kr","").startswith("사례") and ci < len(chcases):
+            kr,en,kws = chcases[ci]; ci += 1
+            b["kr"]=kr; b["en"]=en; b["kind"]="core"; b["level"]=1
+    case_objs = [{"kr":kr,"en":en,"keywords":kws} for kr,en,kws in chcases]
+
     # 이미지 삽입: 참고문헌 헤딩 이전 본문 구간에 균등 분산
     imgs = manifest.get(imgkey or "", [])
     # 캡션 매핑
@@ -135,7 +190,7 @@ for i,(fn,label,part,partname,imgkey) in enumerate(ORDER):
         "titleKR":title, "titleEN":"", "content":content, "mode":"authored",
         "file":fn, "chars":chars, "images":len(imgs), "tables":0,
         "headings":[b["kr"] for b in content if b.get("t")=="h" and b.get("kind")=="sub"][:8],
-        "cases":[], "caseCount":0
+        "cases":case_objs, "caseCount":len(case_objs)
     })
 
 data={"meta":{
