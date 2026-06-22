@@ -489,7 +489,7 @@ function cardHTML(r){
     <div class="card-head">
       <div class="card-icon">${kIcon}</div>
       <div class="card-meta">
-        <div class="card-kind">${kLabel} · ${kLabelEn}</div>
+        <div class="card-kind">${kLabel}${(kLabelEn&&kLabelEn!==kLabel)?' · '+kLabelEn:''}</div>
         <div class="card-title">${esc(r.title||r.name||r.slug)}</div>
         ${sub?`<div class="card-sub">${esc(sub)}</div>`:''}
       </div>
