@@ -17,7 +17,7 @@
 }
 *{box-sizing:border-box}html,body{margin:0;padding:0}
 body{font-family:"Montserrat","Pretendard","Apple SD Gothic Neo","Malgun Gothic",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;font-size:16px;-webkit-font-smoothing:antialiased}
-.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 clamp(16px,4vw,24px)}
 a{color:inherit;text-decoration:none}
 /* top bar */
 .topbar{background:var(--cream);border-bottom:1px solid var(--line)}
@@ -35,11 +35,11 @@ a{color:inherit;text-decoration:none}
 .ulogout:hover{background:#fff;color:var(--ink2)}
 /* hero — warm flat tone */
 .hero{background:linear-gradient(180deg,#fcf9f2 0%,#f5f3ee 100%);border-bottom:1px solid var(--line);position:relative;overflow:hidden}
-.hero-in{display:flex;align-items:center;gap:34px;padding:54px 0 40px;position:relative;z-index:1}
+.hero-in{display:flex;align-items:center;gap:34px;padding-top:54px;padding-bottom:40px;position:relative;z-index:1}
 .hero-text{flex:1;min-width:0;max-width:600px}
 .hero .kick{font-size:13px;letter-spacing:.18em;font-weight:800;color:var(--teal);text-transform:uppercase}
-.hero h1{font-size:44px;font-weight:800;letter-spacing:-.02em;margin:.28em 0 .12em;line-height:1.1;color:var(--navy)}
-.hero .ko{font-size:20px;font-weight:600;color:var(--ink2)}
+.hero h1{font-size:clamp(28px,6.4vw,44px);font-weight:800;letter-spacing:-.02em;margin:.28em 0 .12em;line-height:1.12;color:var(--navy)}
+.hero .ko{font-size:clamp(16px,4.2vw,20px);font-weight:600;color:var(--ink2)}
 .hero p{font-size:16px;color:var(--ink2);margin:18px 0 0;max-width:560px;line-height:1.7}
 .hero p .kr{display:block;font-size:14px;color:var(--ink3);margin-top:7px}
 .hero-art{flex:0 0 420px;max-width:46%}
@@ -47,7 +47,7 @@ a{color:inherit;text-decoration:none}
 /* subsystem grid */
 main{padding:48px 0 30px}
 .sec-h{display:flex;align-items:baseline;gap:12px;margin:0 0 4px}
-.sec-h h2{font-size:26px;font-weight:800;color:var(--navy);margin:0;letter-spacing:-.01em}
+.sec-h h2{font-size:clamp(21px,5.2vw,26px);font-weight:800;color:var(--navy);margin:0;letter-spacing:-.01em}
 .sec-h .kr{font-size:15px;color:var(--ink3);font-weight:700}
 .sec-sub{color:var(--ink2);font-size:15px;margin:0 0 28px}
 .sec-sub .kr{display:block;font-size:13.5px;color:var(--ink3);margin-top:3px}
@@ -98,8 +98,27 @@ footer{border-top:1px solid var(--line);background:var(--cream);padding:30px 0;m
 .merr{color:#c0392b;font-size:13px;margin-top:12px;min-height:17px}
 .soonbox{text-align:center;padding:14px 6px 4px}
 .soonbox .si{font-size:46px}.soonbox h4{margin:10px 0 6px;font-size:20px;color:var(--navy)}.soonbox p{color:var(--ink2);font-size:14.5px;margin:0}
-@media(max-width:860px){.hero-in{flex-direction:column;align-items:flex-start;gap:24px}.hero-art{flex:none;max-width:100%;width:100%}}
-@media(max-width:760px){.grid{grid-template-columns:1fr}.hero h1{font-size:32px}.hero-in{padding:40px 0 32px}.brand small{display:none}}
+@media(max-width:860px){.hero-in{flex-direction:column;align-items:flex-start;gap:22px}.hero-art{flex:none;width:100%;max-width:380px;margin:0 auto}}
+@media(max-width:760px){.grid{grid-template-columns:1fr}.hero-in{padding-top:36px;padding-bottom:30px}main{padding:34px 0 24px}.sys{padding:22px 22px 18px}.sec-sub{margin-bottom:22px}}
+@media(max-width:560px){
+  .topbar-in{flex-wrap:wrap;height:auto;min-height:56px;padding-top:9px;padding-bottom:9px;gap:9px 10px}
+  .brand small{display:none}
+  .archlink{font-size:12px;padding:7px 12px}
+  .uchip{font-size:12px;padding:6px 11px}.ulogout{font-size:12px;padding:6px 10px}
+  .hero .kick{font-size:11.5px;letter-spacing:.14em}
+  .hero p{font-size:15px;margin-top:14px}.hero p .kr{font-size:13px}
+  .sec-h{flex-direction:column;gap:2px}.sec-sub{font-size:14px}
+  .sys .ic{width:50px;height:50px;font-size:26px;margin-bottom:13px}
+  .sys h3{font-size:18px}.sys .desc{font-size:13.5px}
+  .archbanner{flex-wrap:wrap;gap:8px 14px;padding:14px 16px}.archbanner .ab-go{width:100%;text-align:right}
+}
+@media(max-width:400px){
+  .brand{font-size:14px;gap:9px}.brand .dot{width:30px;height:30px;font-size:16px}
+  .hero-art{max-width:300px}
+  .foot-in{flex-direction:column;align-items:flex-start;gap:12px}
+  .mbg{padding:12px}.modal{max-width:none}
+  .mhead{padding:18px 20px 15px}.mbody{padding:18px 20px 22px}
+}
 </style>
 </head>
 <body>
