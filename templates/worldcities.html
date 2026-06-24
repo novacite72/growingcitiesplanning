@@ -115,6 +115,8 @@ main{padding:36px 0 72px}
 .k-policy{--card-accent:#1a7dc0;--card-accent-l:#e7f1fa}
 .k-topic .card-kind{background:#efeafb;color:#5a3d99}
 .k-topic{--card-accent:#7b5cc4;--card-accent-l:#efeafb}
+.k-discussion .card-kind{background:#fbeede;color:#8a4a12}
+.k-discussion{--card-accent:#c2671a;--card-accent-l:#fbeede}
 
 /* ── evidence badge ── */
 .ev-strong{background:#e7f3ec;color:#1e6e3f;font-size:10.5px;font-weight:800;padding:2px 7px;border-radius:8px}
@@ -258,6 +260,7 @@ footer{border-top:1px solid var(--line);background:#fff;padding:22px 0;color:var
     <button class="chip" data-kind="case" id="chip-case">📋 사례 Cases <span class="cnt" id="cnt-case"></span></button>
     <button class="chip" data-kind="policy" id="chip-policy">📜 정책 Policies <span class="cnt" id="cnt-policy"></span></button>
     <button class="chip" data-kind="topic" id="chip-topic">💡 토픽 Topics <span class="cnt" id="cnt-topic"></span></button>
+    <button class="chip" data-kind="discussion" id="chip-discussion">🗣 토론 Discussion <span class="cnt" id="cnt-discussion"></span></button>
   </div>
 </div></div>
 
@@ -309,6 +312,7 @@ const KIND_META={
   case:{icon:'📋',label:'사례',labelEn:'Case',accent:'#138f8f',accentL:'#e3f3f3',cls:'k-case'},
   policy:{icon:'📜',label:'정책',labelEn:'Policy',accent:'#1a7dc0',accentL:'#e7f1fa',cls:'k-policy'},
   topic:{icon:'💡',label:'토픽',labelEn:'Topic',accent:'#7b5cc4',accentL:'#efeafb',cls:'k-topic'},
+  discussion:{icon:'🗣',label:'토론',labelEn:'Discussion',accent:'#c2671a',accentL:'#fbeede',cls:'k-discussion'},
   document:{icon:'📄',label:'글로벌 연구 디렉토리',labelEn:'Research Directory',accent:'#12355b',accentL:'#eaf1f8',cls:'k-doc'},
 };
 
@@ -333,6 +337,10 @@ const FIELD_LABELS={
   topicCategory:'토픽 카테고리',keyIssues:'핵심 이슈',relatedCities:'관련 도시',
   relatedCases:'관련 사례',relatedRobotTopics:'관련 로봇 토픽',
   researchQuestions:'연구 질문',policyImplications:'정책 함의',
+  discType:'구분',event:'세미나',presenter:'발표자',discussant:'토론자',moderator:'좌장',
+  affiliation:'소속',venue:'장소',host:'주최·주관',session:'세션',
+  keyPoints:'핵심 논점',relatedPresentations:'관련 발표',discussionPoints:'토론 쟁점',
+  tags:'태그',
 };
 
 const REGION_LABELS={
@@ -408,7 +416,7 @@ function updateCountBadges(){
   ['monitoring','research','oda'].forEach(c=>{const el=$('#cat-'+c); if(el) el.textContent=cat[c]||0;});
   // 모니터링 내 유형 카운트(document 제외)
   $('#cnt-all').textContent=cat.monitoring;
-  ['city','case','policy','topic'].forEach(k=>{
+  ['city','case','policy','topic','discussion'].forEach(k=>{
     const el=$('#cnt-'+k); if(el) el.textContent=ALL.filter(r=>r.kind===k).length;
   });
 }
@@ -421,6 +429,7 @@ function renderHeroStats(d){
     {num:counts.case||0,lbl:'사례 Cases'},
     {num:counts.policy||0,lbl:'정책 Policies'},
     {num:counts.topic||0,lbl:'토픽 Topics'},
+    {num:counts.discussion||0,lbl:'토론 Discussion'},
   ];
   $('#heroStats').innerHTML=stats.map(s=>
     `<div class="hero-stat"><span class="num">${s.num}</span><span class="lbl">${s.lbl}</span></div>`
@@ -504,6 +513,7 @@ function cardSub(r){
   if(r.kind==='case') return [r.country,r.caseType?CASE_TYPE_LABELS[r.caseType]||r.caseType:''].filter(Boolean).join(' · ');
   if(r.kind==='policy') return [r.policyDomain?DOMAIN_LABELS[r.policyDomain]||r.policyDomain:'',r.period].filter(Boolean).join(' · ');
   if(r.kind==='topic') return r.topicCategory?TOPIC_CAT_LABELS[r.topicCategory]||r.topicCategory:'';
+  if(r.kind==='discussion') return [r.discType,r.presenter||r.discussant,r.affiliation].filter(Boolean).join(' · ');
   return '';
 }
 
@@ -549,7 +559,10 @@ function renderDetail(rec){
   // skip fields that are structural/meta or already shown in header (body=서술형 위키, 별도 렌더)
   const SKIP=new Set(['id','slug','title','name','kind','createdAt','updatedAt','updated','body','docUrl','docFile','category']);
   // field ordering — known important fields first
-  const ORDER=['summary','definition','country','region','population','policyDomain','period','leadOrganization',
+  const ORDER=['summary','definition',
+    'discType','event','session','date','venue','host','moderator','presenter','discussant','affiliation',
+    'keyPoints','discussionPoints','relatedPresentations',
+    'country','region','population','policyDomain','period','leadOrganization',
     'implementationStatus','caseType','cityId','urbanProblem','intervention','outcomes','topicCategory',
     'smartCityRelevance','agingCityRelevance','walkabilityRelevance','publicSpaceRelevance',
     'careInfrastructureRelevance','urbanRobotRelevance','relevanceToUrbanRobotics','relevanceToSeoul',
@@ -659,6 +672,7 @@ function detailSub(r){
   if(r.kind==='case') return [r.country,r.region?REGION_LABELS[r.region]||r.region:'',r.caseType?CASE_TYPE_LABELS[r.caseType]||r.caseType:''].filter(Boolean).join(' · ');
   if(r.kind==='policy') return [r.policyDomain?DOMAIN_LABELS[r.policyDomain]||r.policyDomain:'',r.country,r.period].filter(Boolean).join(' · ');
   if(r.kind==='topic') return r.topicCategory?TOPIC_CAT_LABELS[r.topicCategory]||r.topicCategory:'';
+  if(r.kind==='discussion') return [r.discType,r.event].filter(Boolean).join(' · ');
   return '';
 }
 

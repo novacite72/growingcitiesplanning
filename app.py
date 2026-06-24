@@ -475,6 +475,94 @@ def wpsc_analysis():
     if not can_access_system(u, 'wpsc'): return redirect('/?denied=wpsc')
     return send_file(os.path.join(HERE, 'wpsc_analysis.html'))   # WPSC 일정 분석(.md 렌더)
 
+# ---------------- WPSC 출장결과보고서 (편집/사진/다운로드) — dbrecords(subsystem='wpsc', kind='report') ----------------
+WPSC_REPORT_SLUG = 'wpsc-report-main'
+def default_wpsc_report():
+    return {
+        "title": "해외출장보고서 — 제6회 세계도시계획대학총회(WPSC 2026, 핀란드 헬싱키) 결과 보고",
+        "meta": {"부서": "글로벌연구협력센터", "작성일": "2026. 7. 9.", "작성자": "최준영 선임연구위원"},
+        "sections": [
+            {"h": "1. 출장개요", "body":
+             "<ul><li><b>출장자</b>: 최준영 선임연구위원(서울연구원 글로벌연구협력센터)</li>"
+             "<li><b>출장지</b>: 핀란드 헬싱키·에스포 (개인 동선: 탐페레·탈린 병행)</li>"
+             "<li><b>출장기간</b>: 2026. 6. 27.(토) ~ 7. 5.(일) / 7박 9일</li>"
+             "<li><b>출장목적</b>: ① 논문 발표 — 보행 중심 생활권 내 인구구조 변화 대응 최적 편의시설 배치(선형계획 기반) "
+             "② 도시계획 데이터사이언스 동향 파악(15분도시·보행생활권·접근성·AI/빅데이터) "
+             "③ 국제 연구협력 — GPEAN 회원단체와 생활권 지원모듈 협력방안 논의 및 네트워크 구축</li>"
+             "<li><b>항공·숙소</b>: 핀에어 AY42/AY41 · 스칸딕 그랜드 센트럴 헬싱키(6박)</li></ul>"
+             "<p><b>[출장일정]</b></p>"
+             "<table><tr><th>일자</th><th>지역</th><th>주요 활동</th></tr>"
+             "<tr><td>6/27(토)</td><td>인천→헬싱키</td><td>이동 (핀에어 AY42)</td></tr>"
+             "<tr><td>6/28(일)</td><td>에스포·헬싱키</td><td>도시계획 현장조사(타피올라·야트카사리)</td></tr>"
+             "<tr><td>6/29(월)</td><td>에스포(알토대)</td><td>WPSC 등록·개막식·기조강연·세션·리셉션</td></tr>"
+             "<tr><td>6/30(화)</td><td>에스포(알토대)</td><td>★ 논문 구두발표(Track 1, 16:00) · 세션</td></tr>"
+             "<tr><td>7/1(수)</td><td>헬싱키(헬싱키대)</td><td>기조강연·모바일 워크숍·VR 워크숍</td></tr>"
+             "<tr><td>7/2(목)</td><td>에스포(알토대)</td><td>세션·GPEAN 협력 컨택·작별 리셉션</td></tr>"
+             "<tr><td>7/3(금)</td><td>탈린(개인)</td><td>구시가·도시재생 현장답사</td></tr>"
+             "<tr><td>7/4~5</td><td>헬싱키→인천</td><td>이동 (핀에어 AY41)</td></tr></table>"},
+            {"h": "2. 출장내용 (일자별)", "body":
+             "<p><b>1) 6/28(일) 도시계획 현장조사</b></p><ul>"
+             "<li><b>타피올라(Tapiola, 에스포)</b>: 1950년대 계획된 보행 중심 전원도시. 혼합용도·보행네트워크·근린생활시설 배치 등 15분 도시 개념의 선행 사례로서 공간구성 원칙 및 시설 배치 전략을 현장 조사. <i>시사점</i> — 보행 중심 혼합용도·근린 배치를 서울시 생활권계획 시설배치 전략에 적용.</li>"
+             "<li><b>야트카사리(Jätkäsaari, 헬싱키)</b>: 항만 폐쇄 후 혼합용도 지구로 전환 중인 도시재생 사업지. 트램·자전거도로·보행축 중심 생활권 공간구성 및 녹지 네트워크 조사. <i>시사점</i> — 항만·유휴부지 재생을 통한 직주근접 생활권 조성.</li></ul>"
+             "<p><b>2) 6/29~30(월·화) WPSC 본회의 — 알토대(오타니에미)</b></p><ul>"
+             "<li>개막식 및 개막 기조강연(Anacláudia Rossbach, UN-Habitat 사무총장) 참석, 에스포시 주관 리셉션 네트워킹.</li>"
+             "<li>15분 도시·보행 생활권·근린 접근성 및 AI/빅데이터 기반 계획지원체계 관련 병렬세션·라운드테이블 참석, 연구동향·공간분석 기술 자료 수집.</li></ul>"
+             "<p><b>3) 6/30(화) ★ 논문 발표</b></p><ul>"
+             "<li>제목: <i>Balancing Efficiency and Equity in Walkable Living Areas through Optimized Amenity Placement Amidst Demographic Change</i> (Track 1: Accessibility and Mobility, 제출ID 1385, 16:00–17:30 구두발표).</li>"
+             "<li>선형계획 기반 최적화 모델(효율–형평 균형)의 방법론적 엄밀성과 실무 적용성에 대한 국제적 검증 및 해외 전문가 피드백 수렴.</li></ul>"
+             "<p><b>4) 7/1(수) 헬싱키대학교</b></p><ul>"
+             "<li>환영사·기조강연 참석, 학회 주관 모바일 워크숍(헬싱키 도시계획 현장 탐방) 참가, UrbanISE VR 워크숍(헬싱키대 본관 Studium 1) 참관.</li></ul>"
+             "<p><b>5) 7/2(목) 알토대 — 협력 네트워킹</b></p><ul>"
+             "<li>기조강연(Stefano Moroni)·세션 참석. GPEAN 회원단체 인사 접촉 — ANPUR(브라질) 회장 José R. Vargas de Faria, ALEUP(중남미) Beatriz Rave·Juan Demerutis, KPA 국제협력위원장 이관옥 교수(NUS)와 생활권 지원모듈 협력방안 논의.</li>"
+             "<li>저녁 헬싱키 시청(City Hall) 작별 리셉션 참석.</li></ul>"
+             "<p><b>6) 7/3(금) 탈린(에스토니아) — 개인 현장답사</b></p><ul>"
+             "<li>구시가(UNESCO 세계유산)·텔리스키비(Telliskivi) 산업유산 도시재생 사례 답사(헬싱키↔탈린 페리).</li></ul>"},
+            {"h": "3. 주요 성과", "body":
+             "<ul><li><b>연구성과 국제 검증</b>: 보행 생활권 편의시설 최적배치(선형계획·효율/형평) 모델을 국제 학술무대에 발표, 방법론 피드백 확보.</li>"
+             "<li><b>연구동향 수집</b>: 15분 도시·동적 접근성(N-Minute City)·2SFCA·AI/빅데이터 기반 계획지원 최신 사례 조사.</li>"
+             "<li><b>국제 협력 네트워크</b>: GPEAN 회원단체(중남미 ANPUR·ALEUP, 아프리카 AAPS 접촉 의향)와 빅데이터·AI 도시계획 협력 기반 마련, 이관옥 교수(KPA 국제협력위원장) 연계.</li></ul>"},
+            {"h": "4. 연구과제 적용방안 및 향후계획", "body":
+             "<ul><li>생활권계획 수립지원시스템 고도화 — 동적 접근성·AI 기반 시설입지 최적화 방법 보강.</li>"
+             "<li>타피올라·야트카사리 등 선진사례를 서울시 생활권계획 시설배치·도시재생에 적용 검토.</li>"
+             "<li>KPA 빅데이터연구위원회 ↔ GPEAN(AAPS·AESOP·APSA) 협력 후속 — 공동 특별세션·교육모듈·MOU 추진.</li></ul>"},
+            {"h": "5. 사진 / 첨부", "body":
+             "<p style='color:#6E7C8C'>아래 ‘사진 추가’ 버튼으로 현장사진을 첨부하세요. (편집 권한자만)</p>"},
+        ],
+    }
+
+@app.get('/api/wpsc/report')
+def api_wpsc_report():
+    u = current()
+    if not u: return jsonify(error='로그인이 필요합니다.'), 401
+    if not can_access_system(u, 'wpsc'): return jsonify(error='접근 권한이 없습니다.'), 403
+    import json as _json
+    row = db().execute("SELECT data,updated FROM dbrecords WHERE subsystem='wpsc' AND slug=?", (WPSC_REPORT_SLUG,)).fetchone()
+    if row:
+        try: data = _json.loads(row['data'])
+        except Exception: data = default_wpsc_report()
+        updated = row['updated']
+    else:
+        data = default_wpsc_report(); updated = None
+    return jsonify(report=data, updated=updated, canEdit=(u['role'] == 'superadmin'))
+
+@app.post('/api/wpsc/report')
+@super_required
+def api_wpsc_report_save():
+    import json as _json
+    j = request.get_json(force=True) or {}
+    rep = j.get('report') or {}
+    body = _json.dumps(rep, ensure_ascii=False)
+    con = db()
+    ex = con.execute("SELECT id FROM dbrecords WHERE subsystem='wpsc' AND slug=?", (WPSC_REPORT_SLUG,)).fetchone()
+    if ex:
+        con.execute("UPDATE dbrecords SET kind='report',title=?,data=?,updated=? WHERE id=?",
+                    ('WPSC 출장결과보고서', body, now(), ex['id']))
+    else:
+        con.insert("INSERT INTO dbrecords(subsystem,kind,slug,title,data,updated) VALUES(?,?,?,?,?,?)",
+                   ('wpsc', 'report', WPSC_REPORT_SLUG, 'WPSC 출장결과보고서', body, now()))
+    con.commit()
+    return jsonify(ok=True, updated=now())
+
 @app.get('/api/wpsc')
 def api_wpsc():
     u = current()
@@ -671,6 +759,84 @@ WC_DOCS = [
      'body': '## 사업 개요\n해외건설협회(해건협)가 주관하는 **국토교통 ODA 신규사업** 공모에 제출(2024년 9월 완료)한 사업이다. 콜롬비아 **보고타 몬테비데오(Montevideo)** 전략지역조닝계획(SAZP, Strategic Area Zoning Plan)을 중심으로 한 스마트 도시재생을 제안하였다.\n\n## 제출 서류\n신규사업 제안서(양식1), 국문 사업개요서(양식2), 사전타당성조사 보고서(양식3·Pre-FS), 관계기관 영문 사업요청서(PCP), 수원기관 사업요청 공문(LOI), 예산 산출 내역서, 대상지역 지도.'},
 ]
 
+# 토론(kind='discussion') — 세미나 발표자료 요약 + 종합토론 내용. WC_DOCS와 동일하게 코드에 상주.
+WC_DISCUSSIONS = [
+    {'slug': 'disc-2026-kpa-ai-pres1-kimseungnam', 'kind': 'discussion',
+     'discType': '주제발표 1',
+     'title': '[발표 1] AI 시대의 도시공간 변화 예측과 대응 — 김승남',
+     'event': '2026 국토교통기술대전 학술세미나 「AI와 도시계획·설계의 미래: 기회와 도전」',
+     'session': '주제발표', 'date': '2026-06-25', 'venue': '코엑스 컨퍼런스룸 E4 (3F)',
+     'host': '대한국토·도시계획학회 4차산업혁명위원회 · KAIA',
+     'presenter': '김승남', 'affiliation': '중앙대학교 교수',
+     'summary': 'AI가 도시공간 구조와 미시적 도시공간을 어떻게 바꾸는지(대상으로서의 AI)를 기술발전사·집중분산 논쟁·가로공간 재구성·분절적 도시화의 틀로 조망하고, 시나리오 대응 계획·공간유형별 도시공간정책·열린(가역적) 설계라는 대응 방향을 제시한 발표.',
+     'keyPoints': [
+        'AI는 도시를 분석하는 도구를 넘어 도시 안에서 스스로 판단·실행하는 행위자로 전환(Smart Urbanism → AI Urbanism, Cugurullo et al. 2024).',
+        'AI의 도시 효율 향상은 더 크고 고밀한 도시를 가능케 하지만, 고용·통근 변화는 도심 집중을 완화 — 집중 vs 분산 논쟁이 재점화됨.',
+        'Physical AI(자율주행차·배송로봇·드론·UAM)가 도로·도로변·보도·옥상 등 물리적 공간을 두고 기존 이용주체와 경쟁 → 가로공간 재구성(street reallocation) 필요.',
+        'AI는 분절적 도시화(splintering urbanism)와 디지털 격차를 심화 — 국가·도시·개인 간 양극화와 알고리즘적 redlining 우려.',
+        '대응: ①단일 예측형이 아닌 시나리오 대응 계획 ②기술정책이 아니라 공간유형별 도시공간정책 ③닫힌 설계에서 가역적·가변적인 열린 설계로.',
+     ],
+     'tags': ['AI urbanism', '도시공간구조', '가로공간 재구성', 'splintering urbanism', '시나리오 계획', '자율주행', '도시공간정책'],
+     'relatedPresentations': ['disc-2026-kpa-ai-pres2-eomsunyong', 'disc-2026-kpa-ai-panel-choijunyoung'],
+     'sources': [
+        '발표자료: 김승남, 「AI 시대의 도시공간 변화 예측과 대응」, 2026 국토교통기술대전 학술세미나 (2026.6.25)',
+        '김승남(2024), "AI 시대, 도시계획가의 미래와 역할 변화", 월간 국토 510호: 17-24',
+        'Cugurullo et al.(2024), The rise of AI urbanism in post-smart cities, Urban Studies 61(6): 1168-1182',
+        'Speck, J.(2018), Walkable City Rules',
+     ],
+     'body': '## 발표 개요\n중앙대학교 김승남 교수는 **AI가 도시공간을 어떻게 바꾸는가(대상으로서의 AI)**를 다섯 갈래로 조망한다.\n\n## 1. 기술 발전과 도시공간 진화\n엘리베이터·철근콘크리트가 마천루를, 자동차·고속도로가 모터리제이션과 도시 확산(urban sprawl)을 낳았듯, AI·자율주행·드론·UAM·VR/AR이 도시형태와 삶을 다시 바꾼다. 근린주구이론(Perry 1929 → DPZ 1998 → Farr 2008·2018)의 변천처럼 도시설계 패러다임도 기술에 맞춰 진화해 왔다.\n\n## 2. AI 기술의 본질\nBig data+AI(분석·예측), Generative AI(콘텐츠 생성·의사결정 지원), Physical AI(자동화·로보틱스), AI Agent(자율·협력 실행)로 정리된다. AI는 도시 운영의 정시성·정확도·효율을 높이는 동시에 고용시장 재구조화·일자리 감소·디지털 격차를 야기한다.\n\n## 3. 도시공간구조 변화\n- AI에 의한 효율 향상은 집적의 순이익을 키워 **더 크고 고밀한 도시**를 가능케 함.\n- 동시에 AI가 노동을 대체하며 사무실 수요 감소·원격근무 확대·다핵화·생활권 자족성 강화로 **도심 집중을 완화**.\n- 교통수단 발달은 **집중–분산 논쟁**을 재점화(Driverless sprawl vs. Ratti의 도심 정주성 향상).\n- Winner-takes-all 특성은 **분절적 도시화**와 주거지 분화를 심화.\n\n## 4. 미시적 도시공간 변화\n자율주행차·배송로봇·PM·드론·UAM이 도로·보도·자전거도로·옥상·정류장에서 기존 이용주체와 **공간을 두고 경쟁**한다. 도로변(curbside) 재배분, 주차공간의 용도전환, 옥상의 진입·이착륙 공간화, AI 추천에 의한 **장소성·상권의 선별적 집중**이 일어난다.\n\n## 5. 어떻게 대응할 것인가\n- **시나리오 대응 계획**: 단일 미래 예측 대신 복수 시나리오별 대응안 마련(Speck의 "Law가 아니라 Lane으로").\n- **공간정책으로 대응**: AI의 순영향(집중/분산) 방향은 예측 불가하나 영향받을 공간 범주는 예측 가능 → 도심·교외·혁신지구·주거·교통·데이터 인프라 등 **공간유형별 정책** 필요.\n- **열린 설계**: 비가역적 설계에서 벗어나 가역성·가변성을 핵심 가치로(예: Sidewalk Labs의 dynamic curb).'},
+
+    {'slug': 'disc-2026-kpa-ai-pres2-eomsunyong', 'kind': 'discussion',
+     'discType': '주제발표 2',
+     'title': '[발표 2] 빅데이터 분석을 위한 AI의 활용 방안 — 엄선용',
+     'event': '2026 국토교통기술대전 학술세미나 「AI와 도시계획·설계의 미래: 기회와 도전」',
+     'session': '주제발표', 'date': '2026-06-25', 'venue': '코엑스 컨퍼런스룸 E4 (3F)',
+     'host': '대한국토·도시계획학회 4차산업혁명위원회 · KAIA',
+     'presenter': '엄선용', 'affiliation': '한양대학교 도시대학원 교수',
+     'summary': 'AI를 도시분석에 어떻게 쓸 것인가(도구로서의 AI)를 ①기존 도시분석의 활용 장벽 완화와 ②새로운 분석 패러다임의 확장이라는 두 축으로 정리하고, X-minute city·전국 대중교통 접근성(MAI)·보행생활권 알고리즘·가로경관 LLM 평가·재해 도로 판독·시민 페르소나 등 실증 사례로 보여준 발표.',
+     'keyPoints': [
+        'AI 활용의 두 축: ①기술적으로 가능했으나 장벽·비용이 높던 분석의 활용 장벽 완화 ②AI 이전에는 불가능했던 분석 패러다임의 확장.',
+        '코딩 특화 AI 어시스턴트로 논문+서울시 원본데이터만 입력해 X-minute city, 전국 500m 격자 대중교통 접근성(MAI)을 재현 — 진입장벽이 급격히 낮아짐.',
+        '멀티모달 LLM으로 거리이미지 기반 가로경관(보행 안전·편안·즐거움) 평가, 재해 도로상태 자동 판독 등 비정형·멀티모달 자료까지 분석 확장.',
+        '시민 페르소나(Nemotron-Personas-Korea)는 실제 시민참여를 대체하는 것이 아니라 정책 대상자 유형·쟁점을 사전 탐색하는 보조 도구.',
+        'AI가 낮추는 것은 도시분석의 진입장벽이지 공공적 판단의 책임이 아님 — 계획가는 "답을 내는 사람"에서 "질문하고 결과를 검증·설명하는 사람"으로 이동.',
+     ],
+     'tags': ['도시 빅데이터', 'X-minute city', '대중교통 접근성', 'MAI', '멀티모달 LLM', '가로경관 평가', '생활권', '시민 페르소나', 'PSS'],
+     'relatedPresentations': ['disc-2026-kpa-ai-pres1-kimseungnam', 'disc-2026-kpa-ai-panel-choijunyoung'],
+     'sources': [
+        '발표자료: 엄선용, 「빅데이터 분석을 위한 AI의 활용 방안」, 2026 국토교통기술대전 학술세미나 (2026.6.25)',
+        'Kang, M. & Eom, S.(2026), Multi-activity accessibility by public transit, Applied Geography 191, 104004',
+        'Yoo, M., Cho, G.-H. & Kim, D.(2026), Explaining walkability with a zero-shot multimodal LLM, Sustainable Cities and Society 144, 107431',
+        'Batty, M.(2013), Big data, smart cities and city planning, Dialogues in Human Geography 3(3)',
+     ],
+     'body': '## 발표 개요\n한양대 엄선용 교수는 **AI를 도시분석에 어떻게 쓸 것인가(도구로서의 AI)**를 두 축으로 정리한다. AI의 가치는 도시를 대신 판단하는 데 있지 않고, 도시현상을 더 잘 설명·발견·이해·일반화하는 데 있다.\n\n## 첫 번째 역할 — 기존 도시분석의 활용 장벽 완화\n도시계획은 이미 데이터·모델의 학문이었으나 방법론을 실무에서 호출하는 장벽이 높았다(Vonk et al. 2005의 implementation gap). 코딩 특화 AI 어시스턴트의 등장으로 누구나 분석이 가능해진다.\n- **X-minute city**: 논문과 서울시 원본데이터(미정제)만 입력해 방법론 재현.\n- **전국 대중교통 접근성**: 500m 격자에서 시간표 기반 대중교통과 생활시설 운영시간을 결합, 목적지 도달(Purpose-specific)을 넘어 **다중활동 접근성(MAI)**을 측정. 핵심 쟁점은 "도달 후 활동 결합"보다 "처음부터 도달 가능한가"이며, 대중교통 접근성의 지역 불평등이 자동차보다 뚜렷.\n- **보행생활권 구축 알고리즘**: 시설 접근성+통신사 데이터로 생활권을 자동 생성하고, 실무자가 직접 조작하며 재배치 대안을 탐색·비교(단계형 분석·검토 플랫폼).\n\n## 두 번째 역할 — 새로운 분석 패러다임의 확장\n과거에는 다루기 어려웠던 자료·질문까지 분석 대상으로 확장한다.\n- **가로경관 LLM 평가**: 서울 거리이미지 1,000장에 zero-shot 멀티모달 LLM을 적용해 보행 안전·편안·즐거움을 평가, 전문가 평가와의 일치도 검증(반복평가 신뢰도 0.90+). 단, 장소 맥락·심미 판단에는 전문가 검토 필요.\n- **재해 도로상태 판독**: 반지도학습으로 도로 손상 유형·통행가능성을 자동 판독, 재난 직후 신속 대응 지원.\n- **시민 페르소나(Nemotron-Personas-Korea)**: 실제 시민참여를 대체하지 않고 쟁점·반응을 사전 탐색하는 보조 도구.\n\n## 결론 — AI 시대의 도시계획가\nAI가 낮추는 것은 **진입장벽**이지 **공공적 판단의 책임**이 아니다. 오히려 어떤 데이터를 넣고 어떤 모형을 택하며 결과를 어떻게 이해할지 결정하는 **검증·설명 책임**은 더 커진다. 계획가는 "답을 내는 사람"·"기술을 적용하는 사람"에서 **"질문하는 사람"·"결과를 검증하고 설명하는 사람"**으로 이동한다.'},
+
+    {'slug': 'disc-2026-kpa-ai-panel-choijunyoung', 'kind': 'discussion',
+     'discType': '종합토론',
+     'title': '[종합토론] 글로벌 도시·국제협력 관점의 토론 — 최준영',
+     'event': '2026 국토교통기술대전 학술세미나 「AI와 도시계획·설계의 미래: 기회와 도전」',
+     'session': '종합토론', 'date': '2026-06-25', 'venue': '코엑스 컨퍼런스룸 E4 (3F)',
+     'host': '대한국토·도시계획학회 4차산업혁명위원회 · KAIA',
+     'discussant': '최준영', 'affiliation': '서울연구원 글로벌연구협력센터장',
+     'moderator': '최창규 (한양대학교 교수, 학회 학술부회장)',
+     'summary': '서울연구원 글로벌연구협력센터장 최준영이 두 주제발표를 글로벌 도시 경쟁력·국제협력·서울 정책의 관점에서 종합토론한 내용. AI 도시격차의 도시외교 의제화, 공간정책 대응, 시민·자치구 거버넌스로의 분석 장벽 확장, 검증·설명 책임의 제도화, 한국 실증의 글로벌 표준·ODA 연결 등을 제언.',
+     'discussionPoints': [
+        'AI 도시격차(AI urban divide)는 도시 내부를 넘어 도시 간·국가 간 경쟁력 격차 — WPSC·MeTTA 등 도시외교 채널의 공동 의제로.',
+        '"기술정책이 아니라 공간정책으로 대응"은 서울에도 적용 — 데이터센터 입지·전력·주민수용성을 공간계획 단계에서 선제 대응.',
+        '분석 장벽 완화는 자치구·시민이 직접 대안을 탐색하는 참여형 거버넌스로 확장 가능 — 단, 공공 데이터·표준 방법론·검증 체계 동반 필요.',
+        '알고리즘 등록·편향점검·인간감독을 제도화해 서울이 AI 거버넌스 국제 선도사례를 만들 수 있음.',
+        '한국의 도시 빅데이터·AI 분석 실증을 재현 가능한 방법론·오픈데이터·플랫폼으로 패키징해 글로벌 표준화·ODA(K-City Network 등)로 연결.',
+        '"시나리오 대응"·"열린 설계"는 도시외교·국제협력 전략에도 유효 — 가역적·유연한 의제 설계.',
+     ],
+     'tags': ['종합토론', '글로벌 도시', '도시외교', '국제협력', 'AI 거버넌스', 'AI 도시격차', '서울 정책', 'ODA', 'WPSC', '생활권'],
+     'relatedPresentations': ['disc-2026-kpa-ai-pres1-kimseungnam', 'disc-2026-kpa-ai-pres2-eomsunyong'],
+     'sources': [
+        '2026 국토교통기술대전 학술세미나 「AI와 도시계획·설계의 미래: 기회와 도전」, 대한국토·도시계획학회 4차산업혁명위원회·KAIA, 코엑스 E4 (2026.6.25)',
+        '종합토론 좌장 최창규(한양대) / 토론 최준영(서울연구원)·권용석(경북연구원)·송재민(서울대)·안상훈(동명기술공단)',
+     ],
+     'body': '## 종합토론 — 글로벌 도시·국제협력의 관점에서\n서울연구원 글로벌연구협력센터장으로서 두 발표를 **글로벌 도시 경쟁력과 국제협력**의 관점에서 토론한다. 두 발표는 상호 보완적이다. 김승남 교수는 *AI가 도시공간을 어떻게 바꾸는가(대상으로서의 AI)*를, 엄선용 교수는 *AI를 도시분석에 어떻게 쓰는가(도구로서의 AI)*를 다룬다. 두 발표가 공통으로 도달하는 결론은 **"AI는 계획가를 대체하지 않으며, 공공적 판단과 검증의 책임은 오히려 커진다"**는 것이다. 이 지점에서 여섯 가지 논점을 제기한다.\n\n### 1. AI 도시격차는 곧 도시외교의 의제다\n김승남 교수가 지적한 **분절적 도시화(splintering urbanism)**와 **Winner-takes-all**은 도시 내부만의 문제가 아니라 **도시 간·국가 간 격차**의 문제다. AI 인프라(데이터센터·연산·인재)를 갖춘 선도도시와 그렇지 못한 도시 사이의 서비스 격차는 21세기 도시 경쟁력의 핵심 변수가 된다. 서울 같은 선도도시는 이를 자국 내 문제로만 볼 것이 아니라, **세계대도시협의체(WPSC)·광역계획기관 글로벌 네트워크(MeTTA)** 등 도시외교 채널을 통해 "AI 격차 완화"를 공동 의제로 끌어올릴 책임이 있다.\n\n### 2. \'기술정책이 아니라 공간정책\'은 서울에도 그대로 적용된다\n김승남 교수의 *"AI의 영향은 기술정책이 아니라 도시공간 정책으로 대응해야 한다"*는 제언에 전적으로 동의한다. 서울도 공간 유형별(도심·혁신지구·생활권·모빌리티·데이터 인프라) 대응 전략이 필요하다. 특히 **데이터센터 입지·전력·폐열·물 사용·주민 수용성**은 이미 서울의 현안이며, AI 도시 전환이 가시화될수록 입지 갈등은 심화된다. 사후 대응이 아니라 **공간계획 단계에서 선제적으로 다루는 제도**가 시급하다.\n\n### 3. 분석 장벽의 완화는 \'시민·자치구 거버넌스\'로 확장될 수 있다\n엄선용 교수가 보여준 **X-minute city·전국 대중교통 접근성(MAI)·보행생활권 구축 알고리즘**은 서울연구원이 추진해 온 생활권·15분도시 논의와 직접 맞닿아 있다. AI로 분석의 진입장벽이 낮아진 만큼, 전문가의 전유물이던 도시분석을 **자치구 공무원·시민이 직접 대안을 탐색·비교하는 참여형 거버넌스**로 확장할 수 있다. 다만 "누구나 분석할 수 있다"가 "누구의 분석이든 타당하다"는 뜻은 아니므로, 공공 데이터·표준 방법론·검증 체계를 함께 제공하는 플랫폼 설계가 관건이다.\n\n### 4. 검증·설명 책임의 제도화 — 서울이 선도사례를 만들 수 있다\n두 발표 모두 **알고리즘 감사·편향 점검·인간 감독·설명 책임**을 강조했다. 이는 선언으로 끝낼 문제가 아니라 제도로 정착시켜야 한다. 서울은 **도시외교 조례**와 데이터 거버넌스 체계를 기반으로, 공공의사결정에 활용되는 *알고리즘의 등록·편향점검·인간감독*을 제도화하는 국제 선도사례를 만들 수 있다. 이는 곧 서울의 글로벌 도시 브랜드이자 협력 자산이 된다.\n\n### 5. 한국의 실증을 \'글로벌 표준·ODA\'로 연결하자\n엄선용 교수의 가로경관 LLM 평가·재해 도로 판독, 김승남 교수의 가로공간 재구성 모델은 **글로벌 도시 간 비교·벤치마킹**과 **국제개발협력(ODA)**에 직접 활용할 수 있다. K-City Network(보고타 Calle 72 등) 사업이 보여주듯, 한국이 축적한 도시 빅데이터·AI 분석 방법론은 개발도상 도시의 계획 역량을 끌어올리는 강력한 협력 수단이다. 국내 실증에 머물지 말고 **재현 가능한 방법론·오픈 데이터·플랫폼**으로 패키징해 글로벌 표준화·수출로 연결할 것을 제안한다.\n\n### 6. \'시나리오 대응\'과 \'열린 설계\'는 국제협력 전략에도 유효하다\n김승남 교수의 **단일 예측형 계획 → 시나리오 대응 계획**, **닫힌 설계 → 열린 설계** 제언은 공간계획을 넘어 도시외교·국제협력 전략에도 적용된다. AI가 바꿀 도시의 미래가 불확실한 만큼, 협력 의제와 제도 역시 단일 시나리오에 고정하기보다 **가역적·유연한** 형태로 설계해야 한다.\n\n## 제언(질문)\n- 한국형 **AI urbanism의 거버넌스 모델**은 무엇이어야 하는가 — 효율과 형평, 자동화와 자율성 사이에서?\n- **시민 페르소나(Nemotron-Personas-Korea 등)**가 실제 시민참여를 *보완*하되 *대체*하지 않도록 하는 원칙은 어떻게 세울 것인가?\n- 도시 빅데이터·AI 분석의 성과를 **국제 비교·ODA 협력**으로 확장하기 위한 공공 플랫폼·표준은 누가 주도할 것인가?'},
+]
+
 def _load_records(subsystem):
     import json as _json
     rows = db().execute('SELECT id,kind,slug,title,data,updated FROM dbrecords WHERE subsystem=? ORDER BY kind,title',
@@ -685,6 +851,7 @@ def _load_records(subsystem):
         out.append(rec)
     if subsystem == 'worldcities':
         out.extend(copy.deepcopy(d) for d in WC_DOCS)
+        out.extend(copy.deepcopy(d) for d in WC_DISCUSSIONS)
     return out
 
 @app.get('/api/db/<subsystem>')
