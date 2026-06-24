@@ -468,6 +468,13 @@ def wpsc_itinerary():
     if not can_access_system(u, 'wpsc'): return redirect('/?denied=wpsc')
     return send_file(os.path.join(HERE, 'wpsc_itinerary.html'))   # 기존 WPSC 출장 일정 페이지
 
+@app.route('/wpsc/analysis')
+def wpsc_analysis():
+    u = current()
+    if not u: return redirect('/?sys=wpsc')
+    if not can_access_system(u, 'wpsc'): return redirect('/?denied=wpsc')
+    return send_file(os.path.join(HERE, 'wpsc_analysis.html'))   # WPSC 일정 분석(.md 렌더)
+
 @app.get('/api/wpsc')
 def api_wpsc():
     u = current()
