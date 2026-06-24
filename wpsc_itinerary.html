@@ -54,11 +54,44 @@ table.mini{width:100%;border-collapse:collapse;font-size:12.5px;margin:6px 0}tab
 .reco{background:#fff;border:1px solid var(--line);border-left:4px solid #B5462F;border-radius:9px;padding:10px 12px;margin:7px 0}.reco .rt{font-size:13px;font-weight:700;color:var(--navy)}.reco .rm{font-size:11px;color:var(--muted);margin-top:3px}.reco .rw{font-size:12px;color:#3a4856;margin-top:5px;background:#fdf3f0;border-radius:6px;padding:6px 9px}.reco .tag{display:inline-block;font-size:10px;font-weight:700;color:#fff;border-radius:5px;padding:1px 7px;margin-right:5px}.tag.res{background:#0E7C86}.tag.net{background:#C0392B}.tag.pref{background:#E0A23B}
 .recoslot{font-size:13px;font-weight:800;color:var(--navy);margin:16px 0 6px;padding-bottom:4px;border-bottom:2px solid var(--soft)}.recoslot .busy{color:#B5462F;font-size:11px;font-weight:700}
 .subtabs{display:flex;gap:8px;position:sticky;top:46px;background:var(--ice);padding:10px 0;z-index:40;margin:6px 0 6px}.subt{flex:1;font-family:inherit;font-size:13.5px;font-weight:700;padding:11px 10px;border-radius:10px;border:1px solid var(--line);background:#fff;color:var(--navy2);cursor:pointer}.subt.on{background:#B5462F;color:#fff;border-color:#B5462F}
-.manu{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px clamp(16px,4.5vw,30px);max-width:780px;margin:6px auto}.manu .mh{font-weight:800;color:var(--navy);font-size:15px;margin:18px 0 6px;padding-bottom:4px;border-bottom:2px solid var(--soft)}.manu p{font-size:14px;line-height:1.85;margin:9px 0;color:#2b3744}.manu table.mini{margin:12px 0}
-.fig{margin:12px auto;max-width:700px;text-align:center}.fig img{max-width:100%;border:1px solid var(--line);border-radius:8px}.fig figcaption{font-size:11.5px;color:var(--muted);margin-top:5px}
-.slides{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:8px 0}.slide{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}.slide .sn{font-size:11px;color:#fff;background:var(--navy2);font-weight:700;padding:5px 11px}.slide .st{font-size:12.5px;line-height:1.55;padding:9px 12px;color:var(--ink)}.slide img{width:100%;display:block;border-top:1px solid var(--line)}
-@media(max-width:640px){.slides{grid-template-columns:1fr}}</style></head><body>
-<header><div class="kick">6th WORLD PLANNING SCHOOLS CONGRESS · HELSINKI 2026</div><h1>WPSC 2026 헬싱키 출장 관리</h1><div class="sub">2026. 6. 27.(토) ~ 7. 5.(일) · 7박 9일 · 서울연구원 최준영 <span style="color:#E0A23B">· 업데이트 6.24b</span></div></header>
+/* manuscript readability */
+.manu{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px clamp(16px,4.5vw,34px);max-width:760px;margin:6px auto}
+.manu .mt{font-size:19px;font-weight:800;color:var(--navy);text-align:center;line-height:1.35;margin:4px 0 2px}
+.manu .msub{font-size:14px;font-weight:600;color:var(--ink);text-align:center;margin:2px 0}
+.manu .mau{font-size:13px;color:var(--ink);text-align:center;margin:10px 0 2px;font-weight:600}
+.manu .maf{font-size:11.5px;color:var(--muted);text-align:center;line-height:1.5}
+.manu .mmeta{font-size:11.5px;color:var(--muted);text-align:center;font-style:italic;margin:3px 0}
+.manu .mh1{font-size:15.5px;font-weight:800;color:var(--navy);margin:24px 0 8px;padding-bottom:5px;border-bottom:2px solid var(--soft)}
+.manu .mh2{font-size:13.5px;font-weight:700;color:var(--teal);margin:18px 0 5px}
+.manu p{font-size:14px;line-height:1.85;margin:10px 0;color:#2b3744;text-align:justify}
+.manu .mabs{background:var(--ice);border-left:4px solid var(--teal);border-radius:8px;padding:11px 14px;margin:8px 0;font-size:13.5px;line-height:1.8;color:#33414f}
+.manu .mkw{font-size:12.5px;color:var(--muted);font-style:italic;margin:6px 0 2px}
+.manu .mcap{font-size:12px;color:var(--muted);font-style:italic;text-align:center;margin:8px auto;max-width:90%}
+.manu .meq{font-family:"SFMono-Regular",Menlo,Consolas,monospace;font-size:12.5px;background:#f6f8fa;border:1px solid var(--line);border-radius:8px;padding:9px 12px;margin:10px 0;text-align:center;overflow-x:auto;white-space:nowrap}
+.manu .mref{font-size:12px;line-height:1.55;color:#3a4856;padding-left:20px;text-indent:-20px;margin:5px 0}
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:8px;margin:12px 0}
+.tbl-wrap table.mini{margin:0;border-radius:0}.tbl-wrap.wide table.mini{min-width:600px}
+.tbl-hint{font-size:11px;color:var(--teal);text-align:right;margin:2px 2px 10px;font-weight:700}
+.fig{margin:14px auto;max-width:680px;text-align:center}.fig img{max-width:100%;border:1px solid var(--line);border-radius:8px}.fig figcaption{font-size:11.5px;color:var(--muted);font-style:italic;margin-top:6px}
+/* slides readability */
+.slides{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin:8px 0}
+.slide{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 1px 2px rgba(20,40,70,.04)}
+.slide .sn{font-size:10.5px;letter-spacing:.04em;color:#fff;background:var(--navy2);font-weight:700;padding:5px 12px}
+.slide .stt{font-size:14px;font-weight:800;color:var(--navy);line-height:1.35;padding:11px 13px 3px}
+.slide .sbody{padding:2px 13px 13px}
+.slide .sp{font-size:12.5px;line-height:1.55;margin:5px 0;color:#33414f}
+.slide .sli{display:flex;gap:8px;align-items:flex-start;font-size:12.5px;line-height:1.5;margin:6px 0;color:#2b3744}
+.slide .sln{flex:0 0 auto;min-width:18px;height:18px;border-radius:5px;background:var(--teal);color:#fff;font-size:10.5px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;margin-top:1px}
+.slide .sstat{display:flex;align-items:baseline;gap:9px;margin:7px 0;padding:5px 0;border-bottom:1px dashed var(--line)}
+.slide .sstat b{flex:0 0 auto;color:var(--teal);font-size:16px;font-weight:800;min-width:54px}
+.slide .sstat span{font-size:12px;color:#33414f;line-height:1.45}
+.slide img{width:100%;display:block;border-top:1px solid var(--line)}
+.slide .ssub{font-size:11.5px;color:var(--muted);font-style:italic;padding:0 13px 2px}
+.slide .tbl-wrap{margin:8px 13px}.slide table.mini th{font-size:11px;padding:6px 8px}.slide table.mini td{font-size:11.5px;padding:6px 8px}
+.slide .stcap{font-size:11.5px;font-weight:700;color:var(--navy);padding:8px 13px 0}
+.slide .snote{font-size:12px;line-height:1.5;margin:5px 0;padding-left:14px;text-indent:-9px;color:#33414f}
+@media(max-width:640px){.slides{grid-template-columns:1fr}.manu p{text-align:left}}</style></head><body>
+<header><div class="kick">6th WORLD PLANNING SCHOOLS CONGRESS · HELSINKI 2026</div><h1>WPSC 2026 헬싱키 출장 관리</h1><div class="sub">2026. 6. 27.(토) ~ 7. 5.(일) · 7박 9일 · 서울연구원 최준영 <span style="color:#E0A23B">· 업데이트 6.24d</span></div></header>
 <nav id="nav">
  <button data-s="overview" class="on">개요</button><button data-s="schedule">나의 일정</button>
  <button data-s="map">지도·동선</button><button data-s="hsl">🚇 HSL 길찾기</button><button data-s="tour">관광·맛집·쇼핑</button><button data-s="program">프로그램</button>
@@ -349,9 +382,50 @@ function showAdmin(){document.getElementById('admGate').style.display='none';var
 function onAdminTab(){if(sessionStorage.getItem('wpscAdm')==='1')showAdmin();}
 function renderAdmin(){
  var head='<div class="card" style="border-top:4px solid #C0392B"><b>'+esc(PAPER.title)+'</b><div style="font-size:12px;color:var(--muted);margin-top:4px">'+esc(PAPER.auth)+'<br>'+esc(PAPER.sess)+'</div></div>';
- var paper='<div class="manu">'+MANU.map(function(p){if(p[0]==='h')return '<div class="mh">'+esc(p[1])+'</div>';if(p[0]==='tbl')return '<div style="overflow-x:auto"><table class="mini">'+p[1].map(function(r,ri){return '<tr>'+r.map(function(c){return ri===0?'<th>'+esc(c)+'</th>':'<td>'+esc(c)+'</td>';}).join('')+'</tr>';}).join('')+'</table></div>';return '<p>'+esc(p[1])+'</p>';}).join('')+'</div>';
- if(MFIG.length){paper+='<h3>그림 (Figures)</h3>'+MFIG.map(function(b,i){return '<figure class="fig"><img loading="lazy" src="data:image/jpeg;base64,'+b+'"><figcaption>Figure '+(i+1)+'</figcaption></figure>';}).join('');}
- var ppt='<div class="slides">'+SLIDES.map(function(s){return '<div class="slide"><div class="sn">Slide '+s.n+'</div>'+(s.t.length?'<div class="st">'+s.t.map(esc).join('<br>')+'</div>':'')+(s.img?'<img loading="lazy" src="data:image/jpeg;base64,'+s.img+'">':'')+'</div>';}).join('')+'</div>';
+ var inRefs=false,prev='';
+ var mbody=MANU.map(function(p,idx){
+  if(p[0]==='tbl'){var t=p[1],wide=(t[0]||[]).length>=6;
+   var tb='<table class="mini">'+t.map(function(r,ri){return '<tr>'+r.map(function(c){return ri===0?'<th>'+esc(c)+'</th>':'<td>'+esc(c)+'</td>';}).join('')+'</tr>';}).join('')+'</table>';
+   return '<div class="tbl-wrap'+(wide?' wide':'')+'">'+tb+'</div>'+(wide?'<div class="tbl-hint">↔ 표 좌우 스크롤</div>':'');}
+  var t=p[1];
+  if(idx===0)return '<div class="mt">'+esc(t)+'</div>';
+  if(idx===1)return '<div class="msub">'+esc(t)+'</div>';
+  if(idx===2)return '<div class="mau">'+esc(t)+'</div>';
+  if(idx===3)return '<div class="maf">'+esc(t)+'</div>';
+  if(idx===4||idx===5)return '<div class="mmeta">'+esc(t)+'</div>';
+  var pl=prev.toLowerCase();prev=t;
+  if(/^(Abstract|Keywords:?|Acknowledgements?|References)$/i.test(t)||(/^\d+\.\s+\S/.test(t)&&t.length<70)){if(/^references$/i.test(t))inRefs=true;return '<div class="mh1">'+esc(t)+'</div>';}
+  if(/^\d+\.\d+(\.\d+)?\s+\S/.test(t)&&t.length<95)return '<div class="mh2">'+esc(t)+'</div>';
+  var fm=t.match(/^Figure\s+(\d+)\./);
+  if(fm){var fi=+fm[1]-1;return '<figure class="fig">'+(MFIG[fi]?'<img loading="lazy" src="data:image/jpeg;base64,'+MFIG[fi]+'">':'')+'<figcaption>'+esc(t)+'</figcaption></figure>';}
+  if(/^Table\s+\d+\./.test(t))return '<div class="mcap">'+esc(t)+'</div>';
+  if(/^(min|max)\s/.test(t))return '<div class="meq">'+esc(t)+'</div>';
+  if(pl==='abstract')return '<div class="mabs">'+esc(t)+'</div>';
+  if(pl==='keywords:'||pl==='keywords')return '<div class="mkw">'+esc(t)+'</div>';
+  if(inRefs)return '<div class="mref">'+esc(t)+'</div>';
+  return '<p>'+esc(t)+'</p>';
+ }).join('');
+ var paper='<div class="manu">'+mbody+'</div>';
+ // 그림은 본문 캡션 위치에 인라인 배치됨
+ function slideBody(L){var h='';for(var i=1;i<L.length;i++){var ln=(L[i]||'').trim();if(!ln)continue;
+   var mn=ln.match(/^(\d{1,2})[.)]$/);
+   if(mn&&i+1<L.length){h+='<div class="sli"><span class="sln">'+mn[1]+'</span><span>'+esc(L[++i])+'</span></div>';continue;}
+   if(/^[+\-−×]?\d/.test(ln)&&ln.length<=7&&i+1<L.length&&(L[i+1]||'').length>ln.length){h+='<div class="sstat"><b>'+esc(ln)+'</b><span>'+esc(L[++i])+'</span></div>';continue;}
+   h+='<div class="sp">'+esc(ln)+'</div>';}
+  return h;}
+ function stbl(tb){var wide=tb.head.length>=6;return '<div class="tbl-wrap'+(wide?' wide':'')+'"><table class="mini"><tr>'+tb.head.map(function(h){return '<th>'+esc(h)+'</th>';}).join('')+'</tr>'+tb.rows.map(function(r){return '<tr>'+r.map(function(c){return '<td>'+esc(c)+'</td>';}).join('')+'</tr>';}).join('')+'</table></div>'+(wide?'<div class="tbl-hint" style="padding:0 13px">↔ 표 좌우 스크롤</div>':'');}
+ var SLIDE_FIX={
+  8:{table:{head:["Engine","Role","Network · speed","Data / sampling"],rows:[["OSRM","Walking-only baseline","4.8 km h⁻¹ · foot profile","static OSM"],["R5R","Theoretical multimodal","OSM + GTFS · free-flow","32 GB Heap"],["T-MAP","Experienced multimodal","Live API · fare + transfer","20% stratified sample"]]},notes:["Travel-time matrix at 250 m grid resolution","19,469 cells → 25 M directed pairs within 2 km Euclidean threshold","Reconciliation rule — OSRM default; deviations > 1.5× flag contested segments","Pareto sampling — top 20% of OD volume ≈ 80% of trips → focused T-MAP calls"]},
+  18:{table:{head:["Projected Δpop 2024→2030","Class","Action"],rows:[["< −5 %","SHRINKING","Model A — Consolidation"],["−5 % … +5 %","STABLE","Maintenance only (x, z fixed)"],["> +5 %","GROWING","Model B — Maximisation"]]},table2:{cap:"Applied to Busan's six mid-living-areas",head:["Mid-living-area","Class","Model"],rows:[["Gangseo","GROWING","Model B"],["Gijang","GROWING","Model B"],["Dongnae","STABLE","—"],["Haeundae","STABLE","—"],["Gangdong","SHRINKING","Model A"],["Old-Town","SHRINKING","Model A"]]}},
+  20:{table:{head:["Layer","Dataset","Resolution","Volume / period"],rows:[["1","OSM road network","—","Busan envelope"],["1","GTFS feed","—","Bus, urban rail, light rail · 2024"],["1","T-MAP routing API","Trip","20% stratified OD sample"],["2","KOSTAT population grid","250 m × 250 m","19,469 cells · Oct 2024"],["2","Facility ledger","Point","3,979 facilities · 16 categories · Dec 2025"],["3","LGU+ OD flows","50 m → 250 m","Monthly avg · Oct 2024"],["3,4","Busan Master Plan 2040","Polygon","6 mid-living-areas"]]}},
+  21:{sub:"Projected population change 2024 → 2030 (%)",table:{head:["Mid-living-area","Class","Δ Population"],rows:[["Gangseo","GROWING","+28.5 %"],["Gijang","GROWING","+14.2 %"],["Dongnae","STABLE","−2.1 %"],["Haeundae","STABLE","+1.4 %"],["Gangdong","SHRINKING","−8.7 %"],["Old-Town","SHRINKING","−18.4 %"]]}},
+  25:{table:{head:["Mid-living-area","Trajectory","Model","Facilities ±","ΔCost","ΔMean Aᵢ","ΔP10 Aᵢ","ΔGini"],rows:[["Gangseo","Growing","B","+3","+18.4 %","+12.7 %","+58.1 %","−0.072"],["Gijang","Growing","B","+3","+16.9 %","+10.1 %","+52.4 %","−0.061"],["Dongnae","Stable","—","0","0.0 %","+0.4 %","+0.9 %","−0.003"],["Haeundae","Stable","—","0","0.0 %","+0.1 %","+0.2 %","0.000"],["Gangdong","Shrinking","A","−3","−24.1 %","−5.4 %","−2.1 %","−0.003"],["Old-Town","Shrinking","A","−4","−21.8 %","−7.5 %","−3.6 %","−0.005"],["Busan total","—","—","−1","−5.6 %","+3.1 %","+27.2 %","−0.076"]]},notes:["City-wide: −1 facility · −5.6 % cost · +27 % bottom-decile accessibility · Gini ↓"]}
+ };
+ function slideContent(s){var fx=SLIDE_FIX[s.n];if(!fx)return '<div class="sbody">'+slideBody(s.t)+'</div>';
+  var h='';if(fx.sub)h+='<div class="ssub">'+esc(fx.sub)+'</div>';h+=stbl(fx.table);
+  if(fx.table2)h+='<div class="stcap">'+esc(fx.table2.cap)+'</div>'+stbl(fx.table2);
+  if(fx.notes)h+='<div class="sbody">'+fx.notes.map(function(n){return '<div class="snote">• '+esc(n)+'</div>';}).join('')+'</div>';return h;}
+ var ppt='<div class="slides">'+SLIDES.map(function(s){return '<div class="slide"><div class="sn">SLIDE '+s.n+'</div>'+(s.t.length?'<div class="stt">'+esc(s.t[0])+'</div>'+slideContent(s):'')+(s.img?'<img loading="lazy" src="data:image/jpeg;base64,'+s.img+'">':'')+'</div>';}).join('')+'</div>';
  var c=document.getElementById('admContent');
  c.innerHTML=head+'<div class="subtabs"><button class="subt on" data-v="paper">📄 발표논문 (Manuscript)</button><button class="subt" data-v="ppt">📊 발표 PPT ('+SLIDES.length+'매)</button></div><div id="vpaper">'+paper+'</div><div id="vppt" style="display:none">'+ppt+'</div>';
  c.querySelectorAll('.subt').forEach(function(b){b.onclick=function(){c.querySelectorAll('.subt').forEach(function(x){x.classList.remove('on');});b.classList.add('on');var v=b.dataset.v;document.getElementById('vpaper').style.display=(v==='paper')?'':'none';document.getElementById('vppt').style.display=(v==='ppt')?'':'none';window.scrollTo(0,0);};});}
