@@ -169,6 +169,16 @@ main{padding:36px 0 72px}
 .wiki-body code{background:#eef3f8;border:1px solid var(--line);border-radius:4px;padding:1px 5px;font-size:13px}
 .wiki-body a{color:var(--un-d);text-decoration:underline}
 .wiki-body .xref-chip{vertical-align:baseline}
+.wiki-body .tw{margin:14px 0;border:1px solid var(--line);border-radius:8px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.wiki-body table{border-collapse:collapse;width:100%;min-width:540px;font-size:14px;background:#fff}
+.wiki-body th,.wiki-body td{border-bottom:1px solid var(--line);border-right:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top;overflow-wrap:anywhere;word-break:break-word;line-height:1.55}
+.wiki-body th:last-child,.wiki-body td:last-child{border-right:none}
+.wiki-body th{background:#eff3f8;font-weight:700;color:var(--navy);white-space:nowrap}
+.wiki-body tbody td:first-child{font-weight:600;color:#26405e;white-space:nowrap}
+.wiki-body tr:last-child td{border-bottom:none}
+.wiki-body blockquote{border-left:4px solid var(--teal);background:#f0f7f9;margin:14px 0;padding:10px 16px;border-radius:0 8px 8px 0;color:#33485a;font-size:14.5px}
+.wiki-body hr{border:none;border-top:1px solid var(--line);margin:20px 0}
+@media(max-width:640px){.wiki-body th,.wiki-body td{white-space:normal}}
 
 /* footer */
 footer{border-top:1px solid var(--line);background:#fff;padding:22px 0;color:var(--ink3);font-size:12.5px;text-align:center}
@@ -654,14 +664,34 @@ function mdToHtml(src,homeSys){
   let out='',list=null,para=[];
   const flushP=()=>{if(para.length){out+=`<p>${para.join('<br>')}</p>`;para=[];}};
   const flushL=()=>{if(list){out+=`</${list}>`;list=null;}};
-  for(let raw of lines){
-    const line=raw.replace(/\s+$/,'');
-    if(!line.trim()){flushP();flushL();continue;}
+  for(let i=0;i<lines.length;i++){
+    const line=lines[i].replace(/\s+$/,''); const s=line.trim();
+    if(!s){flushP();flushL();continue;}
     let m;
-    if((m=line.match(/^(#{1,4})\s+(.*)$/))){flushP();flushL();const lv=Math.min(m[1].length+2,6);out+=`<h${lv}>${wikiInline(m[2],homeSys)}</h${lv}>`;continue;}
-    if((m=line.match(/^\s*[-*]\s+(.*)$/))){flushP();if(list!=='ul'){flushL();list='ul';out+='<ul>';}out+=`<li>${wikiInline(m[1],homeSys)}</li>`;continue;}
-    if((m=line.match(/^\s*\d+\.\s+(.*)$/))){flushP();if(list!=='ol'){flushL();list='ol';out+='<ol>';}out+=`<li>${wikiInline(m[1],homeSys)}</li>`;continue;}
-    flushL();para.push(wikiInline(line,homeSys));
+    // 수평선
+    if(/^-{3,}$/.test(s)){flushP();flushL();out+='<hr>';continue;}
+    // 헤딩
+    if((m=s.match(/^(#{1,6})\s+(.*)$/))){flushP();flushL();const lv=Math.min(m[1].length+2,6);out+=`<h${lv}>${wikiInline(m[2],homeSys)}</h${lv}>`;continue;}
+    // 인용
+    if(s[0]==='>'){flushP();flushL();const buf=[];while(i<lines.length&&lines[i].trim()[0]==='>'){buf.push(lines[i].replace(/^\s*>\s?/,''));i++;}i--;out+=`<blockquote>${buf.map(x=>wikiInline(x,homeSys)).join(' ')}</blockquote>`;continue;}
+    // 표(GFM 파이프): 헤더 + 구분선
+    if(s.indexOf('|')>=0 && i+1<lines.length && /^\s*\|?[\s:|-]*-[\s:|-]*\|?\s*$/.test(lines[i+1])){
+      flushP();flushL();
+      const hdr=s.replace(/^\||\|$/g,'').split('|').map(c=>c.trim());
+      const nc=hdr.length; i+=2; const rows=[];
+      while(i<lines.length && lines[i].indexOf('|')>=0 && lines[i].trim()){
+        let cells=lines[i].trim().replace(/^\||\|$/g,'').split('|').map(c=>c.trim());
+        cells=cells.concat(Array(nc).fill('')).slice(0,nc); rows.push(cells); i++;
+      }
+      i--;
+      const th=hdr.map(c=>`<th>${wikiInline(c,homeSys)}</th>`).join('');
+      const tb=rows.map(r=>'<tr>'+r.map(c=>`<td>${wikiInline(c,homeSys)}</td>`).join('')+'</tr>').join('');
+      out+=`<div class="tw"><table><thead><tr>${th}</tr></thead><tbody>${tb}</tbody></table></div>`;continue;
+    }
+    // 목록
+    if((m=s.match(/^[-*]\s+(.*)$/))){flushP();if(list!=='ul'){flushL();list='ul';out+='<ul>';}out+=`<li>${wikiInline(m[1],homeSys)}</li>`;continue;}
+    if((m=s.match(/^\d+\.\s+(.*)$/))){flushP();if(list!=='ol'){flushL();list='ol';out+='<ol>';}out+=`<li>${wikiInline(m[1],homeSys)}</li>`;continue;}
+    flushL();para.push(wikiInline(s,homeSys));
   }
   flushP();flushL();
   return out;
