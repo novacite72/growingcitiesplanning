@@ -711,6 +711,68 @@ def worldcities_doc(slug):
     if not doc: abort(404)
     return send_file(os.path.join(HERE, 'docs', doc['docFile']))
 
+# ---------- 공개(비로그인) ODA 디렉토리 — worldcities 중 category=='oda' 문서만 노출 ----------
+def _md_to_html(md):
+    """본문 마크다운(제한 서브셋) → HTML. 표·목록·인용·헤딩·굵게·링크·위키링크 지원."""
+    import re as _re, html as _h
+    def inline(s):
+        s = _h.escape(s)
+        s = _re.sub(r'\[\[([^\]|]+)\|([^\]]+)\]\]', r'<strong>\2</strong>', s)   # [[slug|alias]]
+        s = _re.sub(r'\[\[([^\]]+)\]\]', r'<strong>\1</strong>', s)              # [[slug]]
+        s = _re.sub(r'\[([^\]]+)\]\((https?://[^\s)]+)\)',
+                    r'<a href="\2" target="_blank" rel="noopener">\1</a>', s)     # [text](url)
+        s = _re.sub(r'\*\*([^*]+)\*\*', r'<strong>\1</strong>', s)               # **bold**
+        return s
+    lines = (md or '').replace('\r\n', '\n').split('\n')
+    out, i, n = [], 0, len(lines)
+    while i < n:
+        s = lines[i].strip()
+        if not s: i += 1; continue
+        if _re.fullmatch(r'-{3,}', s): out.append('<hr>'); i += 1; continue
+        m = _re.match(r'(#{1,6})\s+(.*)', s)
+        if m:
+            lv = min(len(m.group(1)) + 1, 6)
+            out.append(f'<h{lv}>{inline(m.group(2))}</h{lv}>'); i += 1; continue
+        if s.startswith('>'):
+            buf = []
+            while i < n and lines[i].strip().startswith('>'):
+                buf.append(_re.sub(r'^\s*>\s?', '', lines[i])); i += 1
+            out.append('<blockquote>' + ' '.join(inline(x) for x in buf) + '</blockquote>'); continue
+        if '|' in s and i + 1 < n and _re.match(r'^\s*\|?[\s:|-]*-[\s:|-]*\|?\s*$', lines[i + 1]):
+            hdr = [c.strip() for c in s.strip('|').split('|')]
+            i += 2; rows = []
+            while i < n and '|' in lines[i] and lines[i].strip():
+                rows.append([c.strip() for c in lines[i].strip().strip('|').split('|')]); i += 1
+            th = ''.join(f'<th>{inline(c)}</th>' for c in hdr)
+            tb = ''.join('<tr>' + ''.join(f'<td>{inline(c)}</td>' for c in r) + '</tr>' for r in rows)
+            out.append(f'<table><thead><tr>{th}</tr></thead><tbody>{tb}</tbody></table>'); continue
+        if _re.match(r'^[-*]\s+', s):
+            it = []
+            while i < n and _re.match(r'^\s*[-*]\s+', lines[i]):
+                it.append(_re.sub(r'^\s*[-*]\s+', '', lines[i].strip())); i += 1
+            out.append('<ul>' + ''.join(f'<li>{inline(x)}</li>' for x in it) + '</ul>'); continue
+        if _re.match(r'^\d+\.\s+', s):
+            it = []
+            while i < n and _re.match(r'^\s*\d+\.\s+', lines[i]):
+                it.append(_re.sub(r'^\s*\d+\.\s+', '', lines[i].strip())); i += 1
+            out.append('<ol>' + ''.join(f'<li>{inline(x)}</li>' for x in it) + '</ol>'); continue
+        buf = [s]; i += 1
+        while i < n and lines[i].strip() and not _re.match(r'^(#{1,6}\s|[-*]\s|\d+\.\s|>|\|)', lines[i].strip()) \
+                and not _re.fullmatch(r'-{3,}', lines[i].strip()) and '|' not in lines[i]:
+            buf.append(lines[i].strip()); i += 1
+        out.append('<p>' + inline(' '.join(buf)) + '</p>')
+    return '\n'.join(out)
+
+@app.route('/oda')
+@app.route('/worldcities/oda')
+def public_oda():
+    """ODA 사업 디렉토리 공개 페이지(비로그인). category=='oda' 문서만 노출."""
+    recs = [r for r in _load_records('worldcities')
+            if r.get('kind') == 'document' and r.get('category') == 'oda']
+    order = {'bogota-calle72-sdzp-ksp': 0, 'oda-kcn-bogota-calle72': 1, 'oda-haegunhyup-bogota-montevideo': 2}
+    recs.sort(key=lambda r: order.get(r.get('slug'), 9))
+    return render_template('oda_public.html', docs=recs, md=_md_to_html)
+
 @app.route('/urbanrobotics')
 @app.route('/urban-robotics')
 def urbanrobotics_page():
