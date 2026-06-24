@@ -43,10 +43,14 @@
   .wiki li{margin:4px 0}
   .wiki blockquote{border-left:4px solid var(--accent);background:#fff7ed;margin:14px 0;padding:10px 16px;
     border-radius:0 8px 8px 0;color:#5a4422;font-size:14.5px}
-  .wiki table{border-collapse:collapse;width:100%;margin:12px 0;font-size:14px;border:1px solid var(--line);border-radius:8px;overflow:hidden}
-  .wiki th,.wiki td{border-bottom:1px solid var(--line);padding:8px 11px;text-align:left;vertical-align:top}
-  .wiki th{background:var(--soft);font-weight:700;color:#1f2c44}
+  .wiki .tw{margin:14px 0;border:1px solid var(--line);border-radius:8px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .wiki table{border-collapse:collapse;width:100%;min-width:540px;margin:0;font-size:14px;background:#fff;table-layout:auto}
+  .wiki th,.wiki td{border-bottom:1px solid var(--line);border-right:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top;overflow-wrap:anywhere;word-break:break-word;line-height:1.55}
+  .wiki th:last-child,.wiki td:last-child{border-right:none}
+  .wiki th{background:var(--soft);font-weight:700;color:#1f2c44;white-space:nowrap}
+  .wiki tbody td:first-child{font-weight:600;color:#26405e;white-space:nowrap}
   .wiki tr:last-child td{border-bottom:none}
+  @media(max-width:640px){.wiki th,.wiki td{white-space:normal}}
   .wiki hr{border:none;border-top:1px solid var(--line);margin:22px 0}
   .docs{font-size:13px;color:var(--muted);margin-top:14px;padding-top:12px;border-top:1px dashed var(--line)}
   .docs b{color:#33425e}
