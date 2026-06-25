@@ -117,6 +117,36 @@ main{padding:36px 0 72px}
 .k-topic{--card-accent:#7b5cc4;--card-accent-l:#efeafb}
 .k-discussion .card-kind{background:#fbeede;color:#8a4a12}
 .k-discussion{--card-accent:#c2671a;--card-accent-l:#fbeede}
+/* ── 메모(감수) 패널 ── */
+.memo-panel{margin-top:28px;border-top:2px solid var(--line);padding-top:18px}
+.memo-head{display:flex;align-items:center;justify-content:space-between;font-size:14px;font-weight:800;color:var(--navy);margin-bottom:12px}
+.memo-count,.memo-loading{font-size:12px;font-weight:700;color:var(--ink3)}
+.memo-empty{font-size:13px;color:var(--ink3);padding:10px 0}
+.memo-list{display:flex;flex-direction:column;gap:10px;margin-bottom:16px}
+.memo-item{background:#fff;border:1px solid var(--line);border-left:3px solid var(--primary);border-radius:8px;padding:10px 12px}
+.memo-item.resolved{opacity:.6;border-left-color:var(--green)}
+.memo-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:5px}
+.memo-name{font-size:12.5px;font-weight:800;color:var(--ink)}
+.memo-role{font-size:10px;font-weight:800;padding:1px 7px;border-radius:9px;letter-spacing:.03em}
+.memo-role.r-admin{background:#e7f1fa;color:var(--un-d)}
+.memo-role.r-author{background:#e3f3f3;color:#0a5f5f}
+.memo-role.r-rev{background:#fbeede;color:#8a4a12}
+.memo-time{font-size:11px;color:var(--ink3)}
+.memo-badge{font-size:10px;font-weight:800;color:var(--green);background:#e7f5e7;padding:1px 7px;border-radius:9px}
+.memo-body{font-size:13.5px;color:var(--ink2);line-height:1.6;white-space:pre-wrap;word-break:break-word}
+.memo-actions{display:flex;gap:12px;margin-top:6px}
+.memo-link{border:0;background:none;color:var(--primary);font-size:11.5px;font-weight:700;cursor:pointer;padding:0;font-family:inherit}
+.memo-link:hover{text-decoration:underline}
+.memo-link.del{color:#c0392b}
+.memo-form{background:var(--primary-ll);border:1px solid #c5e4ef;border-radius:10px;padding:12px}
+.memo-form-meta{font-size:11.5px;font-weight:700;color:var(--primary-d);min-height:0;margin-bottom:6px}
+.memo-form-meta:empty{display:none}
+.memo-form textarea{width:100%;border:1.5px solid var(--line);border-radius:8px;padding:9px 11px;font-size:13.5px;font-family:inherit;color:var(--ink);resize:vertical;outline:none}
+.memo-form textarea:focus{border-color:var(--primary)}
+.memo-form-row{display:flex;align-items:center;gap:12px;margin-top:8px}
+.memo-btn{background:var(--primary);color:#fff;border:0;border-radius:8px;padding:7px 16px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit}
+.memo-btn:hover{background:var(--primary-d)}
+.memo-btn:disabled{opacity:.5;cursor:default}
 
 /* ── evidence badge ── */
 .ev-strong{background:#e7f3ec;color:#1e6e3f;font-size:10.5px;font-weight:800;padding:2px 7px;border-radius:8px}
@@ -613,7 +643,8 @@ function renderDetail(rec){
   });
   const bodyHtml=rec.body?`<div class="wiki-body">${mdToHtml(rec.body,'worldcities')}</div>`:'';
   const docBtn=rec.docUrl?`<a class="doc-open" href="${esc(rec.docUrl)}" target="_blank" rel="noopener">📄 전문 보기 — 전체 보고서 열기 ↗</a>`:'';
-  $('#detailBody').innerHTML=(docBtn+bodyHtml+html)||'<p style="color:var(--ink3)">상세 정보가 없습니다.</p>';
+  const memoMount=`<div id="memoPanel" class="memo-panel"></div>`;
+  $('#detailBody').innerHTML=(docBtn+bodyHtml+html+memoMount)||('<p style="color:var(--ink3)">상세 정보가 없습니다.</p>'+memoMount);
 
   // bind xref chip clicks
   $('#detailBody').querySelectorAll('[data-xref]').forEach(el=>{
@@ -627,6 +658,90 @@ function renderDetail(rec){
       }
     };
   });
+  loadMemos(rec.slug);
+}
+
+/* ── 메모(감수 코멘트) — 단행본 감수시스템과 동일한 메모 기능 ── */
+let MEMO_REPLY=null;   // 현재 답글 대상 메모 id
+function loadMemos(slug){
+  const panel=$('#memoPanel'); if(!panel) return;
+  panel.dataset.slug=slug;
+  panel.innerHTML=`<div class="memo-head"><span>🗒️ 메모 · 감수</span><span class="memo-loading">불러오는 중…</span></div>`;
+  api('/api/db/worldcities/'+encodeURIComponent(slug)+'/memos')
+    .then(d=>renderMemos(slug,d.memos||[]))
+    .catch(e=>{panel.innerHTML=`<div class="memo-head"><span>🗒️ 메모 · 감수</span></div><p class="memo-empty">메모 로드 실패: ${esc(e.message)}</p>`;});
+}
+function renderMemos(slug,memos){
+  const panel=$('#memoPanel'); if(!panel||panel.dataset.slug!==slug) return;
+  // 트리 구성(뿌리 + 답글)
+  const byParent={};
+  memos.forEach(m=>{const p=m.parent_id||0;(byParent[p]=byParent[p]||[]).push(m);});
+  const fmt=t=>{try{return (t||'').replace('T',' ').slice(0,16);}catch(e){return t||'';}};
+  function node(m,depth){
+    const replies=(byParent[m.id]||[]).map(c=>node(c,depth+1)).join('');
+    const roleCls=m.role==='superadmin'||m.role==='admin'?'r-admin':(m.role==='author'?'r-author':'r-rev');
+    return `<div class="memo-item${m.resolved?' resolved':''}" style="margin-left:${depth*18}px">
+      <div class="memo-meta">
+        <span class="memo-name">${esc(m.name||m.email||'사용자')}</span>
+        <span class="memo-role ${roleCls}">${esc(m.roleName||m.role||'')}</span>
+        <span class="memo-time">${esc(fmt(m.created))}</span>
+        ${m.resolved?'<span class="memo-badge">해결됨</span>':''}
+      </div>
+      <div class="memo-body">${esc(m.body).replace(/\n/g,'<br>')}</div>
+      <div class="memo-actions">
+        <button class="memo-link" data-reply="${m.id}">↩ 답글</button>
+        ${m.canResolve?`<button class="memo-link" data-resolve="${m.id}" data-val="${m.resolved?0:1}">${m.resolved?'미해결로':'해결로 표시'}</button>`:''}
+        ${m.canDelete?`<button class="memo-link del" data-del="${m.id}">삭제</button>`:''}
+      </div>
+    </div>`;
+  }
+  const roots=(byParent[0]||[]);
+  const list=roots.length?roots.map(m=>node(m,0)).join(''):`<p class="memo-empty">아직 메모가 없습니다. 첫 메모를 남겨보세요.</p>`;
+  const me=ME?(ME.name||ME.email):'';
+  panel.innerHTML=`
+    <div class="memo-head"><span>🗒️ 메모 · 감수</span><span class="memo-count">${memos.length}개</span></div>
+    <div class="memo-list">${list}</div>
+    <div class="memo-form">
+      <div class="memo-form-meta" id="memoReplyHint"></div>
+      <textarea id="memoInput" rows="2" placeholder="메모를 입력하세요${me?' ('+esc(me)+')':''}…"></textarea>
+      <div class="memo-form-row">
+        <button class="memo-btn" id="memoSubmit">메모 추가</button>
+        <button class="memo-link" id="memoCancelReply" style="display:none">답글 취소</button>
+      </div>
+    </div>`;
+  // bind
+  panel.querySelectorAll('[data-reply]').forEach(b=>b.onclick=()=>setReply(b.dataset.reply));
+  panel.querySelectorAll('[data-resolve]').forEach(b=>b.onclick=()=>resolveMemo(slug,b.dataset.resolve,b.dataset.val));
+  panel.querySelectorAll('[data-del]').forEach(b=>b.onclick=()=>delMemo(slug,b.dataset.del));
+  $('#memoSubmit').onclick=()=>submitMemo(slug);
+  $('#memoCancelReply').onclick=()=>setReply(null);
+  $('#memoInput').onkeydown=e=>{if((e.metaKey||e.ctrlKey)&&e.key==='Enter')submitMemo(slug);};
+  if(MEMO_REPLY) setReply(MEMO_REPLY);
+}
+function setReply(id){
+  MEMO_REPLY=id||null;
+  const hint=$('#memoReplyHint'), cancel=$('#memoCancelReply');
+  if(hint) hint.textContent=MEMO_REPLY?'↩ 답글 작성 중':'';
+  if(cancel) cancel.style.display=MEMO_REPLY?'':'none';
+  const inp=$('#memoInput'); if(inp) inp.focus();
+}
+function submitMemo(slug){
+  const inp=$('#memoInput'); const body=(inp.value||'').trim();
+  if(!body){inp.focus();return;}
+  const payload={body}; if(MEMO_REPLY)payload.parent_id=Number(MEMO_REPLY);
+  $('#memoSubmit').disabled=true;
+  api('/api/db/worldcities/'+encodeURIComponent(slug)+'/memos',{method:'POST',body:JSON.stringify(payload)})
+    .then(()=>{MEMO_REPLY=null;loadMemos(slug);})
+    .catch(e=>{alert('메모 저장 실패: '+e.message);$('#memoSubmit').disabled=false;});
+}
+function resolveMemo(slug,id,val){
+  api('/api/db/memos/'+id+'/resolve',{method:'POST',body:JSON.stringify({resolved:Number(val)===1})})
+    .then(()=>loadMemos(slug)).catch(e=>alert('처리 실패: '+e.message));
+}
+function delMemo(slug,id){
+  if(!confirm('이 메모(및 답글)를 삭제할까요?'))return;
+  api('/api/db/memos/'+id,{method:'DELETE'})
+    .then(()=>loadMemos(slug)).catch(e=>alert('삭제 실패: '+e.message));
 }
 
 function renderItem(item){

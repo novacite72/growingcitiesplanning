@@ -193,6 +193,11 @@ def init_db():
         con.execute('''CREATE TABLE IF NOT EXISTS dbrecords(
           id SERIAL PRIMARY KEY, subsystem TEXT, kind TEXT, slug TEXT, title TEXT, data TEXT,
           updated TEXT, UNIQUE(subsystem, slug))''')
+        con.execute('''CREATE TABLE IF NOT EXISTS dbmemos(
+          id SERIAL PRIMARY KEY, subsystem TEXT, slug TEXT, body TEXT,
+          email TEXT, name TEXT, role TEXT, created TEXT, resolved INTEGER DEFAULT 0,
+          parent_id INTEGER)''')
+        con.execute('CREATE INDEX IF NOT EXISTS idx_dbmemos ON dbmemos(subsystem, slug)')
         con.execute('''CREATE TABLE IF NOT EXISTS intlorgs(
           id SERIAL PRIMARY KEY, uiaid TEXT UNIQUE, name TEXT, acronym TEXT,
           founded INTEGER, city TEXT, country TEXT)''')
@@ -213,6 +218,9 @@ def init_db():
           CREATE TABLE IF NOT EXISTS images(id INTEGER PRIMARY KEY AUTOINCREMENT, chapter INTEGER, blk INTEGER, mime TEXT, data TEXT, editor TEXT, ts TEXT);
           CREATE TABLE IF NOT EXISTS dbrecords(id INTEGER PRIMARY KEY AUTOINCREMENT, subsystem TEXT, kind TEXT,
             slug TEXT, title TEXT, data TEXT, updated TEXT, UNIQUE(subsystem, slug));
+          CREATE TABLE IF NOT EXISTS dbmemos(id INTEGER PRIMARY KEY AUTOINCREMENT, subsystem TEXT, slug TEXT,
+            body TEXT, email TEXT, name TEXT, role TEXT, created TEXT, resolved INTEGER DEFAULT 0, parent_id INTEGER);
+          CREATE INDEX IF NOT EXISTS idx_dbmemos ON dbmemos(subsystem, slug);
           CREATE TABLE IF NOT EXISTS intlorgs(id INTEGER PRIMARY KEY AUTOINCREMENT, uiaid TEXT UNIQUE,
             name TEXT, acronym TEXT, founded INTEGER, city TEXT, country TEXT);
           CREATE INDEX IF NOT EXISTS idx_io_country ON intlorgs(country);
@@ -1025,6 +1033,64 @@ def db_detail(subsystem, slug):
                          (subsystem if r in recs else ('urbanrobotics' if subsystem == 'worldcities' else 'worldcities'))}
              for r in allrecs}
     return jsonify(subsystem=subsystem, record=rec, index=index)
+
+# ---------------- 연구 DB 메모(감수 코멘트) — 단행본 comments와 동일한 패턴 ----------------
+@app.get('/api/db/<subsystem>/<slug>/memos')
+def db_memos_list(subsystem, slug):
+    u, err = _db_guard(subsystem)
+    if err: return err
+    rows = [dict(r) for r in db().execute(
+        'SELECT * FROM dbmemos WHERE subsystem=? AND slug=? ORDER BY id', (subsystem, slug)).fetchall()]
+    for r in rows:
+        r['roleName'] = ROLES.get(r['role'], r['role'])
+        r['mine'] = (r['email'] == u['email'])
+        r['canDelete'] = r['mine'] or u['role'] in ADMIN_ROLES
+        r['canResolve'] = u['role'] in ADMIN_ROLES or u['role'] == 'author'
+    return jsonify(memos=rows)
+
+@app.post('/api/db/<subsystem>/<slug>/memos')
+def db_memos_add(subsystem, slug):
+    u, err = _db_guard(subsystem)
+    if err: return err
+    j = request.get_json(force=True)
+    body = (j.get('body') or '').strip()
+    if not body: return jsonify(error='메모 내용을 입력하세요.'), 400
+    parent_id = j.get('parent_id')
+    if parent_id:
+        p = db().execute('SELECT slug FROM dbmemos WHERE id=? AND subsystem=?', (parent_id, subsystem)).fetchone()
+        if not p: return jsonify(error='원 메모를 찾을 수 없습니다.'), 404
+        slug = p['slug']
+    nid = db().insert(
+        'INSERT INTO dbmemos(subsystem,slug,body,email,name,role,created,parent_id) VALUES(?,?,?,?,?,?,?,?)',
+        (subsystem, slug, body[:4000], u['email'], u['name'], u['role'], now(), parent_id))
+    db().commit()
+    return jsonify(ok=True, id=nid)
+
+@app.post('/api/db/memos/<int:mid>/resolve')
+def db_memos_resolve(mid):
+    u = current()
+    if not u: return jsonify(error='로그인이 필요합니다.'), 401
+    if u['role'] not in ADMIN_ROLES and u['role'] != 'author': return jsonify(error='권한이 없습니다.'), 403
+    j = request.get_json(force=True)
+    db().execute('UPDATE dbmemos SET resolved=? WHERE id=?', (1 if j.get('resolved') else 0, mid)); db().commit()
+    return jsonify(ok=True)
+
+@app.delete('/api/db/memos/<int:mid>')
+def db_memos_del(mid):
+    u = current()
+    if not u: return jsonify(error='로그인이 필요합니다.'), 401
+    r = db().execute('SELECT email FROM dbmemos WHERE id=?', (mid,)).fetchone()
+    if not r: return jsonify(error='없는 메모입니다.'), 404
+    if u['role'] not in ADMIN_ROLES and r['email'] != u['email']:
+        return jsonify(error='본인 메모만 삭제할 수 있습니다.'), 403
+    con = db(); to_del = [mid]; frontier = [mid]
+    while frontier:
+        kids = [row[0] for row in con.execute(
+            'SELECT id FROM dbmemos WHERE parent_id IN (%s)' % ','.join('?' * len(frontier)), frontier).fetchall()]
+        to_del += kids; frontier = kids
+    con.execute('DELETE FROM dbmemos WHERE id IN (%s)' % ','.join('?' * len(to_del)), to_del)
+    con.commit()
+    return jsonify(ok=True)
 
 @app.get('/graph')
 @login_required
