@@ -30,6 +30,19 @@ h3{font-size:14.5px;color:var(--navy);margin:18px 0 8px}
 .it .tm{flex:0 0 78px;font-size:12px;color:var(--teal);font-weight:700;padding-top:1px}.it .ds{font-size:13.5px}.it .ds .n{font-size:11.5px;color:var(--muted);margin-top:2px}
 .star{color:#B5462F;font-weight:800}
 .mapbox{height:46vh;min-height:300px;border-radius:12px;border:1px solid var(--line);overflow:hidden}
+.daybox{border:1px solid var(--line);border-radius:12px;margin:9px 0;overflow:hidden;background:#fff}
+.daybox>summary{list-style:none;cursor:pointer;padding:12px 14px;font-weight:700;font-size:14px;display:flex;align-items:center;gap:9px;background:#f7f9fb}
+.daybox>summary::-webkit-details-marker{display:none}
+.daybox>summary::after{content:'▾';margin-left:auto;color:var(--muted);font-weight:400}
+.daybox[open]>summary::after{content:'▴'}
+.daybox[open]>summary{border-bottom:1px solid var(--line)}
+.dchip{color:#fff;font-size:12px;font-weight:800;padding:2px 9px;border-radius:20px;white-space:nowrap}
+.dmap{height:320px;margin:12px 14px 0;border-radius:10px;border:1px solid var(--line);overflow:hidden}
+.dstops{margin:12px 14px 14px;padding-left:20px}
+.dstops li{margin:5px 0;font-size:13px}
+.dstops .tm2{color:#0E7C86;font-weight:700;font-size:12px;margin-left:4px}
+.dstops .sd{color:var(--muted);font-size:12px;margin-top:1px}
+.numIcon .nm{width:22px;height:22px;border-radius:50%;color:#fff;font-weight:800;font-size:12px;display:flex;align-items:center;justify-content:center;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.35)}
 .legend{display:flex;flex-wrap:wrap;gap:8px 14px;font-size:12.5px;margin:8px 0 4px}.legend span{display:inline-flex;align-items:center;gap:5px}.dot{width:12px;height:12px;border-radius:50%;display:inline-block}
 .filter{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px;position:sticky;top:46px;background:var(--ice);padding:8px 0;z-index:40}
 .filter select,.filter input{font-family:inherit;font-size:13px;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink)}.filter input{flex:1;min-width:130px}
@@ -91,10 +104,10 @@ table.mini{width:100%;border-collapse:collapse;font-size:12.5px;margin:6px 0}tab
 .slide .stcap{font-size:11.5px;font-weight:700;color:var(--navy);padding:8px 13px 0}
 .slide .snote{font-size:12px;line-height:1.5;margin:5px 0;padding-left:14px;text-indent:-9px;color:#33414f}
 @media(max-width:640px){.slides{grid-template-columns:1fr}.manu p{text-align:left}}.subtabs{display:flex;gap:6px;margin:4px 0 12px;flex-wrap:wrap}.stab{font-family:inherit;font-size:13px;font-weight:700;padding:8px 14px;border-radius:8px;border:1px solid var(--teal);background:#fff;color:var(--teal);cursor:pointer}.stab.on{background:var(--teal);color:#fff}.rbtn{font-family:inherit;font-size:12.5px;font-weight:700;padding:7px 13px;border-radius:8px;border:1px solid var(--line);background:#fff;color:var(--navy);cursor:pointer}.rbtn.pri{background:var(--teal);color:#fff;border-color:var(--teal)}.a4wrap{background:#e9edf1;padding:10px;border-radius:8px;overflow-x:auto}.a4doc{width:210mm;margin:0 auto 14px;background:#fff;padding:20mm 18mm;box-shadow:0 2px 12px rgba(0,0,0,.14);font-family:'Batang','함초롬바탕','AppleMyungjo','Apple SD Gothic Neo',serif;font-size:10.5pt;line-height:1.75;color:#111;box-sizing:border-box}.a4doc.cover{min-height:255mm;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}.a4doc.cover .clabel{font-size:13pt;letter-spacing:.35em;border:2.5px solid #1a1a1a;padding:7px 26px;margin-bottom:55mm;font-weight:700}.a4doc.cover .rtitle{font-size:21pt;font-weight:800;line-height:1.45;margin:0 0 48mm}.a4doc.cover .cdept{font-size:13.5pt;font-weight:700;line-height:1.9;margin-bottom:40mm}.a4doc.cover .cmeta{font-size:12pt;line-height:2.1}.a4doc .rsec{font-size:13pt;font-weight:800;margin:16px 0 6px;color:#111}.a4doc .rsbody p{margin:2px 0}.a4doc .l2{font-weight:700;margin:7px 0 2px}.a4doc .l3{padding-left:15px}.a4doc .l4{padding-left:30px;color:#1d1d1d}.a4doc table{width:100%;border-collapse:collapse;font-size:9.5pt;margin:8px 0}.a4doc th,.a4doc td{border:1px solid #444;padding:4px 7px;vertical-align:top}.a4doc th{background:#eee;font-weight:700;text-align:center}.a4doc figure{margin:10px 0;text-align:center}.a4doc figcaption{font-size:9pt;color:#444;margin-top:3px}.a4doc .edt{outline:1px dashed #0E7C86;background:#f6fbfb}@media(max-width:820px){.a4wrap{padding:4px}.a4doc{width:100%;padding:16px;box-shadow:none}.a4doc.cover{min-height:auto;padding:46px 16px}.a4doc.cover .clabel{margin-bottom:30px}.a4doc.cover .rtitle{margin-bottom:28px}.a4doc.cover .cdept{margin-bottom:26px}}</style></head><body>
-<header><div class="kick">6th WORLD PLANNING SCHOOLS CONGRESS · HELSINKI 2026</div><h1>WPSC 2026 헬싱키 출장 관리</h1><div class="sub">2026. 6. 27.(토) ~ 7. 5.(일) · 7박 9일 · 서울연구원 최준영 <span style="color:#E0A23B">· 업데이트 6.27c</span></div></header>
+<header><div class="kick">6th WORLD PLANNING SCHOOLS CONGRESS · HELSINKI 2026</div><h1>WPSC 2026 헬싱키 출장 관리</h1><div class="sub">2026. 6. 27.(토) ~ 7. 5.(일) · 7박 9일 · 서울연구원 최준영 <span style="color:#E0A23B">· 업데이트 6.27d</span></div></header>
 <nav id="nav">
  <button data-s="overview" class="on">개요</button><button data-s="schedule">나의 일정</button>
- <button data-s="map">지도·동선</button><button data-s="hsl">🚇 HSL 길찾기</button><button data-s="tour">관광·맛집·쇼핑</button><button data-s="program">프로그램</button>
+ <button data-s="map">🗺️ 일별 동선</button><button data-s="hsl">🚇 HSL 길찾기</button><button data-s="tour">관광·맛집·쇼핑</button><button data-s="program">프로그램</button>
  <button data-s="coop">협력방안</button><button data-s="appendix">부록</button><button data-s="admin">🔒 발표자료</button><button data-s="report">📋 분석·결과보고</button></nav>
 <main>
 
@@ -132,13 +145,10 @@ table.mini{width:100%;border-collapse:collapse;font-size:12.5px;margin:6px 0}tab
  <div class="note tealn">각 일자를 <b>📋 공식(출장계획서)</b> · <b>🧭 실제(개인 동선)</b> 두 컬럼으로 구분했습니다. 두 일정이 같은 날은 실제 컬럼에 "공식 일정과 동일"로 표시됩니다. 분기되는 날: <b>6/28(공식 현장조사 ↔ 실제 탐페레 당일답사)</b>, <b>6/29(공식 개막 ↔ 실제 개막+현장조사 수행)</b>, <b>7/3 금(공식 알토대 세션 ↔ 실제 탈린 방문)</b>. 환영 리셉션·갈라 디너 참석. <b style="color:#C0392B">※ 공식 일정은 출장계획서 그대로 유지. 단, 6/28(일)은 탐페레 답사로, 출장계획상 6/28 현장조사(타피올라·야트카사리)는 <u>실제로는 6/29(월)에 수행</u>.</b></div>
  <div id="sched"></div></section>
 
-<section id="map"><h2 class="t">지도 · 동선</h2>
- <h3 style="margin-top:2px">① 전체 권역 — 탐페레 · 헬싱키 · 탈린</h3>
- <div id="mapbox1" class="mapbox"></div>
- <div class="legend"><span><i class="dot" style="background:#B5462F"></i>공항(HEL)</span><span><i class="dot" style="background:#0E7C86"></i>숙소·헬싱키 도심</span><span><i class="dot" style="background:#13243B"></i>행사장 Aalto</span><span><i class="dot" style="background:#E0A23B"></i>탐페레(일)</span><span><i class="dot" style="background:#9aa7b5"></i>탈린(취소·참고)</span></div>
- <h3>② 헬싱키 수도권 이동 — 숙소 · 행사장 · 모바일워크숍(원로원광장 집결)</h3>
- <div id="mapbox2" class="mapbox"></div>
- <div class="legend"><span><i class="dot" style="background:#0E7C86"></i>숙소(스칸딕)</span><span><i class="dot" style="background:#13243B"></i>행사장 Aalto 오타니에미</span><span><i class="dot" style="background:#1E3A5F"></i>헬싱키대 도심</span><span><i class="dot" style="background:#E0A23B"></i>MW13 집결(원로원광장)</span><span><i class="dot" style="background:#B5462F"></i>MW13 워크숍장(우시마 지역의회·Western Pasila)</span></div>
+<section id="map"><h2 class="t">🗺️ 일별 동선계획</h2>
+ <div class="note tealn">각 일자 제목을 클릭하면 <b>접기/펼치기</b> 됩니다. 펼치면 그 날의 <b>동선이 지도에 표시</b>됩니다 — 번호 마커=방문 순서, 점선=이동 동선. (지도는 인터넷 연결 시 표시)</div>
+ <div id="dayplans"></div>
+ <h3 style="margin-top:18px">📌 권역 개요 · 모바일워크숍(MW13) 참고</h3>
  <div class="card" style="font-size:13px"><b>동선 요약</b>
   <div class="kv"><b>도착</b><div>HEL 공항→숙소 (공항열차 ~30분)</div></div>
   <div class="kv"><b>통근</b><div>숙소(중앙역)↔알토대(오타니에미) <b>메트로 M1/M2 Aalto-yliopisto역</b> 약 15분 · 타피올라 Tapiola역 약 18분 (등록 포함 ABCD 6일권)</div></div>
@@ -304,18 +314,73 @@ document.getElementById('coopAxes').innerHTML=COOP_AXES.map(a=>`<div class="axis
 const AC={'ANPUR':'#0E7C86','ALEUP':'#E0A23B','AAPS':'#C0392B'};
 document.getElementById('contacts').innerHTML+=CONTACTS.map(c=>`<tr><td><b style="color:${AC[c[0]]}">${c[0]}</b></td><td>${c[5]?'★ ':''}<b>${esc(c[1])}</b><div style="color:var(--muted);font-size:11px;margin-top:2px">${esc(c[2])}</div></td><td style="color:${c[4]?'var(--ink)':'#C0392B'};font-size:12px">${esc(c[3])}</td></tr>`).join('');
 let mDone=false;
-function initMaps(){if(mDone||typeof L==='undefined')return;mDone=true;
- const m1=L.map('mapbox1',{scrollWheelZoom:false});L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'&copy; OpenStreetMap'}).addTo(m1);
- const P={hel:[60.3172,24.9633],hotel:[60.1709,24.9426],aalto:[60.1843,24.8290],uh:[60.1699,24.9485],tampere:[61.4978,23.7610],tallinn:[59.4370,24.7536],mw:[60.1690,24.9524],rc:[60.1995,24.9258]};
- const mk=(mp,c,col,l)=>L.circleMarker(c,{radius:8,color:'#fff',weight:2,fillColor:col,fillOpacity:1}).addTo(mp).bindPopup('<b>'+l+'</b>');
- mk(m1,P.hel,'#B5462F','헬싱키 반타공항(HEL)');mk(m1,P.hotel,'#0E7C86','숙소·헬싱키 도심');mk(m1,P.aalto,'#13243B','행사장 Aalto 오타니에미');mk(m1,P.tampere,'#E0A23B','탐페레(일요일)');mk(m1,P.tallinn,'#9aa7b5','탈린 — 투어 취소(참고)');
- const ln=(mp,a,b,c,d)=>L.polyline([a,b],{color:c,weight:3,opacity:.75,dashArray:d}).addTo(mp);
- ln(m1,P.hel,P.hotel,'#B5462F');ln(m1,P.hotel,P.aalto,'#0E7C86');ln(m1,P.hotel,P.tampere,'#E0A23B');ln(m1,P.hotel,P.tallinn,'#9aa7b5','6 8');
- const m2=L.map('mapbox2',{scrollWheelZoom:false});L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'&copy; OpenStreetMap'}).addTo(m2);
- mk(m2,P.hotel,'#0E7C86','숙소 — 스칸딕(중앙역)');mk(m2,P.aalto,'#13243B','행사장 — Aalto 오타니에미(에스포)');mk(m2,P.uh,'#1E3A5F','헬싱키대 본관 — VR 워크숍 Studium 1 (Fabianinkatu 33, 수 7.1)');mk(m2,P.mw,'#E0A23B','MW13 집결 — 원로원광장(Senaatintori) 중앙 동상 · 7/1(수) 13:45 · 그룹은 배지에 인쇄');mk(m2,P.rc,'#B5462F','MW13 워크숍장 — Helsinki-Uusimaa Regional Council(우시마 지역의회) · Western Pasila');
- ln(m2,P.hotel,P.aalto,'#0E7C86');ln(m2,P.hotel,P.mw,'#E0A23B');ln(m2,P.hotel,P.uh,'#1E3A5F');ln(m2,P.mw,P.rc,'#B5462F','5 6');
- setTimeout(()=>{m1.invalidateSize();m1.fitBounds([P.tampere,P.tallinn,P.aalto,P.hel],{padding:[26,26]});
-   m2.invalidateSize();m2.fitBounds([P.aalto,P.hotel,P.mw,P.uh,P.rc],{padding:[40,40]});},300);}
+const DAYS=[
+ {d:"6/28 일",t:"공항 도착 → 숙소 → 탐페레 답사 → 복귀",color:"#E0A23B",stops:[
+  {n:"헬싱키 반타공항(HEL)",c:[60.3172,24.9633],time:"05:30",desc:"도착·입국·수하물 → 공항열차(I/P)"},
+  {n:"숙소 — 스칸딕 그랜드 센트럴(중앙역)",c:[60.1709,24.9426],time:"07:00",desc:"체크인·휴식·조식(Fazer Café)"},
+  {n:"탐페레역",c:[61.4985,23.7736],time:"10:58",desc:"Pendolino S43 (09:20 헬싱키 출발)"},
+  {n:"Nokia Arena & Deck",c:[61.4946,23.7640],time:"11:00",desc:"철도 상부 TOD·복합개발 답사"},
+  {n:"Tammerkoski·Finlayson",c:[61.5010,23.7625],time:"14:00",desc:"수변 산업유산·방직공장 재생지구"},
+  {n:"무민박물관(탐페레홀)",c:[61.4938,23.7855],time:"16:00",desc:"문화콘텐츠·도시브랜딩"},
+  {n:"헬싱키 복귀·야경 산책",c:[60.1690,24.9524],time:"19:59",desc:"IC146 (18:04 탐페레 출발) · 원로원광장·대성당·마켓광장"}
+ ]},
+ {d:"6/29 월",t:"개막식 등록·참관 + 현장답사",color:"#13243B",stops:[
+  {n:"숙소 출발",c:[60.1709,24.9426],time:"오전",desc:""},
+  {n:"야트카사리(Jätkäsaari) 현장답사",c:[60.1561,24.9170],time:"오전",desc:"항만 재생 신도시 · 트램 7/9"},
+  {n:"타피올라(Tapiola) 현장답사",c:[60.1760,24.8045],time:"낮",desc:"15분도시 선행 전원도시 · 메트로 M1/M2"},
+  {n:"알토대 — 등록·개막식·기조강연",c:[60.1843,24.8290],time:"16:00",desc:"개막 plenary(Aalto Sali) · 에스포시 환영 리셉션 ※출장계획상 6/28 답사를 이날 수행"}
+ ]},
+ {d:"6/30 화",t:"콩그레스 참관 + ★ 개인 구두발표",color:"#C0392B",stops:[
+  {n:"숙소 출발",c:[60.1709,24.9426],time:"오전",desc:"메트로 Aalto-yliopisto역(약 15분)"},
+  {n:"알토대 — 기조강연·병렬세션",c:[60.1843,24.8290],time:"오전",desc:"15분도시·접근성·AI/빅데이터 세션 참관"},
+  {n:"★ 본인 구두발표 — Track 1(ID 1385)",c:[60.1850,24.8283],time:"16:00",desc:"16:00–17:30 · USB 지참"}
+ ]},
+ {d:"7/1 수",t:"헬싱키대 본회의 + 모바일워크숍(MW13) + VR",color:"#0E7C86",stops:[
+  {n:"숙소 출발",c:[60.1709,24.9426],time:"오전",desc:""},
+  {n:"헬싱키대 본관 — plenary·VR(Studium 1)",c:[60.1699,24.9485],time:"오전",desc:"기조강연 · VR 워크숍 12:30–15:30 (Fabianinkatu 33)"},
+  {n:"원로원광장 — MW13 집결",c:[60.1690,24.9524],time:"13:45",desc:"중앙 동상 앞 집결 → 그룹별 출발"},
+  {n:"Western Pasila — 우시마 지역의회",c:[60.1995,24.9258],time:"오후",desc:"MW13 — 녹색전환 광역계획 워크숍"}
+ ]},
+ {d:"7/2 목",t:"알토대 세션·협력 컨택 + 작별 리셉션",color:"#1E3A5F",stops:[
+  {n:"숙소 출발",c:[60.1709,24.9426],time:"오전",desc:""},
+  {n:"알토대 — 세션·라운드테이블",c:[60.1843,24.8290],time:"낮",desc:"RT 2634(11:00)·RT 1379(14:00) — ANPUR·ALEUP 협력 컨택"},
+  {n:"헬싱키 시청 — 작별 리셉션",c:[60.1675,24.9555],time:"20:00",desc:"20:00–21:30 · 국제 연구자 네트워킹"}
+ ]},
+ {d:"7/3 금",t:"공식: 알토대 세션 / 실제: ★ 탈린 방문",color:"#9C4DCC",stops:[
+  {n:"숙소 출발",c:[60.1709,24.9426],time:"아침",desc:"공식: 알토대 세션·라운드테이블·폐회식"},
+  {n:"서항(West Harbour T2)",c:[60.1530,24.9180],time:"10:30",desc:"페리 MyStar (트램 7/9) · 예약 75022634"},
+  {n:"탈린 — 구시가·텔리스키비",c:[59.4370,24.7536],time:"12:30",desc:"UNESCO 구시가 · 산업유산 도시재생"},
+  {n:"헬싱키 복귀",c:[60.1690,24.9524],time:"21:30",desc:"페리 19:30 탈린 출발"}
+ ]},
+ {d:"7/4 토",t:"헬싱키 도심 오전 → 귀국",color:"#B5462F",stops:[
+  {n:"숙소 — 도심 오전",c:[60.1709,24.9426],time:"오전",desc:""},
+  {n:"마켓광장·도심 답사",c:[60.1675,24.9527],time:"오전",desc:"마켓광장·칼라사타마·야트카사리"},
+  {n:"헬싱키 반타공항(HEL) — 귀국",c:[60.3172,24.9633],time:"17:30",desc:"핀에어 AY41 (체크아웃 후 공항열차)"}
+ ]}
+];
+let DMAP=[];
+function buildDayMap(i){
+ if(typeof L==='undefined')return;
+ const day=DAYS[i],el=document.getElementById('dmap'+i);if(!el)return;
+ if(!DMAP[i]){
+  const m=L.map(el,{scrollWheelZoom:false});DMAP[i]=m;
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'&copy; OpenStreetMap'}).addTo(m);
+  const pts=day.stops.map(s=>s.c);
+  L.polyline(pts,{color:day.color,weight:3,opacity:.7,dashArray:'6 7'}).addTo(m);
+  day.stops.forEach((s,j)=>{L.marker(s.c,{icon:L.divIcon({className:'numIcon',html:'<div class="nm" style="background:'+day.color+'">'+(j+1)+'</div>',iconSize:[22,22],iconAnchor:[11,11]})}).addTo(m).bindPopup('<b>'+(j+1)+'. '+s.n+'</b>'+(s.time?' · '+s.time:''));});
+ }
+ const mm=DMAP[i];setTimeout(()=>{mm.invalidateSize();mm.fitBounds(day.stops.map(s=>s.c),{padding:[34,34]});},220);
+}
+function renderDayPlans(){
+ const wrap=document.getElementById('dayplans');if(!wrap)return;
+ wrap.innerHTML=DAYS.map((day,i)=>{
+  const stops=day.stops.map((s,j)=>`<li><b>${j+1}. ${s.n}</b>${s.time?`<span class="tm2">${s.time}</span>`:''}${s.desc?`<div class="sd">${s.desc}</div>`:''}</li>`).join('');
+  return `<details class="daybox"${i===0?' open':''} data-di="${i}"><summary><span class="dchip" style="background:${day.color}">${day.d}</span>${day.t}</summary><div class="dmap" id="dmap${i}"></div><ol class="dstops">${stops}</ol></details>`;
+ }).join('');
+ wrap.querySelectorAll('details').forEach(det=>det.addEventListener('toggle',()=>{if(det.open)buildDayMap(+det.dataset.di);}));
+ buildDayMap(0);
+}
+function initMaps(){if(mDone||typeof L==='undefined')return;mDone=true;renderDayPlans();}
 const TOURISM=[
 {ko:"헬싱키 대성당·원로원광장",en:"Helsinki Cathedral",cE:"Helsinki",lat:60.1707,lng:24.9522,cat:"sight",city:"헬싱키",hist:"1852년 완공, C.L.엥겔의 신고전주의 백색 성당. 헬싱키의 상징이자 19세기 도심의 중심.",food:"입장 무료 · 인근 카페 시나몬번(korvapuusti) 3~5€, 커피 3~4€"},
 {ko:"우스펜스키 대성당",en:"Uspenski Cathedral",cE:"Helsinki",lat:60.1681,lng:24.9601,cat:"sight",city:"헬싱키",hist:"1868년 건립, 서유럽 최대 정교회 성당. 적벽돌·러시아 비잔틴 양식.",food:"입장 무료"},
