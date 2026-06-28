@@ -48,6 +48,8 @@ h3{font-size:14.5px;color:var(--navy);margin:18px 0 8px}
 .dnote{margin:10px 14px 0;font-size:12.5px;background:#eef6f7;border:1px solid #cfe6e8;border-radius:8px;padding:8px 11px;line-height:1.6}
 .dlinks{display:flex;flex-wrap:wrap;gap:7px;margin:9px 14px 0}
 .dbtn{font-size:12px;font-weight:700;text-decoration:none;padding:6px 11px;border-radius:18px;background:var(--navy);color:#fff;white-space:nowrap}
+.sbtn{background:#00704A}
+.dsbh{font-weight:800;font-size:12px;color:#00704A;margin:9px 14px 2px}
 .nlul{margin:6px 0 2px;padding-left:18px}.nlul li{margin:4px 0;font-size:13px;line-height:1.55}
 .anbox{margin:12px 14px 4px;border:1px solid var(--line);border-radius:10px;overflow:hidden}
 .anbox>summary{cursor:pointer;padding:9px 12px;font-weight:700;font-size:12.5px;background:#f0f4f8;list-style:none}
@@ -131,7 +133,7 @@ table.mini{width:100%;border-collapse:collapse;font-size:12.5px;margin:6px 0}tab
 .slide .stcap{font-size:11.5px;font-weight:700;color:var(--navy);padding:8px 13px 0}
 .slide .snote{font-size:12px;line-height:1.5;margin:5px 0;padding-left:14px;text-indent:-9px;color:#33414f}
 @media(max-width:640px){.slides{grid-template-columns:1fr}.manu p{text-align:left}}.subtabs{display:flex;gap:6px;margin:4px 0 12px;flex-wrap:wrap}.stab{font-family:inherit;font-size:13px;font-weight:700;padding:8px 14px;border-radius:8px;border:1px solid var(--teal);background:#fff;color:var(--teal);cursor:pointer}.stab.on{background:var(--teal);color:#fff}.rbtn{font-family:inherit;font-size:12.5px;font-weight:700;padding:7px 13px;border-radius:8px;border:1px solid var(--line);background:#fff;color:var(--navy);cursor:pointer}.rbtn.pri{background:var(--teal);color:#fff;border-color:var(--teal)}.a4wrap{background:#e9edf1;padding:10px;border-radius:8px;overflow-x:auto}.a4doc{width:210mm;margin:0 auto 14px;background:#fff;padding:20mm 18mm;box-shadow:0 2px 12px rgba(0,0,0,.14);font-family:'Batang','함초롬바탕','AppleMyungjo','Apple SD Gothic Neo',serif;font-size:10.5pt;line-height:1.75;color:#111;box-sizing:border-box}.a4doc.cover{min-height:255mm;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}.a4doc.cover .clabel{font-size:13pt;letter-spacing:.35em;border:2.5px solid #1a1a1a;padding:7px 26px;margin-bottom:55mm;font-weight:700}.a4doc.cover .rtitle{font-size:21pt;font-weight:800;line-height:1.45;margin:0 0 48mm}.a4doc.cover .cdept{font-size:13.5pt;font-weight:700;line-height:1.9;margin-bottom:40mm}.a4doc.cover .cmeta{font-size:12pt;line-height:2.1}.a4doc .rsec{font-size:13pt;font-weight:800;margin:16px 0 6px;color:#111}.a4doc .rsbody p{margin:2px 0}.a4doc .l2{font-weight:700;margin:7px 0 2px}.a4doc .l3{padding-left:15px}.a4doc .l4{padding-left:30px;color:#1d1d1d}.a4doc table{width:100%;border-collapse:collapse;font-size:9.5pt;margin:8px 0}.a4doc th,.a4doc td{border:1px solid #444;padding:4px 7px;vertical-align:top}.a4doc th{background:#eee;font-weight:700;text-align:center}.a4doc figure{margin:10px 0;text-align:center}.a4doc figcaption{font-size:9pt;color:#444;margin-top:3px}.a4doc .edt{outline:1px dashed #0E7C86;background:#f6fbfb}@media(max-width:820px){.a4wrap{padding:4px}.a4doc{width:100%;padding:16px;box-shadow:none}.a4doc.cover{min-height:auto;padding:46px 16px}.a4doc.cover .clabel{margin-bottom:30px}.a4doc.cover .rtitle{margin-bottom:28px}.a4doc.cover .cdept{margin-bottom:26px}}</style></head><body>
-<header><div class="kick">6th WORLD PLANNING SCHOOLS CONGRESS · HELSINKI 2026</div><h1>WPSC 2026 헬싱키 출장 관리</h1><div class="sub">2026. 6. 27.(토) ~ 7. 5.(일) · 7박 9일 · 서울연구원 최준영 <span style="color:#E0A23B">· 업데이트 6.29b</span></div></header>
+<header><div class="kick">6th WORLD PLANNING SCHOOLS CONGRESS · HELSINKI 2026</div><h1>WPSC 2026 헬싱키 출장 관리</h1><div class="sub">2026. 6. 27.(토) ~ 7. 5.(일) · 7박 9일 · 서울연구원 최준영 <span style="color:#E0A23B">· 업데이트 6.29c</span></div></header>
 <nav id="nav">
  <button data-s="overview" class="on">개요</button><button data-s="schedule">나의 일정</button>
  <button data-s="map">🗺️ 일별 동선</button><button data-s="hsl">🚇 HSL 길찾기</button><button data-s="tour">관광·맛집·쇼핑</button><button data-s="program">프로그램</button>
@@ -355,44 +357,55 @@ const DAYS=[
   {n:"탐페레역 복귀",c:[61.4985,23.7736],time:"17:00",desc:"🚊 트램/버스 ~15분 · IC146 18:04 → 19:59 헬싱키",t2:{f:[61.4928,23.7430],to:[61.4985,23.7736],op:"Nysse"}},
   {n:"헬싱키 야경 산책",c:[60.1690,24.9524],time:"20:15",desc:"🚶 원로원광장·대성당·마켓광장·에스플라나디 (여름 백야)"}
  ],analysis:[{ko:"무민박물관",en:"Moomin Museum",fi:"Muumimuseo (Tampere-talo)",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Tampere-talo_panorama_2014.jpg/330px-Tampere-talo_panorama_2014.jpg",m:"문화 IP(무민)를 컨벤션·콘서트홀과 결합한 복합문화시설 — 콘텐츠 기반 도시브랜딩·체류형 문화관광 거점",k:"지역 IP·한류 콘텐츠를 공공문화시설과 연계한 도시브랜딩 / 컨벤션+문화+관광 복합화",p:"유리 파사드 외관 · 무민 전시 포토존(실내 촬영규정 확인)"},{ko:"노키아 아레나·덱",en:"Nokia Arena & Deck",fi:"Nokia Areena · Kansi ja Areena",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Nokia_Arena_May_2022_1.jpg/330px-Nokia_Arena_May_2022_1.jpg",m:"철도 트랙 상부를 인공지반(Deck)으로 덮어 아레나·호텔·주거·오피스를 얹은 입체 복합개발 — 철도로 단절된 도심을 연결한 TOD",k:"경부선·경인선 등 철도 상부/지하화 부지 입체복합·역세권 고밀 TOD(서울역·영동대로·경부선 지하화 상부)",p:"데크 상부 광장에서 아레나+스카이라인 · 철도 위 인공지반 구조"},{ko:"해메엔카투·중앙광장",en:"Hämeenkatu St. & Central Square",fi:"Hämeenkatu · Keskustori",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Raitiovaunu_H%C3%A4meenkadulla.jpg/330px-Raitiovaunu_H%C3%A4meenkadulla.jpg",m:"간선 메인스트리트에 트램 도입+보행·자전거 우선 재편(승용차 제한) — 대중교통 중심 가로공간 재배분, 중앙광장=시민광장",k:"간선도로 트램·대중교통전용지구, 보행친화 가로 재편(세종대로·연세로), 도심 광장 활성화",p:"트램이 지나는 가로 전경 · 중앙광장(Keskustori)·구 시청사"},{ko:"탐메르코스키 급류",en:"Tammerkoski Rapids",fi:"Tammerkoski",img:"https://commons.wikimedia.org/wiki/Special:FilePath/Tammerkoski%20and%20Satakunnansilta%20May2008.jpg?width=330",m:"도심 관통 급류(수력)를 따른 산업유산 벨트를 보전·재생하고 수변을 보행·공공공간으로 개방 — 산업사+수경관+공공성",k:"도심 하천·수변(청계천·중랑천) 산업유산 연계 재생, 수변 보행축·공공공간화, 역사경관 보전",p:"급류+붉은벽돌 공장(Finlayson/Tako) 강변 · 다리 위 급류 전경"},{ko:"핀레이슨 재생지구",en:"Finlayson Area",fi:"Finlaysonin alue",img:"https://commons.wikimedia.org/wiki/Special:FilePath/Finlayson%20Old%20Factory%20Area%20(Tampere)%2001.jpg?width=330",m:"19세기 방직공장 단지를 철거 없이 적응적 재사용(adaptive reuse) → 창업·디자인·미디어·카페·주거 혼합 — 산업유산 보전형 도시재생 대표사례",k:"이전적지·공장부지(성수·문래·영등포) 적응적 재사용, 산업유산 보전형 창의지구, 철거 대신 재생",p:"붉은벽돌 공장·굴뚝 · 내부 안뜰(courtyard) · 공장+카페 리노베이션 디테일"},{ko:"퓌니키 전망탑",en:"Pyynikki Observation Tower",fi:"Pyynikin näkötorni",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Pyynikki_ridge2.jpg/330px-Pyynikki_ridge2.jpg",m:"에스커(빙하 능선) 자연녹지 보전 + 조망 거점 — 도시·호수·숲 경관 통합관리, 녹지축·조망 보호",k:"산지·능선 녹지축 보전과 조망 거점(남산·안산), 도시 자연경관 관리·조망권 보호",p:"전망탑 상부에서 두 호수(Näsijärvi·Pyhäjärvi) 사이 도시 파노라마 · 능선 숲길"}]},
- {d:"6/29 월",t:"현장답사 + ★ 개막식(UN-Habitat 기조) ✅필수",color:"#13243B",note:"🚇 전 구간 HSL 대중교통(메트로 M1/M2·트램 7/9). 학회 등록에 <b>ABCD 6일권 포함 — 시내 추가요금 없음</b>. 상세 길찾기는 앱 HSL 길찾기 탭 또는 Reittiopas.",links:[{t:"🚇 HSL 길찾기(Reittiopas)",u:"https://reittiopas.hsl.fi/"},{t:"🧭 Visit Espoo",u:"https://www.visitespoo.fi/en"}],maps:[{title:"6/29 동선 — 헬싱키·에스포(현장답사→알토대)",color:"#13243B",mode:"transit",transit:[1,2,4,7],idx:[0,1,2,3,4,5,6,7]}],stops:[
-  {n:"숙소 — 조식·출발",c:[60.1709,24.9426],time:"08:00",desc:"스칸딕 그랜드 센트럴(중앙역)"},
-  {n:"야트카사리(Jätkäsaari) 현장답사",c:[60.1561,24.9170],time:"08:50",desc:"🚊 트램 7/9 Bunkkeri 정류장(~12분) · 옛 화물항→혼합용도 도시재생 신도시(트램·보행·녹지축)",t2:{f:[60.1709,24.9426],to:[60.1561,24.9170],op:"HSL"}},
-  {n:"타피올라(Tapiola·에스포) 현장답사",c:[60.1760,24.8045],time:"10:45",desc:"🚇 메트로 M1/M2(중앙역 환승·~35분) · 1950년대 계획 전원도시·15분도시 선구 모델",t2:{f:[60.1561,24.9170],to:[60.1760,24.8045],op:"HSL"}},
-  {n:"점심 — 타피올라/오타니에미",c:[60.1788,24.8170],time:"12:30",desc:"🚶 타피올라 센터 또는 오타니에미 캠퍼스 식당"},
-  {n:"알토대 오타니에미 — 등록·캠퍼스 답사",c:[60.1843,24.8290],time:"13:30",desc:"🚇 메트로 Aalto-yliopisto역(타피올라서 1정거장·~3분) · 등록 Door F(A출구)·배지 · 알바 알토 혁신캠퍼스(Dipoli·리빙랩) 답사",t2:{f:[60.1760,24.8045],to:[60.1843,24.8290],op:"HSL"}},
-  {n:"★ 개막식 plenary",c:[60.1850,24.8285],time:"16:00",desc:"<b>Aalto Sali</b> · 개막 기조강연 <b>Anacláudia Rossbach (UN-Habitat 사무총장)</b> · 만석 시 B/C-sali·U2 스트리밍"},
-  {n:"에스포시 주관 환영 리셉션",c:[60.1843,24.8290],time:"17:30",desc:"🚶 국제 연구자 네트워킹"},
-  {n:"숙소 복귀",c:[60.1709,24.9426],time:"19:30",desc:"🚇 메트로 M1/M2 Aalto-yliopisto역→중앙역(~15분)",t2:{f:[60.1843,24.8290],to:[60.1709,24.9426],op:"HSL"}}
- ],analysis:[{ko:"야트카사리",en:"Jätkäsaari (West Harbour)",fi:"Jätkäsaari",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Hyv%C3%A4ntoivonpuisto_in_J%C3%A4tk%C3%A4saari%2C_Helsinki%2C_Finland%2C_2021_August.jpg/330px-Hyv%C3%A4ntoivonpuisto_in_J%C3%A4tk%C3%A4saari%2C_Helsinki%2C_Finland%2C_2021_August.jpg",m:"옛 화물항 폐쇄 후 혼합용도 도시재생 신도시 — 트램·자전거·보행축 우선, 녹지 네트워크, 고밀 친환경 주거",k:"항만·유휴부지 재생으로 직주근접 생활권 → 서울 수변·이전적지(영등포·용산) 재생 시사",p:"Bunkkeri 복합시설 · 신축 주거가로 · 하늘공원(Hyväntoivonpuisto) 수변"},{ko:"타피올라",en:"Tapiola",fi:"Tapiola (Espoo)",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Espoon_Tapiola_kes%C3%A4ll%C3%A4.jpg/330px-Espoon_Tapiola_kes%C3%A4ll%C3%A4.jpg",m:"1950년대 복지국가기 계획 전원도시 — 주거+근린생활시설+녹지를 보행권에 통합한 15분 도시 선구 모델",k:"보행 중심 혼합용도·근린 배치 → 서울 생활권계획 시설배치 전략 적용",p:"타피올라 센터 · 중앙 연못·분수 · 녹지 보행축"},{ko:"알토대 오타니에미",en:"Aalto Univ. Otaniemi",fi:"Aalto-yliopisto, Otaniemi",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Dipoli_k%C3%A4pyovi.jpg/330px-Dipoli_k%C3%A4pyovi.jpg",m:"알바 알토 마스터플랜 대학·연구·혁신 클러스터(리빙랩) · 메트로 연계 거점",k:"대학 중심 혁신지구 + 대중교통(메트로) 거점 연계 개발 → 서울 캠퍼스타운·혁신지구",p:"Dipoli(알토 건축) · 메인빌딩 · 오타니에미 캠퍼스 경관"}]},
- {d:"6/30 화",t:"콩그레스 참관 + ★ 개인 구두발표 ✅확정·필수",color:"#C0392B",stops:[
-  {n:"숙소 출발",c:[60.1709,24.9426],time:"오전",desc:"메트로 Aalto-yliopisto역(약 15분)"},
-  {n:"알토대 — 기조강연·병렬세션",c:[60.1843,24.8290],time:"오전",desc:"15분도시·접근성·AI/빅데이터 세션 참관"},
-  {n:"★ 본인 구두발표 — Track 1(ID 1385)",c:[60.1850,24.8283],time:"16:00",desc:"16:00–17:30 · USB 지참"}
+ {d:"6/29 월",t:"오전 발표준비 + 점심 등록 + ★ 개막식(UN-Habitat 기조) ✅필수",color:"#13243B",note:"오전은 호텔에서 발표 최종 점검, 점심에 알토대 이동·학회장 식사 후 등록. ★현장답사(타피올라·야트카사리)는 7/1로 이동. 전 구간 HSL(메트로 M1/M2).",links:[{t:"🚇 HSL 길찾기(Reittiopas)",u:"https://reittiopas.hsl.fi/"}],maps:[{title:"6/29 동선 — 숙소↔알토대(오타니에미)",color:"#13243B",mode:"transit",transit:[2,6],idx:[1,2,3,4,5,6]}],stops:[
+  {n:"숙소 — 발표 최종준비(오전)",c:[60.1709,24.9426],time:"08:00",desc:"🏨 호텔에서 슬라이드·원고·USB 리허설·점검"},
+  {n:"숙소 출발 → 알토대",c:[60.1709,24.9426],time:"11:30",desc:"🚇 메트로 M1/M2 Aalto-yliopisto역(~15분)"},
+  {n:"알토대 — 학회장 점심",c:[60.1843,24.8290],time:"12:15",desc:"🍽️ 오타니에미 캠퍼스/학회장 점심·휴식",t2:{f:[60.1709,24.9426],to:[60.1843,24.8290],op:"HSL"}},
+  {n:"등록 — Door F (배지 수령)",c:[60.1846,24.8270],time:"13:00",desc:"등록데스크 Door F(Aalto University역 A출구) · 캠퍼스·세션 사전답사"},
+  {n:"오후 병렬세션 참관",c:[60.1843,24.8290],time:"14:00",desc:"15분도시·접근성·AI/빅데이터 세션 자료 수집"},
+  {n:"★ 개막식 plenary",c:[60.1850,24.8285],time:"16:00",desc:"<b>Aalto Sali</b> · 개막 기조강연 <b>Anacláudia Rossbach (UN-Habitat 사무총장)</b> · 에스포시 환영 리셉션(이어서)"},
+  {n:"숙소 복귀",c:[60.1709,24.9426],time:"19:30",desc:"🚇 메트로 M1/M2 ~15분",t2:{f:[60.1843,24.8290],to:[60.1709,24.9426],op:"HSL"}}
+ ],analysis:[{ko:"알토대 오타니에미",en:"Aalto Univ. Otaniemi",fi:"Aalto-yliopisto, Otaniemi",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Dipoli_k%C3%A4pyovi.jpg/330px-Dipoli_k%C3%A4pyovi.jpg",m:"알바 알토 마스터플랜 대학·연구·혁신 클러스터(리빙랩) · 메트로 연계 거점",k:"대학 중심 혁신지구 + 대중교통 거점 연계 → 서울 캠퍼스타운·혁신지구",p:"Dipoli(알토 건축)·메인빌딩·오타니에미 캠퍼스"}]},
+ {d:"6/30 화",t:"콩그레스 참관 + ★ 개인 구두발표 ✅확정·필수",color:"#C0392B",note:"오전 기조·세션 참관, 16:00 본인 구두발표(Track 1, ID 1385). 전 구간 HSL(메트로 M1/M2).",links:[{t:"🚇 HSL 길찾기(Reittiopas)",u:"https://reittiopas.hsl.fi/"}],maps:[{title:"6/30 동선 — 숙소↔알토대",color:"#C0392B",mode:"transit",transit:[1,5],idx:[0,1,2,3,4,5]}],stops:[
+  {n:"숙소 — 조식·출발",c:[60.1709,24.9426],time:"08:30",desc:"🚇 메트로 Aalto-yliopisto역(~15분)"},
+  {n:"알토대 — 오전 기조강연",c:[60.1843,24.8290],time:"09:30",desc:"기조강연(Libby Porter)·plenary",t2:{f:[60.1709,24.9426],to:[60.1843,24.8290],op:"HSL"}},
+  {n:"병렬세션 — 빅데이터·AI 도시계획",c:[60.1843,24.8290],time:"11:00",desc:"연구동향·공간분석 기술 자료 수집"},
+  {n:"점심 + 발표 최종점검",c:[60.1843,24.8290],time:"12:30",desc:"🍽️ 학회장 점심 · 슬라이드·USB 최종 점검"},
+  {n:"★ 본인 구두발표 — Track 1 (ID 1385)",c:[60.1850,24.8283],time:"16:00",desc:"<b>16:00–17:30</b> · 효율–형평 균형 최적 시설입지(선형계획) · 질의응답·피드백"},
+  {n:"발표 후 네트워킹 → 숙소 복귀",c:[60.1709,24.9426],time:"18:30",desc:"🤝 세션 동료·관심 연구자 네트워킹 후 🚇 메트로 복귀",t2:{f:[60.1843,24.8290],to:[60.1709,24.9426],op:"HSL"}}
  ]},
- {d:"7/1 수",t:"헬싱키대 본회의 + 모바일워크숍(MW13) + VR",color:"#0E7C86",stops:[
-  {n:"헬싱키대 본관 — 오전 plenary",c:[60.1699,24.9485],time:"오전",desc:"환영사·기조강연 (Fabianinkatu 33 · 중앙역 도보 10분)"},
-  {n:"VR 워크숍 — Studium 1 (헬싱키대 3층)",c:[60.1699,24.9489],time:"12:30",desc:"UrbanISE VR · 팝업 12:30–14:00 / 본세션 14:00–15:30 (등록 확정)"},
-  {n:"MW13 집결 — 원로원광장",c:[60.1690,24.9524],time:"13:45",desc:"모바일워크숍 '녹색전환 광역계획' 집결(중앙 동상) ※VR 본세션과 시간 겹침 → 택1"},
-  {n:"Western Pasila — 우시마 지역의회",c:[60.1995,24.9258],time:"오후",desc:"MW13 워크숍장 · 노트북 지참"}
+ {d:"7/1 수",t:"현장답사(타피올라·야트카사리) + 헬싱키대 + VR→MW13 워크숍",color:"#0E7C86",note:"오전 타피올라 답사→헬싱키대 plenary, 점심 후 VR 워크숍(팝업) 들렀다가 13:45 MW13 집결로 이동, 워크숍 후 야트카사리 답사(백야). HSL ABCD 6일권.",links:[{t:"🚇 HSL 길찾기(Reittiopas)",u:"https://reittiopas.hsl.fi/"}],sb:[{n:"캄피(Kamppi)",q:"Starbucks Kamppi Helsinki"},{n:"포럼(Forum)",q:"Starbucks Forum Helsinki"}],maps:[{title:"7/1 동선 — 타피올라·헬싱키대·MW13·야트카사리",color:"#0E7C86",mode:"transit",transit:[1,2,6,7,8],idx:[0,1,2,3,4,5,6,7,8]}],stops:[
+  {n:"숙소 출발",c:[60.1709,24.9426],time:"07:45",desc:"🚇 메트로 M1/M2 서행"},
+  {n:"타피올라(Tapiola·에스포) 현장답사",c:[60.1760,24.8045],time:"08:15",desc:"🚇 메트로 Tapiola역(~18분) · 1950년대 전원도시·15분도시 선구",t2:{f:[60.1709,24.9426],to:[60.1760,24.8045],op:"HSL"}},
+  {n:"헬싱키대 본관 — 오전 plenary",c:[60.1699,24.9485],time:"10:30",desc:"🚇 메트로→도심 · 환영사·기조강연 (Fabianinkatu 33)",t2:{f:[60.1760,24.8045],to:[60.1699,24.9485],op:"HSL"}},
+  {n:"점심 — 도심",c:[60.1690,24.9410],time:"12:00",desc:"🚶 도심(에스플라나디/캄피 인근)"},
+  {n:"① VR 워크숍 — Studium 1 (들름)",c:[60.1699,24.9489],time:"12:30",desc:"🚶 헬싱키대 본관 3층 · UrbanISE VR 팝업 12:30–13:40 체험"},
+  {n:"② MW13 집결 — 원로원광장",c:[60.1690,24.9524],time:"13:45",desc:"🚶 도보 5분 · 모바일워크숍 녹색전환 광역계획 집결(중앙 동상)"},
+  {n:"③ Western Pasila — 우시마 지역의회",c:[60.1995,24.9258],time:"14:15",desc:"🚇 그룹 이동 · MW13 워크숍(노트북 지참)",t2:{f:[60.1690,24.9524],to:[60.1995,24.9258],op:"HSL"}},
+  {n:"야트카사리(Jätkäsaari) 현장답사",c:[60.1561,24.9170],time:"17:30",desc:"🚊 트램 7/9 Bunkkeri(백야) · 항만재생 신도시",t2:{f:[60.1995,24.9258],to:[60.1561,24.9170],op:"HSL"}},
+  {n:"숙소 복귀",c:[60.1709,24.9426],time:"19:00",desc:"🚊 트램/🚇 메트로 ~15분",t2:{f:[60.1561,24.9170],to:[60.1709,24.9426],op:"HSL"}}
+ ],analysis:[{ko:"타피올라",en:"Tapiola",fi:"Tapiola (Espoo)",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Espoon_Tapiola_kes%C3%A4ll%C3%A4.jpg/330px-Espoon_Tapiola_kes%C3%A4ll%C3%A4.jpg",m:"1950년대 복지국가기 계획 전원도시 — 15분도시 선구 모델",k:"보행 중심 혼합용도·근린 배치 → 서울 생활권계획 시설배치",p:"타피올라 센터·중앙연못·녹지 보행축"},{ko:"야트카사리",en:"Jätkäsaari (West Harbour)",fi:"Jätkäsaari",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Hyv%C3%A4ntoivonpuisto_in_J%C3%A4tk%C3%A4saari%2C_Helsinki%2C_Finland%2C_2021_August.jpg/330px-Hyv%C3%A4ntoivonpuisto_in_J%C3%A4tk%C3%A4saari%2C_Helsinki%2C_Finland%2C_2021_August.jpg",m:"옛 화물항→혼합용도 도시재생 신도시 — 트램·보행·녹지축",k:"항만·유휴부지 재생→직주근접 생활권(영등포·용산)",p:"Bunkkeri·신축 주거가로·하늘공원 수변"}]},
+ {d:"7/2 목",t:"알토대 세션·협력 컨택 + 작별 리셉션(시청)",color:"#1E3A5F",note:"오전 세션·협력 컨택(ANPUR·ALEUP), 저녁 헬싱키 시청 작별 리셉션. HSL(메트로·트램).",links:[{t:"🚇 HSL 길찾기(Reittiopas)",u:"https://reittiopas.hsl.fi/"}],maps:[{title:"7/2 동선 — 알토대↔시청",color:"#1E3A5F",mode:"transit",transit:[1,3],idx:[0,1,2,3]}],stops:[
+  {n:"숙소 출발",c:[60.1709,24.9426],time:"08:30",desc:"🚇 메트로 M1/M2"},
+  {n:"알토대 — 기조·병렬세션",c:[60.1843,24.8290],time:"09:30",desc:"기조(Stefano Moroni)·세션 참관",t2:{f:[60.1709,24.9426],to:[60.1843,24.8290],op:"HSL"}},
+  {n:"협력 컨택 — RT 2634·RT 1379",c:[60.1843,24.8290],time:"11:00",desc:"🤝 RT 2634(11:00 AI·교육) ANPUR 회장 Vargas de Faria · RT 1379(14:00) ALEUP Rave·Demerutis"},
+  {n:"헬싱키 시청 — 작별 리셉션",c:[60.1675,24.9555],time:"20:00",desc:"🚇 메트로→도심 · 20:00–21:30 작별 리셉션·네트워킹",t2:{f:[60.1843,24.8290],to:[60.1675,24.9555],op:"HSL"}}
  ]},
- {d:"7/2 목",t:"알토대 세션·협력 컨택 + 작별 리셉션",color:"#1E3A5F",stops:[
-  {n:"숙소 출발",c:[60.1709,24.9426],time:"오전",desc:""},
-  {n:"알토대 — 세션·라운드테이블",c:[60.1843,24.8290],time:"낮",desc:"RT 2634(11:00)·RT 1379(14:00) — ANPUR·ALEUP 협력 컨택"},
-  {n:"헬싱키 시청 — 작별 리셉션",c:[60.1675,24.9555],time:"20:00",desc:"20:00–21:30 · 국제 연구자 네트워킹"}
+ {d:"7/3 금",t:"★ 탈린 방문 ✅확정·필수 (공식: 알토대 세션)",color:"#9C4DCC",note:"공식은 알토대 세션·폐회식. 실제는 탈린 당일 — 서항(West Harbour T2)에서 페리 MyStar 왕복. 탈린 시내는 도보, 구시가·텔리스키비 답사.",links:[{t:"⛴️ Tallink/MyStar",u:"https://www.tallink.com/"},{t:"🧭 Visit Tallinn",u:"https://www.visittallinn.ee/eng"}],sb:[{n:"비루 케스쿠스(Viru Keskus·구시가 입구)",q:"Starbucks Viru Keskus Tallinn"},{n:"솔라리스(Solaris)",q:"Starbucks Solaris Tallinn"}],maps:[{title:"7/3 동선 — 헬싱키 서항↔탈린(페리)",color:"#9C4DCC",mode:"transit",transit:[1],idx:[0,1,2,3,4,5]}],stops:[
+  {n:"숙소 출발 → 서항",c:[60.1709,24.9426],time:"09:30",desc:"🚊 트램 7/9 West Harbour(서항)",t2:{f:[60.1709,24.9426],to:[60.1530,24.9180],op:"HSL"}},
+  {n:"서항(West Harbour T2) — 페리 탑승",c:[60.1530,24.9180],time:"10:30",desc:"⛴️ MyStar 10:30 출발(예약 75022634) → 12:30 탈린"},
+  {n:"탈린 구시가(UNESCO)",c:[59.4372,24.7453],time:"12:45",desc:"🚶 라에코야 광장·톰페아·비루 게이트(☕ Viru Keskus 인접)"},
+  {n:"텔리스키비(Telliskivi) 창의지구",c:[59.4419,24.7390],time:"15:00",desc:"🚶 산업유산→창의·스타트업 도시재생"},
+  {n:"서항 복귀 — 페리",c:[59.4452,24.7680],time:"19:30",desc:"⛴️ 탈린 D터미널 19:30 → 21:30 헬싱키"},
+  {n:"숙소 복귀",c:[60.1709,24.9426],time:"21:45",desc:"🚊 트램/도보"}
  ]},
- {d:"7/3 금",t:"★ 탈린 방문 ✅확정·필수 (공식: 알토대 세션)",color:"#9C4DCC",stops:[
-  {n:"숙소 출발",c:[60.1709,24.9426],time:"아침",desc:"공식: 알토대 세션·라운드테이블·폐회식"},
-  {n:"서항(West Harbour T2)",c:[60.1530,24.9180],time:"10:30",desc:"페리 MyStar (트램 7/9) · 예약 75022634"},
-  {n:"탈린 — 구시가·텔리스키비",c:[59.4370,24.7536],time:"12:30",desc:"UNESCO 구시가 · 산업유산 도시재생"},
-  {n:"헬싱키 복귀",c:[60.1690,24.9524],time:"21:30",desc:"페리 19:30 탈린 출발"}
- ]},
- {d:"7/4 토",t:"헬싱키 도심 오전 → 귀국",color:"#B5462F",stops:[
-  {n:"숙소 — 도심 오전",c:[60.1709,24.9426],time:"오전",desc:""},
-  {n:"마켓광장·도심 답사",c:[60.1675,24.9527],time:"오전",desc:"마켓광장·칼라사타마·야트카사리"},
-  {n:"헬싱키 반타공항(HEL) — 귀국",c:[60.3172,24.9633],time:"17:30",desc:"핀에어 AY41 (체크아웃 후 공항열차)"}
+ {d:"7/4 토",t:"헬싱키 도심 오전 → 귀국",color:"#B5462F",note:"오전 도심 마무리 답사 후 체크아웃·공항. HSL(트램·공항열차).",links:[{t:"🚇 HSL 길찾기(Reittiopas)",u:"https://reittiopas.hsl.fi/"}],sb:[{n:"반타공항(HEL T2)",q:"Starbucks Helsinki Airport"}],maps:[{title:"7/4 동선 — 도심→공항",color:"#B5462F",mode:"transit",transit:[3],idx:[0,1,2,3]}],stops:[
+  {n:"숙소 — 도심 오전",c:[60.1709,24.9426],time:"09:00",desc:"🚶 마무리 답사·쇼핑"},
+  {n:"마켓광장·도심 답사",c:[60.1675,24.9527],time:"09:30",desc:"🚶 마켓광장·에스플라나디·올드마켓홀"},
+  {n:"체크아웃",c:[60.1709,24.9426],time:"13:00",desc:"🏨 체크아웃·짐"},
+  {n:"헬싱키 반타공항(HEL) — 귀국",c:[60.3172,24.9633],time:"17:30",desc:"🚆 공항열차(I/P) · 핀에어 AY41 17:30",t2:{f:[60.1709,24.9426],to:[60.3172,24.9633],op:"HSL"}}
  ]}
-];
+ ];
 let DMAP={};
 function _mkmap(el,stops,color){
  const m=L.map(el,{scrollWheelZoom:false});
@@ -426,9 +439,10 @@ function renderDayPlans(){
   const maps=day.maps?day.maps.map((mp,k)=>{const pts=mp.idx.map(n=>day.stops[n].c);const md=mp.mode||'walking';const dir='https://www.google.com/maps/dir/?api=1&travelmode='+md+'&origin='+pts[0].join(',')+'&destination='+pts[pts.length-1].join(',')+(pts.length>2?'&waypoints='+encodeURIComponent(pts.slice(1,-1).map(p=>p.join(',')).join('|')):'');return `<div class="dsubh">${mp.title} — 확대 지도</div><div class="dmap dmapx" id="dmap${i}_${k}"></div>${mp.transit?'<div class="dleg"><span class="lgw"></span>도보 · <span class="lgt"></span>대중교통(Nysse 트램3·버스)</div>':''}<div class="dlinks"><a class="dbtn" href="${dir}" target="_blank" rel="noopener">🗺️ 구글맵에서 이 경로 열기 (${md==='walking'?'도보':'대중교통'})</a></div>`;}).join(''):`<div class="dmap" id="dmap${i}"></div>`;
   const note=day.note?`<div class="dnote">${day.note}</div>`:'';
   const links=day.links?`<div class="dlinks">${day.links.map(l=>`<a class="dbtn" href="${l.u}" target="_blank" rel="noopener">${l.t}</a>`).join('')}</div>`:'';
+  const sb=day.sb?`<div class="dsbh">☕ Starbucks (이동동선)</div><div class="dlinks">${day.sb.map(x=>`<a class="dbtn sbtn" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(x.q)}" target="_blank" rel="noopener">☕ ${x.n}</a>`).join('')}</div>`:'';
   const an=day.analysis?`<details class="anbox"${i===0?' open':''}><summary>📐 방문지별 도시계획 의미 · 서울 시사점 · 📸 촬영스폿</summary><div class="ancards">${day.analysis.map(a=>`<div class="ancard"><img class="anpic" src="${a.img}" alt="${a.ko} 예시" referrerpolicy="no-referrer" onerror="this.style.display='none'"><div class="anbody"><div class="ann">${a.ko} <span class="anen">${a.en}</span></div><div class="anori">🇫🇮 ${a.fi}</div><div class="anrow"><span class="anlbl">🏙️ 도시계획</span>${a.m}</div><div class="anrow"><span class="anlbl">💡 서울 시사점</span>${a.k}</div><div class="anrow"><span class="anlbl">📸 촬영스폿</span>${a.p}</div></div></div>`).join('')}</div></details>`:'';
 const fb=(day.eat||day.buy)?`<details class="anbox"><summary>🍽️ 탐페레 먹거리 &amp; 🎁 기념품</summary><div class="fblist">${day.eat?'<div class="fbh">🍽️ 꼭 먹어볼 음식</div>'+day.eat.map(x=>`<div class="fbi"><b>${x.n}</b>${x.q?` <a class="gm" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(x.q+' Tampere')}" target="_blank" rel="noopener">📍</a>`:''}<div class="sd">${x.d}</div></div>`).join(''):''}${day.buy?'<div class="fbh">🎁 사올 기념품</div>'+day.buy.map(x=>`<div class="fbi"><b>${x.n}</b>${x.q?` <a class="gm" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(x.q+' Tampere')}" target="_blank" rel="noopener">📍</a>`:''}<div class="sd">${x.d}</div></div>`).join(''):''}</div></details>`:'';
-  return `<details class="daybox"${i===0?' open':''} data-di="${i}"><summary><span class="dchip" style="background:${day.color}">${day.d}</span>${day.t}</summary>${maps}${note}${links}<ol class="dstops">${stops}</ol>${an}</details>`;
+  return `<details class="daybox"${i===0?' open':''} data-di="${i}"><summary><span class="dchip" style="background:${day.color}">${day.d}</span>${day.t}</summary>${maps}${note}${links}${sb}<ol class="dstops">${stops}</ol>${an}</details>`;
  }).join('');
  wrap.querySelectorAll('details').forEach(det=>det.addEventListener('toggle',()=>{if(det.open)buildDayMap(+det.dataset.di);}));
  buildDayMap(0);
