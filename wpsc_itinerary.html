@@ -43,6 +43,8 @@ h3{font-size:14.5px;color:var(--navy);margin:18px 0 8px}
 .dstops .tm2{color:#0E7C86;font-weight:700;font-size:12px;margin-left:4px}
 .dstops .sd{color:var(--muted);font-size:12px;margin-top:1px}
 .numIcon .nm{width:22px;height:22px;border-radius:50%;color:#fff;font-weight:800;font-size:12px;display:flex;align-items:center;justify-content:center;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.35)}
+.dsubh{font-weight:800;font-size:12.5px;color:var(--navy);margin:14px 14px 2px}
+.dmapx{height:300px}
 .legend{display:flex;flex-wrap:wrap;gap:8px 14px;font-size:12.5px;margin:8px 0 4px}.legend span{display:inline-flex;align-items:center;gap:5px}.dot{width:12px;height:12px;border-radius:50%;display:inline-block}
 .filter{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px;position:sticky;top:46px;background:var(--ice);padding:8px 0;z-index:40}
 .filter select,.filter input{font-family:inherit;font-size:13px;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink)}.filter input{flex:1;min-width:130px}
@@ -104,7 +106,7 @@ table.mini{width:100%;border-collapse:collapse;font-size:12.5px;margin:6px 0}tab
 .slide .stcap{font-size:11.5px;font-weight:700;color:var(--navy);padding:8px 13px 0}
 .slide .snote{font-size:12px;line-height:1.5;margin:5px 0;padding-left:14px;text-indent:-9px;color:#33414f}
 @media(max-width:640px){.slides{grid-template-columns:1fr}.manu p{text-align:left}}.subtabs{display:flex;gap:6px;margin:4px 0 12px;flex-wrap:wrap}.stab{font-family:inherit;font-size:13px;font-weight:700;padding:8px 14px;border-radius:8px;border:1px solid var(--teal);background:#fff;color:var(--teal);cursor:pointer}.stab.on{background:var(--teal);color:#fff}.rbtn{font-family:inherit;font-size:12.5px;font-weight:700;padding:7px 13px;border-radius:8px;border:1px solid var(--line);background:#fff;color:var(--navy);cursor:pointer}.rbtn.pri{background:var(--teal);color:#fff;border-color:var(--teal)}.a4wrap{background:#e9edf1;padding:10px;border-radius:8px;overflow-x:auto}.a4doc{width:210mm;margin:0 auto 14px;background:#fff;padding:20mm 18mm;box-shadow:0 2px 12px rgba(0,0,0,.14);font-family:'Batang','함초롬바탕','AppleMyungjo','Apple SD Gothic Neo',serif;font-size:10.5pt;line-height:1.75;color:#111;box-sizing:border-box}.a4doc.cover{min-height:255mm;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}.a4doc.cover .clabel{font-size:13pt;letter-spacing:.35em;border:2.5px solid #1a1a1a;padding:7px 26px;margin-bottom:55mm;font-weight:700}.a4doc.cover .rtitle{font-size:21pt;font-weight:800;line-height:1.45;margin:0 0 48mm}.a4doc.cover .cdept{font-size:13.5pt;font-weight:700;line-height:1.9;margin-bottom:40mm}.a4doc.cover .cmeta{font-size:12pt;line-height:2.1}.a4doc .rsec{font-size:13pt;font-weight:800;margin:16px 0 6px;color:#111}.a4doc .rsbody p{margin:2px 0}.a4doc .l2{font-weight:700;margin:7px 0 2px}.a4doc .l3{padding-left:15px}.a4doc .l4{padding-left:30px;color:#1d1d1d}.a4doc table{width:100%;border-collapse:collapse;font-size:9.5pt;margin:8px 0}.a4doc th,.a4doc td{border:1px solid #444;padding:4px 7px;vertical-align:top}.a4doc th{background:#eee;font-weight:700;text-align:center}.a4doc figure{margin:10px 0;text-align:center}.a4doc figcaption{font-size:9pt;color:#444;margin-top:3px}.a4doc .edt{outline:1px dashed #0E7C86;background:#f6fbfb}@media(max-width:820px){.a4wrap{padding:4px}.a4doc{width:100%;padding:16px;box-shadow:none}.a4doc.cover{min-height:auto;padding:46px 16px}.a4doc.cover .clabel{margin-bottom:30px}.a4doc.cover .rtitle{margin-bottom:28px}.a4doc.cover .cdept{margin-bottom:26px}}</style></head><body>
-<header><div class="kick">6th WORLD PLANNING SCHOOLS CONGRESS · HELSINKI 2026</div><h1>WPSC 2026 헬싱키 출장 관리</h1><div class="sub">2026. 6. 27.(토) ~ 7. 5.(일) · 7박 9일 · 서울연구원 최준영 <span style="color:#E0A23B">· 업데이트 6.27e</span></div></header>
+<header><div class="kick">6th WORLD PLANNING SCHOOLS CONGRESS · HELSINKI 2026</div><h1>WPSC 2026 헬싱키 출장 관리</h1><div class="sub">2026. 6. 27.(토) ~ 7. 5.(일) · 7박 9일 · 서울연구원 최준영 <span style="color:#E0A23B">· 업데이트 6.28a</span></div></header>
 <nav id="nav">
  <button data-s="overview" class="on">개요</button><button data-s="schedule">나의 일정</button>
  <button data-s="map">🗺️ 일별 동선</button><button data-s="hsl">🚇 HSL 길찾기</button><button data-s="tour">관광·맛집·쇼핑</button><button data-s="program">프로그램</button>
@@ -315,15 +317,20 @@ const AC={'ANPUR':'#0E7C86','ALEUP':'#E0A23B','AAPS':'#C0392B'};
 document.getElementById('contacts').innerHTML+=CONTACTS.map(c=>`<tr><td><b style="color:${AC[c[0]]}">${c[0]}</b></td><td>${c[5]?'★ ':''}<b>${esc(c[1])}</b><div style="color:var(--muted);font-size:11px;margin-top:2px">${esc(c[2])}</div></td><td style="color:${c[4]?'var(--ink)':'#C0392B'};font-size:12px">${esc(c[3])}</td></tr>`).join('');
 let mDone=false;
 const DAYS=[
- {d:"6/28 일",t:"공항→숙소→탐페레 답사→복귀 ✅확정·필수",color:"#E0A23B",stops:[
+ {d:"6/28 일",t:"공항→숙소→탐페레 관광·답사→복귀 ✅확정·필수",color:"#E0A23B",stops:[
   {n:"헬싱키 반타공항(HEL)",c:[60.3172,24.9633],time:"05:30",desc:"도착·입국·수하물 → 공항열차(I/P)"},
   {n:"숙소 — 스칸딕 그랜드 센트럴(중앙역)",c:[60.1709,24.9426],time:"07:00",desc:"체크인·휴식·조식(Fazer Café)"},
-  {n:"탐페레역",c:[61.4985,23.7736],time:"10:58",desc:"Pendolino S43 (09:20 헬싱키 출발)"},
+  {n:"탐페레역 도착",c:[61.4985,23.7736],time:"10:58",desc:"Pendolino S43 (09:20 헬싱키 출발)"},
   {n:"Nokia Arena & Deck",c:[61.4946,23.7640],time:"11:00",desc:"철도 상부 TOD·복합개발 답사"},
-  {n:"Tammerkoski·Finlayson",c:[61.5010,23.7625],time:"14:00",desc:"수변 산업유산·방직공장 재생지구"},
-  {n:"무민박물관(탐페레홀)",c:[61.4938,23.7855],time:"16:00",desc:"문화콘텐츠·도시브랜딩"},
-  {n:"헬싱키 복귀·야경 산책",c:[60.1690,24.9524],time:"19:59",desc:"IC146 (18:04 탐페레 출발) · 원로원광장·대성당·마켓광장"}
- ]},
+  {n:"Hämeenkatu·Keskustori",c:[61.4978,23.7610],time:"11:30",desc:"메인스트리트·트램·중앙광장·시청"},
+  {n:"🔭 Näsinneula 전망대(Särkänniemi)",c:[61.5052,23.7470],time:"12:15",desc:"168m 북유럽 최고 전망탑 · 회전전망대/회전레스토랑(점심) · 도시·네시 호수 파노라마"},
+  {n:"Finlayson 방직공장 재생지구",c:[61.5025,23.7610],time:"14:00",desc:"창업·디자인숍·카페 도시재생 대표사례"},
+  {n:"Tammerkoski Rapids",c:[61.5000,23.7628],time:"14:45",desc:"운하·산업유산·수력발전·수변 공공공간(사진명소)"},
+  {n:"무민박물관(Tampere Hall)",c:[61.4938,23.7855],time:"15:45",desc:"문화콘텐츠·도시브랜딩(45~60분)"},
+  {n:"🔭 Pyynikki 전망탑·카페",c:[61.4928,23.7430],time:"16:45",desc:"능선 석조 전망탑 · 전통 도넛(munkki) 카페 · 숲·호수 전망"},
+  {n:"탐페레역 복귀",c:[61.4985,23.7736],time:"17:45",desc:"IC146 18:04 → 19:59 헬싱키"},
+  {n:"헬싱키 야경 산책",c:[60.1690,24.9524],time:"20:15",desc:"원로원광장·대성당·마켓광장·에스플라나디 (여름 백야)"}
+ ],extra:{title:"탐페레 시내 관광 동선",color:"#E0A23B",from:2,to:10}},
  {d:"6/29 월",t:"개막식 등록·참관 + 현장답사",color:"#13243B",stops:[
   {n:"숙소 출발",c:[60.1709,24.9426],time:"오전",desc:""},
   {n:"야트카사리(Jätkäsaari) 현장답사",c:[60.1561,24.9170],time:"오전",desc:"항만 재생 신도시 · 트램 7/9"},
@@ -358,24 +365,34 @@ const DAYS=[
   {n:"헬싱키 반타공항(HEL) — 귀국",c:[60.3172,24.9633],time:"17:30",desc:"핀에어 AY41 (체크아웃 후 공항열차)"}
  ]}
 ];
-let DMAP=[];
+let DMAP=[],DMAPX=[];
+function _mkmap(el,stops,color){
+ const m=L.map(el,{scrollWheelZoom:false});
+ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'&copy; OpenStreetMap'}).addTo(m);
+ const pts=stops.map(s=>s.c);
+ L.polyline(pts,{color:color,weight:3,opacity:.7,dashArray:'6 7'}).addTo(m);
+ stops.forEach((s,j)=>{L.marker(s.c,{icon:L.divIcon({className:'numIcon',html:'<div class="nm" style="background:'+color+'">'+(s._n||(j+1))+'</div>',iconSize:[22,22],iconAnchor:[11,11]})}).addTo(m).bindPopup('<b>'+s.n+'</b>'+(s.time?' · '+s.time:''));});
+ return {m:m,pts:pts};
+}
 function buildDayMap(i){
  if(typeof L==='undefined')return;
  const day=DAYS[i],el=document.getElementById('dmap'+i);if(!el)return;
- if(!DMAP[i]){
-  const m=L.map(el,{scrollWheelZoom:false});DMAP[i]=m;
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'&copy; OpenStreetMap'}).addTo(m);
-  const pts=day.stops.map(s=>s.c);
-  L.polyline(pts,{color:day.color,weight:3,opacity:.7,dashArray:'6 7'}).addTo(m);
-  day.stops.forEach((s,j)=>{L.marker(s.c,{icon:L.divIcon({className:'numIcon',html:'<div class="nm" style="background:'+day.color+'">'+(j+1)+'</div>',iconSize:[22,22],iconAnchor:[11,11]})}).addTo(m).bindPopup('<b>'+(j+1)+'. '+s.n+'</b>'+(s.time?' · '+s.time:''));});
+ if(!DMAP[i])DMAP[i]=_mkmap(el,day.stops,day.color);
+ setTimeout(()=>{DMAP[i].m.invalidateSize();DMAP[i].m.fitBounds(DMAP[i].pts,{padding:[34,34]});},220);
+ if(day.extra){
+  const elx=document.getElementById('dmap'+i+'x');
+  if(elx){
+   if(!DMAPX[i]){const sub=day.stops.slice(day.extra.from,day.extra.to+1).map((s,k)=>Object.assign({},s,{_n:day.extra.from+k+1}));DMAPX[i]=_mkmap(elx,sub,day.extra.color);}
+   setTimeout(()=>{DMAPX[i].m.invalidateSize();DMAPX[i].m.fitBounds(DMAPX[i].pts,{padding:[30,30]});},250);
+  }
  }
- const mm=DMAP[i];setTimeout(()=>{mm.invalidateSize();mm.fitBounds(day.stops.map(s=>s.c),{padding:[34,34]});},220);
 }
 function renderDayPlans(){
  const wrap=document.getElementById('dayplans');if(!wrap)return;
  wrap.innerHTML=DAYS.map((day,i)=>{
   const stops=day.stops.map((s,j)=>`<li><b>${j+1}. ${s.n}</b>${s.time?`<span class="tm2">${s.time}</span>`:''}${s.desc?`<div class="sd">${s.desc}</div>`:''}</li>`).join('');
-  return `<details class="daybox"${i===0?' open':''} data-di="${i}"><summary><span class="dchip" style="background:${day.color}">${day.d}</span>${day.t}</summary><div class="dmap" id="dmap${i}"></div><ol class="dstops">${stops}</ol></details>`;
+  const ex=day.extra?`<div class="dsubh">🔭 ${day.extra.title} — 확대 지도</div><div class="dmap dmapx" id="dmap${i}x"></div>`:'';
+  return `<details class="daybox"${i===0?' open':''} data-di="${i}"><summary><span class="dchip" style="background:${day.color}">${day.d}</span>${day.t}</summary><div class="dmap" id="dmap${i}"></div>${ex}<ol class="dstops">${stops}</ol></details>`;
  }).join('');
  wrap.querySelectorAll('details').forEach(det=>det.addEventListener('toggle',()=>{if(det.open)buildDayMap(+det.dataset.di);}));
  buildDayMap(0);
