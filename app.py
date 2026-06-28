@@ -469,6 +469,11 @@ def wpsc_page():
     if not can_access_system(u, 'wpsc'): return redirect('/?denied=wpsc')
     return render_template('wpsc.html')   # 게시판 SPA(국외출장·연구원내원·글로벌협력기관)
 
+@app.get('/healthz')
+def healthz():
+    # 외부 모니터(UptimeRobot 등) keep-alive용 — 인증/DB 불필요, 가벼운 200 응답(슬립 방지)
+    return 'ok', 200, {'Content-Type': 'text/plain; charset=utf-8', 'Cache-Control': 'no-store'}
+
 @app.route('/wpsc/itinerary')
 def wpsc_itinerary():
     u = current()
