@@ -495,6 +495,13 @@ def wpsc_tapiola():
     if not can_access_system(u, 'wpsc'): return redirect('/?denied=wpsc')
     return send_file(os.path.join(HERE, 'wpsc_tapiola.html'))   # 타피올라 신도시 재생·도시정체성 상세
 
+@app.route('/wpsc/jatkasaari')
+def wpsc_jatkasaari():
+    u = current()
+    if not u: return redirect('/?sys=wpsc')
+    if not can_access_system(u, 'wpsc'): return redirect('/?denied=wpsc')
+    return send_file(os.path.join(HERE, 'wpsc_jatkasaari.html'))   # 야트카사리 항만재생·한국 비교 출장기사
+
 # ---------------- WPSC 출장결과보고서 (편집/사진/다운로드) — dbrecords(subsystem='wpsc', kind='report') ----------------
 WPSC_REPORT_SLUG = 'wpsc-report-main'
 def default_wpsc_report():
