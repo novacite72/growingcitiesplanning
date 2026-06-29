@@ -133,7 +133,7 @@ table.mini{width:100%;border-collapse:collapse;font-size:12.5px;margin:6px 0}tab
 .slide .stcap{font-size:11.5px;font-weight:700;color:var(--navy);padding:8px 13px 0}
 .slide .snote{font-size:12px;line-height:1.5;margin:5px 0;padding-left:14px;text-indent:-9px;color:#33414f}
 @media(max-width:640px){.slides{grid-template-columns:1fr}.manu p{text-align:left}}.subtabs{display:flex;gap:6px;margin:4px 0 12px;flex-wrap:wrap}.stab{font-family:inherit;font-size:13px;font-weight:700;padding:8px 14px;border-radius:8px;border:1px solid var(--teal);background:#fff;color:var(--teal);cursor:pointer}.stab.on{background:var(--teal);color:#fff}.rbtn{font-family:inherit;font-size:12.5px;font-weight:700;padding:7px 13px;border-radius:8px;border:1px solid var(--line);background:#fff;color:var(--navy);cursor:pointer}.rbtn.pri{background:var(--teal);color:#fff;border-color:var(--teal)}.a4wrap{background:#e9edf1;padding:10px;border-radius:8px;overflow-x:auto}.a4doc{width:210mm;margin:0 auto 14px;background:#fff;padding:20mm 18mm;box-shadow:0 2px 12px rgba(0,0,0,.14);font-family:'Batang','함초롬바탕','AppleMyungjo','Apple SD Gothic Neo',serif;font-size:10.5pt;line-height:1.75;color:#111;box-sizing:border-box}.a4doc.cover{min-height:255mm;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}.a4doc.cover .clabel{font-size:13pt;letter-spacing:.35em;border:2.5px solid #1a1a1a;padding:7px 26px;margin-bottom:55mm;font-weight:700}.a4doc.cover .rtitle{font-size:21pt;font-weight:800;line-height:1.45;margin:0 0 48mm}.a4doc.cover .cdept{font-size:13.5pt;font-weight:700;line-height:1.9;margin-bottom:40mm}.a4doc.cover .cmeta{font-size:12pt;line-height:2.1}.a4doc .rsec{font-size:13pt;font-weight:800;margin:16px 0 6px;color:#111}.a4doc .rsbody p{margin:2px 0}.a4doc .l2{font-weight:700;margin:7px 0 2px}.a4doc .l3{padding-left:15px}.a4doc .l4{padding-left:30px;color:#1d1d1d}.a4doc table{width:100%;border-collapse:collapse;font-size:9.5pt;margin:8px 0}.a4doc th,.a4doc td{border:1px solid #444;padding:4px 7px;vertical-align:top}.a4doc th{background:#eee;font-weight:700;text-align:center}.a4doc figure{margin:10px 0;text-align:center}.a4doc figcaption{font-size:9pt;color:#444;margin-top:3px}.a4doc .edt{outline:1px dashed #0E7C86;background:#f6fbfb}@media(max-width:820px){.a4wrap{padding:4px}.a4doc{width:100%;padding:16px;box-shadow:none}.a4doc.cover{min-height:auto;padding:46px 16px}.a4doc.cover .clabel{margin-bottom:30px}.a4doc.cover .rtitle{margin-bottom:28px}.a4doc.cover .cdept{margin-bottom:26px}}</style></head><body>
-<header><div class="kick">6th WORLD PLANNING SCHOOLS CONGRESS · HELSINKI 2026</div><h1>WPSC 2026 헬싱키 출장 관리</h1><div class="sub">2026. 6. 27.(토) ~ 7. 5.(일) · 7박 9일 · 서울연구원 최준영 <span style="color:#E0A23B">· 업데이트 6.29d</span></div></header>
+<header><div class="kick">6th WORLD PLANNING SCHOOLS CONGRESS · HELSINKI 2026</div><h1>WPSC 2026 헬싱키 출장 관리</h1><div class="sub">2026. 6. 27.(토) ~ 7. 5.(일) · 7박 9일 · 서울연구원 최준영 <span style="color:#E0A23B">· 업데이트 6.29e</span></div></header>
 <nav id="nav">
  <button data-s="overview" class="on">개요</button><button data-s="schedule">나의 일정</button>
  <button data-s="map">🗺️ 일별 동선</button><button data-s="hsl">🚇 HSL 길찾기</button><button data-s="tour">관광·맛집·쇼핑</button><button data-s="program">프로그램</button>
@@ -404,7 +404,17 @@ const DAYS=[
   {n:"마켓광장·도심 답사",c:[60.1675,24.9527],time:"09:30",desc:"🚶 마켓광장·에스플라나디·올드마켓홀"},
   {n:"체크아웃",c:[60.1709,24.9426],time:"13:00",desc:"🏨 체크아웃·짐"},
   {n:"헬싱키 반타공항(HEL) — 귀국",c:[60.3172,24.9633],time:"17:30",desc:"🚆 공항열차(I/P) · 핀에어 AY41 17:30",t2:{f:[60.1709,24.9426],to:[60.3172,24.9633],op:"HSL"}}
- ]}
+ ]},
+ {d:"🔬 답사",t:"에스포 타피올라 — 알토대 출발 답사(전원도시·15분도시)",color:"#2E8B57",note:"알토대(오타니에미)에서 메트로 1정거장(~3분) 또는 도보 ~20분. 타피올라=1950년대 전원도시·15분도시 선구 — 보행/차량 분리(라드번), 근린생활시설·녹지 통합을 관찰. 총 도보 ~2시간 코스.",links:[{t:"🚇 HSL 길찾기(Reittiopas)",u:"https://reittiopas.hsl.fi/"},{t:"🧭 Visit Espoo",u:"https://www.visitespoo.fi/en"}],maps:[{title:"알토대 → 타피올라 답사 동선",color:"#2E8B57",mode:"walking",transit:[1],idx:[0,1,2,3,4,5,6,7]}],stops:[
+  {n:"알토대 오타니에미 — 출발",c:[60.1843,24.8290],time:"출발",desc:"Aalto-yliopisto 메트로역/캠퍼스(Otakaari 1)"},
+  {n:"타피올라역·Ainoa (메트로 통합 상업핵)",c:[60.1763,24.8043],time:"~10분",desc:"🚇 메트로 1정거장(~3분) 또는 🚶 도보 20분 · 메트로+상업 복합(Ainoa) — TOD·역세권 통합",t2:{f:[60.1843,24.8290],to:[60.1763,24.8043],op:"HSL"}},
+  {n:"중앙광장·Tapiontori (보행 상업중심)",c:[60.1758,24.8052],time:"+10분",desc:"🚶 보행 상업핵 · 구 Heikintori 실내몰 · 차 없는 중심부"},
+  {n:"중앙 연못·공원 (Keskusallas)",c:[60.1750,24.8038],time:"+15분",desc:"🚶 상징적 중앙 수경관·공원 — 녹지·수공간 통합 설계"},
+  {n:"에스포 문화센터 (Kulttuurikeskus)",c:[60.1770,24.8068],time:"+10분",desc:"🚶 도심 문화시설 — 근린 공공서비스 거점"},
+  {n:"주거지구 (혼합주거·보행로)",c:[60.1735,24.8012],time:"+20분",desc:"🚶 라드번 원리 보행/차량 분리 · 저층-고층 혼합주거 · 근린녹지(쿨데삭·보행축)"},
+  {n:"근린생활시설 (학교·서비스)",c:[60.1748,24.8092],time:"+15분",desc:"🚶 보행권 내 학교·상점·서비스 배치(15분도시 선구) 확인"},
+  {n:"타피올라역 복귀",c:[60.1763,24.8043],time:"복귀",desc:"🚇 메트로로 알토대/숙소 복귀",t2:{f:[60.1748,24.8092],to:[60.1763,24.8043],op:"HSL"}}
+ ],analysis:[{ko:"타피올라",en:"Tapiola",fi:"Tapiola (Espoo)",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Espoon_Tapiola_kes%C3%A4ll%C3%A4.jpg/330px-Espoon_Tapiola_kes%C3%A4ll%C3%A4.jpg",m:"1950년대 복지국가기 계획 전원도시 — 주거+근린생활시설+녹지를 보행권에 통합한 15분도시 선구 모델(라드번 보행/차량 분리)",k:"보행 중심 혼합용도·근린시설 배치·녹지통합 → 서울 생활권계획 시설배치·보행네트워크 전략 적용",p:"중앙 연못·공원 · 메트로역 Ainoa 통합 · 녹지 속 혼합주거"}]}
  ];
 let DMAP={};
 function _mkmap(el,stops,color){
