@@ -488,6 +488,13 @@ def wpsc_analysis():
     if not can_access_system(u, 'wpsc'): return redirect('/?denied=wpsc')
     return send_file(os.path.join(HERE, 'wpsc_analysis.html'))   # WPSC 일정 분석(.md 렌더)
 
+@app.route('/wpsc/tapiola')
+def wpsc_tapiola():
+    u = current()
+    if not u: return redirect('/?sys=wpsc')
+    if not can_access_system(u, 'wpsc'): return redirect('/?denied=wpsc')
+    return send_file(os.path.join(HERE, 'wpsc_tapiola.html'))   # 타피올라 신도시 재생·도시정체성 상세
+
 # ---------------- WPSC 출장결과보고서 (편집/사진/다운로드) — dbrecords(subsystem='wpsc', kind='report') ----------------
 WPSC_REPORT_SLUG = 'wpsc-report-main'
 def default_wpsc_report():
