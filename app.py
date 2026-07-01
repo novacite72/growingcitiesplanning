@@ -524,6 +524,13 @@ def wpsc_compare():
     if not can_access_system(u, 'wpsc'): return redirect('/?denied=wpsc')
     return send_file(os.path.join(HERE, 'wpsc_compare.html'))   # 우시마↔수도권 광역계획 비교
 
+@app.route('/wpsc/mw13-slides')
+def wpsc_mw13_slides():
+    u = current()
+    if not u: return redirect('/?sys=wpsc')
+    if not can_access_system(u, 'wpsc'): return redirect('/?denied=wpsc')
+    return send_file(os.path.join(HERE, 'wpsc_mw13_slides.html'))   # 혁신 그룹 발표 슬라이드(영문)
+
 # ---------------- WPSC 출장결과보고서 (편집/사진/다운로드) — dbrecords(subsystem='wpsc', kind='report') ----------------
 WPSC_REPORT_SLUG = 'wpsc-report-main'
 def default_wpsc_report():
