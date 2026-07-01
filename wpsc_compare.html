@@ -1,0 +1,172 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>헬싱키-우시마 ↔ 수도권 광역계획 비교 · WPSC 2026</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<style>
+:root{--navy:#13243B;--teal:#0E7C86;--amber:#E0A23B;--kr:#C0392B;--fi:#1E5AA8;--line:#dfe4ea;--muted:#6b7785;--bg:#f5f7fa}
+*{box-sizing:border-box}body{margin:0;font-family:-apple-system,"Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;color:#1c2733;background:var(--bg);line-height:1.65}
+.top{background:var(--navy);color:#fff;padding:10px 16px;display:flex;align-items:center;gap:10px;position:sticky;top:0;z-index:600}
+.top a{color:#cfe0e3;text-decoration:none;font-size:13px;font-weight:700}.top .t{font-weight:800;font-size:14px}
+.wrap{max-width:960px;margin:0 auto;padding:18px 16px 60px}
+.hero{background:#fff;border:1px solid var(--line);border-left:5px solid var(--teal);border-radius:12px;padding:16px 20px;margin:12px 0}
+.hero h1{margin:0 0 4px;font-size:21px;color:var(--navy)}
+.hero .sub{color:var(--teal);font-weight:700;font-size:13.5px}
+.hero .by{color:var(--muted);font-size:12px;margin-top:6px}
+h2{color:var(--navy);font-size:17px;margin:24px 0 8px;padding-bottom:6px;border-bottom:2px solid var(--line)}
+h3{color:var(--teal);font-size:14.5px;margin:14px 0 4px}
+.card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:13px 17px;margin:9px 0}
+ul{margin:6px 0;padding-left:20px}li{margin:3px 0;font-size:13.6px}p{font-size:13.8px}
+.maps{display:flex;gap:12px;flex-wrap:wrap;margin:8px 0}
+.mapcol{flex:1;min-width:300px}
+.mhdr{font-weight:800;font-size:14px;padding:7px 10px;border-radius:8px 8px 0 0;color:#fff;display:flex;align-items:center;gap:6px}
+.mhdr.fi{background:var(--fi)}.mhdr.kr{background:#2E7D46}
+.mapbox{height:330px;border:1px solid var(--line);border-top:0;border-radius:0 0 10px 10px;overflow:hidden}
+.mstat{display:flex;gap:6px;margin-top:6px}
+.mstat .s{flex:1;background:#fff;border:1px solid var(--line);border-radius:8px;padding:6px 4px;text-align:center}
+.mstat .n{font-weight:800;font-size:14px;color:var(--navy)}.mstat .l{font-size:10.5px;color:var(--muted)}
+table{width:100%;border-collapse:collapse;margin:8px 0;font-size:13px;background:#fff;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:var(--navy);color:#fff;font-weight:700}
+tr:nth-child(even) td{background:#fafbfc}
+td.h{font-weight:700;color:var(--navy);white-space:nowrap;background:#f4f6f9}
+.fiv{color:var(--fi);font-weight:600}.krv{color:#2E7D46;font-weight:600}
+.impact{background:#eef6f7;border:1px solid #cfe6e8;border-left:5px solid var(--teal);border-radius:10px;padding:15px 19px;margin:16px 0}
+.impact h2{border:0;margin:0 0 6px}
+.q{font-style:italic;color:var(--navy);font-weight:700;background:#fbf6ec;border-left:4px solid var(--amber);padding:6px 12px;margin:8px 0;border-radius:4px}
+.legmark{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:4px;vertical-align:middle}
+.note{font-size:12px;color:var(--muted)}
+.refs{font-size:12px;color:var(--muted);margin-top:20px;border-top:1px solid var(--line);padding-top:12px}
+.refs a{color:var(--teal)}
+.leaflet-container{font:inherit}
+</style></head><body>
+<div class="top"><a href="/wpsc/itinerary">← 출장관리</a><span class="t">🌍 헬싱키-우시마 ↔ 수도권 광역계획 비교</span></div>
+<div class="wrap">
+
+<div class="hero">
+<h1>헬싱키-우시마(Uusimaa) 지역 ↔ 수도권 비교</h1>
+<div class="sub">두 광역권의 인구·면적·광역계획 체계 비교 · 대도시 성장관리를 위한 유럽형 광역계획 참고</div>
+<div class="by">WPSC 2026 · MW13 관련 · 서울연구원 최준영</div>
+<p>MW13은 <b>Helsinki-Uusimaa Regional Council(Uudenmaan liitto)</b>이 담당하는 <b>지역계획(Regional Land Use Planning)</b>을 소개하는 프로그램입니다. 핵심은 "여러 지방정부가 하나의 생활권을 어떻게 <b>공동으로</b> 계획하는가"이며, 서울·경기·인천 수도권 초광역 거버넌스에 시사점을 줍니다.</p>
+</div>
+
+<h2>🗺️ 인구·면적·광역계획 지도 비교</h2>
+<div class="maps">
+<div class="mapcol">
+<div class="mhdr fi">🇫🇮 헬싱키-우시마 (Uusimaa, Finland)</div>
+<div class="mapbox" id="mapFI"></div>
+<div class="mstat"><div class="s"><div class="n">약 180만</div><div class="l">인구(핀 31%)</div></div><div class="s"><div class="n">9,426㎢</div><div class="l">면적</div></div><div class="s"><div class="n">191/㎢</div><div class="l">인구밀도</div></div></div>
+</div>
+<div class="mapcol">
+<div class="mhdr kr">🇰🇷 수도권 (서울·경기·인천, Korea)</div>
+<div class="mapbox" id="mapKR"></div>
+<div class="mstat"><div class="s"><div class="n">약 2,600만</div><div class="l">인구(한 50%)</div></div><div class="s"><div class="n">11,819㎢</div><div class="l">면적</div></div><div class="s"><div class="n">2,200/㎢</div><div class="l">인구밀도</div></div></div>
+</div>
+</div>
+<p class="note">※ 두 지도는 각 광역권 전체를 표시하며 좌하단 <b>축척 막대(scale bar)</b>로 실제 규모를 비교할 수 있습니다. <b>면적은 유사(9,426 vs 11,819㎢)하나, 인구는 수도권이 약 14배·밀도는 약 11배</b>입니다.</p>
+
+<h2>상세 비교표</h2>
+<table>
+<tr><th>구분</th><th class="fiv">우시마 (Uusimaa)</th><th class="krv">수도권 (서울·경기·인천)</th></tr>
+<tr><td class="h">인구</td><td>약 180만 명</td><td>약 2,600만 명</td></tr>
+<tr><td class="h">면적</td><td>9,426㎢</td><td>11,819㎢</td></tr>
+<tr><td class="h">인구밀도</td><td>191 명/㎢</td><td>2,200 명/㎢</td></tr>
+<tr><td class="h">구성</td><td>26개 지방자치단체</td><td>3개 광역자치단체(서울특별시·경기도·인천광역시)</td></tr>
+<tr><td class="h">계획 주체</td><td>우시마 지역의회(법정 광역계획기구)</td><td>국토교통부, 3개 시·도</td></tr>
+<tr><td class="h">광역계획</td><td>Regional Land Use Plan(Maakuntakaava)</td><td>수도권 광역도시계획(국토교통부 승인)</td></tr>
+<tr><td class="h">계획 성격</td><td>지자체 공동 수립, 광역 토지이용의 기본 방향 제시</td><td>국가 주도·법정 광역계획으로 지침 역할</td></tr>
+<tr><td class="h">계획 범위</td><td>토지이용·교통·녹지·에너지·산업·자연보전 등</td><td>토지이용·교통·환경·주택·산업·기반시설 등</td></tr>
+<tr><td class="h">계획 주기</td><td>약 10년 주기(현재 VISIO Plan 수립 중)</td><td>20년 계획(5년 단위 재검토)</td></tr>
+</table>
+
+<h2>1. 핀란드의 공간계획 체계 (3단계)</h2>
+<p>핀란드는 지방분권이 강한 국가로, 공간계획은 <b>국가 → 지역 → 기초지자체</b>의 3단계입니다. 국가계획은 방향을 제시하고, Regional Council이 광역 차원에서 구체화하며, 각 시가 이를 토대로 도시계획을 수립합니다.</p>
+<table>
+<tr><th>위계</th><th>계획</th><th>수립기관</th><th>주요 내용</th></tr>
+<tr><td class="h">국가</td><td>National Land Use Guidelines</td><td>핀란드 정부</td><td>국가 공간정책, 기후대응, 국토균형, 국가교통축</td></tr>
+<tr><td class="h">지역</td><td>Regional Land Use Plan(Maakuntakaava)</td><td>Regional Council</td><td>광역 토지이용·교통·녹지축·에너지·산업입지·광역 인프라</td></tr>
+<tr><td class="h">기초</td><td>Local Master Plan(Yleiskaava)</td><td>Municipality</td><td>도시구조, 토지이용 방향</td></tr>
+<tr><td class="h">기초</td><td>Detailed Plan(Asemakaava)</td><td>Municipality</td><td>건축규제·용적률·건물배치 등 실제 개발계획</td></tr>
+</table>
+
+<h2>2. 핀란드 행정구역 · 우시마</h2>
+<div class="card">
+<p style="margin:0">핀란드는 총 <b>19개 Region(Maakunta)</b>과 <b>309개 Municipality</b>로 구성되며, 각 Region에 <b>Regional Council</b>이 설치되어 지역발전·광역계획·EU 지역정책·광역 인프라 조정을 담당합니다.</p>
+<p style="margin:8px 0 0"><b>Uusimaa Region</b> = 헬싱키·에스포·반타·카우니아이넨·포르보·로흐야·휘빙케 등 <b>총 26개 Municipality</b>. 인구 약 180만, <b>핀란드 GDP 약 39%·R&amp;D 투자 약 절반</b>이 집중된 가장 중요한 지역입니다.</p>
+</div>
+
+<h2>3. 방문기관 — Helsinki-Uusimaa Regional Council</h2>
+<div class="card">
+<p style="margin:0">이번 워크숍이 방문하는 <b>우시마 지역의회</b>는 26개 기초지자체가 공동 설립한 <b>법정 지방자치단체 연합체</b>로, 국가와 기초지자체 사이에서 <b>광역계획·지역발전</b>을 담당합니다.</p>
+<h3>Regional Land Use Plan의 역할</h3>
+<p style="margin:2px 0">한국의 광역도시계획과 유사하나 범위가 더 넓습니다 — <b>도시성장축·광역철도·고속도로·녹지네트워크·자연보전·산업입지·에너지망·물류거점·기후대응·광역 주거공간 구조</b>를 결정. 반면 <b>주거단지·건축물 위치 등은 각 Municipality</b>가 Master/Detailed Plan에서 결정합니다.</p>
+<h3>현재 수립 중인 새 계획 — VISIO Plan</h3>
+<p style="margin:2px 0">Green Transition·수소경제·에너지 인프라·산업 클러스터·순환경제·물류축·장거리 철도·생태네트워크·자연보전을 주제로, 기존 <b>Uusimaa Regional Plan 2050을 보완</b>하는 새 전략계획으로 추진 중(MW13의 핵심 주제).</p>
+</div>
+
+<h2>4. 수도권(Capital Region) vs 대도시권(Metropolitan Area)</h2>
+<table>
+<tr><th>구분</th><th>Helsinki Capital Region</th><th>Helsinki Metropolitan Area</th></tr>
+<tr><td class="h">구성</td><td>Helsinki·Espoo·Vantaa·Kauniainen (4개)</td><td>수도권 4개 시 + 주변 통근권 약 10개 시·군(약 14개)</td></tr>
+<tr><td class="h">기능</td><td>행정·정치 중심</td><td>경제·생활권 중심</td></tr>
+<tr><td class="h">주요 기관</td><td>HSL·HSY 공동운영</td><td>광역 통근·주택·교통 협력</td></tr>
+<tr><td class="h">한국 비교</td><td>서울특별시(+인천 일부·성남 정도)</td><td>수도권 생활권(서울·인천·경기 서북부)</td></tr>
+</table>
+<p class="note">Capital Region = 행정적으로 정의된 수도권 · Metropolitan Area = 실제 통근·생활권을 반영한 기능적 대도시권.</p>
+
+<h2>5. 한국 계획체계와의 대응</h2>
+<table>
+<tr><th>핀란드</th><th>대한민국</th></tr>
+<tr><td>National Land Use Guidelines</td><td>국토종합계획</td></tr>
+<tr><td>Regional Council</td><td>광역계획권(시·도)</td></tr>
+<tr><td>Regional Land Use Plan</td><td>광역도시계획</td></tr>
+<tr><td>Municipality Master Plan</td><td>도시기본계획</td></tr>
+<tr><td>Detailed Plan</td><td>도시관리계획·지구단위계획</td></tr>
+</table>
+<p style="margin:4px 0 0">차이점: 핀란드는 <b>Regional Council이 기초지자체 간 조정·합의</b>를 중심으로 전략계획을 수립하고 세부 개발은 지방정부 자율성을 폭넓게 보장. 한국은 <b>중앙정부의 계획체계·법적 규제가 상대적으로 강함</b>.</p>
+
+<h2>6. 「한국에서 어디인가?」 — 대응 기관</h2>
+<div class="card">
+<p style="margin:0 0 6px">결론: 정확히 일치하는 한국 기관은 없으며, 기능적으로 <b>광역지자체(시·도) + 광역도시계획위원회 + 시도연구원 협의 기능</b>을 합친 조직에 가장 가깝습니다.</p>
+<div class="q">서울시 + 경기도 + 인천시가 공동으로 '수도권 광역계획청'을 만들어 수도권 전체의 토지이용·교통을 계획하는 조직 — 이것이 Helsinki-Uusimaa Regional Council에 가장 가깝습니다.</div>
+<table>
+<tr><th>핀란드</th><th>한국에서 가장 가까운 기관</th><th>유사도</th></tr>
+<tr><td>Helsinki-Uusimaa Regional Council</td><td>수도권광역급(서울·경기·인천 공동 운영 광역계획기구)</td><td>★★★★★</td></tr>
+<tr><td>Uusimaa Region</td><td>경기도(행정) + 수도권(기능권)</td><td>★★★★☆</td></tr>
+<tr><td>Regional Assembly</td><td>광역의회(시·도의회)</td><td>★★★★☆</td></tr>
+<tr><td>Regional Land Use Plan</td><td>광역도시계획</td><td>★★★★★</td></tr>
+</table>
+<p style="margin:6px 0 0"><b>서울연구원 관점</b>: "서울·경기·인천이 공동 출자한 '수도권계획연구원'이 <b>법적 계획 수립 권한까지 가진 조직</b>". 정책 연구에 그치지 않고 <b>법적 효력을 갖는 광역 토지이용계획</b>을 수립해 26개 기초지자체 도시계획의 상위 지침으로 기능하는 점이 가장 큰 차이입니다.</p>
+</div>
+
+<div class="impact">
+<h2>💡 서울 도시계획에 주는 시사점</h2>
+<ul>
+<li>서울·경기·인천을 아우르는 <b>수도권 초광역 거버넌스</b> 구축</li>
+<li>기후변화·에너지 전환을 반영한 <b>광역 공간전략</b></li>
+<li>철도·물류·주택을 통합한 <b>Land Use–Transport Integration</b></li>
+<li>개별 도시 개발보다 <b>광역 생활권 차원의 전략계획</b> 강화</li>
+<li>지자체 간 협력·합의 기반의 <b>유연한 광역계획 모델</b> 구축</li>
+</ul>
+<p style="margin:8px 0 0;font-size:13.5px">두 지역 모두 <b>대도시 성장관리·광역교통 체계·녹지/환경 보전·산업/경제 성장 유도</b>를 핵심 목표로 광역계획을 수립하고 있으며, Uusimaa Regional Council은 한국 수도권 공간계획이 참고할 <b>대표적 유럽형 광역계획 사례</b>로 평가됩니다.</p>
+</div>
+
+<div class="refs"><b>관련</b> · <a href="/wpsc/mw13">MW13 종합보고서(VISION 계획) →</a> · <a href="/wpsc/tapiola">타피올라 재생 →</a> · <a href="/wpsc/jatkasaari">야트카사리 항만재생 →</a> · 지도: OpenStreetMap</div>
+<p style="text-align:center;margin-top:22px"><a href="/wpsc/itinerary" style="color:var(--teal);font-weight:700;text-decoration:none">← WPSC 출장관리로</a></p>
+</div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+function mk(m,c,col,l){L.circleMarker(c,{radius:7,color:'#fff',weight:2,fillColor:col,fillOpacity:1}).addTo(m).bindTooltip(l,{permanent:false});}
+window.addEventListener('load',function(){
+ if(typeof L==='undefined')return;
+ var tile='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',att='&copy; OpenStreetMap';
+ var fi=L.map('mapFI',{scrollWheelZoom:false});L.tileLayer(tile,{maxZoom:18,attribution:att}).addTo(fi);
+ L.control.scale({metric:true,imperial:false}).addTo(fi);
+ mk(fi,[60.170,24.941],'#B5462F','헬싱키');mk(fi,[60.205,24.656],'#1E5AA8','에스포');mk(fi,[60.294,25.040],'#1E5AA8','반타');mk(fi,[60.394,25.665],'#0E7C86','포르보');mk(fi,[60.249,24.066],'#0E7C86','로흐야');mk(fi,[60.631,24.860],'#0E7C86','휘빙케');
+ fi.fitBounds([[59.90,22.90],[60.72,26.30]],{padding:[8,8]});
+ var kr=L.map('mapKR',{scrollWheelZoom:false});L.tileLayer(tile,{maxZoom:18,attribution:att}).addTo(kr);
+ L.control.scale({metric:true,imperial:false}).addTo(kr);
+ mk(kr,[37.566,126.978],'#C0392B','서울');mk(kr,[37.456,126.705],'#2E7D46','인천');mk(kr,[37.263,127.029],'#0E7C86','수원');mk(kr,[37.740,127.034],'#0E7C86','의정부');mk(kr,[37.294,127.011],'#0E7C86','화성·용인권');
+ kr.fitBounds([[36.90,126.00],[38.30,127.90]],{padding:[8,8]});
+ setTimeout(function(){fi.invalidateSize();kr.invalidateSize();fi.fitBounds([[59.90,22.90],[60.72,26.30]],{padding:[8,8]});kr.fitBounds([[36.90,126.00],[38.30,127.90]],{padding:[8,8]});},350);
+});
+</script>
+</body></html>

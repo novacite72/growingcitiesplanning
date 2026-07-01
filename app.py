@@ -517,6 +517,13 @@ def wpsc_doc(name):
     if name not in {'workshop', 'vision', 'impact', 'legend', 'markings'}: return redirect('/wpsc/mw13')
     return send_file(os.path.join(HERE, 'wpsc_doc_' + name + '.html'))   # MW13 배경자료 원문·번역
 
+@app.route('/wpsc/compare')
+def wpsc_compare():
+    u = current()
+    if not u: return redirect('/?sys=wpsc')
+    if not can_access_system(u, 'wpsc'): return redirect('/?denied=wpsc')
+    return send_file(os.path.join(HERE, 'wpsc_compare.html'))   # 우시마↔수도권 광역계획 비교
+
 # ---------------- WPSC 출장결과보고서 (편집/사진/다운로드) — dbrecords(subsystem='wpsc', kind='report') ----------------
 WPSC_REPORT_SLUG = 'wpsc-report-main'
 def default_wpsc_report():
