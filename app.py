@@ -509,6 +509,14 @@ def wpsc_mw13():
     if not can_access_system(u, 'wpsc'): return redirect('/?denied=wpsc')
     return send_file(os.path.join(HERE, 'wpsc_mw13.html'))   # MW13 모바일워크숍 — VISION 녹색전환 지역계획 보고서
 
+@app.route('/wpsc/doc/<name>')
+def wpsc_doc(name):
+    u = current()
+    if not u: return redirect('/?sys=wpsc')
+    if not can_access_system(u, 'wpsc'): return redirect('/?denied=wpsc')
+    if name not in {'workshop', 'vision', 'impact', 'legend', 'markings'}: return redirect('/wpsc/mw13')
+    return send_file(os.path.join(HERE, 'wpsc_doc_' + name + '.html'))   # MW13 배경자료 원문·번역
+
 # ---------------- WPSC 출장결과보고서 (편집/사진/다운로드) — dbrecords(subsystem='wpsc', kind='report') ----------------
 WPSC_REPORT_SLUG = 'wpsc-report-main'
 def default_wpsc_report():
