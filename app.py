@@ -632,6 +632,53 @@ def api_wpsc_report_save():
     con.commit()
     return jsonify(ok=True, updated=now())
 
+# ---------------- MW13 발표 슬라이드 (편집 가능) — dbrecords(subsystem='wpsc', kind='slides') ----------------
+WPSC_SLIDES_SLUG = 'wpsc-mw13-slides'
+def default_wpsc_slides():
+    return {"title": "Innovative Green Transition — MW13 Group Presentation", "slides": [
+        {"t": "Innovative Green Transition", "b": "<p class='sub'>Impact assessment of the VISION regional plan — group findings &amp; recommendations</p><p class='sub'>Helsinki-Uusimaa Regional Council · WPSC 2026 · 1 July 2026</p><p class='sub'>Junyoung Choi · The Seoul Institute</p>"},
+        {"t": "What “Innovative Green Transition” means", "b": "<ul><li>Using <b>strategic land use</b> to <b>enable</b> innovation</li><li>Drives innovation in energy, industry, circular economy</li><li>A flexible, predictable frame &#8594; Uusimaa as an innovation environment</li><li>One of four cross-cutting themes that audit the plan</li></ul>"},
+        {"t": "Does the VISION draft enable innovation?", "b": "<ul><li>The plan <b>enables</b> innovation rather than creating it directly</li><li>Scale: No impact &#8594; Minor &#8594; Enabling &#8594; Strong &#8594; Contradictory &#8594; Negative</li><li>&#9888; ‘Enabling’ character risks <b>optimism bias</b> (a best-case reading)</li></ul>"},
+        {"t": "Key issues — five things that decide innovation", "b": "<ul><li><b>Path dependency</b> — big infrastructure (esp. transport) locks in and slows radical innovation</li><li><b>Data centres</b> — siting must connect to waste-heat / district heating</li><li><b>International talent</b> — accessibility (transit, housing, R&amp;D) is decisive</li><li><b>Ports</b> — deep-water ports as hydrogen / clean-industry hubs</li><li>Assessment leans best-case &#8594; needs enabling conditions &amp; risks</li></ul>"},
+        {"t": "Trade-offs to manage", "b": "<ul><li><b>Flexibility</b> &#8596; <b>certainty</b> — indicative frame vs. bankable designations</li><li><b>Densification</b> (‘growing inwards’) &#8596; <b>land</b> for new industry &amp; energy</li><li><b>Regional frame</b> &#8596; <b>local decisions</b> — a coordination gap</li></ul>"},
+        {"t": "Conclusion — Three recommendations", "b": "<p class='sub'>to strengthen the assessment and the plan — from lens ④ Innovative Green Transition</p><p style='font-size:1.15em'><b>1</b> De-risk lock-in &nbsp;·&nbsp; <b>2</b> Steer new demand &nbsp;·&nbsp; <b>3</b> Open access</p>"},
+        {"t": "1. Reduce path dependency, secure future flexibility", "b": "<ul><li>Designate <b>flexibility zones</b>, <b>staged transition pathways</b>, <b>alternative alignments</b></li><li>Add a <b>‘lock-in risk’ indicator</b> to the impact assessment</li></ul><p class='why'>Why — infrastructure lock-in (especially transport) is the main brake on radical innovation.</p>"},
+        {"t": "2. Strategically steer emerging siting demand", "b": "<ul><li>Turn siting principles (<b>waste-heat / district-heating adjacency</b>) into <b>concrete designations</b></li><li>Profile deep-water ports &amp; clusters as <b>hydrogen / e-fuel / green-steel hubs</b></li><li>Quantify <b>waste-heat &#8211; power &#8211; water</b> synergies</li></ul><p class='why'>Why — capture data-centre &amp; hydrogen demand as a regional innovation asset.</p>"},
+        {"t": "3. Strengthen access to talent &amp; innovation ecosystems", "b": "<ul><li>Set <b>accessibility</b> (transit, housing, university/R&amp;D) as an <b>innovation KPI</b></li><li>Institutionalise <b>cluster governance</b> — joint municipality&#8211;business&#8211;university profiling</li><li>Link to <b>smart specialisation</b></li></ul><p class='why'>Why — innovation follows accessible people and connected ecosystems.</p>"},
+        {"t": "In short — don’t just enable, de-risk &amp; steer", "b": "<ul><li>Assess <b>enabling conditions, risks &amp; monitoring</b> — counter optimism bias</li><li>A <b>flexible regional frame</b> + <b>proactive steering</b> = a resilient innovation region</li></ul><p style='font-size:1.4em;font-weight:800;margin-top:16px'>Thank you<span style='color:#9fb0c3;font-weight:400'> · Kiitos · 감사합니다</span></p>"},
+    ]}
+
+@app.get('/api/wpsc/slides')
+def api_wpsc_slides():
+    u = current()
+    if not u: return jsonify(error='로그인이 필요합니다.'), 401
+    if not can_access_system(u, 'wpsc'): return jsonify(error='접근 권한이 없습니다.'), 403
+    import json as _json
+    row = db().execute("SELECT data,updated FROM dbrecords WHERE subsystem='wpsc' AND slug=?", (WPSC_SLIDES_SLUG,)).fetchone()
+    if row:
+        try: data = _json.loads(row['data'])
+        except Exception: data = default_wpsc_slides()
+        updated = row['updated']
+    else:
+        data = default_wpsc_slides(); updated = None
+    return jsonify(slides=data, updated=updated, canEdit=(u['role'] == 'superadmin'))
+
+@app.post('/api/wpsc/slides')
+@super_required
+def api_wpsc_slides_save():
+    import json as _json
+    j = request.get_json(force=True) or {}
+    sl = j.get('slides') or {}
+    body = _json.dumps(sl, ensure_ascii=False)
+    con = db()
+    ex = con.execute("SELECT id FROM dbrecords WHERE subsystem='wpsc' AND slug=?", (WPSC_SLIDES_SLUG,)).fetchone()
+    if ex:
+        con.execute("UPDATE dbrecords SET kind='slides',title=?,data=?,updated=? WHERE id=?", ('MW13 발표 슬라이드', body, now(), ex['id']))
+    else:
+        con.insert("INSERT INTO dbrecords(subsystem,kind,slug,title,data,updated) VALUES(?,?,?,?,?,?)", ('wpsc', 'slides', WPSC_SLIDES_SLUG, 'MW13 발표 슬라이드', body, now()))
+    con.commit()
+    return jsonify(ok=True, updated=now())
+
 @app.get('/api/wpsc')
 def api_wpsc():
     u = current()
