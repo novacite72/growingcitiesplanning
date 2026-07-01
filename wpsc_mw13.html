@@ -1,13 +1,16 @@
 <!doctype html><html lang="ko"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>MW13 모바일워크숍 — 녹색전환 지역계획(VISION) · WPSC 2026</title>
+<title>MW13 — Green Transition Regional Planning (VISION) · 녹색전환 지역계획 · WPSC 2026</title>
 <style>
 :root{--navy:#13243B;--teal:#0E7C86;--amber:#E0A23B;--kr:#C0392B;--green:#1F6F50;--line:#dfe4ea;--muted:#6b7785;--bg:#f5f7fa}
 *{box-sizing:border-box}
 body{margin:0;font-family:-apple-system,"Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;color:#1c2733;background:var(--bg);line-height:1.65}
-.top{background:var(--navy);color:#fff;padding:10px 16px;display:flex;align-items:center;gap:10px;position:sticky;top:0;z-index:5}
+.top{background:var(--navy);color:#fff;padding:10px 16px;display:flex;align-items:center;gap:10px;position:sticky;top:0;z-index:5;flex-wrap:wrap}
 .top a{color:#cfe0e3;text-decoration:none;font-size:13px;font-weight:700}
 .top .t{font-weight:800;font-size:14px}
+.langtog{margin-left:auto;display:flex;gap:6px}
+.lbtn{font-size:12px;font-weight:700;padding:5px 12px;border-radius:16px;border:1px solid #40536e;background:transparent;color:#cfe0e3;cursor:pointer}
+.lbtn.on{background:var(--teal);color:#fff;border-color:var(--teal)}
 .wrap{max-width:880px;margin:0 auto;padding:20px 16px 60px}
 .hero{background:#fff;border:1px solid var(--line);border-left:5px solid var(--green);border-radius:12px;padding:18px 20px;margin:14px 0}
 .hero h1{margin:0 0 4px;font-size:21px;color:var(--navy)}
@@ -37,12 +40,13 @@ tr:nth-child(even) td{background:#fafbfc}
 .q{font-style:italic;color:var(--navy);font-weight:700;background:#fbf6ec;border-left:4px solid var(--amber);padding:6px 12px;margin:8px 0;border-radius:4px}
 .refs{font-size:12px;color:var(--muted);margin-top:20px;border-top:1px solid var(--line);padding-top:12px}
 .refs a{color:var(--teal)}
-.tagr{display:inline-block;background:var(--green);color:#fff;font-size:11px;font-weight:800;padding:2px 8px;border-radius:12px;margin-left:6px}
 </style></head>
 <body>
-<div class="top"><a href="/wpsc/itinerary">← 출장관리</a><span class="t">🚌 MW13 — 녹색전환 지역계획(VISION)</span></div>
-<div class="wrap">
+<div class="top"><a href="/wpsc/itinerary">← 출장관리</a><span class="t">🚌 MW13 — VISION 녹색전환 지역계획</span>
+<div class="langtog"><button id="bko" class="lbtn on" onclick="setLang('ko')">한국어</button><button id="ben" class="lbtn" onclick="setLang('en')">English</button></div></div>
 
+<!-- ================= KOREAN ================= -->
+<div id="ko" class="wrap">
 <div class="hero">
 <h1>모바일워크숍 13 (MW13) — 녹색전환을 위한 지역계획</h1>
 <div class="sub">헬싱키-우시마 지역위원회 · VISION 광역토지이용계획 국제 동료검토(peer review)</div>
@@ -88,34 +92,34 @@ tr:nth-child(even) td{background:#fafbfc}
 <p style="font-size:13.5px;margin:2px 0">핀란드 남부 <b>수도권 메트로폴리탄 지역</b>(헬싱키·에스포·반타·카우니아이넨 등). 육지 9,440㎢. 3중 위계(대도시권 4 → 헬싱키권 14 → 우시마 26). 도시-농촌 격차 큼(헬싱키 ~68.5만 ↔ 최소 푸킬라 ~1,750명).</p>
 <h3>VISION(VISIO) 지역계획</h3>
 <ul>
-<li><b>성격</b>: 「혁신적 녹색전환을 위한 <b>주제별(thematic) 광역토지이용계획</b>」 — 환경적 제약을 고려하며 녹색전환 촉진</li>
-<li><b>범위·일정</b>: 우시마 전역 · <b>2024–2027 수립</b> · <b>목표연도 2050</b> · 초안 공람(~2026.5.8) 후 2027 승인 예정</li>
-<li><b>위상</b>: 국가·광역적 중요사항을 다루고 지자체 상세계획의 지침 — "유연성·일반성" 지향(불필요한 제약 지양)</li>
+<li><b>성격</b>: 「혁신적 녹색전환을 위한 <b>주제별(thematic) 광역토지이용계획</b>」 — 기존 계획을 보완·부분대체하는 <b>단계계획</b>, 전략적·지시적(축척 1:250,000)</li>
+<li><b>범위·일정</b>: 우시마 전역 26개 지자체 · <b>2024–2027 수립</b> · <b>목표연도 2050</b> · 초안 공람(2026.3.11–5.8) 후 2027 승인 예정</li>
+<li><b>위상</b>: 국가·광역적 중요사항을 다루고 지자체 상세계획의 지침 — "유연성·일반성" 지향</li>
 </ul>
 <div class="q">"확장이 아닌 내부로 성장(Growing inwards)" — 기존 시가지·인프라 기반 고밀화 + 강한 중심지 + 대중교통·보행·자전거 서비스망 + 생태네트워크·수자원·재생에너지 강화</div>
-<p style="font-size:12.5px;color:var(--muted);margin:4px 0 0">전망: 인구 180만 → 2050 최대 <b>220만</b>(+55만), 일자리 86.6만 → 약 100만(+29만). 대부분 대도시권 집중·농촌 감소.</p>
+<p style="font-size:12.5px;color:var(--muted);margin:4px 0 0">전망: 인구 180만 → 2050 최대 <b>220만</b>(+55만), 일자리 86.6만 → 약 100만(+29만) · <b>2030 기후중립</b> 후 탄소 네거티브(2005년比 2030년 배출 80% 감축)</p>
 </div>
 
 <h2>3. VISION 계획 6대 주제</h2>
-<div class="theme"><b>① 에너지</b> — 전기화·에너지수요: 송전망(전기·가스·<b>수소</b>), 원자력(<b>SMR</b>), 태양광, 폐열·지열·에너지저장</div>
-<div class="theme"><b>② 자연·탄소격리</b> — 보호구역, 녹지연결, 생물다양성 중요지(LUO), <b>생태보상(ecological compensation)</b>, 탄소흡수원</div>
-<div class="theme"><b>③ 산업생산·순환경제·토양관리</b> — 청정에너지·신기술 투자로서 녹색산업, 산업·물류·순환경제 <b>클러스터</b> 지정</div>
-<div class="theme"><b>④ 물관리·수자원</b> — 광역 물공급지·정책, 지하수 갱신 (<b>안보상 핵심 물공급지는 지도 비표기</b>, 신규만 표기)</div>
-<div class="theme"><b>⑤ 물류·장거리 여객교통</b> — 공급안보·효율: <b>동부철도·에어레일·탈린터널</b>, 물류·항만, 대체연료 급유소, 환승거점</div>
-<div class="theme"><b>⑥ 국가방위</b> — 변화된 안보상황 반영: 국방부지·사격장·훈련 소음/보호구역</div>
-<p style="font-size:12.5px;color:var(--muted);margin:6px 0 0">3대 상위목표: <b>환경적으로 현명한 · 혁신적 · 행복한 우시마</b> (예상변화→목표→설계원칙→계획해법)</p>
+<div class="theme"><b>① 에너지</b> — 태양광(50ha·1MWp 기준), 원자력(Loviisa+<b>SMR</b> 1,500MWth 미만), 지열·폐열(데이터센터 폐열회수 의무), 송전망 400/110kV·<b>EstLink 3</b>·<b>수소망</b></div>
+<div class="theme"><b>② 자연·탄소격리</b> — 보호구역 3,337ha, 녹색연결(도시 300m/외곽 500–1,000m), 생물다양성 중요지(LUO), <b>생태보상</b>·완화위계, 탄소흡수원(산림 52.1만ha)</div>
+<div class="theme"><b>③ 산업생산·순환경제·토양관리</b> — 약 <b>25개 클러스터</b> 단일 개발원칙지정(Joddböle 청정수소·녹색강, Sköldvik 정유·순환경제 등), 심수항=수소·청정산업 적지</div>
+<div class="theme"><b>④ 물관리·수자원</b> — 광역 물공급지·정책(<b>안보상 핵심 물공급지 지도 비표기</b>), 지하수 규정</div>
+<div class="theme"><b>⑤ 물류·장거리 여객교통</b> — <b>공항철도·동부철도·탈린터널</b>, Vuosaari·Inkoo 항, 대체연료 급유소, 환승거점(TEN-T)</div>
+<div class="theme"><b>⑥ 국가방위</b>(신규) — 안보상황 반영, 지도 최소표기(4개 EP구역), 사격장·소음/보호구역, 이중용도 교통망</div>
+<p style="font-size:12.5px;color:var(--muted);margin:6px 0 0">3대 상위목표: <b>기후·생물다양성 대응 · 지속가능·혁신 경쟁력 · 기능성·회복력·안전</b> (지역비전 "유럽에서 가장 환경스마트·혁신·행복한 지역")</p>
 
 <h2>4. 4대 교차주제 — 영향평가 관점</h2>
 <p style="font-size:13px;color:var(--muted)">6개 주제를 하나의 지속가능 녹색전환 프레임으로 묶어 <b>계획해법을 평가·개선하는 "감사자(auditor)"</b> 역할. 워크숍은 이 중 하나를 골라 검토.</p>
-<div class="cc"><b>① 기후변화 완화·적응</b> — 목표: <b>2030 기후중립 후 탄소 네거티브</b> + 회복력. 완화는 강하게 지원, <b>적응 영향은 긍정적이나 제한적</b>(자평).</div>
+<div class="cc"><b>① 기후변화 완화·적응</b> — 목표: <b>2030 기후중립 후 탄소 네거티브</b> + 회복력. 완화는 강하게 지원, <b>적응 영향은 긍정적이나 제한적</b>.</div>
 <div class="cc"><b>② 안보·회복력·공급안정</b> — 개별해법이 아닌 <b>총체적 토지이용</b>으로 핵심기능 보호·시스템 분산·리스크 예측. 인프라-산업-자연 연계.</div>
-<div class="cc"><b>③ 정의·사회적 수용성</b> — <b>분배정의+인정정의</b>. 지자체별 영향평가·취약집단·보상·주민 지역지식·"place vs space"·협의를 넘은 <b>공동생산(co-production)</b>. "공정성이 수용성을 높이나 보장하진 않는다".</div>
+<div class="cc"><b>③ 정의·사회적 수용성</b> — <b>분배정의+인정정의</b>. 지자체별 영향평가·취약집단·보상·주민 지역지식·협의를 넘은 <b>공동생산(co-production)</b>. "공정성이 수용성을 높이나 보장하진 않는다".</div>
 <div class="cc"><b>④ 혁신적 녹색전환</b> — 유연·예측가능 프레임으로 혁신환경 강화. 국제인재·<b>경로의존성(교통)</b>·<b>데이터센터 입지(폐열·지역난방 인접)</b>·항만 혁신허브 지적.</div>
 <div class="card" style="margin-top:10px">
 <h3>🌸 영향평가 꽃(Impact Assessment Flower)</h3>
 <p style="font-size:13px;margin:2px 0">핵심 시각화 도구 — <b>안쪽 원</b>=6개 주제가 교차주제를 이행하는 역할, <b>바깥 꽃잎</b>=개별 계획지정의 영향 정도를 색으로 표현. 척도: 영향없음/미미/<b>가능케 함(Enabling)</b>/강함/<b>상충(Contradictory)</b>/부정.</p>
 <ul>
-<li><b>기후 완화</b>: 자연·탄소격리=STRONG+, 에너지=+, 물류·산업=상충(철도↓배출 vs 신규도로↑)</li>
+<li><b>기후 완화</b>: 자연·탄소격리=STRONG+, 에너지=+, 물류·산업=상충(철도↓배출 vs 신규도로·건설↑)</li>
 <li><b>기후 적응</b>: 자연·탄소격리=STRONG+, 산업=상충(불투수면·열섬), 다수 주제 영향없음 → <b>적응이 완화보다 약함</b>을 시각화</li>
 </ul>
 </div>
@@ -141,15 +145,15 @@ tr:nth-child(even) td{background:#fafbfc}
 <li><b>제안(proposal) 단계</b> — 단일노선 확정, <b>Natura 2000 영향평가</b>(구역 내 100개소·약 18만 ha)</li>
 <li><b>2027</b> — 지역의회(Assembly) <b>승인 예정</b></li>
 </ul>
-<p style="font-size:12px;color:var(--muted);margin:4px 0 0">변수: <b>토지이용법(Land Use Act) 개정</b>(2026 발효 예상)이 절차·지정 용어에 영향 · 축척 1:250,000 · 목표연도 2050 · 기후중립 2030(이후 탄소 네거티브) · 배출 2005년比 2030년 80% 감축</p>
+<p style="font-size:12px;color:var(--muted);margin:4px 0 0">변수: <b>토지이용법(Land Use Act) 개정</b>(2026 발효 예상)이 절차·지정 용어에 영향 · 배출 2005년比 2030년 80% 감축</p>
 </div>
 
 <div class="impact">
 <h2>💡 서울·수도권 광역계획 시사점</h2>
 <ul>
-<li><b>"내부로 성장" 원칙</b> — 포화 시가지의 압축·재생 정당화. 외연확장 대비 "이미 사용된 땅의 효율적 재활용" 논리는 수도권 광역계획에 직접 이식 가능.</li>
-<li><b>교차주제 영향평가 매트릭스</b> — 부문 나열이 아닌 4대 주제로 가로질러 평가·감사. 파편화되기 쉬운 수도권정비계획의 통합성·소통(영향평가 꽃) 강화.</li>
-<li><b>정의·수용성 제도화</b> — 분배+인정정의, 지자체별 평가·보상·공동생산. 재개발·에너지·교통 입지갈등이 첨예한 서울에 초기 개방대화·취약집단 배려의 제도화 시사.</li>
+<li><b>"내부로 성장" 원칙</b> — 포화 시가지의 압축·재생 정당화. "이미 사용된 땅의 효율적 재활용" 논리는 수도권 광역계획에 직접 이식 가능.</li>
+<li><b>교차주제 영향평가 매트릭스</b> — 부문 나열이 아닌 4대 주제로 가로질러 평가·감사. 수도권정비계획의 통합성·소통(영향평가 꽃) 강화.</li>
+<li><b>정의·수용성 제도화</b> — 분배+인정정의, 지자체별 평가·보상·공동생산. 입지갈등이 첨예한 서울에 초기 개방대화·취약집단 배려의 제도화 시사.</li>
 <li><b>안보·공급안정을 토지이용에 통합</b> — 핵심 물공급·데이터센터·에너지망을 회복력 축으로. 반도체·데이터센터·전력망 안보가 부상하는 한국에 선제 참고.</li>
 <li><b>광역-기초 역할분담</b> — "프레임은 광역, 결정은 지자체"의 조정 부족 비판 → 자율성 존중과 광역 조정력의 균형 교훈.</li>
 <li><b>신흥 입지수요 사전 유도</b> — 폐열활용 데이터센터·수소/이퓨얼 허브를 계획단계에서 선제 유도·조정.</li>
@@ -157,8 +161,136 @@ tr:nth-child(even) td{background:#fafbfc}
 </div>
 
 <div class="refs">
-<b>출처</b> · WPSC 2026 MW13 배경자료 5종 (Helsinki-Uusimaa Regional Council, 2026) — Workshop Presentation / VISION Draft Plan Description / Plan Markings &amp; Regulations / Map Legend / Impact Assessments of Cross-cutting Themes(2026.4.24). 문의: Ilona Mansikka · ilona.mansikka@uudenmaanliitto.fi<br>
+<b>출처</b> · WPSC 2026 MW13 배경자료 5종 (Helsinki-Uusimaa Regional Council, 2026) — Workshop Presentation / VISION Draft Plan Description / Plan Markings &amp; Regulations / Map Legend / Impact Assessments of Cross-cutting Themes. 문의: Ilona Mansikka · ilona.mansikka@uudenmaanliitto.fi<br>
 관련 · <a href="/wpsc/tapiola">타피올라 재생 →</a> · <a href="/wpsc/jatkasaari">야트카사리 항만재생 →</a>
 </div>
 <p style="text-align:center;margin-top:24px"><a href="/wpsc/itinerary" style="color:var(--teal);font-weight:700;text-decoration:none">← WPSC 출장관리로 돌아가기</a></p>
-</div></body></html>
+</div>
+
+<!-- ================= ENGLISH ================= -->
+<div id="en" class="wrap" style="display:none">
+<div class="hero">
+<h1>Mobile Workshop 13 (MW13) — Regional Planning for the Green Transition</h1>
+<div class="sub">Helsinki-Uusimaa Regional Council · International peer review of the VISION regional land-use plan draft</div>
+<div class="by">WPSC 2026 · Wed 1 July 2026 · Junyoung Choi, The Seoul Institute · Contact: Ilona Mansikka (uudenmaanliitto.fi)</div>
+<p>MW13 invites international planning experts to conduct an <b>impact assessment and peer review of the draft "VISION – Thematic Regional Plan for an Innovative Green Transition"</b> of the Helsinki-Uusimaa Regional Council, from the standpoint of <b>four cross-cutting themes</b>, and to produce clear recommendations for developing the plan.</p>
+</div>
+
+<div class="alert">
+<h2>⚠️ On-site guidance for Wed 1 July — Gathering &amp; departure</h2>
+<ul>
+<li>🏛️ Enter the <b>University of Helsinki main building</b> via <b>Unioninkatu (Senate Square side)</b> or <b>Aleksanterinkatu</b>.</li>
+<li>🗿 If registered for a mobile workshop, gather at <b>Senate Square, around the central statue, by 13:45 at the latest</b>.</li>
+<li>⏱️ <b>All groups leave at 14:00 sharp</b> (your group is printed on the badge) — MW13 departs from Senate Square.</li>
+<li>※ Note: only MW6 (Public libraries) leaves at 13:45 from the University of Helsinki, Unioninkatu entrance.</li>
+<li>💻 Please <b>bring a laptop</b> (each group writes a short summary) · record discussion in the Teams meeting chat.</li>
+</ul>
+</div>
+
+<h2>1. Workshop overview</h2>
+<div class="card">
+<h3>Host · Character</h3>
+<p style="font-size:13.5px;margin:2px 0">Host: <b>Helsinki-Uusimaa Regional Council (Uudenmaan liitto)</b> — a statutory joint regional authority of 26 member municipalities. Tasks: regional development, <b>regional land-use planning</b>, advocacy, project funding, and national/EU projects.</p>
+<p style="font-size:13.5px;margin:6px 0 0">Purpose: not a mere presentation but an <b>international expert peer review of the VISION draft</b> — assessing impacts through four cross-cutting themes, surfacing <b>blind spots</b>, and drawing clear recommendations.</p>
+<h3>Programme (1 July 2026)</h3>
+<table class="time">
+<tr><th>Time</th><th>Content</th></tr>
+<tr><td>14:30–15:50</td><td>Introduction &amp; expert lectures — Uusimaa and the Finnish planning system, the VISION regional plan, regional planning for climate/biodiversity/resilience/sustainable growth, Q&amp;A</td></tr>
+<tr><td>15:50–16:00</td><td>Coffee &amp; forming groups (choose one of the four cross-cutting themes)</td></tr>
+<tr><td>16:00–16:40</td><td>Interactive group workshop (task work)</td></tr>
+<tr><td>16:40–17:30</td><td>Plenary &amp; wrap-up — group presentations, discussion of key findings/recommendations (ends by 17:30 at the latest)</td></tr>
+</table>
+<p style="font-size:12.5px;color:var(--muted);margin:6px 0 0">Preparation: review background materials (draft plan + self-assessment) → choose one theme of interest · bring a laptop · materials sent in advance (AI-translated English, also Swedish).</p>
+</div>
+
+<h2>2. The Uusimaa region · VISION plan</h2>
+<div class="stats">
+<div class="stat"><div class="n">1.8M</div><div class="l">Population (31% of Finland)</div></div>
+<div class="stat"><div class="n">39%</div><div class="l">Share of Finnish GDP</div></div>
+<div class="stat"><div class="n">866k</div><div class="l">Jobs (1/3 of Finland)</div></div>
+<div class="stat"><div class="n">26</div><div class="l">Member municipalities</div></div>
+</div>
+<div class="card">
+<p style="font-size:13.5px;margin:2px 0">A <b>metropolitan region in southern Finland</b> (Helsinki, Espoo, Vantaa, Kauniainen, etc.). Land area 9,440 km². Three-tier hierarchy (4 core → 14 Helsinki region → 26 Uusimaa). Large urban-rural gap (Helsinki ~684,600 ↔ smallest, Pukkila ~1,750).</p>
+<h3>The VISION (VISIO) regional plan</h3>
+<ul>
+<li><b>Character</b>: a <b>thematic regional land-use plan</b> "for an innovative green transition" — a <b>phased plan</b> that complements and partly replaces existing plans; strategic and indicative (scale 1:250,000).</li>
+<li><b>Scope · schedule</b>: all 26 Uusimaa municipalities · <b>prepared 2024–2027</b> · <b>target year 2050</b> · draft on public display (11 Mar–8 May 2026), approval expected 2027.</li>
+<li><b>Status</b>: addresses nationally/regionally significant matters and steers local detailed plans — aiming for "flexibility and generality".</li>
+</ul>
+<div class="q">"Growing inwards, not outwards" — densification on existing built-up areas and infrastructure + stronger centres + public-transport/walking/cycling service networks + reinforced ecological networks, water resources and renewable energy.</div>
+<p style="font-size:12.5px;color:var(--muted);margin:4px 0 0">Outlook: population 1.8M → up to <b>2.2M by 2050</b> (+550k), jobs 866k → ~1M (+290k) · <b>climate-neutral by 2030</b> then climate-negative (emissions −80% vs 2005 by 2030).</p>
+</div>
+
+<h2>3. The six themes of the VISION plan</h2>
+<div class="theme"><b>① Energy</b> — solar (thresholds 50 ha / 1 MWp), nuclear (Loviisa + <b>SMR</b> under 1,500 MWth), geothermal/waste heat (data-centre waste-heat recovery required), transmission 400/110 kV · <b>EstLink 3</b> · <b>hydrogen network</b></div>
+<div class="theme"><b>② Nature &amp; carbon sequestration</b> — protected areas 3,337 ha, green connections (300 m urban / 500–1,000 m rural), biodiversity hotspots (LUO), <b>ecological compensation</b> &amp; mitigation hierarchy, carbon sinks (forest 521,000 ha)</div>
+<div class="theme"><b>③ Industrial production, circular economy &amp; soil management</b> — ~<b>25 clusters</b> as a single development-principle designation (Joddböle clean hydrogen/green steel, Sköldvik refining/circular economy, etc.); deep-water ports as prime sites for hydrogen/clean industry</div>
+<div class="theme"><b>④ Water supply &amp; water resources</b> — regionally significant water sources/policies (<b>key water sources omitted from the map for security</b>), groundwater provisions</div>
+<div class="theme"><b>⑤ Logistics &amp; long-distance passenger transport</b> — <b>Airport Rail Link, East Rail Line, Tallinn Tunnel</b>, Vuosaari/Inkoo ports, alternative-fuel stations, interchange hubs (TEN-T)</div>
+<div class="theme"><b>⑥ National defence</b> (new) — reflecting the changed security situation; minimal mapping (4 EP zones), firing ranges, noise/protection zones, dual-use transport networks</div>
+<p style="font-size:12.5px;color:var(--muted);margin:6px 0 0">Three overarching goals: <b>climate &amp; biodiversity · sustainable/innovative competitiveness · functionality, resilience &amp; security</b> (regional vision: "the most environmentally smart, most innovative and happiest region in Europe").</p>
+
+<h2>4. The four cross-cutting themes — assessment lenses</h2>
+<p style="font-size:13px;color:var(--muted)">They tie the six themes into one sustainable green-transition frame, acting as an <b>"auditor" that evaluates and improves planning solutions</b>. The workshop examines one of them.</p>
+<div class="cc"><b>① Climate change mitigation &amp; adaptation</b> — goal: <b>climate-neutral by 2030, then carbon-negative</b> + resilience. Strongly supports mitigation; <b>adaptation impact positive but limited</b>.</div>
+<div class="cc"><b>② Security, resilience &amp; security of supply</b> — a <b>holistic land-use approach</b> (not single solutions) protects key functions, diversifies systems, anticipates risks; links infrastructure-industry-nature.</div>
+<div class="cc"><b>③ Justice &amp; social acceptance</b> — <b>distributive + recognitional justice</b>. Municipality-level assessment, vulnerable groups, compensation, residents' local knowledge, and <b>co-production</b> beyond mere consultation. "Fairness increases acceptance but does not guarantee it."</div>
+<div class="cc"><b>④ Innovative green transition</b> — a flexible, predictable frame strengthens the innovation environment. Panel notes: access to international talent, <b>path dependency (transport)</b>, <b>data-centre siting (near waste-heat/district-heating)</b>, ports as innovation hubs.</div>
+<div class="card" style="margin-top:10px">
+<h3>🌸 The Impact Assessment Flower</h3>
+<p style="font-size:13px;margin:2px 0">The key visualisation — the <b>inner ring</b> shows how each of the six themes delivers the cross-cutting themes; the <b>outer petals</b> show each designation's degree of impact, coloured by scale: No impact / Minor / <b>Enabling</b> / Strong / <b>Contradictory</b> / Negative.</p>
+<ul>
+<li><b>Mitigation</b>: nature/carbon = STRONG+, energy = +, logistics/industry = contradictory (rail cuts emissions vs. new roads/construction raise them).</li>
+<li><b>Adaptation</b>: nature/carbon = STRONG+, industry = contradictory (impervious surfaces/heat islands), many themes "no impact" → visualising that <b>adaptation is weaker than mitigation</b>.</li>
+</ul>
+</div>
+
+<h2>5. Workshop task · central question</h2>
+<div class="card">
+<div class="q">"To respond better to present and future challenges, what should the impact assessment of the VISION regional plan pay particular attention to?"</div>
+<ol>
+<li><b>Define</b> the chosen lens in the context of regional planning and the VISION plan.</li>
+<li>Identify the <b>key issues, impacts and trade-offs</b> to watch in the assessment.</li>
+<li>Draw <b>1–3 recommendations</b> to strengthen the assessment and the plan.</li>
+<li>Output: a short <b>written summary</b> (recorded in Teams) → present in the plenary.</li>
+</ol>
+</div>
+
+<h2>6. Planning process · timeline</h2>
+<div class="card">
+<ul>
+<li><b>2023</b> — need established through stakeholder surveys.</li>
+<li><b>May 2024</b> — Regional Board decides to start a five-theme phased plan (<b>national defence</b> later added as a sixth theme).</li>
+<li><b>2025</b> — Participation &amp; Assessment plan (PAS) on display (56 comments), planning principles approved, first authority consultation.</li>
+<li><b>11 Mar–8 May 2026</b> — <b>draft on public display</b> (5 map annexes + climate impact assessment annex).</li>
+<li><b>Proposal stage</b> — single alignments fixed, <b>Natura 2000 assessment</b> (100+ sites, ~180,000 ha in the area).</li>
+<li><b>2027</b> — <b>approval expected</b> by the Regional Council Assembly.</li>
+</ul>
+<p style="font-size:12px;color:var(--muted);margin:4px 0 0">Variable: the <b>Land Use Act reform</b> (in force 2026) affects the process and designation terminology · emissions −80% vs 2005 by 2030.</p>
+</div>
+
+<div class="impact">
+<h2>💡 Implications for Seoul / the Capital Region</h2>
+<ul>
+<li><b>"Growing inwards"</b> — justifies compaction/regeneration of a saturated urban fabric; the "reuse of already-used land" logic is directly transferable to Seoul metropolitan planning.</li>
+<li><b>Cross-cutting assessment matrix</b> — evaluating/auditing across four themes rather than listing sectors; strengthens the integration and communication (the Impact Assessment Flower) of capital-region plans.</li>
+<li><b>Institutionalising justice &amp; acceptance</b> — distributive + recognitional justice, municipality-level assessment, compensation, co-production; relevant to Seoul's acute siting conflicts.</li>
+<li><b>Integrating security &amp; supply into land use</b> — treating water sources, data centres and energy grids as a resilience axis; timely for Korea amid semiconductor/data-centre/grid security concerns.</li>
+<li><b>Regional-vs-local roles</b> — the critique that "the framework is regional but decisions are local, with insufficient coordination" is a lesson in balancing local autonomy with regional steering.</li>
+<li><b>Pre-steering emerging siting demand</b> — proactively guiding waste-heat data centres and hydrogen/e-fuel hubs at the planning stage.</li>
+</ul>
+</div>
+
+<div class="refs">
+<b>Sources</b> · WPSC 2026 MW13 background materials (Helsinki-Uusimaa Regional Council, 2026) — Workshop Presentation / VISION Draft Plan Description / Plan Markings &amp; Regulations / Map Legend / Impact Assessments of Cross-cutting Themes. Contact: Ilona Mansikka · ilona.mansikka@uudenmaanliitto.fi<br>
+Related · <a href="/wpsc/tapiola">Tapiola regeneration →</a> · <a href="/wpsc/jatkasaari">Jätkäsaari waterfront →</a>
+</div>
+<p style="text-align:center;margin-top:24px"><a href="/wpsc/itinerary" style="color:var(--teal);font-weight:700;text-decoration:none">← Back to WPSC trip manager</a></p>
+</div>
+
+<script>
+function setLang(l){document.getElementById('ko').style.display=l==='en'?'none':'block';document.getElementById('en').style.display=l==='en'?'block':'none';document.getElementById('bko').classList.toggle('on',l!=='en');document.getElementById('ben').classList.toggle('on',l==='en');document.documentElement.lang=(l==='en'?'en':'ko');try{localStorage.setItem('mw13lang',l)}catch(e){}}
+(function(){var l='ko';try{l=localStorage.getItem('mw13lang')||'ko'}catch(e){}setLang(l);})();
+</script>
+</body></html>
