@@ -502,6 +502,13 @@ def wpsc_jatkasaari():
     if not can_access_system(u, 'wpsc'): return redirect('/?denied=wpsc')
     return send_file(os.path.join(HERE, 'wpsc_jatkasaari.html'))   # 야트카사리 항만재생·한국 비교 출장기사
 
+@app.route('/wpsc/mw13')
+def wpsc_mw13():
+    u = current()
+    if not u: return redirect('/?sys=wpsc')
+    if not can_access_system(u, 'wpsc'): return redirect('/?denied=wpsc')
+    return send_file(os.path.join(HERE, 'wpsc_mw13.html'))   # MW13 모바일워크숍 — VISION 녹색전환 지역계획 보고서
+
 # ---------------- WPSC 출장결과보고서 (편집/사진/다운로드) — dbrecords(subsystem='wpsc', kind='report') ----------------
 WPSC_REPORT_SLUG = 'wpsc-report-main'
 def default_wpsc_report():
